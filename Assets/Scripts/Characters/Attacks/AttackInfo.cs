@@ -17,6 +17,11 @@ public class AttackInfo : MonoBehaviour
 
 	public Vector2 HitboxScale = new Vector2 (1.0f, 1.0f);
 	public Vector2 HitboxOffset = new Vector2(0f,0f);
+
+	public bool UniqueAIPrediction = false;
+	public Vector2 AIPredictionHitbox = Vector2.zero;
+	public Vector2 AIPredictionOffset = Vector2.zero;
+
 	public float Damage = 10.0f;
 	public float Stun = 0.3f;
 	public float HitboxDuration = 0.5f;
@@ -96,6 +101,10 @@ public class AttackInfo : MonoBehaviour
 
 	protected virtual void OnStartUp()
 	{
+		if (UniqueAIPrediction == false){
+			AIPredictionHitbox = HitboxScale;
+			AIPredictionOffset = HitboxOffset;
+		}
 	}
 
 	protected virtual void OnAttack()
