@@ -60,7 +60,7 @@ public class PhysicsSS : MonoBehaviour
 	internal void Start()
 	{
 		CalculateRaySpacing();
-		SetDirection(true);
+		SetDirection(FacingLeft);
 	}
 
 	internal void FixedUpdate()

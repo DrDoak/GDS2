@@ -4,7 +4,9 @@ using UnityEngine;
 
 public class HitboxMaker : MonoBehaviour
 {
-	public GameObject hitboxClass;
+	public GameObject HitboxClass;
+	public GameObject LineHBClass;
+
 	public List<string> hitTypes;
 	PhysicsSS m_physics;
 	Fighter m_fighter;
@@ -14,11 +16,30 @@ public class HitboxMaker : MonoBehaviour
 		m_fighter = GetComponent<Fighter>();
 	}
 
+	public LineHitbox createLineHB(float range, Vector2 aimPoint, Vector2 offset,float damage, float stun, float hitboxDuration, Vector2 knockback,string faction, bool followObj) {
+		Vector3 newPos = new Vector3(transform.position.x + offset.x, transform.position.y + offset.y, 0);
+		GameObject go = Instantiate(LineHBClass,newPos,Quaternion.identity) as GameObject; 
+		LineHitbox line = go.GetComponent<LineHitbox> ();
+		line.setRange (range);
+		line.Damage = damage;
+		line.setAimPoint (aimPoint);
+		line.Duration = hitboxDuration;
+		line.Knockback = m_physics.OrientVectorToDirection(knockback);
+		line.IsFixedKnockback = true;
+		//line.setFaction (faction);
+		line.Creator = gameObject;
+		//line.reflect = hitboxReflect;
+		line.Stun = stun;
+		//line.mAttr = mAttrs;
+		Debug.Log ("Creating Line HB");
+		return line;
+	}
+
 	public Hitbox CreateHitbox(Vector2 hitboxScale, Vector2 offset, float damage, float stun, float hitboxDuration, Vector2 knockback, bool fixedKnockback, bool followObj)
 	{
 		Vector2 cOff = m_physics.OrientVectorToDirection(offset);
 		Vector3 newPos = transform.position + (Vector3)cOff;
-		var go = GameObject.Instantiate(hitboxClass, newPos, Quaternion.identity);
+		var go = GameObject.Instantiate(HitboxClass, newPos, Quaternion.identity);
 		go.transform.SetParent(gameObject.transform);
 
 		Hitbox newBox = go.GetComponent<Hitbox>();

@@ -28,8 +28,8 @@ public class AttackInfo : MonoBehaviour
 	public Vector2 Knockback = new Vector2(10.0f,10.0f);
 
 	public float AnimSpeed = 1f;
-	public float StartUpTime = 0.0f;
-	public float AttackTime = 0.3f;
+	public float StartUpTime = 0.5f;
+	public float AttackTime = 0.0f;
 	public float RecoveryTime = 0.5f;
 
 	public string AttackName = "default";
@@ -59,10 +59,10 @@ public class AttackInfo : MonoBehaviour
 		};
 		m_progressCalls = new Dictionary<AttackState, Action>()
 		{
-			{ AttackState.STARTUP, OnAttack },
-			{ AttackState.ATTACK, OnRecovery },
-			{ AttackState.RECOVERY, OnConclude },
-			{ AttackState.INACTIVE, OnStartUp }
+			{ AttackState.STARTUP, OnStartUp},
+			{ AttackState.ATTACK, OnAttack },
+			{ AttackState.RECOVERY, OnRecovery },
+			{ AttackState.INACTIVE, OnConclude }
 		};
 	}
 

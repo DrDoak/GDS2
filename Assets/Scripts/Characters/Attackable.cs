@@ -2,6 +2,8 @@
 using System.Collections.Generic;
 using UnityEngine;
 
+public enum FactionType { NONE, ALLIES, ENEMIES, HOSTILE };
+
 public class Attackable : MonoBehaviour
 {
 	private float m_health = 100.0f;
@@ -11,6 +13,7 @@ public class Attackable : MonoBehaviour
 	public bool Alive = true;
 	public float DeathTime = 0.0f;
 	private float m_currDeathTime;
+	public FactionType Faction = FactionType.HOSTILE;
 
 	public Dictionary<string,float> Resistences = new Dictionary<string,float>();
 	private PhysicsSS m_movementController;
@@ -110,5 +113,9 @@ public class Attackable : MonoBehaviour
 	{
 		m_health = Mathf.Max(Mathf.Min(MaxHealth, m_health - damage), 0);
 		Alive = (m_health > 0);
+	}
+
+	public bool CanAttack(FactionType otherFaction) {
+		return (otherFaction == FactionType.HOSTILE || Faction == FactionType.HOSTILE || otherFaction != Faction);
 	}
 }

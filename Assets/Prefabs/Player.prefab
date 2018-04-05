@@ -27,7 +27,11 @@ GameObject:
   - component: {fileID: 114183775052015364}
   - component: {fileID: 114319908791872480}
   - component: {fileID: 114667538344402448}
-  m_Layer: 8
+  - component: {fileID: 114407925808802884}
+  - component: {fileID: 114506322611810582}
+  - component: {fileID: 114845752184036596}
+  - component: {fileID: 114573659389287300}
+  m_Layer: 9
   m_Name: Player
   m_TagString: Player
   m_Icon: {fileID: 0}
@@ -41,7 +45,7 @@ Transform:
   m_PrefabInternal: {fileID: 100100000}
   m_GameObject: {fileID: 1000013670716774}
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_LocalPosition: {x: -26.35, y: -2.24, z: 0}
+  m_LocalPosition: {x: -2.1, y: 3.11, z: 0}
   m_LocalScale: {x: 3, y: 3, z: 4}
   m_Children: []
   m_Father: {fileID: 0}
@@ -123,6 +127,7 @@ MonoBehaviour:
   MaxHealth: 100
   Alive: 1
   DeathTime: 0
+  Faction: 3
 --- !u!114 &114223702759941158
 MonoBehaviour:
   m_ObjectHideFlags: 1
@@ -137,12 +142,12 @@ MonoBehaviour:
   FallDir: 0
   CollisionMask:
     serializedVersion: 2
-    m_Bits: 0
+    m_Bits: 256
   DecelerationRatio: 1
-  Y_SpeedRatio: 0.5
-  dropThruTime: 0
   OnGround: 1
-  MaxClimbAngle: 80
+  MaxClimbAngle: 60
+  m_inputedMove: {x: 0, y: 0}
+  TerminalVelocity: -5
   FacingLeft: 0
 --- !u!114 &114319908791872480
 MonoBehaviour:
@@ -155,12 +160,84 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: c380a1cc962b4a24781a3ad796ebd635, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  IsCurrentPlayer: 0
+  IsCurrentPlayer: 1
   JumpHeight: 4
   TimeToJumpApex: 0.4
   MoveSpeed: 8
+  m_inputMove: {x: 0, y: 0}
   m_minDistance: 1
   m_abandonDistance: 10
+--- !u!114 &114407925808802884
+MonoBehaviour:
+  m_ObjectHideFlags: 1
+  m_PrefabParentObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 100100000}
+  m_GameObject: {fileID: 1000013670716774}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 1994e71cbe2edd849aab659e7d7bd75e, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  AutoOrientSprite: 1
+  IdleAnimation: idle
+  WalkAnimation: run
+  HurtAnimation: hit
+  AirAnimation: air
+  AttackSound: {fileID: 0}
+  StunTime: 0
+--- !u!114 &114506322611810582
+MonoBehaviour:
+  m_ObjectHideFlags: 1
+  m_PrefabParentObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 100100000}
+  m_GameObject: {fileID: 1000013670716774}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: b2f176fa900675a449256a92aa0193c7, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  HitboxClass: {fileID: 1000014045791988, guid: fe2b3e2d27b9cbe498fc049e74fb9ecf,
+    type: 2}
+  LineHBClass: {fileID: 1208028220725142, guid: 26fc9fe904c00d54e8bc882bbd2c61f4,
+    type: 2}
+  hitTypes: []
+--- !u!114 &114573659389287300
+MonoBehaviour:
+  m_ObjectHideFlags: 1
+  m_PrefabParentObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 100100000}
+  m_GameObject: {fileID: 1000013670716774}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: abb3562db1f413448958ab2ab02ef953, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  HitboxScale: {x: 2, y: 1}
+  HitboxOffset: {x: 1, y: 0}
+  UniqueAIPrediction: 0
+  AIPredictionHitbox: {x: 0, y: 0}
+  AIPredictionOffset: {x: 0, y: 0}
+  Damage: 10
+  Stun: 0.3
+  HitboxDuration: 0.5
+  Knockback: {x: 15, y: 2}
+  AnimSpeed: 1
+  StartUpTime: 0.5
+  AttackTime: 0
+  RecoveryTime: 0.5
+  AttackName: default
+  HitType: melee
+  StartUpAnimation: stab3_s
+  RecoveryAnimation: stab3_r
+  AttackFX: {fileID: 0}
+  StartupSoundFX: {fileID: 0}
+  AttackSoundFX: {fileID: 0}
+  StartUpDash: {x: 0, y: 0}
+  StartUpDuration: 0
+  AttackDash: {x: 25, y: 0}
+  AttackDashDuration: 0.1
+  ConclusionDash: {x: 0, y: 0}
+  ConclusionDuration: 0
 --- !u!114 &114667538344402448
 MonoBehaviour:
   m_ObjectHideFlags: 1
@@ -172,6 +249,19 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 7bc35a6c28df4004bb8322b02cfc574c, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  m_currentAnim: 
+--- !u!114 &114845752184036596
+MonoBehaviour:
+  m_ObjectHideFlags: 1
+  m_PrefabParentObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 100100000}
+  m_GameObject: {fileID: 1000013670716774}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 80d504afecbbf6c42acaec34ce62be0b, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  movt: {fileID: 0}
 --- !u!212 &212358539921992486
 SpriteRenderer:
   m_ObjectHideFlags: 1

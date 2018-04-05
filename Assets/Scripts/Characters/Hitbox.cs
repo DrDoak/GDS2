@@ -32,6 +32,7 @@ public class Hitbox : MonoBehaviour {
 
 	private List<string> m_hitTypes;
 	public List<string> HitTypes { get { return m_hitTypes; } set { m_hitTypes = value; } }
+	public FactionType Faction;
 
 	[HideInInspector]
 	public GameObject Creator { get; set; }
@@ -47,7 +48,8 @@ public class Hitbox : MonoBehaviour {
 
 	private PhysicsSS m_creatorPhysics;
 	private Vector4 m_knockbackRanges;
-	private List<Attackable> m_collidedObjs = new List<Attackable> ();
+	protected List<Attackable> m_collidedObjs = new List<Attackable> ();
+	protected List<Attackable> m_overlappingControl = new List<Attackable> (); 
 
 	virtual public void Init()
 	{
@@ -63,7 +65,7 @@ public class Hitbox : MonoBehaviour {
 		Tick();
 	}
 
-	private void Tick()
+	protected void Tick()
 	{
 		if (m_followObj != null)
 			FollowObj();
@@ -115,12 +117,14 @@ public class Hitbox : MonoBehaviour {
 
 	protected void OnAttackable(Attackable atkObj)
 	{
-		if (!atkObj || atkObj.gameObject == Creator || m_collidedObjs.Contains (atkObj))
+		if (!atkObj || atkObj.gameObject == Creator || m_collidedObjs.Contains (atkObj) || !atkObj.CanAttack(Faction))
 			return;
 		if (IsRandomKnockback)
 			RandomizeKnockback();
 		atkObj.TakeHit(this);
 		m_collidedObjs.Add (atkObj);
+		if (!m_overlappingControl.Contains (atkObj))
+			m_overlappingControl.Add (atkObj);
 	}
 
 	internal void OnTriggerEnter2D(Collider2D other)
@@ -138,6 +142,10 @@ public class Hitbox : MonoBehaviour {
 			collidedObjs.Remove (other.gameObject.GetComponent<Attackable> ());
 		}
 		*/
+		if (other.gameObject.GetComponent<Attackable> () 
+			&& m_overlappingControl.Contains(other.gameObject.GetComponent<Attackable>())) {
+			m_overlappingControl.Remove (other.gameObject.GetComponent<Attackable> ());
+		}
 	}
 
 	private void SwitchActiveCollider(bool FacingLeft)
@@ -158,5 +166,10 @@ public class Hitbox : MonoBehaviour {
 		if (FacingLeft)
 			return 3;
 		return 1;
+	}
+
+	void OnDrawGizmos() {
+		Gizmos.color = new Color (1, 0, 0, .8f);
+		Gizmos.DrawCube (transform.position, transform.localScale);
 	}
 }
