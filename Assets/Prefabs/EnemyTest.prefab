@@ -64,7 +64,7 @@ Transform:
   m_PrefabInternal: {fileID: 100100000}
   m_GameObject: {fileID: 1614439459565114}
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_LocalPosition: {x: -13.55, y: 4.49, z: 0}
+  m_LocalPosition: {x: -9.26, y: -0.86, z: 0}
   m_LocalScale: {x: 3, y: 3, z: 4}
   m_Children:
   - {fileID: 4416458896656566}
@@ -344,9 +344,11 @@ MonoBehaviour:
   JumpHeight: 4
   TimeToJumpApex: 0.4
   MoveSpeed: 8
+  jumpVector: {x: 0, y: 0}
   m_inputMove: {x: 0, y: 0}
-  m_minDistance: 1
-  m_abandonDistance: 10
+  m_minDistance: 3
+  m_abandonDistance: 20
+  m_stuckTime: 0
 --- !u!212 &212579261813204232
 SpriteRenderer:
   m_ObjectHideFlags: 1
