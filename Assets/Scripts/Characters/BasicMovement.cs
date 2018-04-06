@@ -1,6 +1,7 @@
 ﻿using UnityEngine;
 using System.Collections;
 using UnityEngine.UI;
+using UnityEngine.EventSystems;
 
 [RequireComponent (typeof (PhysicsSS))]
 [RequireComponent (typeof (Attackable))]
@@ -52,6 +53,8 @@ public class BasicMovement : MonoBehaviour
 		m_physics.SetGravityScale (gravity * (1.0f/60f));
 		jumpVelocity = Mathf.Abs(gravity) * TimeToJumpApex;
 		jumpVector = new Vector2 (0f, jumpVelocity);
+
+		ExecuteEvents.Execute<ICustomMessageTarget> (gameObject, null, (x, y) => x.OnCreation ());
 	}
 
 	internal void Update()
