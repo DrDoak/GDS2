@@ -119,6 +119,11 @@ public class Attackable : MonoBehaviour
 		return "hit";
 	}
 
+	internal void OnTriggerEnter2D(Collider2D other)
+	{
+		ExecuteEvents.Execute<ICustomMessageTarget> (gameObject, null, (x, y) => x.OnAttack ());
+	}
+
 	public void DamageObj(float damage)
 	{
 		m_health = Mathf.Max(Mathf.Min(MaxHealth, m_health - damage), 0);
