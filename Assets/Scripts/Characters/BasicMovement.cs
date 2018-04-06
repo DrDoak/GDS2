@@ -1,7 +1,6 @@
 ﻿using UnityEngine;
 using System.Collections;
 using UnityEngine.UI;
-using UnityEngine.EventSystems;
 
 [RequireComponent (typeof (PhysicsSS))]
 [RequireComponent (typeof (Attackable))]
@@ -54,9 +53,8 @@ public class BasicMovement : MonoBehaviour
 		jumpVelocity = Mathf.Abs(gravity) * TimeToJumpApex;
 		jumpVector = new Vector2 (0f, jumpVelocity);
 
-		ExecuteEvents.Execute<ICustomMessageTarget> (gameObject, null, (x, y) => x.OnCreation ());
 	}
-
+		
 	internal void Update()
 	{
 		if (IsCurrentPlayer && Input.GetButton("Fire1"))
@@ -78,6 +76,7 @@ public class BasicMovement : MonoBehaviour
 		JumpMovement ();
 		SetDirectionFromInput();
 	}
+
 	internal void JumpMovement() {
 		if (Input.GetButtonDown("Jump")) {
 			if (m_inputMove.y < -0f) {
