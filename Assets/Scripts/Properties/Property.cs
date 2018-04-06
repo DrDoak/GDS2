@@ -1,16 +1,17 @@
 ﻿using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using UnityEngine.EventSystems;
 
-public abstract class Property : MonoBehaviour
+public class Property : MonoBehaviour, ICustomMessageTarget
 {
 
-    protected abstract void OnCreation();
-    protected abstract void OnHit();
-    protected abstract void OnHitConfirm();
-    protected abstract void OnDeath();
-    protected abstract void OnUpdate();
-    protected abstract void OnCollision();
-    protected abstract void OnAttack();
+    public virtual void OnCreation() { }
+    public virtual void OnHit() { }
+    public virtual void OnHitConfirm() { }
+    public virtual void OnDeath() { }
+    public virtual void OnUpdate() { }
+    public virtual void OnCollision() { }
+    public virtual void OnAttack() { }
 
 }

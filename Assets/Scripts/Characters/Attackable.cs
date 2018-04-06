@@ -31,6 +31,7 @@ public class Attackable : MonoBehaviour
 	}
 
 	internal void Start() {
+        Debug.Log("start");
 		ExecuteEvents.Execute<ICustomMessageTarget> (gameObject, null, (x, y) => x.OnCreation ());
 	}
 
