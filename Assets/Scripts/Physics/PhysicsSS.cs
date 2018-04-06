@@ -35,6 +35,10 @@ public class PhysicsSS : MonoBehaviour
 	private Vector2 m_velocity;
 	public Vector2 Velocity { get { return m_velocity; } }
 
+	private Vector3 m_trueVelocity;
+	public Vector3 TrueVelocity { get { return m_trueVelocity; } }
+	private Vector3 m_lastPosition;
+
 	// Tracking inputed movement
 	private ForceSS m_inputedForce;
 	public Vector2 m_inputedMove = Vector2.zero;
@@ -55,6 +59,7 @@ public class PhysicsSS : MonoBehaviour
 		m_boxCollider.offset = new Vector2(m_boxCollider.offset.x, m_boxCollider.offset.y + m_skinWidth);
 		m_sprite = GetComponent<SpriteRenderer>();
 		m_canMove = true;
+		m_lastPosition = transform.position;
 	}
 
 	internal void Start()
@@ -68,8 +73,13 @@ public class PhysicsSS : MonoBehaviour
 		dropThruTime = Mathf.Max(0f,dropThruTime - Time.fixedDeltaTime);
 		DecelerateAutomatically(VELOCITY_MINIMUM_THRESHOLD);
 		ProcessMovement();
+		UpdateTrueVelocity ();
 	}
 
+	private void UpdateTrueVelocity() {
+		m_trueVelocity = transform.position - m_lastPosition;
+		m_lastPosition = transform.position;
+	}
 	private void DecelerateAutomatically(float threshold)
 	{
 		if (m_accumulatedVelocity.sqrMagnitude > threshold)
