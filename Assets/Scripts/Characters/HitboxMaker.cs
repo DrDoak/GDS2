@@ -16,7 +16,7 @@ public class HitboxMaker : MonoBehaviour
 		m_fighter = GetComponent<Fighter>();
 	}
 
-	public LineHitbox createLineHB(float range, Vector2 aimPoint, Vector2 offset,float damage, float stun, float hitboxDuration, Vector2 knockback,string faction, bool followObj) {
+	public LineHitbox createLineHB(float range, Vector2 aimPoint, Vector2 offset,float damage, float stun, float hitboxDuration, Vector2 knockback, bool followObj = true) {
 		Vector3 newPos = new Vector3(transform.position.x + offset.x, transform.position.y + offset.y, 0);
 		GameObject go = Instantiate(LineHBClass,newPos,Quaternion.identity) as GameObject; 
 		LineHitbox line = go.GetComponent<LineHitbox> ();
@@ -35,7 +35,7 @@ public class HitboxMaker : MonoBehaviour
 		return line;
 	}
 
-	public Hitbox CreateHitbox(Vector2 hitboxScale, Vector2 offset, float damage, float stun, float hitboxDuration, Vector2 knockback, bool fixedKnockback, bool followObj)
+	public Hitbox CreateHitbox(Vector2 hitboxScale, Vector2 offset, float damage, float stun, float hitboxDuration, Vector2 knockback, bool fixedKnockback = true, bool followObj = true)
 	{
 		Vector2 cOff = m_physics.OrientVectorToDirection(offset);
 		Vector3 newPos = transform.position + (Vector3)cOff;
