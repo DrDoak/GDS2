@@ -14,4 +14,7 @@ public class Property : MonoBehaviour, ICustomMessageTarget
     public virtual void OnCollision() { }
     public virtual void OnAttack() { }
 
+	public virtual void OnAddProperty() { }
+
+	public virtual void OnRemoveProperty() {}
 }
