@@ -40,7 +40,8 @@ public class HitboxMaker : MonoBehaviour
 		Vector2 cOff = m_physics.OrientVectorToDirection(offset);
 		Vector3 newPos = transform.position + (Vector3)cOff;
 		var go = GameObject.Instantiate(HitboxClass, newPos, Quaternion.identity);
-		go.transform.SetParent(gameObject.transform);
+		if (followObj)
+			go.transform.SetParent(gameObject.transform);
 
 		Hitbox newBox = go.GetComponent<Hitbox>();
 		newBox.SetScale(hitboxScale);

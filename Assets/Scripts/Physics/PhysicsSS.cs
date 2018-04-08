@@ -44,7 +44,7 @@ public class PhysicsSS : MonoBehaviour
 	public Vector2 m_inputedMove = Vector2.zero;
 	public Vector2 InputedMove { get { return m_inputedMove; } }
 	public float TerminalVelocity = -5f;
-	private float m_gravityScale = 1.0f;
+	private float m_gravityScale = -1.0f;
 
 	public bool FacingLeft = false;
 

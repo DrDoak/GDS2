@@ -113,6 +113,24 @@ NavMeshSettings:
     debug:
       m_Flags: 0
   m_NavMeshData: {fileID: 0}
+--- !u!1 &525073574 stripped
+GameObject:
+  m_PrefabParentObject: {fileID: 1517046101418250, guid: 8b2eaa62f53d99048bd82ea2f6b808db,
+    type: 2}
+  m_PrefabInternal: {fileID: 1203991253}
+--- !u!114 &525073576
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_PrefabParentObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 0}
+  m_GameObject: {fileID: 525073574}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 589bf31073c0bd74abc2e4425774d2a5, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  Player: {fileID: 0}
+  Fighter: {fileID: 0}
 --- !u!1001 &1025268403
 Prefab:
   m_ObjectHideFlags: 0
@@ -194,7 +212,8 @@ Prefab:
       propertyPath: m_RootOrder
       value: 1
       objectReference: {fileID: 0}
-    m_RemovedComponents: []
+    m_RemovedComponents:
+    - {fileID: 114003554741054026, guid: 8b2eaa62f53d99048bd82ea2f6b808db, type: 2}
   m_ParentPrefab: {fileID: 100100000, guid: 8b2eaa62f53d99048bd82ea2f6b808db, type: 2}
   m_IsPrefabParent: 0
 --- !u!1 &1203991254 stripped
@@ -214,6 +233,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   allAttacks: []
+  CurrentTarget: {fileID: 0}
 --- !u!1001 &1686999704
 Prefab:
   m_ObjectHideFlags: 0

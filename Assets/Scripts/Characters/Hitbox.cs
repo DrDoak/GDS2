@@ -58,6 +58,7 @@ public class Hitbox : MonoBehaviour {
 			RandomizeKnockback ();
 		m_hasDuration = m_duration > 0;
 		Tick();
+		Debug.Log ("Hitbox initialized");
 	}
 
 	virtual internal void Update()
@@ -67,6 +68,7 @@ public class Hitbox : MonoBehaviour {
 
 	protected void Tick()
 	{
+		Debug.Log ("Hitbox created");
 		if (m_followObj != null)
 			FollowObj();
 		SwitchActiveCollider(m_creatorPhysics.FacingLeft);
@@ -99,8 +101,10 @@ public class Hitbox : MonoBehaviour {
 
 	private void MaintainOrDestroyHitbox()
 	{
-		if (m_duration <= 0.0f)
+		if (m_duration <= 0.0f) {
+			Debug.Log ("Hitbox destroyed!" + m_duration);
 			GameObject.Destroy (gameObject);
+		}
 		Duration -= Time.deltaTime;
 	}
 
