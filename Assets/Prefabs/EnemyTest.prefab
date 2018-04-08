@@ -50,6 +50,8 @@ GameObject:
   - component: {fileID: 114613579089987974}
   - component: {fileID: 114179104770325110}
   - component: {fileID: 114057275778421492}
+  - component: {fileID: 114342479770708504}
+  - component: {fileID: 114811817460110688}
   m_Layer: 8
   m_Name: EnemyTest
   m_TagString: Player
@@ -64,7 +66,7 @@ Transform:
   m_PrefabInternal: {fileID: 100100000}
   m_GameObject: {fileID: 1614439459565114}
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_LocalPosition: {x: -9.26, y: -0.86, z: 0}
+  m_LocalPosition: {x: -29.756239, y: 10.485, z: 0}
   m_LocalScale: {x: 3, y: 3, z: 4}
   m_Children:
   - {fileID: 4416458896656566}
@@ -264,6 +266,17 @@ MonoBehaviour:
   Alive: 1
   DeathTime: 0
   Faction: 3
+--- !u!114 &114342479770708504
+MonoBehaviour:
+  m_ObjectHideFlags: 1
+  m_PrefabParentObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 100100000}
+  m_GameObject: {fileID: 1614439459565114}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 7209baf354a64e1408f7faeb13592322, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
 --- !u!114 &114482614744153130
 MonoBehaviour:
   m_ObjectHideFlags: 1
@@ -315,6 +328,17 @@ MonoBehaviour:
   AirAnimation: air
   AttackSound: {fileID: 0}
   StunTime: 0
+--- !u!114 &114811817460110688
+MonoBehaviour:
+  m_ObjectHideFlags: 1
+  m_PrefabParentObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 100100000}
+  m_GameObject: {fileID: 1614439459565114}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 6707b994f2ccf374d8d6b2f9199ceb5a, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
 --- !u!114 &114866621826105684
 MonoBehaviour:
   m_ObjectHideFlags: 1
@@ -341,7 +365,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   IsCurrentPlayer: 0
-  JumpHeight: 4
+  JumpHeight: 6
   TimeToJumpApex: 0.4
   MoveSpeed: 8
   jumpVector: {x: 0, y: 0}
