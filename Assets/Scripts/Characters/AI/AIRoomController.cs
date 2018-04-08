@@ -35,10 +35,5 @@ public class AIRoomController : MonoBehaviour {
 		}
 	}
 		
-
-	void Update() {
-		foreach (AIFighter fighter in m_aiFighters) {
-			fighter.Routine.Advance();
-		}
-	}
+	void Update() {}
 }

@@ -34,7 +34,8 @@ public class FighterRoutine : MonoBehaviour {
 	}
 
 	bool TaskHaltedOrInactive(int taskIndex) {
-		return TaskTimer > TaskDurations[taskIndex] || !Tasks[taskIndex].Active;
+		return ((TaskDurations[taskIndex] != 0f && TaskTimer > TaskDurations[taskIndex])
+					|| !Tasks[taskIndex].Active);
 	}
 
 	void MoveToNextTask() {
