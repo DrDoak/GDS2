@@ -670,9 +670,11 @@ MonoBehaviour:
   m_GameObject: {fileID: 1349683847}
   m_Enabled: 1
   m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 93fd9abf4e983e6429e5fcb68a5ef2e9, type: 3}
+  m_Script: {fileID: 11500000, guid: 6707b994f2ccf374d8d6b2f9199ceb5a, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  ExplosionFX: {fileID: 1720918671102054, guid: b9739a0b310aefb4d9b0f17bfa9898cc,
+    type: 2}
 --- !u!114 &1349683849
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -713,7 +715,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 6cecf518dba7e8f429d2dc6df9ba9177, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  MaxHealth: 5
+  MaxHealth: 30
   Alive: 1
   DeathTime: 0
   Faction: 3
