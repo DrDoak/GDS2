@@ -4,18 +4,17 @@ using UnityEngine;
 
 public class TaskIdleSearch : FighterTask {
 
-	public int Speed = 3;
-	override public void Advance() 
-	{
-		Vector2 target = Player.transform.position;
-		if (Vector2.Distance ((Vector2)Fighter.BasicMove.transform.position, target) < .1f)
-		{
-			print ("Attack!");
-		}
-		else 
-		{
-			for (int i = 0; i < Speed; i++)
-				Fighter.BasicMove.MoveToPoint ((Vector3)target);
-		}
+	void Init() {
+		//Stealable = false;
 	}
+
+	override public void Advance() 
+	{}
+
+	/*override public void OnSight(Observable o) {
+		if (o.GetComponent<Attackable> () && GetComponent<Attackable> ().CanAttack (o.GetComponent<Attackable> ().Faction)) {
+			GetComponent<AIFighter> ().CurrentTarget = o.GetComponent<Attackable> ();
+			Active = false;
+		}
+	}*/
 }

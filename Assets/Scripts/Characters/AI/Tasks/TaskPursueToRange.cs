@@ -2,15 +2,8 @@
 using System.Collections.Generic;
 using UnityEngine;
 
-public class TaskPursueToRange : MonoBehaviour {
+public class TaskPursueToRange : FighterTask {
 
-	// Use this for initialization
-	void Start () {
-		
-	}
-	
-	// Update is called once per frame
-	void Update () {
-		
-	}
+	override public void Advance() 
+	{}
 }

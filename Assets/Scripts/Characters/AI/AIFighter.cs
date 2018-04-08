@@ -13,6 +13,9 @@ public class AIFighter : MonoBehaviour {
 
 	private List<FighterRoutine> m_routines;
 	public List<AttackInfo> allAttacks;
+
+	public Attackable CurrentTarget;
+
 	float spacing = 1.0f;
 
 	void Start() {

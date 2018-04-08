@@ -9,6 +9,7 @@ public interface ICustomMessageTarget : IEventSystemHandler
 	void OnCreation();
 	void OnHit();
 	void OnHitConfirm ();
+	void OnSight(Observable observedObj);
 	void OnDeath();
 	void OnUpdate();
 	void OnCollision();

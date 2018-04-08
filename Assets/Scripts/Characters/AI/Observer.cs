@@ -1,6 +1,7 @@
 ﻿using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using UnityEngine.EventSystems;
 
 public class Observer : MonoBehaviour {
 
@@ -50,7 +51,7 @@ public class Observer : MonoBehaviour {
 					float diff = Mathf.Abs (cDist - minDist);
 					if (diff < 1.0f) {
 						if (!VisibleObjs.Contains (o)) {
-							//onSight (o);
+							ExecuteEvents.Execute<ICustomMessageTarget> (gameObject, null, (x, y) => x.OnSight (o));
 							o.addObserver (this);
 							VisibleObjs.Add (o);
 						}
@@ -77,6 +78,9 @@ public class Observer : MonoBehaviour {
 		sinceLastScan = 0f;
 	}
 
+	bool IsVisible(Observable o) {
+		return VisibleObjs.Contains (o);
+	}
 	void OnDestroy() {
 		foreach (Observable o in VisibleObjs) {
 			o.removeObserver (this);	
