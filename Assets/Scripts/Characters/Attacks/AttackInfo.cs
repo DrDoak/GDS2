@@ -15,6 +15,7 @@ public class AttackInfo : MonoBehaviour
 	public AttackState CurrentProgress { get { return m_progress; } }
 	private event AttackProgress ProgressEvent = delegate {};
 
+	public bool IsHitboxCreater = true;
 	public Vector2 HitboxScale = new Vector2 (1.0f, 1.0f);
 	public Vector2 HitboxOffset = new Vector2(0f,0f);
 
@@ -109,7 +110,9 @@ public class AttackInfo : MonoBehaviour
 
 	protected virtual void OnAttack()
 	{
-		CreateHitbox();
+		if (IsHitboxCreater) {
+			CreateHitbox ();
+		}
 	}
 
 	protected virtual void OnRecovery()

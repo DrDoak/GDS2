@@ -100,7 +100,7 @@ public class Attackable : MonoBehaviour
 		m_movementController.AddToVelocity(force);
 	}
 
-	public string TakeHit(Hitbox hb)
+	public HitResult TakeHit(Hitbox hb)
 	{
 		ExecuteEvents.Execute<ICustomMessageTarget> (gameObject, null, (x, y) => x.OnHit ());
 		// Debug.Log (gameObject + "is Taking hit");
@@ -108,7 +108,7 @@ public class Attackable : MonoBehaviour
 		{
 			if (m_fighter)
 				m_fighter.RegisterStun(hb.Stun, false, hb);
-			return "block";
+			return HitResult.BLOCKED;
 		}
 
 		DamageObj(hb.Damage);
@@ -116,7 +116,7 @@ public class Attackable : MonoBehaviour
 
 		if (hb.Stun > 0 && m_fighter)
 			m_fighter.RegisterStun(hb.Stun, true, hb);
-		return "hit";
+		return HitResult.HIT;
 	}
 
 	internal void OnTriggerEnter2D(Collider2D other)

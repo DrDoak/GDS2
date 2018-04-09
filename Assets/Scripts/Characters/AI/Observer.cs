@@ -78,7 +78,7 @@ public class Observer : MonoBehaviour {
 		sinceLastScan = 0f;
 	}
 
-	bool IsVisible(Observable o) {
+	public bool IsVisible(Observable o) {
 		return VisibleObjs.Contains (o);
 	}
 	void OnDestroy() {

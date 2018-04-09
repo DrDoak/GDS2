@@ -2,15 +2,11 @@
 using System.Collections.Generic;
 using UnityEngine;
 
-public class TaskAttack : MonoBehaviour {
+public class TaskAttack : FighterTask {
 
-	// Use this for initialization
-	void Start () {
-		
-	}
-	
-	// Update is called once per frame
-	void Update () {
-		
+	override public void Advance() 
+	{
+		if (!Fighter.Fighter.IsAttacking())
+			NextTask ();
 	}
 }

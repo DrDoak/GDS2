@@ -24,7 +24,12 @@ public class AIFighter : MonoBehaviour {
 		Attackable = GetComponent<Attackable>();
 		Routine = GetComponentInChildren<FighterRoutine>();
 		m_routines = new List<FighterRoutine> (GetComponentsInChildren<FighterRoutine>());
+		foreach (FighterRoutine fr in m_routines) {
+			fr.Init (Fighter, this);
+		}
 		allAttacks = new List<AttackInfo>();
+		Debug.Log ("initializing routine");
+
 		foreach (AttackInfo ai in GetComponents<AttackInfo> ()) {
 			if (ai.name != "sheath" && ai.name != "unsheath") {
 				allAttacks.Add (ai);
