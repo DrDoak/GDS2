@@ -93,7 +93,7 @@ public class AttackInfo : MonoBehaviour
 		Progress();
 	}
 
-	public virtual void OnHitConfirm(GameObject other) {}
+	public virtual void OnHitConfirm(GameObject other, Hitbox hb, HitResult hr) {}
 
 	public virtual void OnInterrupt(float stunTime, bool successfulHit, Hitbox hb)
 	{

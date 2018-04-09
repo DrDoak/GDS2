@@ -135,13 +135,20 @@ public class Hitbox : MonoBehaviour {
 			RandomizeKnockback();
 		HitResult r = atkObj.TakeHit(this);
 		m_collidedObjs.Add (atkObj);
+
 		if (!m_overlappingControl.Contains (atkObj))
 			m_overlappingControl.Add (atkObj);
+		//Debug.Log ("On attackable");
+		//Debug.Log (Creator);
+		if (Creator != null) {
+			Creator.GetComponent<HitboxMaker> ().RegisterHit (atkObj.gameObject, this, r);
+		}
 		return r;
 	}
 
 	internal HitResult OnTriggerEnter2D(Collider2D other)
 	{
+		//Debug.Log ("On trigger enter");
 		return OnAttackable (other.gameObject.GetComponent<Attackable> ());
 	}
 

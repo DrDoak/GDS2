@@ -182,12 +182,13 @@ public class Fighter : MonoBehaviour
 		m_physics.CanMove = false;
 	}
 
-	public void RegisterHit(GameObject otherObj)
+	public void RegisterHit(GameObject otherObj,Hitbox hb, HitResult hr)
 	{
 		//Debug.Log ("Collision: " + this + " " + otherObj);
 		ExecuteEvents.Execute<ICustomMessageTarget> (gameObject, null, (x, y) => x.OnHitConfirm ());
+		//Debug.Log ("Registering hit with: " + otherObj);
 		if (m_currentAttack != null)
-			m_currentAttack.OnHitConfirm(otherObj);
+			m_currentAttack.OnHitConfirm(otherObj,hb,hr);
 	}
 
 	public void EndStun()

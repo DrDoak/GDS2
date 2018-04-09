@@ -20,7 +20,7 @@ public class PropertyHolder : MonoBehaviour {
 	// Update is called once per frame
 	void Update () {}
 
-	List<Property> GetStealableProperties() {
+	public List<Property> GetStealableProperties() {
 		List<Property> lp = new List<Property> ();
 		foreach (Property p in m_properties) {
 			if (p.Stealable) {
@@ -30,11 +30,11 @@ public class PropertyHolder : MonoBehaviour {
 		return lp;
 	}
 
-	void AddProperty(Property p) {
+	public void AddProperty(Property p) {
 		AddProperty (p.GetType().Name);
 	}
 
-	void AddProperty(string pName) {
+	public void AddProperty(string pName) {
 		if (Type.GetType (pName) == null)
 			return;
 		//Property p = (Property)(System.Activator.CreateInstance (Type.GetType (pName)));
@@ -45,13 +45,13 @@ public class PropertyHolder : MonoBehaviour {
 		m_properties.Add (p);
 	}
 
-	void RemoveProperty(Property p) {
+	public void RemoveProperty(Property p) {
 		if (HasProperty(p)) {
 			RemoveProperty (p.GetType().Name);
 		}
 	}
 
-	void RemoveProperty(string pName) {
+	public void RemoveProperty(string pName) {
 		if (HasProperty (pName)) {
 			Type pType = Type.GetType (pName);
 			Property mp = (Property)gameObject.GetComponent(pType);
@@ -62,11 +62,11 @@ public class PropertyHolder : MonoBehaviour {
 
 	}
 
-	bool HasProperty(Property p) {
+	public bool HasProperty(Property p) {
 		return (HasProperty(p.GetType().Name));
 	}
 
-	bool HasProperty(string pName) {
+	public bool HasProperty(string pName) {
 		foreach (Property p in m_properties) {
 			if (p.GetType ().Name == pName)
 				return true;

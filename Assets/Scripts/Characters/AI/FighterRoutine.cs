@@ -17,7 +17,7 @@ public class FighterRoutine : MonoBehaviour {
 			//Debug.Log ("init: " + task);
 			task.Init(player, fighter,this);
 		}
-		Debug.Log (m_tasks.Count);
+		//Debug.Log (m_tasks.Count);
 	}
 
 	virtual public void Advance() {

@@ -39,7 +39,7 @@ public class HitboxMaker : MonoBehaviour
 		line.Stun = stun;
 		//line.mAttr = mAttrs;
 		line.Init();
-		Debug.Log ("Creating Line HB");
+		//Debug.Log ("Creating Line HB");
 		return line;
 	}
 
@@ -74,10 +74,11 @@ public class HitboxMaker : MonoBehaviour
 			Destroy(hb.gameObject);
 	}
 
-	public void RegisterHit(GameObject otherObj)
+	public void RegisterHit(GameObject otherObj, Hitbox hb, HitResult hr)
 	{
+		//Debug.Log ("Registering Hit: " + otherObj);
 		if (m_fighter)
-			m_fighter.RegisterHit (otherObj);
+			m_fighter.RegisterHit (otherObj,hb,hr);
 	}
 
 	public void AddHitType(string hitType)

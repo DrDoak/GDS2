@@ -57,9 +57,15 @@ public class BasicMovement : MonoBehaviour
 		
 	internal void Update()
 	{
-		if (IsCurrentPlayer && Input.GetButton("Fire1"))
-			GetComponent<Fighter>().TryAttack("default");
-
+		if (IsCurrentPlayer && Input.GetButton ("Fire1")) {
+			GetComponent<Fighter> ().TryAttack ("default");
+		}
+		if (IsCurrentPlayer && Input.GetButton ("Fire2")) {
+			GetComponent<Fighter> ().TryAttack ("steal");
+		}
+		if (IsCurrentPlayer && Input.GetButton ("Fire3")) {
+			GetComponent<Fighter> ().TryAttack ("give");
+		}
 		if (!m_physics.CanMove)
 			return;
 		

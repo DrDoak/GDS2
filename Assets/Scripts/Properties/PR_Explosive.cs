@@ -11,7 +11,7 @@ public class PR_Explosive : Property {
     float hd = 0.5f;
     Vector2 kb = new Vector2(25.0f, 60.0f);
 
-    public GameObject ExplosionFX;
+    //public GameObject ExplosionFX;
 
     public override void OnCreation()
     {
@@ -27,6 +27,6 @@ public class PR_Explosive : Property {
     {
         Debug.Log("PR_Explosive on death (kaboom)");
 		GetComponent<HitboxMaker>().CreateHitbox(scl, off, dmg, stun, hd, kb, false,false);
-        Instantiate(ExplosionFX, transform.position, transform.rotation);
+		Instantiate(FindObjectOfType<GameManager>().ExplosionPrefab, transform.position, transform.rotation);
     }
 }

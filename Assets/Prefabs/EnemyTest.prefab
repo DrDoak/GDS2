@@ -20,7 +20,9 @@ GameObject:
   m_Component:
   - component: {fileID: 4416458896656566}
   - component: {fileID: 114134051022478048}
-  - component: {fileID: 114003554741054026}
+  - component: {fileID: 114588472549599360}
+  - component: {fileID: 114606771857940694}
+  - component: {fileID: 114814532125090352}
   m_Layer: 8
   m_Name: Routine
   m_TagString: Untagged
@@ -48,8 +50,9 @@ GameObject:
   - component: {fileID: 114503039921728846}
   - component: {fileID: 114866621826105684}
   - component: {fileID: 114613579089987974}
-  - component: {fileID: 114057275778421492}
   - component: {fileID: 114342479770708504}
+  - component: {fileID: 114849852270695784}
+  - component: {fileID: 114057275778421492}
   m_Layer: 8
   m_Name: EnemyTest
   m_TagString: Player
@@ -64,7 +67,7 @@ Transform:
   m_PrefabInternal: {fileID: 100100000}
   m_GameObject: {fileID: 1614439459565114}
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_LocalPosition: {x: -54.84305, y: 5.7898517, z: 0}
+  m_LocalPosition: {x: -53.03, y: 4.93, z: 0}
   m_LocalScale: {x: 3, y: 3, z: 4}
   m_Children:
   - {fileID: 4416458896656566}
@@ -146,20 +149,6 @@ Animator:
   m_WarningMessage: 
   m_HasTransformHierarchy: 1
   m_AllowConstantClipSamplingOptimization: 1
---- !u!114 &114003554741054026
-MonoBehaviour:
-  m_ObjectHideFlags: 1
-  m_PrefabParentObject: {fileID: 0}
-  m_PrefabInternal: {fileID: 100100000}
-  m_GameObject: {fileID: 1517046101418250}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 31331abafea384fdeabecfa77fa10619, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  Player: {fileID: 0}
-  Fighter: {fileID: 0}
-  Speed: 3
 --- !u!114 &114024569028124538
 MonoBehaviour:
   m_ObjectHideFlags: 1
@@ -183,12 +172,13 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 4bf5e64c9922bfd46b2d80ea951d85db, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  IsHitboxCreater: 0
   HitboxScale: {x: 1, y: 1}
   HitboxOffset: {x: 0, y: 0}
-  UniqueAIPrediction: 0
-  AIPredictionHitbox: {x: 0, y: 0}
-  AIPredictionOffset: {x: 0, y: 0}
-  Damage: 10
+  UniqueAIPrediction: 1
+  AIPredictionHitbox: {x: 5, y: 0.5}
+  AIPredictionOffset: {x: 3, y: 0}
+  Damage: 25
   Stun: 0.3
   HitboxDuration: 0.5
   Knockback: {x: 10, y: 10}
@@ -228,10 +218,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 95fa60c65cf27654680efaba2c42690f, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  m_tasks:
-  - {fileID: 114003554741054026}
-  m_taskDurations:
-  - 5
+  m_tasks: []
 --- !u!114 &114232245349746612
 MonoBehaviour:
   m_ObjectHideFlags: 1
@@ -292,6 +279,34 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   detectionRange: 15
   VisibleObjs: []
+--- !u!114 &114588472549599360
+MonoBehaviour:
+  m_ObjectHideFlags: 1
+  m_PrefabParentObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 100100000}
+  m_GameObject: {fileID: 1517046101418250}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 589bf31073c0bd74abc2e4425774d2a5, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  Player: {fileID: 0}
+  Fighter: {fileID: 0}
+--- !u!114 &114606771857940694
+MonoBehaviour:
+  m_ObjectHideFlags: 1
+  m_PrefabParentObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 100100000}
+  m_GameObject: {fileID: 1517046101418250}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: f5100c24ae9d0cd459c806941bc20bc3, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  Player: {fileID: 0}
+  Fighter: {fileID: 0}
+  TargetRange: 2
+  AttackAggression: 1
 --- !u!114 &114613579089987974
 MonoBehaviour:
   m_ObjectHideFlags: 1
@@ -310,6 +325,32 @@ MonoBehaviour:
   AirAnimation: air
   AttackSound: {fileID: 0}
   StunTime: 0
+--- !u!114 &114814532125090352
+MonoBehaviour:
+  m_ObjectHideFlags: 1
+  m_PrefabParentObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 100100000}
+  m_GameObject: {fileID: 1517046101418250}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 5a1a5ea7ce80383469d332acaf443f8f, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  Player: {fileID: 0}
+  Fighter: {fileID: 0}
+--- !u!114 &114849852270695784
+MonoBehaviour:
+  m_ObjectHideFlags: 1
+  m_PrefabParentObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 100100000}
+  m_GameObject: {fileID: 1614439459565114}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 54ae262720e27452baf2f574fc31d83a, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  allAttacks: []
+  CurrentTarget: {fileID: 0}
 --- !u!114 &114866621826105684
 MonoBehaviour:
   m_ObjectHideFlags: 1
@@ -321,9 +362,12 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: b2f176fa900675a449256a92aa0193c7, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  HitboxClass: {fileID: 0}
-  LineHBClass: {fileID: 0}
+  HitboxClass: {fileID: 1000014045791988, guid: fe2b3e2d27b9cbe498fc049e74fb9ecf,
+    type: 2}
+  LineHBClass: {fileID: 1208028220725142, guid: 26fc9fe904c00d54e8bc882bbd2c61f4,
+    type: 2}
   hitTypes: []
+  Faction: 0
 --- !u!114 &114978030491855044
 MonoBehaviour:
   m_ObjectHideFlags: 1

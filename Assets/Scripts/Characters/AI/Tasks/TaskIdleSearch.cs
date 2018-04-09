@@ -12,16 +12,14 @@ public class TaskIdleSearch : FighterTask {
 	public override void Init(Fighter player, AIFighter fighter, FighterRoutine routine) {
 		base.Init (player, fighter, routine);
 		m_lastObservable = 0;
-		Debug.Log (Fighter);
 		m_observer = Fighter.GetComponent<Observer> ();
-		Debug.Log (Fighter.GetComponent<Observer> ());
 		m_attackable = Fighter.GetComponent<Attackable> ();
 	}
 
 	override public void Advance() 
 	{
 		if (Fighter.CurrentTarget != null) {
-			Debug.Log (Fighter.CurrentTarget);
+			//Debug.Log (Fighter.CurrentTarget);
 			NextTask ();
 			return;
 		}
@@ -30,7 +28,7 @@ public class TaskIdleSearch : FighterTask {
 			foreach (Observable o in m_observer.VisibleObjs) {
 				if (o.GetComponent<Attackable> () && m_attackable.CanAttack (o.GetComponent<Attackable> ().Faction)) {
 					Fighter.CurrentTarget = o.GetComponent<Attackable> ();
-					Debug.Log (Fighter.CurrentTarget);
+					//Debug.Log (Fighter.CurrentTarget);
 					NextTask ();
 					return;
 				}

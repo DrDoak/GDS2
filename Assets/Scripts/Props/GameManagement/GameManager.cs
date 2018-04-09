@@ -12,6 +12,7 @@ public class GameManager : MonoBehaviour
 {
 
 	private static GameManager m_instance;
+	public GameObject ExplosionPrefab;
 
 	public static GameManager Instance
 	{
