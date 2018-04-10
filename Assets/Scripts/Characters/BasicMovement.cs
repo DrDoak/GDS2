@@ -135,11 +135,15 @@ public class BasicMovement : MonoBehaviour
 	}
 
 	private void AttemptJump() {
-		if (!m_physics.OnGround || (Time.timeSinceLevelLoad - m_lastJump) < MIN_JUMP_INTERVAL ||
-			m_physics.TrueVelocity.y > 0.1f) {
+		float dt = (Time.timeSinceLevelLoad - m_lastJump);
+		//Debug.Log ("Attempting Jump ground: " + m_physics.OnGround + " time: " + dt);
+		if (!m_physics.OnGround || (Time.timeSinceLevelLoad - m_lastJump) < MIN_JUMP_INTERVAL) {
 			return;
 		}
-		m_physics.AddSelfForce (jumpVector, 0f);
+		Vector2 jv = new Vector2 (jumpVector.x, jumpVector.y - Mathf.Max (0, m_physics.TrueVelocity.y/Time.deltaTime));
+		m_physics.AddSelfForce (jv, 0f);
+	
+		//Debug.Log ("Jumped");
 		m_lastJump = Time.timeSinceLevelLoad;
 	}
 
