@@ -16,4 +16,14 @@ public class AbilityControl : MonoBehaviour {
 		
 	}
     
+    public void AbsorbAbility(Ability a)
+    {
+        _mCombatControl.SlotAbility(ChooseKeySlot(), a);
+    }
+
+    public KeyCode ChooseKeySlot()
+    {
+
+        return KeyCode.Space;
+    }
 }

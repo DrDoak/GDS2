@@ -3,12 +3,14 @@ using System.Collections.Generic;
 using UnityEngine;
 using System;
 
+/// <summary>
+/// Combat Control manages the keyed abilities of the Player
+/// </summary>
 public class CombatControl : MonoBehaviour {
 
     public List<KeyCode> keys;
     public Dictionary<KeyCode, Ability> SlottedAbilities;
     private KeyCode KeyPressed;
-    private Event e;
 
     // Use this for initialization
     void Start()
@@ -21,8 +23,7 @@ public class CombatControl : MonoBehaviour {
 
         Ability.Player = gameObject;
     }
-
-    // Update is called once per frame
+   // Update is called once per frame
     void Update()
     {
         if (Input.anyKeyDown)
@@ -52,7 +53,12 @@ public class CombatControl : MonoBehaviour {
         if (a != null)
             a.UseAbility();
     }
-
+    
+    /// <summary>
+    /// Slots the passed ability into the Player's designated keyslot
+    /// </summary>
+    /// <param name="k"></param>
+    /// <param name="a"></param>
     public void SlotAbility(KeyCode k, Ability a)
     {
         try
