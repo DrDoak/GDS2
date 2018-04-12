@@ -51,9 +51,7 @@ public class Observer : MonoBehaviour {
 					float diff = Mathf.Abs (cDist - minDist);
 					if (diff < 1.0f) {
 						if (!VisibleObjs.Contains (o)) {
-							ExecuteEvents.Execute<ICustomMessageTarget> (gameObject, null, (x, y) => x.OnSight (o));
-							o.addObserver (this);
-							VisibleObjs.Add (o);
+							OnSight (o);
 						}
 					}
 				}
@@ -78,6 +76,14 @@ public class Observer : MonoBehaviour {
 		sinceLastScan = 0f;
 	}
 
+	internal void OnSight(Observable o) {
+		ExecuteEvents.Execute<ICustomMessageTarget> (gameObject, null, (x, y) => x.OnSight (o));
+		if (GetComponent<AIFighter>()) {
+			GetComponent<AIFighter> ().OnSight (o);
+		}
+		o.addObserver (this);
+		VisibleObjs.Add (o);
+	}
 	public bool IsVisible(Observable o) {
 		return VisibleObjs.Contains (o);
 	}

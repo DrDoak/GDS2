@@ -73,4 +73,11 @@ public class PropertyHolder : MonoBehaviour {
 		}
 		return false;
 	}
+
+	public void TransferProperty( Property p, PropertyHolder other) {
+		RemoveProperty (p);
+		other.AddProperty (p);
+		GameObject go = Instantiate (GameManager.Instance.PropertyPrefab,transform.position,Quaternion.identity);
+		go.GetComponent<ChaseTarget> ().Target = other.GetComponent<BasicMovement> ();
+	}
 }

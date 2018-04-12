@@ -34,7 +34,14 @@ public class FighterRoutine : MonoBehaviour {
 	public void MoveToNextTask() {
 		TaskTimer = 0;
 		ActiveTask = (ActiveTask + 1) % Tasks.Count;
-		Debug.Log ("Moving to next task: " + ActiveTask);
+		//Debug.Log ("Moving to next task: " + ActiveTask);
 		Tasks[ActiveTask].Activate();
+	}
+
+	public void OnSight(Observable o) {
+		Tasks[ActiveTask].OnSight(o);
+	}
+	public void OnHit(Hitbox hb) {
+		Tasks[ActiveTask].OnHit(hb);
 	}
 }

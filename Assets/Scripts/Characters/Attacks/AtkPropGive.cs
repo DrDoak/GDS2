@@ -10,8 +10,7 @@ public class AtkPropGive : AttackInfo {
 			PropertyHolder m_ph = GetComponent<PropertyHolder> ();
 			List<Property> pList = m_ph.GetStealableProperties ();
 			foreach (Property p in pList) {
-				m_ph.RemoveProperty (p);
-				other_ph.AddProperty (p);
+				m_ph.TransferProperty (p, other_ph);
 			}
 		}
 	}
