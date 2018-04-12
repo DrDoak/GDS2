@@ -2,13 +2,14 @@
 using System.Collections.Generic;
 using UnityEngine;
 
-public abstract class Ability {
+public abstract class Ability:ScriptableObject {
 
     public static GameObject Player;
     public static GameObject Manager;
     public string AbilityName;
     public AbilityType AbilityClassification;
     public string AnimStateName;
+    protected GameObject Target;
 
     private int _mtier = 1;
 
@@ -17,6 +18,11 @@ public abstract class Ability {
     public virtual void TriggerAnimation()
     {
         //TriggerAnimation using the string AnimStateName
+    }
+
+    public void SetTarget(GameObject g)
+    {
+        Target = g;
     }
 
 }

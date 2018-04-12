@@ -17,8 +17,6 @@ public class PropertyHolder : MonoBehaviour {
 			m_properties.Add (p);
 		}
 	}
-	// Update is called once per frame
-	void Update () {}
 
 	public List<Property> GetStealableProperties() {
 		List<Property> lp = new List<Property> ();

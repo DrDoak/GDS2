@@ -2,6 +2,7 @@
 using System.Collections.Generic;
 using UnityEngine;
 using System;
+using System.Linq;
 
 /// <summary>
 /// Combat Control manages the keyed abilities of the Player
@@ -20,7 +21,7 @@ public class CombatControl : MonoBehaviour {
         {
             SlottedAbilities.Add(k, null);
         }
-
+        SlotAbility(KeyCode.Return, ScriptableObject.CreateInstance<Loot>());
         Ability.Player = gameObject;
     }
    // Update is called once per frame
@@ -70,6 +71,13 @@ public class CombatControl : MonoBehaviour {
         {
             SlottedAbilities[k] = a;
         }
+
+        UpdateBasicAbilityControl();
+    }
+
+    private void UpdateBasicAbilityControl()
+    {
+        GetComponent<BasicAbilityControl>().Abilities = SlottedAbilities.Values.OfType<Ability>().ToList();
     }
 
     void OnEnable()

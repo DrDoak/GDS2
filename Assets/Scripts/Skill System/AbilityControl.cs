@@ -5,16 +5,14 @@ using UnityEngine;
 public class AbilityControl : MonoBehaviour {
 
     private CombatControl _mCombatControl;
+    private BasicAbilityControl _mBasicControl;
 
 	// Use this for initialization
 	void Start () {
         _mCombatControl = GetComponent<CombatControl>();
+        _mBasicControl = GetComponent<BasicAbilityControl>();
 	}
 	
-	// Update is called once per frame
-	void Update () {
-		
-	}
     
     public void AbsorbAbility(Ability a)
     {
@@ -23,7 +21,17 @@ public class AbilityControl : MonoBehaviour {
 
     public KeyCode ChooseKeySlot()
     {
-
-        return KeyCode.Space;
+        Debug.Log("Choose keyslot");
+        return KeyCode.J;
     }
+
+    private void OnTriggerEnter2D(Collider2D collision)
+    {
+        if(collision.gameObject.GetComponent<PropertyHolder>())
+        {
+            foreach (Ability a in _mBasicControl.Abilities)
+                a.SetTarget(collision.gameObject);
+        }
+    }
+
 }
