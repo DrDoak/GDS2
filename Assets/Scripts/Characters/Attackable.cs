@@ -1,6 +1,7 @@
 ﻿using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using UnityEngine.EventSystems;
 
 public enum FactionType { NONE, ALLIES, ENEMIES, HOSTILE };
 
@@ -29,13 +30,20 @@ public class Attackable : MonoBehaviour
 		m_currDeathTime = DeathTime;
 	}
 
+	internal void Start() {
+		ExecuteEvents.Execute<ICustomMessageTarget> (gameObject, null, (x, y) => x.OnCreation ());
+	}
+
 	private void CheckDeath()
 	{
 		Alive = m_health > 0;
 		if (Alive)
 			return;
-		if (m_currDeathTime < 0.0f)
-			Destroy(gameObject);
+		
+		if (m_currDeathTime < 0.0f) {
+			ExecuteEvents.Execute<ICustomMessageTarget> (gameObject, null, (x, y) => x.OnDeath ());
+			Destroy (gameObject);
+		}
 		m_currDeathTime -= Time.deltaTime;
 	}
 
@@ -53,6 +61,7 @@ public class Attackable : MonoBehaviour
 	internal void Update() {
 		CheckDeath();
 		CheckResistanceValidities();
+		ExecuteEvents.Execute<ICustomMessageTarget> (gameObject, null, (x, y) => x.OnUpdate ());
 	}
 
 	public void AddResistence(string attribute, float time) {
@@ -91,14 +100,15 @@ public class Attackable : MonoBehaviour
 		m_movementController.AddToVelocity(force);
 	}
 
-	public string TakeHit(Hitbox hb)
+	public HitResult TakeHit(Hitbox hb)
 	{
+		ExecuteEvents.Execute<ICustomMessageTarget> (gameObject, null, (x, y) => x.OnHit ());
 		// Debug.Log (gameObject + "is Taking hit");
 		if (hb.HasHitTypes() && CheckHasResistanceTo(hb.HitTypes))
 		{
 			if (m_fighter)
 				m_fighter.RegisterStun(hb.Stun, false, hb);
-			return "block";
+			return HitResult.BLOCKED;
 		}
 
 		DamageObj(hb.Damage);
@@ -106,7 +116,12 @@ public class Attackable : MonoBehaviour
 
 		if (hb.Stun > 0 && m_fighter)
 			m_fighter.RegisterStun(hb.Stun, true, hb);
-		return "hit";
+		return HitResult.HIT;
+	}
+
+	internal void OnTriggerEnter2D(Collider2D other)
+	{
+		ExecuteEvents.Execute<ICustomMessageTarget> (gameObject, null, (x, y) => x.OnAttack ());
 	}
 
 	public void DamageObj(float damage)

@@ -1,6 +1,7 @@
 ﻿using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using UnityEngine.EventSystems;
 
 [RequireComponent (typeof (HitboxMaker))]
 [RequireComponent (typeof (PhysicsSS))]
@@ -181,11 +182,13 @@ public class Fighter : MonoBehaviour
 		m_physics.CanMove = false;
 	}
 
-	public void RegisterHit(GameObject otherObj)
+	public void RegisterHit(GameObject otherObj,Hitbox hb, HitResult hr)
 	{
-		Debug.Log ("Collision: " + this + " " + otherObj);
+		//Debug.Log ("Collision: " + this + " " + otherObj);
+		ExecuteEvents.Execute<ICustomMessageTarget> (gameObject, null, (x, y) => x.OnHitConfirm ());
+		//Debug.Log ("Registering hit with: " + otherObj);
 		if (m_currentAttack != null)
-			m_currentAttack.OnHitConfirm(otherObj);
+			m_currentAttack.OnHitConfirm(otherObj,hb,hr);
 	}
 
 	public void EndStun()
@@ -214,6 +217,9 @@ public class Fighter : MonoBehaviour
 		m_currentAttack = Attacks[attackName];
 		m_physics.CanMove = false;
 		m_currentAttack.ResetAndProgress();
+		ExecuteEvents.Execute<ICustomMessageTarget> (gameObject, null, (x, y) => x.OnAttack ());
 		return true;
 	}
+
+
 }

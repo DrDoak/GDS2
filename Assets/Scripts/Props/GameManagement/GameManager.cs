@@ -12,6 +12,7 @@ public class GameManager : MonoBehaviour
 {
 
 	private static GameManager m_instance;
+	public GameObject ExplosionPrefab;
 
 	public static GameManager Instance
 	{
@@ -40,6 +41,13 @@ public class GameManager : MonoBehaviour
 		}
 
 		DontDestroyOnLoad(gameObject);
+
+		foreach (BasicMovement bm in FindObjectsOfType<BasicMovement>()) {
+			if (bm.IsCurrentPlayer) {
+				SetPlayer (bm);
+				break;
+			}
+		}
 	}
 
 	void OnSceneLoaded(Scene scene, LoadSceneMode mode)
@@ -80,5 +88,10 @@ public class GameManager : MonoBehaviour
 	public Vector2 GetPlayerSpawnPosition()
 	{
 		return m_data.ToCoords;
+	}
+
+	public void SetPlayer(BasicMovement bm) {
+		GetComponent<CameraFollow> ().target = bm.GetComponent<PhysicsSS>();
+		GetComponent<GUIHandler> ().CurrentTarget = bm.gameObject;
 	}
 }

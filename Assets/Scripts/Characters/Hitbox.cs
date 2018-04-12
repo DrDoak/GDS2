@@ -1,6 +1,10 @@
 ﻿using UnityEngine;
 using System.Collections.Generic;
 
+public enum HitResult { NONE, HIT, BLOCKED, REFLECTED };
+
+public enum ElementType { PHYSICAL, FIRE, BIOLOGICAL };
+
 public class Hitbox : MonoBehaviour {
 
 	[SerializeField]
@@ -30,6 +34,10 @@ public class Hitbox : MonoBehaviour {
 	private bool m_isRandomKnockback = false;
 	public bool IsRandomKnockback { get { return m_isRandomKnockback; } set { m_isRandomKnockback = value; } }
 
+	[SerializeField]
+	private ElementType m_element = ElementType.PHYSICAL;
+	public ElementType Element { get { return m_element; } set { m_element = value; } }
+
 	private List<string> m_hitTypes;
 	public List<string> HitTypes { get { return m_hitTypes; } set { m_hitTypes = value; } }
 	public FactionType Faction;
@@ -58,6 +66,7 @@ public class Hitbox : MonoBehaviour {
 			RandomizeKnockback ();
 		m_hasDuration = m_duration > 0;
 		Tick();
+		//Debug.Log ("Hitbox initialized");
 	}
 
 	virtual internal void Update()
@@ -67,6 +76,7 @@ public class Hitbox : MonoBehaviour {
 
 	protected void Tick()
 	{
+		//Debug.Log ("Hitbox created");
 		if (m_followObj != null)
 			FollowObj();
 		SwitchActiveCollider(m_creatorPhysics.FacingLeft);
@@ -99,8 +109,10 @@ public class Hitbox : MonoBehaviour {
 
 	private void MaintainOrDestroyHitbox()
 	{
-		if (m_duration <= 0.0f)
+		if (m_duration <= 0.0f) {
+			//Debug.Log ("Hitbox destroyed!" + m_duration);
 			GameObject.Destroy (gameObject);
+		}
 		Duration -= Time.deltaTime;
 	}
 
@@ -115,21 +127,29 @@ public class Hitbox : MonoBehaviour {
 		m_knockback.y = Random.Range (m_knockbackRanges.z, m_knockbackRanges.w);
 	}
 
-	protected void OnAttackable(Attackable atkObj)
+	protected HitResult OnAttackable(Attackable atkObj)
 	{
 		if (!atkObj || atkObj.gameObject == Creator || m_collidedObjs.Contains (atkObj) || !atkObj.CanAttack(Faction))
-			return;
+			return HitResult.NONE;
 		if (IsRandomKnockback)
 			RandomizeKnockback();
-		atkObj.TakeHit(this);
+		HitResult r = atkObj.TakeHit(this);
 		m_collidedObjs.Add (atkObj);
+
 		if (!m_overlappingControl.Contains (atkObj))
 			m_overlappingControl.Add (atkObj);
+		//Debug.Log ("On attackable");
+		//Debug.Log (Creator);
+		if (Creator != null) {
+			Creator.GetComponent<HitboxMaker> ().RegisterHit (atkObj.gameObject, this, r);
+		}
+		return r;
 	}
 
-	internal void OnTriggerEnter2D(Collider2D other)
+	internal HitResult OnTriggerEnter2D(Collider2D other)
 	{
-		OnAttackable (other.gameObject.GetComponent<Attackable> ());
+		//Debug.Log ("On trigger enter");
+		return OnAttackable (other.gameObject.GetComponent<Attackable> ());
 	}
 
 	internal void OnTriggerExit2D(Collider2D other)

@@ -1,19 +1,22 @@
 ﻿using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using UnityEngine.EventSystems;
 
 public class Observer : MonoBehaviour {
 
 	PhysicsSS m;
 	public float detectionRange = 15.0f;
 
-	List<Observable> visibleObjs = new List<Observable>();
+	public List<Observable> VisibleObjs = new List<Observable>();
 	float sinceLastScan;
 	float scanInterval = 0.5f;
 	float postLineVisibleTime = 3.0f;
 
+	Dictionary<Observable,float> m_lastTimeSeen;
 	// Use this for initialization
 	void Start () {
+		m_lastTimeSeen = new Dictionary<Observable,float> ();
 		m = GetComponent<PhysicsSS> ();
 		sinceLastScan = UnityEngine.Random.Range (0.0f, scanInterval);
 	}
@@ -47,37 +50,39 @@ public class Observer : MonoBehaviour {
 					}
 					float diff = Mathf.Abs (cDist - minDist);
 					if (diff < 1.0f) {
-						if (!visibleObjs.Contains (o)) {
-							//onSight (o);
+						if (!VisibleObjs.Contains (o)) {
+							ExecuteEvents.Execute<ICustomMessageTarget> (gameObject, null, (x, y) => x.OnSight (o));
 							o.addObserver (this);
-							visibleObjs.Add (o);
+							VisibleObjs.Add (o);
 						}
 					}
 				}
 			}
 		}
-		if (visibleObjs.Count > 0) {
-			for (int i= visibleObjs.Count - 1; i >= 0; i --) {
-				Observable o = visibleObjs [i];
+		if (VisibleObjs.Count > 0) {
+			for (int i= VisibleObjs.Count - 1; i >= 0; i --) {
+				Observable o = VisibleObjs [i];
 				if (o == null) { // c.gameObject == null) {
-					visibleObjs.RemoveAt (i);
-				} /* else if (o.c) {
-					if (lts - r.lastTimeSeen > postLineVisibleTime) {
+					VisibleObjs.RemoveAt (i);
+				} else if (m_lastTimeSeen.ContainsKey(o)) {
+					if (lts - m_lastTimeSeen[o] > postLineVisibleTime) {
 						o.removeObserver (this);
 						//outOfSight (o, true);
-						visibleObjs.RemoveAt (i);
-					} else if (Mathf.Abs(lts - r.lastTimeSeen) > 0.05f 
-								&& r.canSee == true){
-						outOfSight (o, false);
+						VisibleObjs.RemoveAt (i);
+					} else if (Mathf.Abs(lts - m_lastTimeSeen[o]) > 0.05f){
+						//Out of sight thing.
 					}	
-				} */
+				}
 			}
 		}
 		sinceLastScan = 0f;
 	}
 
+	public bool IsVisible(Observable o) {
+		return VisibleObjs.Contains (o);
+	}
 	void OnDestroy() {
-		foreach (Observable o in visibleObjs) {
+		foreach (Observable o in VisibleObjs) {
 			o.removeObserver (this);	
 		}
 	}

@@ -9,8 +9,9 @@ public class LineHitbox : Hitbox {
 	bool foundPoint = false;
 	Vector2 endPoint = new Vector2();
 
-	void Start ()
+	public override void Init ()
 	{
+		base.Init ();
 		line = GetComponent<LineRenderer> ();
 		//line.SetVertexCount (2);
 		line.positionCount = 2;
@@ -32,16 +33,16 @@ public class LineHitbox : Hitbox {
 			foreach (RaycastHit2D hit in hit_list) {
 				if (hit) {
 					Collider2D collider = hit.collider;
-					/*string hitType = OnTriggerEnter2D (collider);
-					if (hitType != "none") {
-						if (hitType == "reflect")
+					HitResult hitType = OnTriggerEnter2D (collider);
+					if (hitType != HitResult.NONE) {
+						if (hitType == HitResult.REFLECTED)
 							getReflected (hit.point);
 						line.SetPosition (0, transform.position);
 						line.SetPosition (1, hit.point);
 						foundPoint = true;
 						endPoint = new Vector3 (hit.point.x, hit.point.y, 0f);
 						return;
-					}*/
+					}
 				}
 			}
 		}
@@ -64,6 +65,7 @@ public class LineHitbox : Hitbox {
 		line.Duration = Duration;
 		line.Knockback = realKB;
 		line.IsFixedKnockback = true;
+		//line.Faction = 
 		//line.setFaction (faction);
 		line.Creator = gameObject;
 		//line.reflect = hitboxReflect;

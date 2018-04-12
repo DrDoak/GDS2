@@ -35,12 +35,16 @@ public class PhysicsSS : MonoBehaviour
 	private Vector2 m_velocity;
 	public Vector2 Velocity { get { return m_velocity; } }
 
+	private Vector3 m_trueVelocity;
+	public Vector3 TrueVelocity { get { return m_trueVelocity; } }
+	private Vector3 m_lastPosition;
+
 	// Tracking inputed movement
 	private ForceSS m_inputedForce;
 	public Vector2 m_inputedMove = Vector2.zero;
 	public Vector2 InputedMove { get { return m_inputedMove; } }
 	public float TerminalVelocity = -5f;
-	private float m_gravityScale = 1.0f;
+	private float m_gravityScale = -1.0f;
 
 	public bool FacingLeft = false;
 
@@ -55,6 +59,7 @@ public class PhysicsSS : MonoBehaviour
 		m_boxCollider.offset = new Vector2(m_boxCollider.offset.x, m_boxCollider.offset.y + m_skinWidth);
 		m_sprite = GetComponent<SpriteRenderer>();
 		m_canMove = true;
+		m_lastPosition = transform.position;
 	}
 
 	internal void Start()
@@ -68,8 +73,13 @@ public class PhysicsSS : MonoBehaviour
 		dropThruTime = Mathf.Max(0f,dropThruTime - Time.fixedDeltaTime);
 		DecelerateAutomatically(VELOCITY_MINIMUM_THRESHOLD);
 		ProcessMovement();
+		UpdateTrueVelocity ();
 	}
 
+	private void UpdateTrueVelocity() {
+		m_trueVelocity = transform.position - m_lastPosition;
+		m_lastPosition = transform.position;
+	}
 	private void DecelerateAutomatically(float threshold)
 	{
 		if (m_accumulatedVelocity.sqrMagnitude > threshold)
@@ -155,7 +165,7 @@ public class PhysicsSS : MonoBehaviour
 	}
 
 	bool handleStairs(RaycastHit2D hit,Vector2 vel) {
-		if (hit.collider.gameObject.CompareTag("JumpThru")) {
+		if ( JumpThruTag(hit.collider.gameObject)) {
 			if (dropThruTime > 0f)
 				return true;
 			if (hit.collider.gameObject.GetComponent<EdgeCollider2D> ()) {
@@ -287,7 +297,7 @@ public class PhysicsSS : MonoBehaviour
 			rayOrigin += Vector2.right * (m_verticalRaySpacing * i + velocity.x);
 			RaycastHit2D hit = Physics2D.Raycast(rayOrigin, Vector2.up * directionY, rayLength, CollisionMask);
 			if (hit && !hit.collider.isTrigger && hit.collider.gameObject != gameObject) {
-				if (hit.collider.gameObject.CompareTag("JumpThru") && ( velocity.y > 0 || dropThruTime > 0f)){ //|| handleStairs(hit,velocity))){
+				if ( JumpThruTag(hit.collider.gameObject) && ( velocity.y > 0 || dropThruTime > 0f)){ //|| handleStairs(hit,velocity))){
 				} else {
 					velocity.y = (hit.distance - m_skinWidth) * directionY;
 					rayLength = hit.distance;
@@ -311,7 +321,7 @@ public class PhysicsSS : MonoBehaviour
 				Vector2 rayOrigin = m_raycastOrigins.bottomLeft; //true ? raycastOrigins.bottomLeft : raycastOrigins.topLeft;
 				rayOrigin += Vector2.right * (m_verticalRaySpacing * i + velocity.x);
 				RaycastHit2D hit = Physics2D.Raycast (rayOrigin, Vector2.up * -1f, rayLength, CollisionMask);
-				if (hit && hit.collider.gameObject.CompareTag("JumpThru") && (dropThruTime > 0f )) {
+				if (hit && JumpThruTag(hit.collider.gameObject) && (dropThruTime > 0f )) {
 				} else {
 					if (hit && !hit.collider.isTrigger && hit.collider.gameObject != gameObject) {
 						////Debug.Log (hit.collider.gameObject);
@@ -387,5 +397,10 @@ public class PhysicsSS : MonoBehaviour
 
 	public void SetGravityScale(float gravScale) {
 		m_gravityScale = gravScale;
+	}
+
+	private bool JumpThruTag( GameObject obj ) {
+		return (obj.CompareTag ("JumpThru") || (obj.transform.parent != null &&
+		obj.transform.parent.CompareTag ("JumpThru")));
 	}
 }

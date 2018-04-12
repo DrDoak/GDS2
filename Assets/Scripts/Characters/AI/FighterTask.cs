@@ -11,13 +11,20 @@ public class FighterTask : MonoBehaviour {
 
 	public bool Active { get; private set; }
 
-	public void Init(Fighter player, AIFighter fighter) {
+	private FighterRoutine m_routine;
+
+	public virtual void Init(Fighter player, AIFighter fighter, FighterRoutine routine) {
 		this.Player = player;
 		this.Fighter = fighter;
+		this.m_routine = routine;
 	}
 
 	public void Activate() {
 		Active = true;
+	}
+
+	public void NextTask() {
+		m_routine.MoveToNextTask ();
 	}
 
 	virtual public void Advance() {}

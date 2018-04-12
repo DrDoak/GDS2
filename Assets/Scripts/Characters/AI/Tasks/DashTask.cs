@@ -5,6 +5,7 @@ using UnityEngine;
 public class DashTask : FighterTask 
 {
 	public int Speed = 3;
+
 	override public void Advance() 
 	{
 		Vector2 target = Player.transform.position;
