@@ -13,5 +13,6 @@ public class AtkPropSteal : AttackInfo {
 				other_ph.TransferProperty (p, m_ph);
 			}
 		}
+
 	}
 }
