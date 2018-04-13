@@ -66,6 +66,8 @@ public class Fighter : MonoBehaviour
 			return false;
 		m_anim.Play(HurtAnimation, AutoOrientSprite);
 		StunTime -= Time.deltaTime;
+		if (m_currentAttack != null)
+			m_currentAttack = null;
 		if (StunTime <= 0.0f && m_attackable.Alive)
 			EndStun();
 		return true;

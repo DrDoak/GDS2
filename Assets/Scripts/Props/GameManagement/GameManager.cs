@@ -7,6 +7,7 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.SceneManagement;
+using UnityEngine.UI;
 
 public class GameManager : MonoBehaviour
 {
@@ -15,6 +16,11 @@ public class GameManager : MonoBehaviour
 	public GameObject ExplosionPrefab;
 	public GameObject PropertyPrefab;
 	public GameObject PropertyGetFXPrefab;
+	public GameObject PropertyIconPrefab;
+	public GameObject PropTextPrefab;
+	public Sprite UnknownPropertyIcon;
+
+	Dictionary<string,GameObject> m_iconList;
 
 	public static GameManager Instance
 	{
@@ -27,6 +33,7 @@ public class GameManager : MonoBehaviour
 
 	void Awake()
 	{
+		m_iconList = new Dictionary<string,GameObject>();
 		if (m_instance == null)
 		{
 			//Instantiation logic should go entirely in here.
@@ -95,5 +102,41 @@ public class GameManager : MonoBehaviour
 	public void SetPlayer(BasicMovement bm) {
 		GetComponent<CameraFollow> ().target = bm.GetComponent<PhysicsSS>();
 		GetComponent<GUIHandler> ().CurrentTarget = bm.gameObject;
+	}
+
+	public void AddPropIcon(Property p) { 
+		if (!m_iconList.ContainsKey(p.PropertyName) ){
+			System.Type sysType = p.GetType ();
+			Property mp = (Property)GetComponentInChildren (sysType);
+			GameObject go = Instantiate (PropertyIconPrefab);
+			go.transform.SetParent(transform.GetChild(0).Find ("PropList"),false);
+			if (mp != null) {
+				go.GetComponent<Image> ().sprite = mp.icon;
+			} else {
+				go.GetComponent<Image> ().sprite = mp.icon;
+			}
+			m_iconList [p.PropertyName] = go;
+		}
+	}
+	public void RemovePropIcon(Property p) {
+		if (m_iconList.ContainsKey (p.PropertyName)) {
+			Destroy (m_iconList [p.PropertyName]);
+			m_iconList.Remove (p.PropertyName);
+		}
+	}
+
+	public void AddPropertyText(Property p, Vector3 v) {
+		GameObject go = Instantiate (PropTextPrefab);
+		go.GetComponent<RectTransform> ().position = v;
+		go.GetComponent<RectTransform> ().rotation = Quaternion.identity;
+		System.Type sysType = p.GetType ();
+		Property mp = (Property)GetComponentInChildren (sysType);
+		if (mp != null) {
+			go.GetComponent<PropertyText> ().PropertyName = mp.PropertyName;
+			go.GetComponent<PropertyText> ().Description = mp.Description;
+		} else {
+			go.GetComponent<PropertyText> ().PropertyName = "Unregistered Property";
+			go.GetComponent<PropertyText> ().Description = "Properties unknown, likely dangerous";
+		}
 	}
 }

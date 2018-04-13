@@ -9,6 +9,8 @@ public class PR_Decaying : Property {
     public override void OnCreation()
     {
         Debug.Log("PR_Decaying on create");
+		PropertyName = "Decay";
+		Description = "Lose health over time";
     }
 
     public override void OnUpdate()

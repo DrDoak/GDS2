@@ -2,6 +2,7 @@
 using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.EventSystems;
+//using UnityEngine.UI;
 
 public class Property : MonoBehaviour, ICustomMessageTarget
 {
@@ -20,4 +21,7 @@ public class Property : MonoBehaviour, ICustomMessageTarget
 
 	public bool Stealable = true;
 
+	public string PropertyName = "None";
+	public string Description = "No description provided.";
+	public Sprite icon;
 }
