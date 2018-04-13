@@ -11,15 +11,9 @@ public class PR_Explosive : Property {
     float hd = 0.5f;
     Vector2 kb = new Vector2(25.0f, 60.0f);
 
-    //public GameObject ExplosionFX;
-
     public override void OnCreation()
     {
         Debug.Log("PR_Explosive on create");
-    }
-
-    public override void OnHit()
-    {
 
     }
 

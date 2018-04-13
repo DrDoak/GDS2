@@ -24,6 +24,8 @@ public class HitboxMaker : MonoBehaviour
 		}
 	}
 	public LineHitbox createLineHB(float range, Vector2 aimPoint, Vector2 offset,float damage, float stun, float hitboxDuration, Vector2 knockback, bool followObj = true) {
+		aimPoint = m_physics.OrientVectorToDirection(aimPoint);
+		offset = m_physics.OrientVectorToDirection(offset);
 		Vector3 newPos = new Vector3(transform.position.x + offset.x, transform.position.y + offset.y, 0);
 		GameObject go = Instantiate(LineHBClass,newPos,Quaternion.identity) as GameObject; 
 		LineHitbox line = go.GetComponent<LineHitbox> ();

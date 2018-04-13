@@ -7,8 +7,8 @@ public interface ICustomMessageTarget : IEventSystemHandler
 {
 	// functions that can be called via the messaging system
 	void OnCreation();
-	void OnHit();
-	void OnHitConfirm ();
+	void OnHit(Hitbox hb, GameObject attacker);
+	void OnHitConfirm (Hitbox myHitbox, GameObject objectHit, HitResult hr);
 	void OnSight(Observable observedObj);
 	void OnDeath();
 	void OnUpdate();

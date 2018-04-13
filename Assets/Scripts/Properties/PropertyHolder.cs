@@ -6,6 +6,7 @@ using UnityEngine;
 public class PropertyHolder : MonoBehaviour {
 
 	List<Property> m_properties;
+	bool m_currentPlayer;
 	// Use this for initialization
 	void Awake () {
 		m_properties = new List<Property> ();
@@ -16,6 +17,7 @@ public class PropertyHolder : MonoBehaviour {
 		foreach (Property p in prList) {
 			m_properties.Add (p);
 		}
+		m_currentPlayer = (GetComponent<BasicMovement> () && GetComponent<BasicMovement> ().IsCurrentPlayer);
 	}
 
 	public List<Property> GetStealableProperties() {
@@ -41,11 +43,18 @@ public class PropertyHolder : MonoBehaviour {
 		Property p = (Property)gameObject.GetComponent (t);
 		p.OnAddProperty ();
 		m_properties.Add (p);
+		if (m_currentPlayer) {
+			GameManager.Instance.AddPropertyText (p, transform.position);
+			GameManager.Instance.AddPropIcon (p);
+		}
 	}
 
 	public void RemoveProperty(Property p) {
 		if (HasProperty(p)) {
 			RemoveProperty (p.GetType().Name);
+			if (m_currentPlayer) {
+				GameManager.Instance.RemovePropIcon (p);
+			}
 		}
 	}
 
@@ -70,5 +79,12 @@ public class PropertyHolder : MonoBehaviour {
 				return true;
 		}
 		return false;
+	}
+
+	public void TransferProperty( Property p, PropertyHolder other) {
+		RemoveProperty (p);
+		other.AddProperty (p);
+		GameObject go = Instantiate (GameManager.Instance.PropertyPrefab,transform.position,Quaternion.identity);
+		go.GetComponent<ChaseTarget> ().Target = other.GetComponent<BasicMovement> ();
 	}
 }

@@ -45,6 +45,18 @@ public class AIFighter : MonoBehaviour {
 		}
 	}
 
+	public void OnSight(Observable o) {
+		foreach (FighterRoutine fr in m_routines) {
+			fr.OnSight (o);
+		}
+	}
+
+	public void OnHit(Hitbox hb) {
+		foreach (FighterRoutine fr in m_routines) {
+			fr.OnHit (hb);
+		}
+	}
+
 	public void StartRoutine() {}
 
 	public void EndRoutine() {}

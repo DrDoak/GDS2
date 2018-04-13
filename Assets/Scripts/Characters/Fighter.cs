@@ -66,6 +66,8 @@ public class Fighter : MonoBehaviour
 			return false;
 		m_anim.Play(HurtAnimation, AutoOrientSprite);
 		StunTime -= Time.deltaTime;
+		if (m_currentAttack != null)
+			m_currentAttack = null;
 		if (StunTime <= 0.0f && m_attackable.Alive)
 			EndStun();
 		return true;
@@ -185,7 +187,7 @@ public class Fighter : MonoBehaviour
 	public void RegisterHit(GameObject otherObj,Hitbox hb, HitResult hr)
 	{
 		//Debug.Log ("Collision: " + this + " " + otherObj);
-		ExecuteEvents.Execute<ICustomMessageTarget> (gameObject, null, (x, y) => x.OnHitConfirm ());
+		ExecuteEvents.Execute<ICustomMessageTarget> (gameObject, null, (x, y) => x.OnHitConfirm (hb, otherObj, hr));
 		//Debug.Log ("Registering hit with: " + otherObj);
 		if (m_currentAttack != null)
 			m_currentAttack.OnHitConfirm(otherObj,hb,hr);

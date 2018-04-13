@@ -28,4 +28,7 @@ public class FighterTask : MonoBehaviour {
 	}
 
 	virtual public void Advance() {}
+
+	virtual public void OnSight(Observable o) {}
+	virtual public void OnHit(Hitbox hb) {}
 }

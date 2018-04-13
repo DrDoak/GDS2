@@ -102,7 +102,10 @@ public class Attackable : MonoBehaviour
 
 	public HitResult TakeHit(Hitbox hb)
 	{
-		ExecuteEvents.Execute<ICustomMessageTarget> (gameObject, null, (x, y) => x.OnHit ());
+		ExecuteEvents.Execute<ICustomMessageTarget> (gameObject, null, (x, y) => x.OnHit (hb, hb.Creator));
+		if (GetComponent<AIFighter>()) {
+			GetComponent<AIFighter> ().OnHit (hb);
+		}
 		// Debug.Log (gameObject + "is Taking hit");
 		if (hb.HasHitTypes() && CheckHasResistanceTo(hb.HitTypes))
 		{

@@ -10,18 +10,11 @@ public class AtkLine : AttackInfo {
 
 	protected override void OnAttack() {
 		base.OnAttack ();
-		Vector2 realKB = Knockback;
-		Vector2 realOff = HitboxOffset;
-		Vector2 realD = direction;
 		FactionType fac = GetComponent<Attackable> ().Faction;
-		if (GetComponent<PhysicsSS> ().FacingLeft) {
-			realKB = new Vector2 (-Knockback.x, Knockback.y);
-			realOff = new Vector2 (-HitboxOffset.x, HitboxOffset.y);
-			realD = new Vector2 (-direction.x, direction.y);
-		}
+
 		GetComponent<HitboxMaker> ().AddHitType (HitType);
 		//LineHitbox lbox = 	GetComponent<HitboxMaker>().createLineHB (range, realD, realOff, Damage, Stun, HitboxDuration, realKB,fac, true);
-		LineHitbox lbox = GetComponent<HitboxMaker>().createLineHB(range, realD, realOff, Damage, Stun, HitboxDuration, realKB, true);
+		LineHitbox lbox = GetComponent<HitboxMaker>().createLineHB(range, direction, HitboxOffset, Damage, Stun, HitboxDuration, Knockback, true);
 		lbox.Stun = Stun;
 	}
 }

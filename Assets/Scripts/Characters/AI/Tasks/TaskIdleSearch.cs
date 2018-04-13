@@ -23,16 +23,21 @@ public class TaskIdleSearch : FighterTask {
 			NextTask ();
 			return;
 		}
-		if (m_observer.VisibleObjs.Count != m_lastObservable) {
-			m_lastObservable = m_observer.VisibleObjs.Count;
-			foreach (Observable o in m_observer.VisibleObjs) {
-				if (o.GetComponent<Attackable> () && m_attackable.CanAttack (o.GetComponent<Attackable> ().Faction)) {
-					Fighter.CurrentTarget = o.GetComponent<Attackable> ();
-					//Debug.Log (Fighter.CurrentTarget);
-					NextTask ();
-					return;
-				}
-			}
+	}
+
+	override public void OnSight(Observable o) {
+		if (o.GetComponent<Attackable> () && m_attackable.CanAttack (o.GetComponent<Attackable> ().Faction)) {
+			Fighter.CurrentTarget = o.GetComponent<Attackable> ();
+			NextTask ();
+			return;
+		}
+	}
+
+	override public void OnHit(Hitbox hb) {
+		if (hb.Knockback.x != 0f) {
+			Fighter.GetComponent<PhysicsSS> ().SetDirection (hb.Knockback.x > 0f);
+		} else {
+			Fighter.GetComponent<PhysicsSS> ().SetDirection (hb.transform.position.x < transform.position.x);
 		}
 	}
 }
