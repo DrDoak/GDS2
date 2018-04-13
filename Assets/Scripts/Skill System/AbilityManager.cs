@@ -4,19 +4,21 @@ using UnityEngine;
 
 public class AbilityManager : MonoBehaviour {
 
-    public static List<GameObject> AbilityObjects;
-    public static List<string> StateNames;
+    public List<GameObject> AbilityObjects;
+    public List<string> StateNames;
+
+    public const int LOOT = 0;
 
 	// Use this for initialization
 	void Start () {
-        Ability.Manager = gameObject;
+        Ability.Manager = this;
 	}
 	
-    public static GameObject GetObject(int i)
+    public GameObject GetObject(int i)
     {
         return AbilityObjects[i];
     }
-    public static string GetStateName(int i)
+    public string GetStateName(int i)
     {
         return StateNames[i];
     }

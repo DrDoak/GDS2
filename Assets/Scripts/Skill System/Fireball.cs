@@ -10,7 +10,7 @@ public class Fireball : Ability {
     public override void UseAbility()
     {
         if (!fireball)
-            fireball = AbilityManager.GetObject(0);
+            fireball = Manager.GetObject(0);
         GameObject temp = GameObject.Instantiate(fireball, Player.transform.position + new Vector3(2,0), Player.transform.rotation);
     }
 

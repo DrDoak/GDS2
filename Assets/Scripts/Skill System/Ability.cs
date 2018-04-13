@@ -5,7 +5,7 @@ using UnityEngine;
 public abstract class Ability:ScriptableObject {
 
     public static GameObject Player;
-    public static GameObject Manager;
+    public static AbilityManager Manager;
     public string AbilityName;
     public AbilityType AbilityClassification;
     public string AnimStateName;

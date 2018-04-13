@@ -596,6 +596,18 @@ MonoBehaviour:
   AttackSoundFX: {fileID: 0}
   range: 20
   direction: {x: 1, y: 0}
+--- !u!114 &1064895544
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_PrefabParentObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 0}
+  m_GameObject: {fileID: 1064895542}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: b0be7e067ec5bf04fb5569367cdd729c, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  Abilities: []
 --- !u!1001 &1104706288
 Prefab:
   m_ObjectHideFlags: 0
@@ -872,6 +884,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: b0be7e067ec5bf04fb5569367cdd729c, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  Abilities: []
 --- !u!114 &2033401428 stripped
 MonoBehaviour:
   m_PrefabParentObject: {fileID: 114223702759941158, guid: b15804536ba015e47a5885912f930b08,
