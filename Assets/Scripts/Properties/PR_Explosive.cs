@@ -20,7 +20,7 @@ public class PR_Explosive : Property {
     public override void OnDeath()
     {
         Debug.Log("PR_Explosive on death (kaboom)");
-		GetComponent<HitboxMaker>().CreateHitbox(scl, off, dmg, stun, hd, kb, false,false);
+		GetComponent<HitboxMaker>().CreateHitbox(scl, off, dmg, stun, hd, kb, false,false,ElementType.FIRE);
 		Instantiate(FindObjectOfType<GameManager>().ExplosionPrefab, transform.position, transform.rotation);
     }
 }

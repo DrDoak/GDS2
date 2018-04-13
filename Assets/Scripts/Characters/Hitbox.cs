@@ -3,7 +3,7 @@ using System.Collections.Generic;
 
 public enum HitResult { NONE, HIT, BLOCKED, REFLECTED };
 
-public enum ElementType { PHYSICAL, FIRE, BIOLOGICAL };
+public enum ElementType { PHYSICAL, FIRE, BIOLOGICAL, PSYCH, LIGHTNING };
 
 public class Hitbox : MonoBehaviour {
 
@@ -38,8 +38,6 @@ public class Hitbox : MonoBehaviour {
 	private ElementType m_element = ElementType.PHYSICAL;
 	public ElementType Element { get { return m_element; } set { m_element = value; } }
 
-	private List<string> m_hitTypes;
-	public List<string> HitTypes { get { return m_hitTypes; } set { m_hitTypes = value; } }
 	public FactionType Faction;
 
 	[HideInInspector]
@@ -100,11 +98,6 @@ public class Hitbox : MonoBehaviour {
 		IsRandomKnockback = true;
 		IsFixedKnockback = true;
 		m_knockbackRanges = new Vector4 (minX, maxX, minY, maxY);
-	}
-
-	public bool HasHitTypes()
-	{
-		return HitTypes != null && HitTypes.Count > 0;
 	}
 
 	private void MaintainOrDestroyHitbox()

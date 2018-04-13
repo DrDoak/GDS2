@@ -305,13 +305,18 @@ Prefab:
   m_Modification:
     m_TransformParent: {fileID: 0}
     m_Modifications:
+    - target: {fileID: 114183775052015364, guid: b15804536ba015e47a5885912f930b08,
+        type: 2}
+      propertyPath: Resistences.Array.size
+      value: 1
+      objectReference: {fileID: 0}
     - target: {fileID: 4000010357641300, guid: b15804536ba015e47a5885912f930b08, type: 2}
       propertyPath: m_LocalPosition.x
-      value: -60.43
+      value: -61.2
       objectReference: {fileID: 0}
     - target: {fileID: 4000010357641300, guid: b15804536ba015e47a5885912f930b08, type: 2}
       propertyPath: m_LocalPosition.y
-      value: 7.88
+      value: 5.55
       objectReference: {fileID: 0}
     - target: {fileID: 4000010357641300, guid: b15804536ba015e47a5885912f930b08, type: 2}
       propertyPath: m_LocalPosition.z
@@ -336,6 +341,36 @@ Prefab:
     - target: {fileID: 4000010357641300, guid: b15804536ba015e47a5885912f930b08, type: 2}
       propertyPath: m_RootOrder
       value: 3
+      objectReference: {fileID: 0}
+    - target: {fileID: 61000013016729168, guid: b15804536ba015e47a5885912f930b08,
+        type: 2}
+      propertyPath: m_Offset.x
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 114183775052015364, guid: b15804536ba015e47a5885912f930b08,
+        type: 2}
+      propertyPath: m_Enabled
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 114183775052015364, guid: b15804536ba015e47a5885912f930b08,
+        type: 2}
+      propertyPath: Resistences.Array.data[0].Element
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 114183775052015364, guid: b15804536ba015e47a5885912f930b08,
+        type: 2}
+      propertyPath: Resistences.Array.data[0].Percentage
+      value: 20
+      objectReference: {fileID: 0}
+    - target: {fileID: 114183775052015364, guid: b15804536ba015e47a5885912f930b08,
+        type: 2}
+      propertyPath: Resistences.Array.data[0].ResistStun
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 114183775052015364, guid: b15804536ba015e47a5885912f930b08,
+        type: 2}
+      propertyPath: Resistences.Array.data[0].ResistKnockback
+      value: 0
       objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_ParentPrefab: {fileID: 100100000, guid: b15804536ba015e47a5885912f930b08, type: 2}

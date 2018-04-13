@@ -5,6 +5,16 @@ using UnityEngine.EventSystems;
 
 public enum FactionType { NONE, ALLIES, ENEMIES, HOSTILE };
 
+[System.Serializable]
+public class Resistence {
+	public ElementType Element;
+	public float Duration = 0f;
+	public float Percentage = 0f;
+	public bool Timed;
+	public bool ResistStun = false;
+	public bool ResistKnockback = false;
+}
+
 public class Attackable : MonoBehaviour
 {
 	private float m_health = 100.0f;
@@ -16,7 +26,7 @@ public class Attackable : MonoBehaviour
 	private float m_currDeathTime;
 	public FactionType Faction = FactionType.HOSTILE;
 
-	public Dictionary<string,float> Resistences = new Dictionary<string,float>();
+	public List<Resistence> Resistences  = new List<Resistence>();
 	private PhysicsSS m_movementController;
 	private Fighter m_fighter;
 
@@ -49,12 +59,13 @@ public class Attackable : MonoBehaviour
 
 	private void CheckResistanceValidities()
 	{
-		List<string> keys = new List<string> (Resistences.Keys);
-		foreach (string k in keys)
+		foreach (Resistence r in Resistences)
 		{
-			Resistences[k] -= Time.deltaTime;
-			if (Resistences[k] <= 0.0f)
-				Resistences.Remove(k);
+			if (r.Timed) {
+				r.Duration -= Time.deltaTime;
+				if (r.Duration <= 0.0f)
+					Resistences.Remove(r);
+			}
 		}
 	}
 
@@ -63,22 +74,55 @@ public class Attackable : MonoBehaviour
 		CheckResistanceValidities();
 		ExecuteEvents.Execute<ICustomMessageTarget> (gameObject, null, (x, y) => x.OnUpdate ());
 	}
-
-	public void AddResistence(string attribute, float time) {
-		Resistences[attribute] = time;
+	public void SetResistence(ElementType element, float percentage, bool timed = false, float time = 0f, 
+		bool resistStun = false, bool resistKnockback = false) {
+		RemoveResistence (element);
+		Resistence r = new Resistence ();
+		r.Element = element;
+		r.Percentage = percentage;
+		r.Duration = time;
+		r.ResistStun = resistStun;
+		r.ResistKnockback = resistKnockback;
+		r.Timed = timed;
+		Resistences.Add (r);
 	}
 
-	private bool CheckHasResistanceTo(List<string> hitTypes)
-	{
-		foreach (string k in Resistences.Keys) {
-			if (hitTypes.Contains(k)) {
-				return true;
+	public void AddResistence(ElementType element, float percentage, bool timed = false, float time = 0f, 
+			bool resistStun = false, bool resistKnockback = false) {
+		Resistence r;
+		if (GetResistence (element) != null)
+			r = GetResistence (element);
+		else {
+			r = new Resistence ();
+			r.Element = element;
+		}
+		r.Percentage += percentage;
+		r.Duration += time;
+		r.ResistStun = (r.ResistStun || resistStun);
+		r.ResistKnockback = (r.ResistKnockback || resistKnockback);
+		if (r.Timed)
+			r.Timed = timed;
+		Resistences.Add (r);
+	}
+
+	public void RemoveResistence(ElementType element) {
+		foreach (Resistence r in Resistences) {
+			if (r.Element == element) {
+				Resistences.Remove (r);
+				return;
 			}
 		}
-		return false;
+	}
+	public Resistence GetResistence(ElementType element) {
+		foreach (Resistence r in Resistences) {
+			if (r.Element == element) {
+				return r;
+			}
+		}
+		return null;
 	}
 
-	private void ApplyHitToPhysicsTD(Hitbox hb)
+	private void ApplyHitToPhysicsSS(Hitbox hb)
 	{
 		if (!m_movementController)
 			return;
@@ -106,19 +150,22 @@ public class Attackable : MonoBehaviour
 		if (GetComponent<AIFighter>()) {
 			GetComponent<AIFighter> ().OnHit (hb);
 		}
-		// Debug.Log (gameObject + "is Taking hit");
-		if (hb.HasHitTypes() && CheckHasResistanceTo(hb.HitTypes))
-		{
-			if (m_fighter)
-				m_fighter.RegisterStun(hb.Stun, false, hb);
-			return HitResult.BLOCKED;
+		Resistence r =  GetResistence(hb.Element);
+		if (r != null) {
+			DamageObj (hb.Damage - (hb.Damage * (r.Percentage/100f)));
+			if (!r.ResistKnockback)
+				ApplyHitToPhysicsSS(hb);
+			if (hb.Stun > 0f && m_fighter) {
+				if (r.ResistStun)
+					return HitResult.BLOCKED;
+				m_fighter.RegisterStun (hb.Stun, false, hb);
+			}
+		} else {
+			DamageObj(hb.Damage);
+			ApplyHitToPhysicsSS(hb);
+			if (hb.Stun > 0 && m_fighter)
+				m_fighter.RegisterStun(hb.Stun, true, hb);
 		}
-
-		DamageObj(hb.Damage);
-		ApplyHitToPhysicsTD(hb);
-
-		if (hb.Stun > 0 && m_fighter)
-			m_fighter.RegisterStun(hb.Stun, true, hb);
 		return HitResult.HIT;
 	}
 

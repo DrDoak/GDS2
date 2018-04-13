@@ -34,7 +34,7 @@ public class AttackInfo : MonoBehaviour
 	public float RecoveryTime = 0.5f;
 
 	public string AttackName = "default";
-	public string HitType = "melee";
+	public ElementType Element = ElementType.PHYSICAL;
 	public string StartUpAnimation = "none";
 	public string RecoveryAnimation = "none";
 
@@ -97,7 +97,7 @@ public class AttackInfo : MonoBehaviour
 
 	public virtual void OnInterrupt(float stunTime, bool successfulHit, Hitbox hb)
 	{
-		m_hitboxMaker.ClearHitTypes();
+		//m_hitboxMaker.ClearHitTypes();
 	}
 
 	protected virtual void OnStartUp()
@@ -125,9 +125,9 @@ public class AttackInfo : MonoBehaviour
 
 	private void CreateHitbox()
 	{
-		m_hitboxMaker.AddHitType(HitType);
+		//m_hitboxMaker.AddHitType(HitType);
 		Vector2 offset = m_physics.OrientVectorToDirection(HitboxOffset);
-		m_hitboxMaker.CreateHitbox(HitboxScale, offset, Damage, Stun, HitboxDuration, Knockback, true, true);
+		m_hitboxMaker.CreateHitbox(HitboxScale, offset, Damage, Stun, HitboxDuration, Knockback, true, true,Element);
 	}
 }
 

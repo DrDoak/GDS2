@@ -7,7 +7,7 @@ public class HitboxMaker : MonoBehaviour
 	public GameObject HitboxClass;
 	public GameObject LineHBClass;
 
-	public List<string> hitTypes;
+//	public List<ElementType> elementTypes;
 	public FactionType Faction;
 	PhysicsSS m_physics;
 	Fighter m_fighter;
@@ -23,7 +23,8 @@ public class HitboxMaker : MonoBehaviour
 			Faction = GetComponent<Attackable> ().Faction;
 		}
 	}
-	public LineHitbox createLineHB(float range, Vector2 aimPoint, Vector2 offset,float damage, float stun, float hitboxDuration, Vector2 knockback, bool followObj = true) {
+	public LineHitbox createLineHB(float range, Vector2 aimPoint, Vector2 offset,float damage, float stun, float hitboxDuration,
+		Vector2 knockback, bool followObj = true,ElementType element = ElementType.PHYSICAL) {
 		aimPoint = m_physics.OrientVectorToDirection(aimPoint);
 		offset = m_physics.OrientVectorToDirection(offset);
 		Vector3 newPos = new Vector3(transform.position.x + offset.x, transform.position.y + offset.y, 0);
@@ -37,6 +38,7 @@ public class HitboxMaker : MonoBehaviour
 		line.IsFixedKnockback = true;
 		line.Creator = gameObject;
 		line.Faction = Faction;
+		line.Element = element;
 		//line.reflect = hitboxReflect;
 		line.Stun = stun;
 		//line.mAttr = mAttrs;
@@ -45,7 +47,8 @@ public class HitboxMaker : MonoBehaviour
 		return line;
 	}
 
-	public Hitbox CreateHitbox(Vector2 hitboxScale, Vector2 offset, float damage, float stun, float hitboxDuration, Vector2 knockback, bool fixedKnockback = true, bool followObj = true)
+	public Hitbox CreateHitbox(Vector2 hitboxScale, Vector2 offset, float damage, float stun, float hitboxDuration, Vector2 knockback, bool fixedKnockback = true,
+		bool followObj = true, ElementType element = ElementType.PHYSICAL)
 	{
 		Vector2 cOff = m_physics.OrientVectorToDirection(offset);
 		Vector3 newPos = transform.position + (Vector3)cOff;
@@ -60,7 +63,8 @@ public class HitboxMaker : MonoBehaviour
 		newBox.Knockback = m_physics.OrientVectorToDirection(knockback);
 		newBox.IsFixedKnockback = fixedKnockback;
 		newBox.Stun = stun;
-		newBox.HitTypes = hitTypes;
+		newBox.Element = element;
+		//newBox.HitTypes = hitTypes;
 		newBox.Creator = gameObject;
 		newBox.Faction = Faction;
 		if (followObj)
@@ -83,7 +87,7 @@ public class HitboxMaker : MonoBehaviour
 			m_fighter.RegisterHit (otherObj,hb,hr);
 	}
 
-	public void AddHitType(string hitType)
+/*	public void AddHitType(string hitType)
 	{
 		hitTypes.Add (hitType);
 	}
@@ -92,5 +96,5 @@ public class HitboxMaker : MonoBehaviour
 	{
 		hitTypes = new List<string> ();
 	}
-
+*/
 }

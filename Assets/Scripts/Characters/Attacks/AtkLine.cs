@@ -12,9 +12,9 @@ public class AtkLine : AttackInfo {
 		base.OnAttack ();
 		FactionType fac = GetComponent<Attackable> ().Faction;
 
-		GetComponent<HitboxMaker> ().AddHitType (HitType);
+		// GetComponent<HitboxMaker> ().AddHitType (HitType);
 		//LineHitbox lbox = 	GetComponent<HitboxMaker>().createLineHB (range, realD, realOff, Damage, Stun, HitboxDuration, realKB,fac, true);
-		LineHitbox lbox = GetComponent<HitboxMaker>().createLineHB(range, direction, HitboxOffset, Damage, Stun, HitboxDuration, Knockback, true);
+		LineHitbox lbox = GetComponent<HitboxMaker>().createLineHB(range, direction, HitboxOffset, Damage, Stun, HitboxDuration, Knockback, true,Element);
 		lbox.Stun = Stun;
 	}
 }
