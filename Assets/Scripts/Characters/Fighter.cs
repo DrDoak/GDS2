@@ -187,7 +187,7 @@ public class Fighter : MonoBehaviour
 	public void RegisterHit(GameObject otherObj,Hitbox hb, HitResult hr)
 	{
 		//Debug.Log ("Collision: " + this + " " + otherObj);
-		ExecuteEvents.Execute<ICustomMessageTarget> (gameObject, null, (x, y) => x.OnHitConfirm ());
+		ExecuteEvents.Execute<ICustomMessageTarget> (gameObject, null, (x, y) => x.OnHitConfirm (hb, otherObj, hr));
 		//Debug.Log ("Registering hit with: " + otherObj);
 		if (m_currentAttack != null)
 			m_currentAttack.OnHitConfirm(otherObj,hb,hr);

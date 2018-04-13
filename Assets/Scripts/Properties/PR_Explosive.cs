@@ -17,11 +17,6 @@ public class PR_Explosive : Property {
 
     }
 
-    public override void OnHit()
-    {
-
-    }
-
     public override void OnDeath()
     {
         Debug.Log("PR_Explosive on death (kaboom)");
