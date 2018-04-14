@@ -19,7 +19,7 @@ public class PropertyHolder : MonoBehaviour {
 		}
 		m_currentPlayer = (GetComponent<BasicMovement> () && GetComponent<BasicMovement> ().IsCurrentPlayer);
 		if (m_currentPlayer) {
-		//	GUIHandler.CreatePropertyList(m_properties, "Test List");
+			//GUIHandler.CreatePropertyList(m_properties, "Test List", Vector3.zero);
 		}
 	}
 	// Update is called once per frame

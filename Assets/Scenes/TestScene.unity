@@ -169,12 +169,12 @@ Prefab:
     - target: {fileID: 224203324965269106, guid: 86856ebb1cc73c04a86115975021a18e,
         type: 2}
       propertyPath: m_AnchorMax.x
-      value: 0
+      value: 1
       objectReference: {fileID: 0}
     - target: {fileID: 224203324965269106, guid: 86856ebb1cc73c04a86115975021a18e,
         type: 2}
       propertyPath: m_AnchorMax.y
-      value: 0
+      value: 1
       objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_ParentPrefab: {fileID: 100100000, guid: 86856ebb1cc73c04a86115975021a18e, type: 2}
@@ -326,6 +326,26 @@ Prefab:
     m_RemovedComponents: []
   m_ParentPrefab: {fileID: 100100000, guid: 699df3836ffafe74782927875edab172, type: 2}
   m_IsPrefabParent: 0
+--- !u!1 &967040940 stripped
+GameObject:
+  m_PrefabParentObject: {fileID: 1593684310463946, guid: 86856ebb1cc73c04a86115975021a18e,
+    type: 2}
+  m_PrefabInternal: {fileID: 278868323}
+--- !u!114 &967040944
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_PrefabParentObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 0}
+  m_GameObject: {fileID: 967040940}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: cc089a764853caf499f94192abcfee4f, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  Stealable: 1
+  PropertyName: Phantom
+  Description: Cannot hurt or be hurt
+  icon: {fileID: 21300000, guid: 01072e332ce100f41851d90285200017, type: 3}
 --- !u!1 &1136045333 stripped
 GameObject:
   m_PrefabParentObject: {fileID: 1000013670716774, guid: b15804536ba015e47a5885912f930b08,
@@ -340,6 +360,21 @@ MonoBehaviour:
   m_Enabled: 1
   m_EditorHideFlags: 0
   m_Script: {fileID: 11500000, guid: 6707b994f2ccf374d8d6b2f9199ceb5a, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  Stealable: 1
+  PropertyName: None
+  Description: No description provided.
+  icon: {fileID: 0}
+--- !u!114 &1136045351
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_PrefabParentObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 0}
+  m_GameObject: {fileID: 1136045333}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: cc089a764853caf499f94192abcfee4f, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
   Stealable: 1

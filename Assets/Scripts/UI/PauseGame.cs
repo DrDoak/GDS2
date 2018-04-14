@@ -40,6 +40,9 @@ public class PauseGame : MonoBehaviour
 		m_pauseMenuUI.SetActive(true);
 		Time.timeScale = 0f;
 		isPaused = true;
+		//Vector3 v = new Vector3 (150f, 300f);
+		Vector3 v = new Vector3 (200f, -200f);
+		GUIHandler.CreatePropertyList (GameManager.Instance.CurrentPlayer.GetComponent<PropertyHolder> ().GetStealableProperties (), "Your Properties", v);
 	}
 
 	public void LoadMenu()

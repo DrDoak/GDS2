@@ -19,6 +19,7 @@ public class GameManager : MonoBehaviour
 	public GameObject IconPropertyPrefab;
 	public GameObject TextPropertyPrefab;
 	public Sprite UnknownPropertyIcon;
+	public GameObject CurrentPlayer;
 
 	Dictionary<string,GameObject> m_iconList;
 
@@ -102,6 +103,7 @@ public class GameManager : MonoBehaviour
 	public void SetPlayer(BasicMovement bm) {
 		GetComponent<CameraFollow> ().target = bm.GetComponent<PhysicsSS>();
 		GetComponent<GUIHandler> ().CurrentTarget = bm.gameObject;
+		CurrentPlayer = bm.gameObject;
 	}
 
 	public void AddPropIcon(Property p) { 
