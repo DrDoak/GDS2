@@ -74,20 +74,20 @@ public class Attackable : MonoBehaviour
 		CheckResistanceValidities();
 		ExecuteEvents.Execute<ICustomMessageTarget> (gameObject, null, (x, y) => x.OnUpdate ());
 	}
-	public void SetResistence(ElementType element, float percentage, bool timed = false, float time = 0f, 
+	public void SetResistence(ElementType element, float percentage, bool overflow = false, bool isTimed = false, float duration = 0f, 
 		bool resistStun = false, bool resistKnockback = false) {
 		RemoveResistence (element);
 		Resistence r = new Resistence ();
 		r.Element = element;
 		r.Percentage = percentage;
-		r.Duration = time;
+		r.Duration = duration;
 		r.ResistStun = resistStun;
 		r.ResistKnockback = resistKnockback;
-		r.Timed = timed;
+		r.Timed = isTimed;
 		Resistences.Add (r);
 	}
 
-	public void AddResistence(ElementType element, float percentage, bool timed = false, float time = 0f, 
+	public void AddResistence(ElementType element, float percentage, bool overflow = false, bool isTimed = false, float duration = 0f, 
 			bool resistStun = false, bool resistKnockback = false) {
 		Resistence r;
 		if (GetResistence (element) != null)
@@ -97,11 +97,11 @@ public class Attackable : MonoBehaviour
 			r.Element = element;
 		}
 		r.Percentage += percentage;
-		r.Duration += time;
+		r.Duration += duration;
 		r.ResistStun = (r.ResistStun || resistStun);
 		r.ResistKnockback = (r.ResistKnockback || resistKnockback);
 		if (r.Timed)
-			r.Timed = timed;
+			r.Timed = isTimed;
 		Resistences.Add (r);
 	}
 
@@ -182,5 +182,11 @@ public class Attackable : MonoBehaviour
 
 	public bool CanAttack(FactionType otherFaction) {
 		return (otherFaction == FactionType.HOSTILE || Faction == FactionType.HOSTILE || otherFaction != Faction);
+	}
+
+	public void SetFaction(FactionType f) {
+		Faction = f;
+		if (GetComponent<HitboxMaker> ())
+			GetComponent<HitboxMaker> ().Faction = f;
 	}
 }

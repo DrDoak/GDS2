@@ -3,10 +3,15 @@ using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.UI;
 using UnityEngine.SceneManagement;
+using TMPro;
 
 public class GUIHandler : MonoBehaviour {
 
-	public static GUIHandler instance = null;
+	public static GUIHandler Instance = null;
+
+	public GameObject MenuProperty;
+	public GameObject SelectionProperty;
+
 	[TextArea(1,10)]
 	public string textMessage = "";
 
@@ -34,9 +39,9 @@ public class GUIHandler : MonoBehaviour {
 	private int attemptNumber;
 
 	void Awake () {
-		if (instance == null)
-			instance = this;
-		else if (instance != this) {
+		if (Instance == null)
+			Instance = this;
+		else if (Instance != this) {
 			Destroy (gameObject);
 		}
 		gameManager = FindObjectOfType<GameManager> ();
@@ -44,7 +49,6 @@ public class GUIHandler : MonoBehaviour {
 		attemptNumber = 1;
 		mainMenu = false;
 	}
-
 	void Update() {
 		if (CurrentTarget != null) {
 			var P1Controller = CurrentTarget.GetComponent<Attackable> ();
@@ -80,6 +84,22 @@ public class GUIHandler : MonoBehaviour {
 			int w = 1000;
 			int h = 100;
 			GUI.Label (new Rect (Screen.width/2-w/2, Screen.height/2-h/2, w, h), textMessage, centeredStyle);
+		}
+	}
+
+	public static void CreatePropertyList(List<Property> pList, string userName) {
+		Instance.InternalPropertyList (pList, userName);
+	}
+
+	void InternalPropertyList(List<Property> pList, string userName) {
+		GameObject gMenu = Instantiate (MenuProperty, transform.Find ("PauseCanvas"), false);
+		gMenu.transform.Find ("UserName").GetComponent<TextMeshProUGUI> ().SetText (userName);
+		foreach (Property p in pList) {
+			Property mp = (Property)GameManager.Instance.gameObject.GetComponentInChildren (p.GetType());
+			GameObject selection = Instantiate (SelectionProperty, gMenu.transform.Find ("PropList"), false);
+			selection.transform.Find ("Image").GetComponent<Image>().sprite = mp.icon;
+			selection.transform.Find ("Title").GetComponent<TextMeshProUGUI>().SetText( mp.PropertyName);
+			selection.transform.Find ("Description").GetComponent<TextMeshProUGUI>().SetText( mp.Description);
 		}
 	}
 }
