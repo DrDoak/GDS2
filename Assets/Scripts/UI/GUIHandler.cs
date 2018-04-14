@@ -57,10 +57,6 @@ public class GUIHandler : MonoBehaviour {
 
 			P1HealthBar.value = P1Controller.Health;
 		}
-		if (Input.GetButtonDown("Pause") ){
-			if (Instance.PropertyLists.Count > 0)
-				ClosePropertyLists ();
-		}
 	}
 
 	public void displayText(string msg, float dTime) {
@@ -92,11 +88,11 @@ public class GUIHandler : MonoBehaviour {
 		}
 	}
 
-	public static void CreatePropertyList(List<Property> pList, string userName, Vector3 position) {
-		Instance.InternalPropertyList (pList, userName, position);
+	public static void CreatePropertyList(List<Property> pList, string userName, Vector3 position, bool clickable = true) {
+		Instance.InternalPropertyList (pList, userName, position, clickable);
 	}
 
-	void InternalPropertyList(List<Property> pList, string userName, Vector3 position) {
+	void InternalPropertyList(List<Property> pList, string userName, Vector3 position, bool clickable) {
 		GameObject gMenu = Instantiate (MenuProperty);
 		gMenu.GetComponent<RectTransform> ().anchorMax = new Vector2(0f,1f);
 		gMenu.GetComponent<RectTransform> ().anchorMin = new Vector2(0f,1f);
@@ -111,6 +107,7 @@ public class GUIHandler : MonoBehaviour {
 			selection.transform.Find ("Image").GetComponent<Image>().sprite = mp.icon;
 			selection.transform.Find ("Title").GetComponent<TextMeshProUGUI>().SetText( mp.PropertyName);
 			selection.transform.Find ("Description").GetComponent<TextMeshProUGUI>().SetText( mp.Description);
+			selection.GetComponent<Button> ().enabled = clickable;
 		}
 		PropertyLists.Add (gMenu);
 	}
