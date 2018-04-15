@@ -14,7 +14,7 @@ public class HitboxDoT : Hitbox {
 			foreach(Attackable a in m_overlappingControl) {
 				a.DamageObj (Damage * Time.deltaTime);
 				if (IsFixedKnockback) {
-					//cont.addToVelocity (knockback * Time.deltaTime);
+					a.GetComponent<PhysicsSS>().AddToVelocity (Knockback * Time.deltaTime);
 				} else {
 					Vector3 otherPos = a.gameObject.transform.position;
 					float angle = Mathf.Atan2 (transform.position.y - otherPos.y, transform.position.x - otherPos.x); //*180.0f / Mathf.PI;
@@ -22,14 +22,13 @@ public class HitboxDoT : Hitbox {
 					float forceX = Mathf.Cos (angle) * magnitude;
 					float forceY = Mathf.Sin (angle) * magnitude;
 					Vector2 force = new Vector2 (-forceX, -forceY);
-					a.GetComponent<PhysicsSS>().AddSelfForce (force,Time.deltaTime);
+					a.GetComponent<PhysicsSS>().AddToVelocity (force*Time.deltaTime);
 				}
 			}
 			Duration = Duration - Time.deltaTime;
 		} else {
 			GameObject.Destroy (gameObject);
 		}
-		base.Tick ();
 	}
 
 	void OnDrawGizmos() {

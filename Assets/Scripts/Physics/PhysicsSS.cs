@@ -140,7 +140,8 @@ public class PhysicsSS : MonoBehaviour
 
 	public void AddToVelocity(Vector2 veloc)
 	{
-		m_accumulatedVelocity += veloc;
+		m_accumulatedVelocity.x += veloc.x;
+		AddSelfForce (new Vector2 (0f, veloc.y), 0f);
 	}
 
 	public void AddSelfForce(Vector2 force, float duration)

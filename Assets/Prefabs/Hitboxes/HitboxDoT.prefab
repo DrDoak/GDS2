@@ -22,7 +22,7 @@ GameObject:
   - component: {fileID: 61510412843208266}
   - component: {fileID: 114440527987323828}
   m_Layer: 2
-  m_Name: ContinuousHitbox
+  m_Name: HitboxDoT
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -84,6 +84,7 @@ MonoBehaviour:
   m_knockback: {x: 0, y: 40}
   m_stun: 0
   m_isRandomKnockback: 0
+  m_element: 0
   Faction: 0
   m_followObj: {fileID: 0}
   m_followOffset: {x: 0, y: 0}

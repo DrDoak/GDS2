@@ -38,7 +38,7 @@ public class Hitbox : MonoBehaviour {
 	private ElementType m_element = ElementType.PHYSICAL;
 	public ElementType Element { get { return m_element; } set { m_element = value; } }
 
-	public FactionType Faction;
+	public FactionType Faction = FactionType.HOSTILE;
 
 	[HideInInspector]
 	public GameObject Creator { get; set; }
