@@ -83,7 +83,7 @@ public class PhysicsSS : MonoBehaviour
 	private void DecelerateAutomatically(float threshold)
 	{
 		if (m_accumulatedVelocity.sqrMagnitude > threshold)
-			m_accumulatedVelocity.x *= (1.0f - Time.fixedDeltaTime * DecelerationRatio * 3.0f);
+			m_accumulatedVelocity *= (1.0f - Time.fixedDeltaTime * DecelerationRatio * 3.0f);
 		else
 			m_accumulatedVelocity = Vector2.zero;
 	}
@@ -121,7 +121,7 @@ public class PhysicsSS : MonoBehaviour
 				m_velocity.y += m_gravityScale * Time.fixedDeltaTime * 6f;
 			}
 		}
-		m_velocity.x += m_accumulatedVelocity.x * Time.fixedDeltaTime;
+		m_velocity += m_accumulatedVelocity * Time.fixedDeltaTime;
 	}
 
 	private void ProcessMovement()

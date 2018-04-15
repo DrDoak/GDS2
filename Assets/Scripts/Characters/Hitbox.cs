@@ -77,7 +77,9 @@ public class Hitbox : MonoBehaviour {
 		//Debug.Log ("Hitbox created");
 		if (m_followObj != null)
 			FollowObj();
-		SwitchActiveCollider(m_creatorPhysics.FacingLeft);
+		if (m_creatorPhysics != null) {
+			SwitchActiveCollider (m_creatorPhysics.FacingLeft);
+		}
 		if (m_hasDuration)
 			MaintainOrDestroyHitbox();
 	}

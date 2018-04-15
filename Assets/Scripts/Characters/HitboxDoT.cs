@@ -1,7 +1,7 @@
 ﻿using UnityEngine;
 using System.Collections.Generic; //REMEMBER! In order to use lists! Make sure it is System.Collections.Generic instead of System.Collections
 // Example of an object that can affect the physics of another object.
-public class HitboxContinuous : Hitbox {
+public class HitboxDoT : Hitbox {
 	// Use this for initialization
 	void Start () {}
 	
@@ -11,24 +11,25 @@ public class HitboxContinuous : Hitbox {
 	}
 	protected void Tick() {
 		if (Duration > 0.0f) {
-			foreach(Attackable cont in m_overlappingControl) {
-				cont.DamageObj (Damage * Time.deltaTime);
+			foreach(Attackable a in m_overlappingControl) {
+				a.DamageObj (Damage * Time.deltaTime);
 				if (IsFixedKnockback) {
 					//cont.addToVelocity (knockback * Time.deltaTime);
 				} else {
-					Vector3 otherPos = cont.gameObject.transform.position;
+					Vector3 otherPos = a.gameObject.transform.position;
 					float angle = Mathf.Atan2 (transform.position.y - otherPos.y, transform.position.x - otherPos.x); //*180.0f / Mathf.PI;
 					float magnitude = Knockback.magnitude;
 					float forceX = Mathf.Cos (angle) * magnitude;
 					float forceY = Mathf.Sin (angle) * magnitude;
 					Vector2 force = new Vector2 (-forceX, -forceY);
-					//cont.addToVelocity (force*Time.deltaTime);
+					a.GetComponent<PhysicsSS>().AddSelfForce (force,Time.deltaTime);
 				}
 			}
 			Duration = Duration - Time.deltaTime;
 		} else {
 			GameObject.Destroy (gameObject);
 		}
+		base.Tick ();
 	}
 
 	void OnDrawGizmos() {
