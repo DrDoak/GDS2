@@ -429,6 +429,7 @@ GameObject:
   - component: {fileID: 4928022145445092}
   - component: {fileID: 114316474330563078}
   - component: {fileID: 114329135445152956}
+  - component: {fileID: 114008892602659624}
   m_Layer: 0
   m_Name: PR_List
   m_TagString: Untagged
@@ -677,6 +678,21 @@ Animator:
   m_WarningMessage: 
   m_HasTransformHierarchy: 1
   m_AllowConstantClipSamplingOptimization: 1
+--- !u!114 &114008892602659624
+MonoBehaviour:
+  m_ObjectHideFlags: 1
+  m_PrefabParentObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 100100000}
+  m_GameObject: {fileID: 1593684310463946}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: cc089a764853caf499f94192abcfee4f, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  Stealable: 1
+  PropertyName: Phantom
+  Description: Cannot hurt or be hurt
+  icon: {fileID: 21300000, guid: 01072e332ce100f41851d90285200017, type: 3}
 --- !u!114 &114025344156729126
 MonoBehaviour:
   m_ObjectHideFlags: 1
@@ -1549,14 +1565,25 @@ MonoBehaviour:
     type: 2}
   FXPropertyPrefab: {fileID: 1414738728596766, guid: e0299e2d16facdd48aa7f6d31ecbe3b2,
     type: 2}
-  FXPropertyGetPrefab: {fileID: 1089452156502022, guid: c6523f6b3141ce84c8edc4c7b1d2da46,
+  FXPropertyGetPrefab: {fileID: 1819530034117282, guid: 84253b1ecdcb72248864744dc28aa9b9,
     type: 2}
+  FXHitPhysical: {fileID: 1979127746949382, guid: 752debeca1c7d4f4ca4b9b5b29d3d4e7,
+    type: 2}
+  FXHitFire: {fileID: 1268821904883096, guid: e4b140a50d013374992f2b087a040e9a, type: 2}
+  FXHitLightning: {fileID: 1936280995851042, guid: 368abd725a3d28b4e94aee90ff27d9f4,
+    type: 2}
+  FXHitBiological: {fileID: 1674629646458926, guid: 714fc3c47c433bb45ad43ec7090c61ae,
+    type: 2}
+  FXHitPsychic: {fileID: 1438273217963334, guid: 9c2f6091f3058454aadae5f756d45e80,
+    type: 2}
+  FXHitBlock: {fileID: 1538784016814420, guid: 252a5841a7767ff439542ba70e760dcf, type: 2}
   IconPropertyPrefab: {fileID: 1936846605727008, guid: f4a01bee0f13c3c48bbf4841721d58d4,
     type: 2}
   TextPropertyPrefab: {fileID: 1556893302754994, guid: a6ffcd8dcff66a0438953a56fcc5038c,
     type: 2}
   UnknownPropertyIcon: {fileID: 21300000, guid: 08ab236fe846cab4a9aa8ad7e41a3b41,
     type: 3}
+  CurrentPlayer: {fileID: 0}
 --- !u!114 &114528735457710910
 MonoBehaviour:
   m_ObjectHideFlags: 1

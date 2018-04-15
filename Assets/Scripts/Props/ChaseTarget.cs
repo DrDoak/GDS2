@@ -4,7 +4,7 @@ using UnityEngine;
 
 public class ChaseTarget : MonoBehaviour {
 
-	public BasicMovement Target;
+	public PhysicsSS Target;
 
 	bool Available = true;
 	bool m_targetingPoint = false;

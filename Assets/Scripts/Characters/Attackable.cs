@@ -189,4 +189,5 @@ public class Attackable : MonoBehaviour
 		if (GetComponent<HitboxMaker> ())
 			GetComponent<HitboxMaker> ().Faction = f;
 	}
+		
 }

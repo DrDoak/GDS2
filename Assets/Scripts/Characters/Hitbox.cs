@@ -3,7 +3,7 @@ using System.Collections.Generic;
 
 public enum HitResult { NONE, HIT, BLOCKED, REFLECTED };
 
-public enum ElementType { PHYSICAL, FIRE, BIOLOGICAL, PSYCH, LIGHTNING };
+public enum ElementType { PHYSICAL, FIRE, BIOLOGICAL, PSYCHIC, LIGHTNING };
 
 public class Hitbox : MonoBehaviour {
 
@@ -136,6 +136,7 @@ public class Hitbox : MonoBehaviour {
 		if (Creator != null) {
 			Creator.GetComponent<HitboxMaker> ().RegisterHit (atkObj.gameObject, this, r);
 		}
+		CreateHitFX (Element, atkObj.gameObject, Knockback, r);
 		return r;
 	}
 
@@ -184,5 +185,38 @@ public class Hitbox : MonoBehaviour {
 	void OnDrawGizmos() {
 		Gizmos.color = new Color (1, 0, 0, .8f);
 		Gizmos.DrawCube (transform.position, transform.localScale);
+	}
+
+	protected void CreateHitFX(ElementType et, GameObject hitObj, Vector2 knockback, HitResult hr) {
+		GameObject fx = null;
+		if (hr == HitResult.BLOCKED) {
+			fx = GameObject.Instantiate (GameManager.Instance.FXHitBlock, hitObj.transform.position, Quaternion.identity);
+		} else {
+			switch (et) {
+			case ElementType.PHYSICAL:
+				fx = GameObject.Instantiate (GameManager.Instance.FXHitPhysical, hitObj.transform.position, Quaternion.identity);
+				break;
+			case ElementType.FIRE:
+				fx = GameObject.Instantiate (GameManager.Instance.FXHitFire, hitObj.transform.position, Quaternion.identity);
+				break;
+			case ElementType.LIGHTNING:
+				fx = GameObject.Instantiate (GameManager.Instance.FXHitLightning, hitObj.transform.position, Quaternion.identity);
+				break;
+			case ElementType.BIOLOGICAL:
+				fx = GameObject.Instantiate (GameManager.Instance.FXHitBiological, hitObj.transform.position, Quaternion.identity);
+				break;
+			case ElementType.PSYCHIC:
+				fx = GameObject.Instantiate (GameManager.Instance.FXHitPsychic, hitObj.transform.position, Quaternion.identity);
+				break;
+			default:
+				Debug.Log ("Hit Effect not yet added");
+				break;
+			}
+		}
+		if (fx != null) {
+			fx.GetComponent<Follow> ().followObj = hitObj;
+			float angle = (Mathf.Atan2 (knockback.y, knockback.x) * 180) / Mathf.PI;
+			fx.transform.Rotate (new Vector3 (0f, 0f, angle));
+		}
 	}
 }
