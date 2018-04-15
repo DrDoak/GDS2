@@ -122,7 +122,7 @@ BoxCollider2D:
   m_Offset: {x: 0.1, y: -0.25}
   m_SpriteTilingProperty:
     border: {x: 0, y: 0, z: 0, w: 0}
-    pivot: {x: 0.5, y: 0.5}
+    pivot: {x: 0.45, y: 0.5}
     oldSize: {x: 1.28, y: 1.28}
     newSize: {x: 1, y: 1}
     adaptiveTilingThreshold: 0.5
@@ -180,14 +180,14 @@ MonoBehaviour:
   AIPredictionOffset: {x: 3, y: 0}
   Damage: 25
   Stun: 0.3
-  HitboxDuration: 0.5
-  Knockback: {x: 10, y: 10}
+  HitboxDuration: 0.3
+  Knockback: {x: 10, y: 0}
   AnimSpeed: 1
   StartUpTime: 1
   AttackTime: 0
   RecoveryTime: 0.5
   AttackName: default
-  HitType: melee
+  Element: 0
   StartUpAnimation: attack_s
   RecoveryAnimation: attack_r
   AttackFX: {fileID: 0}
@@ -234,6 +234,7 @@ MonoBehaviour:
   Alive: 1
   DeathTime: 0
   Faction: 3
+  Resistences: []
 --- !u!114 &114342479770708504
 MonoBehaviour:
   m_ObjectHideFlags: 1
@@ -366,7 +367,6 @@ MonoBehaviour:
     type: 2}
   LineHBClass: {fileID: 1208028220725142, guid: 26fc9fe904c00d54e8bc882bbd2c61f4,
     type: 2}
-  hitTypes: []
   Faction: 0
 --- !u!114 &114978030491855044
 MonoBehaviour:

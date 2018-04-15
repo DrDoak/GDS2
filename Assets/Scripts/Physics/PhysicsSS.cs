@@ -295,18 +295,23 @@ public class PhysicsSS : MonoBehaviour
 		for (int i = 0; i < m_verticalRayCount; i ++) {
 			Vector2 rayOrigin = (directionY == -1)?m_raycastOrigins.bottomLeft:m_raycastOrigins.topLeft;
 			rayOrigin += Vector2.right * (m_verticalRaySpacing * i + velocity.x);
-			RaycastHit2D hit = Physics2D.Raycast(rayOrigin, Vector2.up * directionY, rayLength, CollisionMask);
-			if (hit && !hit.collider.isTrigger && hit.collider.gameObject != gameObject) {
-				if ( JumpThruTag(hit.collider.gameObject) && ( velocity.y > 0 || dropThruTime > 0f)){ //|| handleStairs(hit,velocity))){
-				} else {
-					velocity.y = (hit.distance - m_skinWidth) * directionY;
-					rayLength = hit.distance;
-					if (m_collisions.climbingSlope) {
-						velocity.x = velocity.y / Mathf.Tan (m_collisions.slopeAngle * Mathf.Deg2Rad) * Mathf.Sign (velocity.x);
-					}
+			//RaycastHit2D hit = Physics2D.Raycast(rayOrigin, Vector2.up * directionY, rayLength, CollisionMask);
+			RaycastHit2D [] hitL = Physics2D.RaycastAll(rayOrigin, Vector2.up * directionY, rayLength, CollisionMask);
+			//Debug.Log (hitL.Length + " : " + gameObject);
+			foreach (RaycastHit2D hit in hitL) {
+				if (!hit.collider.isTrigger) {
+					if (JumpThruTag (hit.collider.gameObject) && (velocity.y > 0 || dropThruTime > 0f)) { //|| handleStairs(hit,velocity))){
+					} else {
+						velocity.y = (hit.distance - m_skinWidth) * directionY;
+						rayLength = hit.distance;
+						if (m_collisions.climbingSlope) {
+							velocity.x = velocity.y / Mathf.Tan (m_collisions.slopeAngle * Mathf.Deg2Rad) * Mathf.Sign (velocity.x);
+						}
 
-					m_collisions.below = directionY == -1;
-					m_collisions.above = directionY == 1;
+						m_collisions.below = directionY == -1;
+						m_collisions.above = directionY == 1;
+						break;
+					}
 				}
 			}
 		}
@@ -320,21 +325,24 @@ public class PhysicsSS : MonoBehaviour
 			for (int i = 0; i < m_verticalRayCount; i++) {
 				Vector2 rayOrigin = m_raycastOrigins.bottomLeft; //true ? raycastOrigins.bottomLeft : raycastOrigins.topLeft;
 				rayOrigin += Vector2.right * (m_verticalRaySpacing * i + velocity.x);
-				RaycastHit2D hit = Physics2D.Raycast (rayOrigin, Vector2.up * -1f, rayLength, CollisionMask);
-				if (hit && JumpThruTag(hit.collider.gameObject) && (dropThruTime > 0f )) {
-				} else {
-					if (hit && !hit.collider.isTrigger && hit.collider.gameObject != gameObject) {
-						////Debug.Log (hit.collider.gameObject);
-						Debug.DrawRay(rayOrigin, Vector2.up * directionY * rayLength,Color.red);
-						OnGround = true;
-						if ( started && !collide) {
-							FallDir = FallDirection.LEFT;
-						}
-						collide = true;
-					}  else {
-						Debug.DrawRay(rayOrigin, Vector2.up * directionY * rayLength,Color.green);
-						if (started && collide) {
-							FallDir = FallDirection.RIGHT;
+				RaycastHit2D [] hitL = Physics2D.RaycastAll (rayOrigin, Vector2.up * -1f, rayLength, CollisionMask);
+				foreach (RaycastHit2D hit in hitL) {
+					if (JumpThruTag (hit.collider.gameObject) && (dropThruTime > 0f)) {
+					} else {
+						if ( !hit.collider.isTrigger && hit.collider.gameObject != gameObject) {
+							////Debug.Log (hit.collider.gameObject);
+							Debug.DrawRay (rayOrigin, Vector2.up * directionY * rayLength, Color.red);
+							OnGround = true;
+							if (started && !collide) {
+								FallDir = FallDirection.LEFT;
+							}
+							collide = true;
+							break;
+						} else {
+							Debug.DrawRay (rayOrigin, Vector2.up * directionY * rayLength, Color.green);
+							if (started && collide) {
+								FallDir = FallDirection.RIGHT;
+							}
 						}
 					}
 				}

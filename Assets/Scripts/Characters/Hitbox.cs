@@ -1,7 +1,7 @@
 ﻿using UnityEngine;
 using System.Collections.Generic;
 
-public enum HitResult { NONE, HIT, BLOCKED, REFLECTED };
+public enum HitResult { NONE, HIT,HEAL, BLOCKED, REFLECTED };
 
 public enum ElementType { PHYSICAL, FIRE, BIOLOGICAL, PSYCHIC, LIGHTNING };
 
@@ -171,7 +171,6 @@ public class Hitbox : MonoBehaviour {
 		for (var i = 0; i < m_upRightDownLeftColliders.Count; i++)
 		{
 			m_upRightDownLeftColliders[i].enabled |= (i == dirIndex);
-			Debug.Log (m_upRightDownLeftColliders [i].enabled);
 		}
 	}
 
@@ -191,7 +190,9 @@ public class Hitbox : MonoBehaviour {
 		GameObject fx = null;
 		if (hr == HitResult.BLOCKED) {
 			fx = GameObject.Instantiate (GameManager.Instance.FXHitBlock, hitObj.transform.position, Quaternion.identity);
-		} else {
+		} else if (hr == HitResult.HEAL) {
+			fx = GameObject.Instantiate (GameManager.Instance.FXHeal, hitObj.transform.position, Quaternion.identity);
+		} else if (hr == HitResult.HIT) {
 			switch (et) {
 			case ElementType.PHYSICAL:
 				fx = GameObject.Instantiate (GameManager.Instance.FXHitPhysical, hitObj.transform.position, Quaternion.identity);

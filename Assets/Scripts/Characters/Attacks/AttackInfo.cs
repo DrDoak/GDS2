@@ -90,6 +90,7 @@ public class AttackInfo : MonoBehaviour
 	public void ResetAndProgress()
 	{
 		m_timeSinceStart = 0;
+		m_progress = AttackState.INACTIVE;
 		Progress();
 	}
 
@@ -97,7 +98,7 @@ public class AttackInfo : MonoBehaviour
 
 	public virtual void OnInterrupt(float stunTime, bool successfulHit, Hitbox hb)
 	{
-		//m_hitboxMaker.ClearHitTypes();
+		
 	}
 
 	protected virtual void OnStartUp()

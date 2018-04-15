@@ -23,6 +23,7 @@ public class GameManager : MonoBehaviour
 	public GameObject FXHitBiological;
 	public GameObject FXHitPsychic;
 	public GameObject FXHitBlock;
+	public GameObject FXHeal;
 
 	public GameObject IconPropertyPrefab;
 	public GameObject TextPropertyPrefab;

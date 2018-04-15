@@ -11,8 +11,10 @@ public class Resistence {
 	public float Duration = 0f;
 	public float Percentage = 0f;
 	public bool Timed;
-	public bool ResistStun = false;
-	public bool ResistKnockback = false;
+	public float StunResist = 0f;
+	public float KnockbackResist = 0f;
+	public bool AvoidOverflow = false;
+	public float OverflowAmount = 0f;
 }
 
 public class Attackable : MonoBehaviour
@@ -27,8 +29,10 @@ public class Attackable : MonoBehaviour
 	public FactionType Faction = FactionType.HOSTILE;
 
 	public List<Resistence> Resistences  = new List<Resistence>();
+	private Dictionary< ElementType, Resistence> m_fullResistences = new Dictionary< ElementType, Resistence>();
 	private PhysicsSS m_movementController;
 	private Fighter m_fighter;
+
 
 	// public AudioClip Hit;
 
@@ -38,8 +42,23 @@ public class Attackable : MonoBehaviour
 		m_fighter = GetComponent<Fighter>();
 		m_health = Mathf.Min (m_health, MaxHealth);
 		m_currDeathTime = DeathTime;
+		InitResistences ();
 	}
 
+	internal void InitResistences() {
+		m_fullResistences.Clear ();
+//		ElementType[] eList = new ElementType[ElementType.PHYSICAL, ElementType.FIRE,
+//			ElementType.BIOLOGICAL, ElementType.LIGHTNING, ElementType.PSYCHIC];
+		//RangeInt l = new RangeInt(1,4);
+		for (int i=0; i < 5; i++) {
+			Resistence r = new Resistence ();
+			r.Element = (ElementType)i;
+			m_fullResistences.Add ( (ElementType)i, r);
+		}
+		foreach (Resistence r in Resistences) {
+			AddResistence (r);
+		}
+	}
 	internal void Start() {
 		ExecuteEvents.Execute<ICustomMessageTarget> (gameObject, null, (x, y) => x.OnCreation ());
 	}
@@ -74,69 +93,95 @@ public class Attackable : MonoBehaviour
 		CheckResistanceValidities();
 		ExecuteEvents.Execute<ICustomMessageTarget> (gameObject, null, (x, y) => x.OnUpdate ());
 	}
-	public void SetResistence(ElementType element, float percentage, bool overflow = false, bool isTimed = false, float duration = 0f, 
-		bool resistStun = false, bool resistKnockback = false) {
-		RemoveResistence (element);
+	public Resistence SetResistence(ElementType element, float percentage, bool overflow = false, bool isTimed = false, float duration = 0f, 
+		float resistStun = 0f, float resistKnockback = 0f) {
+		ClearResistence (element);
+		Resistence r = newResist (element, percentage, overflow, isTimed, duration, resistStun, resistKnockback);
+		AddResistence (r);
+		return r;
+	}
+
+	private Resistence newResist(ElementType element, float percentage, bool overflow = false, bool isTimed = false, float duration = 0f, 
+		float resistStun = 0f, float resistKnockback = 0f) {
 		Resistence r = new Resistence ();
 		r.Element = element;
 		r.Percentage = percentage;
 		r.Duration = duration;
-		r.ResistStun = resistStun;
-		r.ResistKnockback = resistKnockback;
+		r.StunResist = resistStun;
+		r.KnockbackResist = resistKnockback;
 		r.Timed = isTimed;
-		Resistences.Add (r);
+		r.AvoidOverflow = overflow;
+		return r;
+	}
+	public Resistence AddResistence(ElementType element, float percentage, bool overflow = false, bool isTimed = false, float duration = 0f, 
+		float resistStun = 0f, float resistKnockback = 0f) {
+		Resistence r = newResist (element, percentage, overflow, isTimed, duration, resistStun, resistKnockback);
+		AddResistence (r);
+		return r;
 	}
 
-	public void AddResistence(ElementType element, float percentage, bool overflow = false, bool isTimed = false, float duration = 0f, 
-			bool resistStun = false, bool resistKnockback = false) {
-		Resistence r;
-		if (GetResistence (element) != null)
-			r = GetResistence (element);
-		else {
-			r = new Resistence ();
-			r.Element = element;
+	public void AddResistence(Resistence r) {
+		Resistence fr = m_fullResistences[r.Element];
+		float pDiff = r.Percentage;
+		if (r.AvoidOverflow) {
+			pDiff = Mathf.Min (100f - fr.Percentage, r.Percentage);
+			r.OverflowAmount = Mathf.Max(0f, r.Percentage - (100f - fr.Percentage));
 		}
-		r.Percentage += percentage;
-		r.Duration += duration;
-		r.ResistStun = (r.ResistStun || resistStun);
-		r.ResistKnockback = (r.ResistKnockback || resistKnockback);
-		if (r.Timed)
-			r.Timed = isTimed;
-		Resistences.Add (r);
+		fr.Percentage += pDiff;
+		fr.StunResist += r.StunResist;
+		fr.KnockbackResist += r.KnockbackResist;
+		if (!Resistences.Contains(r))
+			Resistences.Add (r);
+	}
+	public void RemoveResistence(Resistence r) {
+		if (!Resistences.Contains (r))
+			return;
+		Resistence fr = m_fullResistences[r.Element];
+		fr.Percentage -= r.Percentage;
+		fr.StunResist -= r.StunResist;
+		fr.KnockbackResist -= r.KnockbackResist;
+		Resistences.Remove (r);
+		foreach (Resistence or in Resistences) {
+			if (or.Element == r.Element && r.AvoidOverflow) {
+				float pDiff = Mathf.Min (100f - fr.Percentage, or.OverflowAmount);
+				or.OverflowAmount = Mathf.Max(0f, or.OverflowAmount - (100f - fr.Percentage));
+				fr.Percentage += pDiff;
+			}
+		}
 	}
 
-	public void RemoveResistence(ElementType element) {
+	public void ClearResistence(ElementType element) {
 		foreach (Resistence r in Resistences) {
 			if (r.Element == element) {
 				Resistences.Remove (r);
-				return;
 			}
 		}
+		Resistence re = new Resistence();
+		re.Element = element;
+		m_fullResistences [element] = re;
 	}
+
 	public Resistence GetResistence(ElementType element) {
-		foreach (Resistence r in Resistences) {
-			if (r.Element == element) {
-				return r;
-			}
-		}
-		return null;
+		return m_fullResistences [element];
 	}
 
 	private void ApplyHitToPhysicsSS(Hitbox hb)
 	{
+		Resistence r = GetResistence (hb.Element);
+		Vector2 kb = hb.Knockback - (hb.Knockback * Mathf.Min(1f,(r.KnockbackResist/100f)));
 		if (!m_movementController)
 			return;
 
 		if (hb.IsFixedKnockback)
 		{
-			m_movementController.AddToVelocity(hb.Knockback);
+			m_movementController.AddToVelocity(kb);
 			return;
 		}
 
 		Vector3 hitVector = transform.position - hb.transform.position;
 		float angle = Mathf.Atan2(hitVector.y,hitVector.x); //*180.0f / Mathf.PI;
 		Vector2 force = new Vector2(Mathf.Cos(angle), Mathf.Sin(angle));
-		force.Scale(new Vector2(hb.Knockback.magnitude, hb.Knockback.magnitude));
+		force.Scale(new Vector2(kb.magnitude, kb.magnitude));
 		float counterF = m_movementController.Velocity.y * (1 / Time.deltaTime);
 		if (counterF < 0)
 			force.y = force.y - counterF;
@@ -151,22 +196,26 @@ public class Attackable : MonoBehaviour
 			GetComponent<AIFighter> ().OnHit (hb);
 		}
 		Resistence r =  GetResistence(hb.Element);
-		if (r != null) {
-			DamageObj (hb.Damage - (hb.Damage * (r.Percentage/100f)));
-			if (!r.ResistKnockback)
-				ApplyHitToPhysicsSS(hb);
-			if (hb.Stun > 0f && m_fighter) {
-				if (r.ResistStun)
-					return HitResult.BLOCKED;
-				m_fighter.RegisterStun (hb.Stun, false, hb);
-			}
-		} else {
-			DamageObj(hb.Damage);
-			ApplyHitToPhysicsSS(hb);
-			if (hb.Stun > 0 && m_fighter)
-				m_fighter.RegisterStun(hb.Stun, true, hb);
+		float d;
+		d = hb.Damage - (hb.Damage * (r.Percentage / 100f));
+		d = DamageObj (d);
+
+		ApplyHitToPhysicsSS(hb);
+		float s = hb.Stun - (hb.Stun * Mathf.Min(1f,(r.StunResist/100f)));
+		if (hb.Stun > 0f && m_fighter) {
+			if (s <= 0f)
+				return HitResult.BLOCKED;
+			Debug.Log ("Registering Stun: " + s);
+			m_fighter.RegisterStun (s, true, hb);
 		}
-		return HitResult.HIT;
+
+		if (d == 0f) {
+			return HitResult.NONE;
+		} else if (d < 0f) {
+			return HitResult.HIT;
+		} else {
+			return HitResult.HEAL;
+		}
 	}
 
 	internal void OnTriggerEnter2D(Collider2D other)
@@ -174,10 +223,12 @@ public class Attackable : MonoBehaviour
 		ExecuteEvents.Execute<ICustomMessageTarget> (gameObject, null, (x, y) => x.OnAttack ());
 	}
 
-	public void DamageObj(float damage)
+	public float DamageObj(float damage)
 	{
+		float healthBefore = m_health;
 		m_health = Mathf.Max(Mathf.Min(MaxHealth, m_health - damage), 0);
 		Alive = (m_health > 0);
+		return m_health - healthBefore;
 	}
 
 	public bool CanAttack(FactionType otherFaction) {
