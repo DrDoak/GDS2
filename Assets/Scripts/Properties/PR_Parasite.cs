@@ -4,7 +4,10 @@ using UnityEngine;
 
 public class PR_Parasite : Property {
 
-    float parasite_damage = 1f;
+    float time_tracker = 0.0f;
+    float parasite_damage = 3.0f;
+    float parasite_period = 0.1f;
+
 
     public override void OnHitConfirm(Hitbox myHitbox, GameObject objectHit, HitResult hr)
     {
@@ -13,6 +16,10 @@ public class PR_Parasite : Property {
 
     public override void OnUpdate()
     {
-        GetComponent<Attackable>().DamageObj(parasite_damage);
+        if (Time.time > time_tracker)
+        {
+            time_tracker += parasite_period;
+            GetComponent<Attackable>().DamageObj(parasite_damage);
+        }
     }
 }
