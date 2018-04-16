@@ -46,8 +46,8 @@ public class Ab_PropGive : Ability {
 	private void DisplayPropertyUI()
 	{
 		GUIHandler.SetAbility(this);
-		GUIHandler.CreatePropertyList(_mPlayerProps, "player", new Vector3(100f,-200f,0f), true);
-		GUIHandler.CreatePropertyList(_mEnemyProps, "bad guy", new Vector3(400f,-200f,0f), false);
+		GUIHandler.CreatePropertyList(_mPlayerProps, "Item to Give", new Vector3(100f,-200f,0f), true);
+		GUIHandler.CreatePropertyList(_mEnemyProps, "Target", new Vector3(400f,-200f,0f), false);
 		PauseGame.Pause (false);
 		_mTriggered = true;
 	}

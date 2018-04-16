@@ -46,8 +46,8 @@ public class Ab_PropSteal : Ability {
 	private void DisplayPropertyUI()
 	{
 		GUIHandler.SetAbility(this);
-		GUIHandler.CreatePropertyList(_mPlayerProps, "player", new Vector3(100f,-200f,0f), false);
-		GUIHandler.CreatePropertyList(_mEnemyProps, "bad guy", new Vector3(400f,-200f,0f), true);
+		GUIHandler.CreatePropertyList(_mPlayerProps, "You", new Vector3(100f,-200f,0f), false);
+		GUIHandler.CreatePropertyList(_mEnemyProps, "Item to Steal", new Vector3(400f,-200f,0f), true);
 		PauseGame.Pause (false);
 		_mTriggered = true;
 	}
