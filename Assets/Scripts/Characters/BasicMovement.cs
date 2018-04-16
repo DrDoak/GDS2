@@ -240,6 +240,8 @@ public class BasicMovement : MonoBehaviour
 	}
 
 	public void SetJumpData(float jumpHeight, float timeToJumpApex) {
+		JumpHeight = jumpHeight;
+		TimeToJumpApex = timeToJumpApex;
 		gravity = -(2 * jumpHeight) / Mathf.Pow (timeToJumpApex, 2);
 		m_physics.SetGravityScale (gravity * (1.0f/60f));
 		jumpVelocity = Mathf.Abs(gravity) * timeToJumpApex;
