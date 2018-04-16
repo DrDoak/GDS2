@@ -35,5 +35,4 @@ public class AIRoomController : MonoBehaviour {
 		}
 	}
 		
-	void Update() {}
 }

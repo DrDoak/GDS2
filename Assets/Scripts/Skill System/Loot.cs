@@ -8,9 +8,7 @@ public class Loot : Ability {
 
     private List<Ability> _mPlayerAbilities;
     private List<Ability> _mTargetAbilities;
-
-    private Ability _mSelected;
-
+    
     private bool _mTriggered = false;
 
     public override void UseAbility()
@@ -33,7 +31,7 @@ public class Loot : Ability {
 
     private void DisplayTargetAbilities()
     {
-
+        
     }
 
     private void DisplayPlayerAbilities()
@@ -43,8 +41,11 @@ public class Loot : Ability {
 
     private void LootAbility()
     {
-        if(_mSelected)
+        if (_mSelected)
+        {
             Player.GetComponent<AbilityControl>().AbsorbAbility(_mSelected);
+            Target.GetComponent<BasicAbilityControl>().TakeAbility(_mSelected);
+        }
         _mTriggered = false;
     }
 

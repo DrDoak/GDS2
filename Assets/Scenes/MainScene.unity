@@ -157,30 +157,15 @@ Prefab:
       propertyPath: target
       value: 
       objectReference: {fileID: 2033401428}
-    - target: {fileID: 114490317635394222, guid: 86856ebb1cc73c04a86115975021a18e,
-        type: 2}
-      propertyPath: verticalSmoothTime
-      value: 0.5
-      objectReference: {fileID: 0}
-    - target: {fileID: 114490317635394222, guid: 86856ebb1cc73c04a86115975021a18e,
-        type: 2}
-      propertyPath: lookSmoothTimeX
-      value: 0.5
-      objectReference: {fileID: 0}
-    - target: {fileID: 114490317635394222, guid: 86856ebb1cc73c04a86115975021a18e,
-        type: 2}
-      propertyPath: lookAheadDstX
-      value: 2
-      objectReference: {fileID: 0}
     - target: {fileID: 224203324965269106, guid: 86856ebb1cc73c04a86115975021a18e,
         type: 2}
       propertyPath: m_AnchorMax.x
-      value: 1
+      value: 0
       objectReference: {fileID: 0}
     - target: {fileID: 224203324965269106, guid: 86856ebb1cc73c04a86115975021a18e,
         type: 2}
       propertyPath: m_AnchorMax.y
-      value: 1
+      value: 0
       objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_ParentPrefab: {fileID: 100100000, guid: 86856ebb1cc73c04a86115975021a18e, type: 2}
@@ -517,46 +502,6 @@ Prefab:
     m_RemovedComponents: []
   m_ParentPrefab: {fileID: 100100000, guid: 2868dccf45c8c104a868693982c79018, type: 2}
   m_IsPrefabParent: 0
---- !u!1 &997949254
-GameObject:
-  m_ObjectHideFlags: 0
-  m_PrefabParentObject: {fileID: 0}
-  m_PrefabInternal: {fileID: 0}
-  serializedVersion: 5
-  m_Component:
-  - component: {fileID: 997949256}
-  - component: {fileID: 997949255}
-  m_Layer: 0
-  m_Name: GameObject
-  m_TagString: Untagged
-  m_Icon: {fileID: 0}
-  m_NavMeshLayer: 0
-  m_StaticEditorFlags: 0
-  m_IsActive: 1
---- !u!114 &997949255
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_PrefabParentObject: {fileID: 0}
-  m_PrefabInternal: {fileID: 0}
-  m_GameObject: {fileID: 997949254}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 4c05503d88f5ebd4c8b54e74f47a3925, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
---- !u!4 &997949256
-Transform:
-  m_ObjectHideFlags: 0
-  m_PrefabParentObject: {fileID: 0}
-  m_PrefabInternal: {fileID: 0}
-  m_GameObject: {fileID: 997949254}
-  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_LocalPosition: {x: 0, y: 0, z: 0}
-  m_LocalScale: {x: 1, y: 1, z: 1}
-  m_Children: []
-  m_Father: {fileID: 0}
-  m_RootOrder: 11
-  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!1 &1064895542 stripped
 GameObject:
   m_PrefabParentObject: {fileID: 1614439459565114, guid: 8b2eaa62f53d99048bd82ea2f6b808db,
@@ -588,7 +533,7 @@ MonoBehaviour:
   AttackTime: 0
   RecoveryTime: 0.5
   AttackName: default
-  HitType: melee
+  Element: 0
   StartUpAnimation: attack_s
   RecoveryAnimation: attack_r
   AttackFX: {fileID: 0}
@@ -885,6 +830,21 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   Abilities: []
+--- !u!114 &2029441070
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_PrefabParentObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 0}
+  m_GameObject: {fileID: 2029441050}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 6707b994f2ccf374d8d6b2f9199ceb5a, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  Stealable: 1
+  PropertyName: Explosive
+  Description: No description provided.
+  icon: {fileID: 0}
 --- !u!114 &2033401428 stripped
 MonoBehaviour:
   m_PrefabParentObject: {fileID: 114223702759941158, guid: b15804536ba015e47a5885912f930b08,

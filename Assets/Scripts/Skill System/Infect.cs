@@ -8,7 +8,6 @@ public class Infect : Ability {
 
     private List<Property> _mPlayerProps;
     private List<Property> _mEnemyProps;
-    private Property _mPropertyToTransfer;
 
     private bool _mTriggered = false;
 
@@ -20,6 +19,7 @@ public class Infect : Ability {
             return;
         }
         GetPlayerProperties();
+        GetTargetProperties();
         if (!_mTriggered)
             DisplayPropertyUI();
         else
@@ -31,15 +31,26 @@ public class Infect : Ability {
         _mPlayerProps = Player.GetComponent<PropertyHolder>().GetStealableProperties();
     }
 
+    private void GetTargetProperties()
+    {
+        _mEnemyProps = Target.GetComponent<PropertyHolder>().GetStealableProperties();
+    }
+
+
     private void DisplayPropertyUI()
     {
-        Debug.Log("Opening display");
+        GUIHandler.SetAbility(this);
+        GUIHandler.CreatePropertyList(_mPlayerProps, "player", Player.transform.position, true);
+        GUIHandler.CreatePropertyList(_mEnemyProps, "bad guy", Target.transform.position, false);
         _mTriggered = true;
     }
 
     private void TransferProperty()
     {
-        Target.GetComponent<PropertyHolder>().AddProperty(_mPropertyToTransfer);
+        GUIHandler.ClosePropertyLists();
+        if(_mPropertyToTransfer)
+            Target.GetComponent<PropertyHolder>().AddProperty(_mPropertyToTransfer);
         _mTriggered = false;
+        Target = null;
     }
 }

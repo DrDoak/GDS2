@@ -22,6 +22,7 @@ public class CombatControl : MonoBehaviour {
             SlottedAbilities.Add(k, null);
         }
         SlotAbility(KeyCode.Return, ScriptableObject.CreateInstance<Loot>());
+        SlotAbility(KeyCode.Return, ScriptableObject.CreateInstance<Infect>());
         Ability.Player = gameObject;
     }
    // Update is called once per frame

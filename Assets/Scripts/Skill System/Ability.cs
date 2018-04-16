@@ -10,6 +10,8 @@ public abstract class Ability:ScriptableObject {
     public AbilityType AbilityClassification;
     public string AnimStateName;
     protected GameObject Target;
+    protected Property _mPropertyToTransfer;
+    protected Ability _mSelected;
 
     private int _mtier = 1;
 
@@ -18,6 +20,16 @@ public abstract class Ability:ScriptableObject {
     public virtual void TriggerAnimation()
     {
         //TriggerAnimation using the string AnimStateName
+    }
+
+    public void UpdateProperty(Property p)
+    {
+        _mPropertyToTransfer = p;
+    }
+
+    public void UpdateAbility(Ability a)
+    {
+        _mSelected = a;
     }
 
     public void SetTarget(GameObject g)

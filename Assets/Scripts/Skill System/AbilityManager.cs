@@ -8,6 +8,7 @@ public class AbilityManager : MonoBehaviour {
     public List<string> StateNames;
 
     public const int LOOT = 0;
+    public const int INFECT = 1;
 
 	// Use this for initialization
 	void Start () {
