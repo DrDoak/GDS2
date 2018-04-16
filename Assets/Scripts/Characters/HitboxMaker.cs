@@ -65,6 +65,8 @@ public class HitboxMaker : MonoBehaviour
 		newBox.Element = element;
 		newBox.Creator = gameObject;
 		newBox.Faction = Faction;
+		if (followObj)
+			newBox.SetFollow (gameObject,offset);
 		
 		ExecuteEvents.Execute<ICustomMessageTarget> (gameObject, null, (x, y) => x.OnHitboxCreate(newBox));
 		newBox.Init();
