@@ -16,7 +16,7 @@ public class Hitbox : MonoBehaviour {
 	public float Duration { get { return m_duration; } set { m_duration = value; } }
 
 	[SerializeField]
-	private bool m_hasDuration = true;
+	protected bool m_hasDuration = true;
 
 	[SerializeField]
 	private bool m_isFixedKnockback = false;
@@ -54,8 +54,8 @@ public class Hitbox : MonoBehaviour {
 
 	private PhysicsSS m_creatorPhysics;
 	private Vector4 m_knockbackRanges;
-	protected List<Attackable> m_collidedObjs = new List<Attackable> ();
-	protected List<Attackable> m_overlappingControl = new List<Attackable> (); 
+	public List<Attackable> m_collidedObjs = new List<Attackable> ();
+	public List<Attackable> m_overlappingControl = new List<Attackable> (); 
 
 	virtual public void Init()
 	{
@@ -124,7 +124,7 @@ public class Hitbox : MonoBehaviour {
 
 	protected HitResult OnAttackable(Attackable atkObj)
 	{
-		if (!atkObj || atkObj.gameObject == Creator || m_collidedObjs.Contains (atkObj) || !atkObj.CanAttack(Faction))
+		if (!atkObj || (atkObj.gameObject == Creator) || m_collidedObjs.Contains (atkObj) || !atkObj.CanAttack(Faction))
 			return HitResult.NONE;
 		if (IsRandomKnockback)
 			RandomizeKnockback();
@@ -141,6 +141,7 @@ public class Hitbox : MonoBehaviour {
 		CreateHitFX (Element, atkObj.gameObject, Knockback, r);
 		return r;
 	}
+
 
 	internal HitResult OnTriggerEnter2D(Collider2D other)
 	{

@@ -5,10 +5,6 @@ using UnityEngine.EventSystems;
 
 public class HitboxMaker : MonoBehaviour
 {
-	public GameObject HitboxClass;
-	public GameObject HitboxDoTClass;
-	public GameObject HitboxMultiClass;
-	public GameObject LineHBClass;
 
 //	public List<ElementType> elementTypes;
 	public FactionType Faction;
@@ -31,7 +27,7 @@ public class HitboxMaker : MonoBehaviour
 		aimPoint = m_physics.OrientVectorToDirection(aimPoint);
 		offset = m_physics.OrientVectorToDirection(offset);
 		Vector3 newPos = new Vector3(transform.position.x + offset.x, transform.position.y + offset.y, 0);
-		GameObject go = Instantiate(LineHBClass,newPos,Quaternion.identity) as GameObject; 
+		GameObject go = Instantiate(HitboxList.Instance.HitboxLine,newPos,Quaternion.identity) as GameObject; 
 		LineHitbox line = go.GetComponent<LineHitbox> ();
 		line.setRange (range);
 		line.Damage = damage;
@@ -54,12 +50,13 @@ public class HitboxMaker : MonoBehaviour
 	{
 		Vector2 cOff = m_physics.OrientVectorToDirection(offset);
 		Vector3 newPos = transform.position + (Vector3)cOff;
-		var go = GameObject.Instantiate(HitboxClass, newPos, Quaternion.identity);
-		if (followObj)
-			go.transform.SetParent(gameObject.transform);
+		var go = GameObject.Instantiate(HitboxList.Instance.Hitbox, newPos, Quaternion.identity);
 
 		Hitbox newBox = go.GetComponent<Hitbox>();
-		newBox.transform.localScale = new Vector2(hitboxScale.x/ transform.localScale.x,hitboxScale.y/ transform.localScale.y);
+		if (followObj) {
+			go.transform.SetParent (gameObject.transform);
+			newBox.transform.localScale = new Vector2 (hitboxScale.x / transform.localScale.x, hitboxScale.y / transform.localScale.y);
+		}
 		newBox.Damage = damage;
 		newBox.Duration = hitboxDuration;
 		newBox.Knockback = m_physics.OrientVectorToDirection(knockback);
@@ -68,8 +65,6 @@ public class HitboxMaker : MonoBehaviour
 		newBox.Element = element;
 		newBox.Creator = gameObject;
 		newBox.Faction = Faction;
-		if (followObj)
-			newBox.SetFollow (gameObject,offset);
 		
 		ExecuteEvents.Execute<ICustomMessageTarget> (gameObject, null, (x, y) => x.OnHitboxCreate(newBox));
 		newBox.Init();
@@ -81,12 +76,16 @@ public class HitboxMaker : MonoBehaviour
 	{
 		Vector2 cOff = m_physics.OrientVectorToDirection(offset);
 		Vector3 newPos = transform.position + (Vector3)cOff;
-		var go = GameObject.Instantiate(HitboxDoTClass, newPos, Quaternion.identity);
-		if (followObj)
-			go.transform.SetParent(gameObject.transform);
+		var go = GameObject.Instantiate(HitboxList.Instance.HitboxDoT, newPos, Quaternion.identity);
 
 		HitboxDoT newBox = go.GetComponent<HitboxDoT>();
-		newBox.transform.localScale = new Vector2(hitboxScale.x/ transform.localScale.x,hitboxScale.y/ transform.localScale.y);
+		if (followObj) {
+			go.transform.SetParent (gameObject.transform);
+			newBox.transform.localScale = new Vector2 (hitboxScale.x / transform.localScale.x, hitboxScale.y / transform.localScale.y);
+		} else {
+			
+		}
+		//newBox.SetScale (hitboxScale);
 		newBox.Damage = damage;
 		newBox.Duration = hitboxDuration;
 		newBox.Knockback = m_physics.OrientVectorToDirection(knockback);
@@ -95,8 +94,6 @@ public class HitboxMaker : MonoBehaviour
 		newBox.Element = element;
 		newBox.Creator = gameObject;
 		newBox.Faction = Faction;
-		if (followObj)
-			newBox.SetFollow (gameObject,offset);
 
 		ExecuteEvents.Execute<ICustomMessageTarget> (gameObject, null, (x, y) => x.OnHitboxCreate(newBox));
 		newBox.Init();
@@ -108,7 +105,7 @@ public class HitboxMaker : MonoBehaviour
 	{
 		Vector2 cOff = m_physics.OrientVectorToDirection(offset);
 		Vector3 newPos = transform.position + (Vector3)cOff;
-		var go = GameObject.Instantiate(HitboxMultiClass, newPos, Quaternion.identity);
+		var go = GameObject.Instantiate(HitboxList.Instance.HitboxMulti, newPos, Quaternion.identity);
 		if (followObj)
 			go.transform.SetParent(gameObject.transform);
 

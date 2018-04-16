@@ -19,7 +19,7 @@ public class Resistence {
 
 public class Attackable : MonoBehaviour
 {
-	private float m_health = 100.0f;
+	public float m_health = 100.0f;
 	public float Health { get { return m_health; } private set { m_health = value; } }
 	public float MaxHealth = 100.0f;
 
@@ -189,9 +189,28 @@ public class Attackable : MonoBehaviour
 		m_movementController.AddToVelocity(force);
 	}
 
+	void TakeDoT(HitboxDoT hbdot) {
+		DamageObj (hbdot.Damage * Time.deltaTime);
+		if (hbdot.IsFixedKnockback) {
+			GetComponent<PhysicsSS>().AddToVelocity (hbdot.Knockback * Time.deltaTime);
+		} else {
+			Vector3 otherPos = gameObject.transform.position;
+			float angle = Mathf.Atan2 (transform.position.y - otherPos.y, transform.position.x - otherPos.x); //*180.0f / Mathf.PI;
+			float magnitude = hbdot.Knockback.magnitude;
+			float forceX = Mathf.Cos (angle) * magnitude;
+			float forceY = Mathf.Sin (angle) * magnitude;
+			Vector2 force = new Vector2 (-forceX, -forceY);
+			GetComponent<PhysicsSS>().AddToVelocity (force*Time.deltaTime);
+		}
+	}
 	public HitResult TakeHit(Hitbox hb)
 	{
 		ExecuteEvents.Execute<ICustomMessageTarget> (gameObject, null, (x, y) => x.OnHit (hb, hb.Creator));
+		HitboxDoT hd = hb as HitboxDoT;
+		if (hd != null) {
+			TakeDoT (hd);
+			return HitResult.NONE;
+		}
 		if (GetComponent<AIFighter>()) {
 			GetComponent<AIFighter> ().OnHit (hb);
 		}

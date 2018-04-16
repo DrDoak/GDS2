@@ -53,6 +53,7 @@ GameObject:
   - component: {fileID: 114342479770708504}
   - component: {fileID: 114849852270695784}
   - component: {fileID: 114057275778421492}
+  - component: {fileID: 114225702924106778}
   m_Layer: 8
   m_Name: EnemyTest
   m_TagString: Player
@@ -219,6 +220,21 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   m_tasks: []
+--- !u!114 &114225702924106778
+MonoBehaviour:
+  m_ObjectHideFlags: 1
+  m_PrefabParentObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 100100000}
+  m_GameObject: {fileID: 1614439459565114}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: e7f3a23a200c3974e9a62192219e0e74, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  Stealable: 1
+  PropertyName: None
+  Description: No description provided.
+  icon: {fileID: 0}
 --- !u!114 &114232245349746612
 MonoBehaviour:
   m_ObjectHideFlags: 1
@@ -365,6 +381,8 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   HitboxClass: {fileID: 1000014045791988, guid: fe2b3e2d27b9cbe498fc049e74fb9ecf,
     type: 2}
+  HitboxDoTClass: {fileID: 0}
+  HitboxMultiClass: {fileID: 0}
   LineHBClass: {fileID: 1208028220725142, guid: 26fc9fe904c00d54e8bc882bbd2c61f4,
     type: 2}
   Faction: 0

@@ -38,7 +38,6 @@ GameObject:
   - component: {fileID: 114068985379166096}
   - component: {fileID: 114430644777843744}
   - component: {fileID: 114397494433287954}
-  - component: {fileID: 58651677492516040}
   - component: {fileID: 114741832052861578}
   - component: {fileID: 114198099819178160}
   - component: {fileID: 114812700117942146}
@@ -57,7 +56,7 @@ Transform:
   m_PrefabInternal: {fileID: 100100000}
   m_GameObject: {fileID: 1000013670716774}
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_LocalPosition: {x: -12.69, y: 4.42, z: 0}
+  m_LocalPosition: {x: -73.69, y: 2.35, z: 0}
   m_LocalScale: {x: 3, y: 3, z: 4}
   m_Children: []
   m_Father: {fileID: 0}
@@ -89,22 +88,7 @@ CircleCollider2D:
   m_PrefabParentObject: {fileID: 0}
   m_PrefabInternal: {fileID: 100100000}
   m_GameObject: {fileID: 1000013670716774}
-  m_Enabled: 1
-  m_Density: 1
-  m_Material: {fileID: 0}
-  m_IsTrigger: 1
-  m_UsedByEffector: 0
-  m_UsedByComposite: 0
-  m_Offset: {x: 0, y: 0.25}
-  serializedVersion: 2
-  m_Radius: 0.9268983
---- !u!58 &58651677492516040
-CircleCollider2D:
-  m_ObjectHideFlags: 1
-  m_PrefabParentObject: {fileID: 0}
-  m_PrefabInternal: {fileID: 100100000}
-  m_GameObject: {fileID: 1000013670716774}
-  m_Enabled: 1
+  m_Enabled: 0
   m_Density: 1
   m_Material: {fileID: 0}
   m_IsTrigger: 1
@@ -189,6 +173,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 6cecf518dba7e8f429d2dc6df9ba9177, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  m_health: 100
   MaxHealth: 100
   Alive: 1
   DeathTime: 0
@@ -330,7 +315,7 @@ MonoBehaviour:
   AttackTime: 0
   RecoveryTime: 0.5
   AttackName: melee
-  Element: 1
+  Element: 0
   StartUpAnimation: melee_s
   RecoveryAnimation: melee_r
   AttackFX: {fileID: 0}
@@ -347,12 +332,6 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: b2f176fa900675a449256a92aa0193c7, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  HitboxClass: {fileID: 1000014045791988, guid: fe2b3e2d27b9cbe498fc049e74fb9ecf,
-    type: 2}
-  HitboxDoTClass: {fileID: 0}
-  HitboxMultiClass: {fileID: 0}
-  LineHBClass: {fileID: 1208028220725142, guid: 26fc9fe904c00d54e8bc882bbd2c61f4,
-    type: 2}
   Faction: 0
 --- !u!114 &114539315782141988
 MonoBehaviour:
@@ -474,7 +453,7 @@ MonoBehaviour:
   StartupSoundFX: {fileID: 0}
   AttackSoundFX: {fileID: 0}
   StartUpDash: {x: -10, y: 0}
-  StartUpDuration: 0.2
+  StartUpDuration: 0.1
   AttackDash: {x: 15, y: 0}
   AttackDashDuration: 0.3
   ConclusionDash: {x: 0, y: 0}

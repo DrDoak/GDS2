@@ -13,13 +13,17 @@ public class PR_Explosive : Property {
 
     public override void OnCreation()
     {
-        Debug.Log("PR_Explosive on create");
 
     }
 
+	public override void OnHit(Hitbox hb, GameObject attacker) { 
+		if (hb.Element == ElementType.FIRE) {
+			//Debug.Log ("Additional FIre damage");
+			GetComponent<Attackable> ().DamageObj (hb.Damage * 2f);
+		}
+	}
     public override void OnDeath()
     {
-        Debug.Log("PR_Explosive on death (kaboom)");
 		GetComponent<HitboxMaker>().CreateHitbox(scl, off, dmg, stun, hd, kb, false,false,ElementType.FIRE);
 		Instantiate(FindObjectOfType<GameManager>().FXExplosionPrefab, transform.position, transform.rotation);
     }
