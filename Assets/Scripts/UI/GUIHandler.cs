@@ -127,9 +127,12 @@ public class GUIHandler : MonoBehaviour {
 
     public static void UpdateAbility(Property p = null, Ability a = null)
     {
-        if(p)
-            Instance.abiliityToUpdate.UpdateProperty(p);
-        if (a)
-            Instance.abiliityToUpdate.UpdateAbility(a);
+		if (Instance.abiliityToUpdate != null) {
+			if (p)
+				Instance.abiliityToUpdate.UpdateProperty (p);
+			if (a)
+				Instance.abiliityToUpdate.UpdateAbility (a);
+			Instance.abiliityToUpdate.UseAbility ();
+		}
     }
 }

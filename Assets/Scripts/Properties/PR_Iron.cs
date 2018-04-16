@@ -7,6 +7,7 @@ public class PR_Iron : Property {
     Resistence physResist;
     Resistence fireResist;
     Resistence lightningResist;
+	GameObject fx;
 
     public override void OnAddProperty()
     {
@@ -17,6 +18,7 @@ public class PR_Iron : Property {
 			GetComponent<BasicMovement> ().SetMoveSpeed (GetComponent<BasicMovement> ().MoveSpeed / 2.0f);
 			GetComponent<BasicMovement> ().SetJumpData (GetComponent<BasicMovement> ().JumpHeight / 2.0f, GetComponent<BasicMovement> ().TimeToJumpApex);
 		}
+		fx = GetComponent<PropertyHolder> ().AddBodyEffect (FXBody.Instance.FXIron);
      //   GetComponent<PhysicsSS>().SetGravityScale(-2.0f);
     }
 
@@ -29,6 +31,7 @@ public class PR_Iron : Property {
 			GetComponent<BasicMovement> ().SetMoveSpeed (GetComponent<BasicMovement> ().MoveSpeed * 2.0f);
 			GetComponent<BasicMovement> ().SetJumpData (GetComponent<BasicMovement> ().JumpHeight * 2.0f, GetComponent<BasicMovement> ().TimeToJumpApex);
 		}
+		GetComponent<PropertyHolder> ().RemoveBodyEffect (fx);
         //GetComponent<PhysicsSS>().SetGravityScale(-1.0f);
     }
 

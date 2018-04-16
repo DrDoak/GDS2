@@ -205,25 +205,28 @@ public class Fighter : MonoBehaviour
 		}
 	}
 
-	public bool TryAttack(string[] attackList)
+	public AttackInfo TryAttack(string[] attackList)
 	{
 		foreach (string s in attackList) {
 			if (Attacks.ContainsKey(s)) {
-				TryAttack(s);
-				return true;
+				AttackInfo ai = TryAttack (s);
+				Debug.Log (ai);
+				if (ai != null)
+					return ai;
 			}
 		}
-		return false;
+		return null;
 	}
 
-	public bool TryAttack(string attackName) {
+	public AttackInfo TryAttack(string attackName) {
 		if (IsAttacking () || !Attacks.ContainsKey (attackName) || StunTime > 0.0f)
-			return false;
+			return null;
 		m_currentAttack = Attacks[attackName];
 		m_physics.CanMove = false;
 		m_currentAttack.ResetAndProgress();
 		ExecuteEvents.Execute<ICustomMessageTarget> (gameObject, null, (x, y) => x.OnAttack ());
-		return true;
+		Debug.Log (m_currentAttack);
+		return m_currentAttack;
 	}
 
 

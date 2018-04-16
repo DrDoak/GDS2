@@ -16,6 +16,7 @@ public class PropertyHolder : MonoBehaviour {
 		Property[] prList = GetComponents<Property> ();
 		foreach (Property p in prList) {
 			m_properties.Add (p);
+			p.OnAddProperty ();
 		}
 		m_currentPlayer = (GetComponent<BasicMovement> () && GetComponent<BasicMovement> ().IsCurrentPlayer);
 		//AddBodyEffect (GameManager.Instance.FXBodyTest);

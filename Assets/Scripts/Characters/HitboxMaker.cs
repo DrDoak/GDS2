@@ -59,7 +59,7 @@ public class HitboxMaker : MonoBehaviour
 			go.transform.SetParent(gameObject.transform);
 
 		Hitbox newBox = go.GetComponent<Hitbox>();
-		newBox.SetScale(hitboxScale);
+		newBox.transform.localScale = new Vector2(hitboxScale.x/ transform.localScale.x,hitboxScale.y/ transform.localScale.y);
 		newBox.Damage = damage;
 		newBox.Duration = hitboxDuration;
 		newBox.Knockback = m_physics.OrientVectorToDirection(knockback);
@@ -86,7 +86,7 @@ public class HitboxMaker : MonoBehaviour
 			go.transform.SetParent(gameObject.transform);
 
 		HitboxDoT newBox = go.GetComponent<HitboxDoT>();
-		newBox.SetScale(hitboxScale);
+		newBox.transform.localScale = new Vector2(hitboxScale.x/ transform.localScale.x,hitboxScale.y/ transform.localScale.y);
 		newBox.Damage = damage;
 		newBox.Duration = hitboxDuration;
 		newBox.Knockback = m_physics.OrientVectorToDirection(knockback);
@@ -113,7 +113,7 @@ public class HitboxMaker : MonoBehaviour
 			go.transform.SetParent(gameObject.transform);
 
 		HitboxMulti newBox = go.GetComponent<HitboxMulti>();
-		newBox.SetScale(hitboxScale);
+		newBox.transform.localScale = new Vector2(hitboxScale.x/ transform.localScale.x,hitboxScale.y/ transform.localScale.y);
 		newBox.Damage = damage;
 		newBox.Duration = hitboxDuration;
 		newBox.Knockback = m_physics.OrientVectorToDirection(knockback);

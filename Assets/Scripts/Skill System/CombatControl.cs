@@ -21,8 +21,10 @@ public class CombatControl : MonoBehaviour {
         {
             SlottedAbilities.Add(k, null);
         }
-        SlotAbility(KeyCode.Return, ScriptableObject.CreateInstance<Loot>());
-        SlotAbility(KeyCode.Return, ScriptableObject.CreateInstance<Infect>());
+		SlotAbility(keys[0], ScriptableObject.CreateInstance<Ab_Melee>());
+		SlotAbility(keys[1], ScriptableObject.CreateInstance<Ab_PropSteal>());
+		SlotAbility(keys[2], ScriptableObject.CreateInstance<Ab_PropGive>());
+		SlotAbility(KeyCode.Return, ScriptableObject.CreateInstance<Loot>());
         Ability.Player = gameObject;
     }
    // Update is called once per frame
@@ -50,7 +52,9 @@ public class CombatControl : MonoBehaviour {
     /// </summary>
     public void UseAbility()
     {
-        Debug.Log("Using ability");
+		if (KeyPressed == KeyCode.None)
+			return;
+		Debug.Log("Using ability: " + KeyPressed);
         Ability a = SlottedAbilities[KeyPressed];
         if (a != null)
             a.UseAbility();

@@ -185,7 +185,7 @@ public class Hitbox : MonoBehaviour {
 
 	void OnDrawGizmos() {
 		Gizmos.color = new Color (1, 0, 0, .8f);
-		Gizmos.DrawCube (transform.position, transform.localScale);
+		Gizmos.DrawCube (transform.position, transform.lossyScale);
 	}
 
 	protected void CreateHitFX(ElementType et, GameObject hitObj, Vector2 knockback, HitResult hr) {
