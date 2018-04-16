@@ -198,7 +198,7 @@ Prefab:
       objectReference: {fileID: 0}
     - target: {fileID: 4646274840876410, guid: 6378e06717580cd4d85acbe34ed78eae, type: 2}
       propertyPath: m_LocalPosition.y
-      value: 4.08
+      value: 4.78
       objectReference: {fileID: 0}
     - target: {fileID: 4646274840876410, guid: 6378e06717580cd4d85acbe34ed78eae, type: 2}
       propertyPath: m_LocalPosition.z
@@ -231,6 +231,32 @@ Prefab:
       objectReference: {fileID: 0}
     - target: {fileID: 1748918296214604, guid: 6378e06717580cd4d85acbe34ed78eae, type: 2}
       propertyPath: m_IsActive
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 212075495780256246, guid: 6378e06717580cd4d85acbe34ed78eae,
+        type: 2}
+      propertyPath: m_Sprite
+      value: 
+      objectReference: {fileID: 21300000, guid: f0f704f466eb160409d7ac07d4b2056d,
+        type: 3}
+    - target: {fileID: 61421104085476770, guid: 6378e06717580cd4d85acbe34ed78eae,
+        type: 2}
+      propertyPath: m_SpriteTilingProperty.oldSize.x
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 61421104085476770, guid: 6378e06717580cd4d85acbe34ed78eae,
+        type: 2}
+      propertyPath: m_SpriteTilingProperty.oldSize.y
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 61421104085476770, guid: 6378e06717580cd4d85acbe34ed78eae,
+        type: 2}
+      propertyPath: m_Size.x
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 61421104085476770, guid: 6378e06717580cd4d85acbe34ed78eae,
+        type: 2}
+      propertyPath: m_Size.y
       value: 1
       objectReference: {fileID: 0}
     m_RemovedComponents: []
@@ -645,20 +671,20 @@ Prefab:
     m_RemovedComponents: []
   m_ParentPrefab: {fileID: 100100000, guid: 498fe42a77458f445a8590d2b0c98aa4, type: 2}
   m_IsPrefabParent: 0
---- !u!1 &2127293501 stripped
+--- !u!1 &1924007756 stripped
 GameObject:
-  m_PrefabParentObject: {fileID: 1000013670716774, guid: b15804536ba015e47a5885912f930b08,
+  m_PrefabParentObject: {fileID: 1748918296214604, guid: 6378e06717580cd4d85acbe34ed78eae,
     type: 2}
-  m_PrefabInternal: {fileID: 1304575572}
---- !u!114 &2127293502
+  m_PrefabInternal: {fileID: 406688049}
+--- !u!114 &1924007757
 MonoBehaviour:
   m_ObjectHideFlags: 0
   m_PrefabParentObject: {fileID: 0}
   m_PrefabInternal: {fileID: 0}
-  m_GameObject: {fileID: 2127293501}
+  m_GameObject: {fileID: 1924007756}
   m_Enabled: 1
   m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 6003dfd63db640349b0f443958c83178, type: 3}
+  m_Script: {fileID: 11500000, guid: 6707b994f2ccf374d8d6b2f9199ceb5a, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
   Stealable: 1
