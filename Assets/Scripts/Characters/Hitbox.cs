@@ -191,25 +191,25 @@ public class Hitbox : MonoBehaviour {
 	protected void CreateHitFX(ElementType et, GameObject hitObj, Vector2 knockback, HitResult hr) {
 		GameObject fx = null;
 		if (hr == HitResult.BLOCKED) {
-			fx = GameObject.Instantiate (GameManager.Instance.FXHitBlock, hitObj.transform.position, Quaternion.identity);
+			fx = GameObject.Instantiate (FXHit.Instance.FXHitBlock, hitObj.transform.position, Quaternion.identity);
 		} else if (hr == HitResult.HEAL) {
-			fx = GameObject.Instantiate (GameManager.Instance.FXHeal, hitObj.transform.position, Quaternion.identity);
+			fx = GameObject.Instantiate (FXHit.Instance.FXHeal, hitObj.transform.position, Quaternion.identity);
 		} else if (hr == HitResult.HIT) {
 			switch (et) {
 			case ElementType.PHYSICAL:
-				fx = GameObject.Instantiate (GameManager.Instance.FXHitPhysical, hitObj.transform.position, Quaternion.identity);
+				fx = GameObject.Instantiate (FXHit.Instance.FXHitPhysical, hitObj.transform.position, Quaternion.identity);
 				break;
 			case ElementType.FIRE:
-				fx = GameObject.Instantiate (GameManager.Instance.FXHitFire, hitObj.transform.position, Quaternion.identity);
+				fx = GameObject.Instantiate (FXHit.Instance.FXHitFire, hitObj.transform.position, Quaternion.identity);
 				break;
 			case ElementType.LIGHTNING:
-				fx = GameObject.Instantiate (GameManager.Instance.FXHitLightning, hitObj.transform.position, Quaternion.identity);
+				fx = GameObject.Instantiate (FXHit.Instance.FXHitLightning, hitObj.transform.position, Quaternion.identity);
 				break;
 			case ElementType.BIOLOGICAL:
-				fx = GameObject.Instantiate (GameManager.Instance.FXHitBiological, hitObj.transform.position, Quaternion.identity);
+				fx = GameObject.Instantiate (FXHit.Instance.FXHitBiological, hitObj.transform.position, Quaternion.identity);
 				break;
 			case ElementType.PSYCHIC:
-				fx = GameObject.Instantiate (GameManager.Instance.FXHitPsychic, hitObj.transform.position, Quaternion.identity);
+				fx = GameObject.Instantiate (FXHit.Instance.FXHitPsychic, hitObj.transform.position, Quaternion.identity);
 				break;
 			default:
 				Debug.Log ("Hit Effect not yet added");
