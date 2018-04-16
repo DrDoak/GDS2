@@ -18,7 +18,11 @@ public class PropertyHolder : MonoBehaviour {
 			m_properties.Add (p);
 		}
 		m_currentPlayer = (GetComponent<BasicMovement> () && GetComponent<BasicMovement> ().IsCurrentPlayer);
+		//AddBodyEffect (GameManager.Instance.FXBodyTest);
 		if (m_currentPlayer) {
+			foreach (Property p in m_properties) {
+				GameManager.Instance.AddPropIcon (p);
+			}
 			//GUIHandler.CreatePropertyList(m_properties, "Test List", Vector3.zero);
 		}
 	}
@@ -91,5 +95,22 @@ public class PropertyHolder : MonoBehaviour {
 		other.AddProperty (p);
 		GameObject go = Instantiate (GameManager.Instance.FXPropertyPrefab,transform.position,Quaternion.identity);
 		go.GetComponent<ChaseTarget> ().Target = other.GetComponent<PhysicsSS> ();
+	}
+
+	public GameObject AddBodyEffect(GameObject go) {
+		Vector3 sc = transform.localScale;
+		GameObject newGO = Instantiate (go, transform.position, Quaternion.identity);
+		newGO.transform.parent = transform;
+		Vector2 v2 =  GetComponent<BoxCollider2D> ().size;
+		Vector3 newS = new Vector3(sc.x * v2.x,sc.y *v2.y,1f);
+		//newGO.transform.localScale = newS;
+		for (int i = 0; i < newGO.transform.childCount; i++) {
+			ParticleSystem.ShapeModule s = newGO.transform.GetChild (i).GetComponent<ParticleSystem>().shape;
+			s.scale = newS;
+		}
+		return newGO;
+	}
+	public void RemoveBodyEffect(GameObject go) {
+		Destroy (go);
 	}
 }

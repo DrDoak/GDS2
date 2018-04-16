@@ -48,7 +48,7 @@ Transform:
   m_PrefabInternal: {fileID: 100100000}
   m_GameObject: {fileID: 1000013670716774}
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_LocalPosition: {x: -61.2, y: 5.55, z: 0}
+  m_LocalPosition: {x: -73.97, y: 1.73, z: 0}
   m_LocalScale: {x: 3, y: 3, z: 4}
   m_Children: []
   m_Father: {fileID: 0}
@@ -236,7 +236,7 @@ MonoBehaviour:
   Damage: 10
   Stun: 2
   HitboxDuration: 0.5
-  Knockback: {x: 20, y: 30}
+  Knockback: {x: 10, y: 10}
   AnimSpeed: 1
   StartUpTime: 0.5
   AttackTime: 0
@@ -284,7 +284,7 @@ MonoBehaviour:
   AIPredictionHitbox: {x: 0, y: 0}
   AIPredictionOffset: {x: 0, y: 0}
   Damage: 25
-  Stun: 0.3
+  Stun: 0.7
   HitboxDuration: 0.5
   Knockback: {x: 10, y: 10}
   AnimSpeed: 1
@@ -292,7 +292,7 @@ MonoBehaviour:
   AttackTime: 0
   RecoveryTime: 0.5
   AttackName: default
-  Element: 4
+  Element: 1
   StartUpAnimation: melee_s
   RecoveryAnimation: melee_r
   AttackFX: {fileID: 0}
@@ -311,6 +311,8 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   HitboxClass: {fileID: 1000014045791988, guid: fe2b3e2d27b9cbe498fc049e74fb9ecf,
     type: 2}
+  HitboxDoTClass: {fileID: 0}
+  HitboxMultiClass: {fileID: 0}
   LineHBClass: {fileID: 1208028220725142, guid: 26fc9fe904c00d54e8bc882bbd2c61f4,
     type: 2}
   Faction: 0

@@ -15,7 +15,6 @@ public class PR_Iron : Property {
         lightningResist = GetComponent<Attackable>().AddResistence(ElementType.LIGHTNING, -25.0f, false, false);
 		if (GetComponent<BasicMovement> () != null) {
 			GetComponent<BasicMovement> ().SetMoveSpeed (GetComponent<BasicMovement> ().MoveSpeed / 2.0f);
-			Debug.Log (GetComponent<BasicMovement> ().JumpHeight);
 			GetComponent<BasicMovement> ().SetJumpData (GetComponent<BasicMovement> ().JumpHeight / 2.0f, GetComponent<BasicMovement> ().TimeToJumpApex);
 		}
      //   GetComponent<PhysicsSS>().SetGravityScale(-2.0f);
@@ -29,7 +28,6 @@ public class PR_Iron : Property {
 		if (GetComponent<BasicMovement> () != null) {
 			GetComponent<BasicMovement> ().SetMoveSpeed (GetComponent<BasicMovement> ().MoveSpeed * 2.0f);
 			GetComponent<BasicMovement> ().SetJumpData (GetComponent<BasicMovement> ().JumpHeight * 2.0f, GetComponent<BasicMovement> ().TimeToJumpApex);
-			Debug.Log (GetComponent<BasicMovement> ().JumpHeight);
 		}
         //GetComponent<PhysicsSS>().SetGravityScale(-1.0f);
     }

@@ -17,14 +17,6 @@ public class GameManager : MonoBehaviour
 	public GameObject FXPropertyPrefab;
 	public GameObject FXPropertyGetPrefab;
 
-	public GameObject FXHitPhysical;
-	public GameObject FXHitFire;
-	public GameObject FXHitLightning;
-	public GameObject FXHitBiological;
-	public GameObject FXHitPsychic;
-	public GameObject FXHitBlock;
-	public GameObject FXHeal;
-
 	public GameObject IconPropertyPrefab;
 	public GameObject TextPropertyPrefab;
 	public Sprite UnknownPropertyIcon;
@@ -116,7 +108,9 @@ public class GameManager : MonoBehaviour
 	}
 
 	public void AddPropIcon(Property p) { 
-		if (!m_iconList.ContainsKey(p.PropertyName) ){
+		Debug.Log ("Adding?: " + p.GetType().ToString());
+		if (!m_iconList.ContainsKey(p.GetType().ToString()) ){
+			Debug.Log (p.GetType().ToString());
 			System.Type sysType = p.GetType ();
 			Property mp = (Property)GetComponentInChildren (sysType);
 			GameObject go = Instantiate (IconPropertyPrefab);
@@ -126,13 +120,13 @@ public class GameManager : MonoBehaviour
 			} else {
 				go.GetComponent<Image> ().sprite = mp.icon;
 			}
-			m_iconList [p.PropertyName] = go;
+			m_iconList [p.GetType().ToString()] = go;
 		}
 	}
 	public void RemovePropIcon(Property p) {
-		if (m_iconList.ContainsKey (p.PropertyName)) {
-			Destroy (m_iconList [p.PropertyName]);
-			m_iconList.Remove (p.PropertyName);
+		if (m_iconList.ContainsKey (p.GetType().ToString())) {
+			Destroy (m_iconList [p.GetType().ToString()]);
+			m_iconList.Remove (p.GetType().ToString());
 		}
 	}
 
