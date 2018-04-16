@@ -169,12 +169,12 @@ Prefab:
     - target: {fileID: 224203324965269106, guid: 86856ebb1cc73c04a86115975021a18e,
         type: 2}
       propertyPath: m_AnchorMax.x
-      value: 1
+      value: 0
       objectReference: {fileID: 0}
     - target: {fileID: 224203324965269106, guid: 86856ebb1cc73c04a86115975021a18e,
         type: 2}
       propertyPath: m_AnchorMax.y
-      value: 1
+      value: 0
       objectReference: {fileID: 0}
     - target: {fileID: 114523227600150036, guid: 86856ebb1cc73c04a86115975021a18e,
         type: 2}
@@ -182,6 +182,11 @@ Prefab:
       value: 
       objectReference: {fileID: 1325555955920052, guid: 3d76792cb465cc64b85f6fc10ce1bc0f,
         type: 2}
+    - target: {fileID: 224469006374697170, guid: 86856ebb1cc73c04a86115975021a18e,
+        type: 2}
+      propertyPath: m_LocalPosition.z
+      value: 0
+      objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_ParentPrefab: {fileID: 100100000, guid: 86856ebb1cc73c04a86115975021a18e, type: 2}
   m_IsPrefabParent: 0
@@ -345,6 +350,21 @@ GameObject:
   m_PrefabParentObject: {fileID: 1593684310463946, guid: 86856ebb1cc73c04a86115975021a18e,
     type: 2}
   m_PrefabInternal: {fileID: 278868323}
+--- !u!114 &692368822
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_PrefabParentObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 0}
+  m_GameObject: {fileID: 692368821}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: e7f3a23a200c3974e9a62192219e0e74, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  Stealable: 1
+  PropertyName: Biological
+  Description: Very slowly heals when damaged
+  icon: {fileID: 21300000, guid: 465cf2a099ee6b94787a3adbda53273d, type: 3}
 --- !u!114 &692368826
 MonoBehaviour:
   m_ObjectHideFlags: 0
