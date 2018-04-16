@@ -26,7 +26,6 @@ GameObject:
   - component: {fileID: 114303295318086422}
   - component: {fileID: 114172135786992996}
   - component: {fileID: 114454105005453386}
-  - component: {fileID: 114940118069412376}
   m_Layer: 8
   m_Name: ExplosiveCrate
   m_TagString: Player
@@ -41,7 +40,7 @@ Transform:
   m_PrefabInternal: {fileID: 100100000}
   m_GameObject: {fileID: 1748918296214604}
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_LocalPosition: {x: -58.2, y: 4.08, z: 0}
+  m_LocalPosition: {x: -70.65, y: 1.1, z: 0}
   m_LocalScale: {x: 1.5, y: 1.5, z: 4}
   m_Children: []
   m_Father: {fileID: 0}
@@ -83,14 +82,14 @@ BoxCollider2D:
   m_SpriteTilingProperty:
     border: {x: 0, y: 0, z: 0, w: 0}
     pivot: {x: 0.5, y: 0.5}
-    oldSize: {x: 1, y: 1}
+    oldSize: {x: 2, y: 2}
     newSize: {x: 1, y: 1}
     adaptiveTilingThreshold: 0.5
     drawMode: 0
     adaptiveTiling: 0
   m_AutoTiling: 0
   serializedVersion: 2
-  m_Size: {x: 1, y: 1}
+  m_Size: {x: 2, y: 2}
   m_EdgeRadius: 0
 --- !u!114 &114172135786992996
 MonoBehaviour:
@@ -105,8 +104,9 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   HitboxClass: {fileID: 1000014045791988, guid: fe2b3e2d27b9cbe498fc049e74fb9ecf,
     type: 2}
+  HitboxDoTClass: {fileID: 0}
+  HitboxMultiClass: {fileID: 0}
   LineHBClass: {fileID: 0}
-  hitTypes: []
   Faction: 0
 --- !u!114 &114303295318086422
 MonoBehaviour:
@@ -119,10 +119,11 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 6cecf518dba7e8f429d2dc6df9ba9177, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  MaxHealth: 20
+  MaxHealth: 200
   Alive: 1
   DeathTime: 0
   Faction: 3
+  Resistences: []
 --- !u!114 &114454105005453386
 MonoBehaviour:
   m_ObjectHideFlags: 1
@@ -155,20 +156,6 @@ MonoBehaviour:
   m_inputedMove: {x: 0, y: 0}
   TerminalVelocity: -5
   FacingLeft: 0
---- !u!114 &114940118069412376
-MonoBehaviour:
-  m_ObjectHideFlags: 1
-  m_PrefabParentObject: {fileID: 0}
-  m_PrefabInternal: {fileID: 100100000}
-  m_GameObject: {fileID: 1748918296214604}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 6707b994f2ccf374d8d6b2f9199ceb5a, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  Stealable: 1
-  ExplosionFX: {fileID: 1720918671102054, guid: b9739a0b310aefb4d9b0f17bfa9898cc,
-    type: 2}
 --- !u!212 &212075495780256246
 SpriteRenderer:
   m_ObjectHideFlags: 1
@@ -203,7 +190,7 @@ SpriteRenderer:
   m_SortingLayerID: 0
   m_SortingLayer: 0
   m_SortingOrder: 0
-  m_Sprite: {fileID: 21300000, guid: f0f704f466eb160409d7ac07d4b2056d, type: 3}
+  m_Sprite: {fileID: 21300000, guid: a9901397831cfa54a978e38d4ca16d6c, type: 3}
   m_Color: {r: 1, g: 1, b: 1, a: 1}
   m_FlipX: 0
   m_FlipY: 0

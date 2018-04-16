@@ -198,7 +198,7 @@ Prefab:
       objectReference: {fileID: 0}
     - target: {fileID: 4646274840876410, guid: 6378e06717580cd4d85acbe34ed78eae, type: 2}
       propertyPath: m_LocalPosition.y
-      value: 4.08
+      value: 4.78
       objectReference: {fileID: 0}
     - target: {fileID: 4646274840876410, guid: 6378e06717580cd4d85acbe34ed78eae, type: 2}
       propertyPath: m_LocalPosition.z
@@ -231,6 +231,32 @@ Prefab:
       objectReference: {fileID: 0}
     - target: {fileID: 1748918296214604, guid: 6378e06717580cd4d85acbe34ed78eae, type: 2}
       propertyPath: m_IsActive
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 212075495780256246, guid: 6378e06717580cd4d85acbe34ed78eae,
+        type: 2}
+      propertyPath: m_Sprite
+      value: 
+      objectReference: {fileID: 21300000, guid: f0f704f466eb160409d7ac07d4b2056d,
+        type: 3}
+    - target: {fileID: 61421104085476770, guid: 6378e06717580cd4d85acbe34ed78eae,
+        type: 2}
+      propertyPath: m_SpriteTilingProperty.oldSize.x
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 61421104085476770, guid: 6378e06717580cd4d85acbe34ed78eae,
+        type: 2}
+      propertyPath: m_SpriteTilingProperty.oldSize.y
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 61421104085476770, guid: 6378e06717580cd4d85acbe34ed78eae,
+        type: 2}
+      propertyPath: m_Size.x
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 61421104085476770, guid: 6378e06717580cd4d85acbe34ed78eae,
+        type: 2}
+      propertyPath: m_Size.y
       value: 1
       objectReference: {fileID: 0}
     m_RemovedComponents: []
@@ -277,7 +303,7 @@ Prefab:
       objectReference: {fileID: 0}
     - target: {fileID: 1748918296214604, guid: 6378e06717580cd4d85acbe34ed78eae, type: 2}
       propertyPath: m_Name
-      value: ExplosiveCrate (1)
+      value: Bookshelf
       objectReference: {fileID: 0}
     - target: {fileID: 212075495780256246, guid: 6378e06717580cd4d85acbe34ed78eae,
         type: 2}
@@ -308,17 +334,83 @@ Prefab:
     - target: {fileID: 114303295318086422, guid: 6378e06717580cd4d85acbe34ed78eae,
         type: 2}
       propertyPath: MaxHealth
-      value: 200
+      value: 300
       objectReference: {fileID: 0}
     m_RemovedComponents:
-    - {fileID: 114940118069412376, guid: 6378e06717580cd4d85acbe34ed78eae, type: 2}
+    - {fileID: 0}
   m_ParentPrefab: {fileID: 100100000, guid: 6378e06717580cd4d85acbe34ed78eae, type: 2}
   m_IsPrefabParent: 0
+--- !u!1 &692368821 stripped
+GameObject:
+  m_PrefabParentObject: {fileID: 1593684310463946, guid: 86856ebb1cc73c04a86115975021a18e,
+    type: 2}
+  m_PrefabInternal: {fileID: 278868323}
+--- !u!114 &692368826
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_PrefabParentObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 0}
+  m_GameObject: {fileID: 692368821}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 6003dfd63db640349b0f443958c83178, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  Stealable: 1
+  PropertyName: Electrical
+  Description: Changes attacks to Electric
+  icon: {fileID: 21300000, guid: 08ab236fe846cab4a9aa8ad7e41a3b41, type: 3}
 --- !u!1 &730768093 stripped
 GameObject:
   m_PrefabParentObject: {fileID: 1134646786540156, guid: 699df3836ffafe74782927875edab172,
     type: 2}
   m_PrefabInternal: {fileID: 845570394}
+--- !u!1001 &753659636
+Prefab:
+  m_ObjectHideFlags: 0
+  serializedVersion: 2
+  m_Modification:
+    m_TransformParent: {fileID: 0}
+    m_Modifications:
+    - target: {fileID: 4646274840876410, guid: 6378e06717580cd4d85acbe34ed78eae, type: 2}
+      propertyPath: m_LocalPosition.x
+      value: -70.65
+      objectReference: {fileID: 0}
+    - target: {fileID: 4646274840876410, guid: 6378e06717580cd4d85acbe34ed78eae, type: 2}
+      propertyPath: m_LocalPosition.y
+      value: 1.1
+      objectReference: {fileID: 0}
+    - target: {fileID: 4646274840876410, guid: 6378e06717580cd4d85acbe34ed78eae, type: 2}
+      propertyPath: m_LocalPosition.z
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 4646274840876410, guid: 6378e06717580cd4d85acbe34ed78eae, type: 2}
+      propertyPath: m_LocalRotation.x
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 4646274840876410, guid: 6378e06717580cd4d85acbe34ed78eae, type: 2}
+      propertyPath: m_LocalRotation.y
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 4646274840876410, guid: 6378e06717580cd4d85acbe34ed78eae, type: 2}
+      propertyPath: m_LocalRotation.z
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 4646274840876410, guid: 6378e06717580cd4d85acbe34ed78eae, type: 2}
+      propertyPath: m_LocalRotation.w
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 4646274840876410, guid: 6378e06717580cd4d85acbe34ed78eae, type: 2}
+      propertyPath: m_RootOrder
+      value: 7
+      objectReference: {fileID: 0}
+    - target: {fileID: 1748918296214604, guid: 6378e06717580cd4d85acbe34ed78eae, type: 2}
+      propertyPath: m_Name
+      value: Bed
+      objectReference: {fileID: 0}
+    m_RemovedComponents: []
+  m_ParentPrefab: {fileID: 100100000, guid: 6378e06717580cd4d85acbe34ed78eae, type: 2}
+  m_IsPrefabParent: 0
 --- !u!1001 &845570394
 Prefab:
   m_ObjectHideFlags: 0
@@ -426,6 +518,11 @@ Prefab:
   m_Modification:
     m_TransformParent: {fileID: 0}
     m_Modifications:
+    - target: {fileID: 114183775052015364, guid: b15804536ba015e47a5885912f930b08,
+        type: 2}
+      propertyPath: Resistences.Array.size
+      value: 1
+      objectReference: {fileID: 0}
     - target: {fileID: 4000010357641300, guid: b15804536ba015e47a5885912f930b08, type: 2}
       propertyPath: m_LocalPosition.x
       value: -85.21
@@ -466,7 +563,22 @@ Prefab:
     - target: {fileID: 114499401245312444, guid: b15804536ba015e47a5885912f930b08,
         type: 2}
       propertyPath: Element
-      value: 4
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 114183775052015364, guid: b15804536ba015e47a5885912f930b08,
+        type: 2}
+      propertyPath: Resistences.Array.data[0].Element
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 114183775052015364, guid: b15804536ba015e47a5885912f930b08,
+        type: 2}
+      propertyPath: Resistences.Array.data[0].Percentage
+      value: 100
+      objectReference: {fileID: 0}
+    - target: {fileID: 114183775052015364, guid: b15804536ba015e47a5885912f930b08,
+        type: 2}
+      propertyPath: Resistences.Array.data[0].KnockbackResist
+      value: 100
       objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_ParentPrefab: {fileID: 100100000, guid: b15804536ba015e47a5885912f930b08, type: 2}
@@ -559,3 +671,23 @@ Prefab:
     m_RemovedComponents: []
   m_ParentPrefab: {fileID: 100100000, guid: 498fe42a77458f445a8590d2b0c98aa4, type: 2}
   m_IsPrefabParent: 0
+--- !u!1 &1924007756 stripped
+GameObject:
+  m_PrefabParentObject: {fileID: 1748918296214604, guid: 6378e06717580cd4d85acbe34ed78eae,
+    type: 2}
+  m_PrefabInternal: {fileID: 406688049}
+--- !u!114 &1924007757
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_PrefabParentObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 0}
+  m_GameObject: {fileID: 1924007756}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 6707b994f2ccf374d8d6b2f9199ceb5a, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  Stealable: 1
+  PropertyName: None
+  Description: No description provided.
+  icon: {fileID: 0}
