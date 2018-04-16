@@ -4,19 +4,23 @@ using UnityEngine;
 
 public class PR_Decaying : Property {
 
-    float decay_damage = 0.01f;
+    float time_tracker = 0.0f;
+    float decay_period = 0.1f;
+    float decay_damage = 1.0f;
 
     public override void OnCreation()
     {
-        Debug.Log("PR_Decaying on create");
 		PropertyName = "Decay";
 		Description = "Lose health over time";
     }
 
     public override void OnUpdate()
     {
-        Debug.Log("PR_Decaying on update");
-        GetComponent<Attackable>().DamageObj(decay_damage);
+        if (Time.time > time_tracker)
+        {
+            time_tracker += decay_period;
+            GetComponent<Attackable>().DamageObj(decay_damage);
+        }
     }
 
 }
