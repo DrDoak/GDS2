@@ -170,10 +170,13 @@ public class Fighter : MonoBehaviour
 
 	public void RegisterStun(float st, bool defaultStun, Hitbox hb)
 	{
-		if (defaultStun)
-			StartHitState(st);
-		if (m_currentAttack != null)
-			m_currentAttack.OnInterrupt(StunTime, defaultStun, hb);
+		if (m_currentAttack != null) {
+			m_currentAttack.OnInterrupt (StunTime, defaultStun, hb);
+			Debug.Log ("Attack interrupted");
+		}
+		if (defaultStun) {
+			StartHitState (st);
+		}
 	}
 
 	void StartHitState(float st)
@@ -214,7 +217,7 @@ public class Fighter : MonoBehaviour
 	}
 
 	public bool TryAttack(string attackName) {
-		if (IsAttacking() || !Attacks.ContainsKey(attackName) || StunTime > 0.0f)
+		if (IsAttacking () || !Attacks.ContainsKey (attackName) || StunTime > 0.0f)
 			return false;
 		m_currentAttack = Attacks[attackName];
 		m_physics.CanMove = false;

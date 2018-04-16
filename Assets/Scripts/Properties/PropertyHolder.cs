@@ -18,6 +18,9 @@ public class PropertyHolder : MonoBehaviour {
 			m_properties.Add (p);
 		}
 		m_currentPlayer = (GetComponent<BasicMovement> () && GetComponent<BasicMovement> ().IsCurrentPlayer);
+		if (m_currentPlayer) {
+			//GUIHandler.CreatePropertyList(m_properties, "Test List", Vector3.zero);
+		}
 	}
 
 	public List<Property> GetStealableProperties() {
@@ -84,7 +87,7 @@ public class PropertyHolder : MonoBehaviour {
 	public void TransferProperty( Property p, PropertyHolder other) {
 		RemoveProperty (p);
 		other.AddProperty (p);
-		GameObject go = Instantiate (GameManager.Instance.PropertyPrefab,transform.position,Quaternion.identity);
-		go.GetComponent<ChaseTarget> ().Target = other.GetComponent<BasicMovement> ();
+		GameObject go = Instantiate (GameManager.Instance.FXPropertyPrefab,transform.position,Quaternion.identity);
+		go.GetComponent<ChaseTarget> ().Target = other.GetComponent<PhysicsSS> ();
 	}
 }

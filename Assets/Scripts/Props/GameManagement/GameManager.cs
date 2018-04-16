@@ -13,12 +13,22 @@ public class GameManager : MonoBehaviour
 {
 
 	private static GameManager m_instance;
-	public GameObject ExplosionPrefab;
-	public GameObject PropertyPrefab;
-	public GameObject PropertyGetFXPrefab;
-	public GameObject PropertyIconPrefab;
-	public GameObject PropTextPrefab;
+	public GameObject FXExplosionPrefab;
+	public GameObject FXPropertyPrefab;
+	public GameObject FXPropertyGetPrefab;
+
+	public GameObject FXHitPhysical;
+	public GameObject FXHitFire;
+	public GameObject FXHitLightning;
+	public GameObject FXHitBiological;
+	public GameObject FXHitPsychic;
+	public GameObject FXHitBlock;
+	public GameObject FXHeal;
+
+	public GameObject IconPropertyPrefab;
+	public GameObject TextPropertyPrefab;
 	public Sprite UnknownPropertyIcon;
+	public GameObject CurrentPlayer;
 
 	Dictionary<string,GameObject> m_iconList;
 
@@ -102,13 +112,14 @@ public class GameManager : MonoBehaviour
 	public void SetPlayer(BasicMovement bm) {
 		GetComponent<CameraFollow> ().target = bm.GetComponent<PhysicsSS>();
 		GetComponent<GUIHandler> ().CurrentTarget = bm.gameObject;
+		CurrentPlayer = bm.gameObject;
 	}
 
 	public void AddPropIcon(Property p) { 
 		if (!m_iconList.ContainsKey(p.PropertyName) ){
 			System.Type sysType = p.GetType ();
 			Property mp = (Property)GetComponentInChildren (sysType);
-			GameObject go = Instantiate (PropertyIconPrefab);
+			GameObject go = Instantiate (IconPropertyPrefab);
 			go.transform.SetParent(transform.GetChild(0).Find ("PropList"),false);
 			if (mp != null) {
 				go.GetComponent<Image> ().sprite = mp.icon;
@@ -126,7 +137,7 @@ public class GameManager : MonoBehaviour
 	}
 
 	public void AddPropertyText(Property p, Vector3 v) {
-		GameObject go = Instantiate (PropTextPrefab);
+		GameObject go = Instantiate (TextPropertyPrefab);
 		go.GetComponent<RectTransform> ().position = v;
 		go.GetComponent<RectTransform> ().rotation = Quaternion.identity;
 		System.Type sysType = p.GetType ();

@@ -3,10 +3,15 @@ using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.UI;
 using UnityEngine.SceneManagement;
+using TMPro;
 
 public class GUIHandler : MonoBehaviour {
 
-	public static GUIHandler instance = null;
+	public static GUIHandler Instance = null;
+
+	public GameObject MenuProperty;
+	public GameObject SelectionProperty;
+
 	[TextArea(1,10)]
 	public string textMessage = "";
 
@@ -32,26 +37,26 @@ public class GUIHandler : MonoBehaviour {
 	private GameManager gameManager;
 
 	private int attemptNumber;
+	private List<GameObject> PropertyLists;
 
 	void Awake () {
-		if (instance == null)
-			instance = this;
-		else if (instance != this) {
+		if (Instance == null)
+			Instance = this;
+		else if (Instance != this) {
 			Destroy (gameObject);
 		}
 		gameManager = FindObjectOfType<GameManager> ();
 
 		attemptNumber = 1;
 		mainMenu = false;
+		PropertyLists = new List<GameObject> ();
 	}
-
 	void Update() {
 		if (CurrentTarget != null) {
 			var P1Controller = CurrentTarget.GetComponent<Attackable> ();
 
-			//P1EnergyBar.value = P1Controller.energy;
 			P1HealthBar.value = P1Controller.Health;
-		}			
+		}
 	}
 
 	public void displayText(string msg, float dTime) {
@@ -81,5 +86,35 @@ public class GUIHandler : MonoBehaviour {
 			int h = 100;
 			GUI.Label (new Rect (Screen.width/2-w/2, Screen.height/2-h/2, w, h), textMessage, centeredStyle);
 		}
+	}
+
+	public static void CreatePropertyList(List<Property> pList, string userName, Vector3 position, bool clickable = true) {
+		Instance.InternalPropertyList (pList, userName, position, clickable);
+	}
+
+	void InternalPropertyList(List<Property> pList, string userName, Vector3 position, bool clickable) {
+		GameObject gMenu = Instantiate (MenuProperty);
+		gMenu.GetComponent<RectTransform> ().anchorMax = new Vector2(0f,1f);
+		gMenu.GetComponent<RectTransform> ().anchorMin = new Vector2(0f,1f);
+		gMenu.GetComponent<RectTransform> ().anchoredPosition = position;
+		gMenu.GetComponent<RectTransform> ().SetParent (transform.Find ("PauseCanvas"), false);
+		Debug.Log ("Positions: " + position);
+		gMenu.transform.Find ("UserName").GetComponent<TextMeshProUGUI> ().SetText (userName);
+		foreach (Property p in pList) {
+			Property mp = (Property)GameManager.Instance.gameObject.GetComponentInChildren (p.GetType());
+			GameObject selection = Instantiate (SelectionProperty, gMenu.transform.Find ("PropList"), false);
+			selection.GetComponent<ButtonProperty> ().SelectedProperty = p;
+			selection.transform.Find ("Image").GetComponent<Image>().sprite = mp.icon;
+			selection.transform.Find ("Title").GetComponent<TextMeshProUGUI>().SetText( mp.PropertyName);
+			selection.transform.Find ("Description").GetComponent<TextMeshProUGUI>().SetText( mp.Description);
+			selection.GetComponent<Button> ().enabled = clickable;
+		}
+		PropertyLists.Add (gMenu);
+	}
+	public static void ClosePropertyLists() {
+		foreach (GameObject go in Instance.PropertyLists) {
+			Destroy (go);
+		}
+		Instance.PropertyLists.Clear ();
 	}
 }

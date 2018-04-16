@@ -1,9 +1,9 @@
 ﻿using UnityEngine;
 using System.Collections.Generic;
 
-public enum HitResult { NONE, HIT, BLOCKED, REFLECTED };
+public enum HitResult { NONE, HIT,HEAL, BLOCKED, REFLECTED };
 
-public enum ElementType { PHYSICAL, FIRE, BIOLOGICAL };
+public enum ElementType { PHYSICAL, FIRE, BIOLOGICAL, PSYCHIC, LIGHTNING };
 
 public class Hitbox : MonoBehaviour {
 
@@ -38,9 +38,7 @@ public class Hitbox : MonoBehaviour {
 	private ElementType m_element = ElementType.PHYSICAL;
 	public ElementType Element { get { return m_element; } set { m_element = value; } }
 
-	private List<string> m_hitTypes;
-	public List<string> HitTypes { get { return m_hitTypes; } set { m_hitTypes = value; } }
-	public FactionType Faction;
+	public FactionType Faction = FactionType.HOSTILE;
 
 	[HideInInspector]
 	public GameObject Creator { get; set; }
@@ -79,7 +77,9 @@ public class Hitbox : MonoBehaviour {
 		//Debug.Log ("Hitbox created");
 		if (m_followObj != null)
 			FollowObj();
-		SwitchActiveCollider(m_creatorPhysics.FacingLeft);
+		if (m_creatorPhysics != null) {
+			SwitchActiveCollider (m_creatorPhysics.FacingLeft);
+		}
 		if (m_hasDuration)
 			MaintainOrDestroyHitbox();
 	}
@@ -100,11 +100,6 @@ public class Hitbox : MonoBehaviour {
 		IsRandomKnockback = true;
 		IsFixedKnockback = true;
 		m_knockbackRanges = new Vector4 (minX, maxX, minY, maxY);
-	}
-
-	public bool HasHitTypes()
-	{
-		return HitTypes != null && HitTypes.Count > 0;
 	}
 
 	private void MaintainOrDestroyHitbox()
@@ -143,6 +138,7 @@ public class Hitbox : MonoBehaviour {
 		if (Creator != null) {
 			Creator.GetComponent<HitboxMaker> ().RegisterHit (atkObj.gameObject, this, r);
 		}
+		CreateHitFX (Element, atkObj.gameObject, Knockback, r);
 		return r;
 	}
 
@@ -177,7 +173,6 @@ public class Hitbox : MonoBehaviour {
 		for (var i = 0; i < m_upRightDownLeftColliders.Count; i++)
 		{
 			m_upRightDownLeftColliders[i].enabled |= (i == dirIndex);
-			Debug.Log (m_upRightDownLeftColliders [i].enabled);
 		}
 	}
 
@@ -191,5 +186,40 @@ public class Hitbox : MonoBehaviour {
 	void OnDrawGizmos() {
 		Gizmos.color = new Color (1, 0, 0, .8f);
 		Gizmos.DrawCube (transform.position, transform.localScale);
+	}
+
+	protected void CreateHitFX(ElementType et, GameObject hitObj, Vector2 knockback, HitResult hr) {
+		GameObject fx = null;
+		if (hr == HitResult.BLOCKED) {
+			fx = GameObject.Instantiate (GameManager.Instance.FXHitBlock, hitObj.transform.position, Quaternion.identity);
+		} else if (hr == HitResult.HEAL) {
+			fx = GameObject.Instantiate (GameManager.Instance.FXHeal, hitObj.transform.position, Quaternion.identity);
+		} else if (hr == HitResult.HIT) {
+			switch (et) {
+			case ElementType.PHYSICAL:
+				fx = GameObject.Instantiate (GameManager.Instance.FXHitPhysical, hitObj.transform.position, Quaternion.identity);
+				break;
+			case ElementType.FIRE:
+				fx = GameObject.Instantiate (GameManager.Instance.FXHitFire, hitObj.transform.position, Quaternion.identity);
+				break;
+			case ElementType.LIGHTNING:
+				fx = GameObject.Instantiate (GameManager.Instance.FXHitLightning, hitObj.transform.position, Quaternion.identity);
+				break;
+			case ElementType.BIOLOGICAL:
+				fx = GameObject.Instantiate (GameManager.Instance.FXHitBiological, hitObj.transform.position, Quaternion.identity);
+				break;
+			case ElementType.PSYCHIC:
+				fx = GameObject.Instantiate (GameManager.Instance.FXHitPsychic, hitObj.transform.position, Quaternion.identity);
+				break;
+			default:
+				Debug.Log ("Hit Effect not yet added");
+				break;
+			}
+		}
+		if (fx != null) {
+			fx.GetComponent<Follow> ().followObj = hitObj;
+			float angle = (Mathf.Atan2 (knockback.y, knockback.x) * 180) / Mathf.PI;
+			fx.transform.Rotate (new Vector3 (0f, 0f, angle));
+		}
 	}
 }

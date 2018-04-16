@@ -14,4 +14,5 @@ public interface ICustomMessageTarget : IEventSystemHandler
 	void OnUpdate();
 	void OnCollision();
 	void OnAttack();
+	void OnHitboxCreate (Hitbox hitboxCreated);
 }

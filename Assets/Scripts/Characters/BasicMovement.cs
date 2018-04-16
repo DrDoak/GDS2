@@ -48,12 +48,13 @@ public class BasicMovement : MonoBehaviour
 	internal void Awake()
 	{
 		m_physics = GetComponent<PhysicsSS>();
-		gravity = -(2 * JumpHeight) / Mathf.Pow (TimeToJumpApex, 2);
+		SetJumpData (JumpHeight,TimeToJumpApex);
+		/*gravity = -(2 * JumpHeight) / Mathf.Pow (TimeToJumpApex, 2);
 		m_physics.SetGravityScale (gravity * (1.0f/60f));
 		jumpVelocity = Mathf.Abs(gravity) * TimeToJumpApex;
-		jumpVector = new Vector2 (0f, jumpVelocity);
-
+		jumpVector = new Vector2 (0f, jumpVelocity);*/
 	}
+		
 		
 	internal void Update()
 	{
@@ -232,5 +233,18 @@ public class BasicMovement : MonoBehaviour
 		m_targetObj = false;
 		m_followObj = null;
 		m_minDistance = 0.2f;
+	}
+
+	public void SetMoveSpeed(float moveSpeed) {
+		MoveSpeed = moveSpeed;
+	}
+
+	public void SetJumpData(float jumpHeight, float timeToJumpApex) {
+		JumpHeight = jumpHeight;
+		TimeToJumpApex = timeToJumpApex;
+		gravity = -(2 * jumpHeight) / Mathf.Pow (timeToJumpApex, 2);
+		m_physics.SetGravityScale (gravity * (1.0f/60f));
+		jumpVelocity = Mathf.Abs(gravity) * timeToJumpApex;
+		jumpVector = new Vector2 (0f, jumpVelocity);
 	}
 }

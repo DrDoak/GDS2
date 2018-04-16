@@ -14,7 +14,9 @@ public class Property : MonoBehaviour, ICustomMessageTarget
     public virtual void OnDeath() { }
     public virtual void OnUpdate() { }
     public virtual void OnCollision() { }
+
 	public virtual void OnAttack() { }
+	public virtual void OnHitboxCreate (Hitbox hitboxCreated) {}
 
 	public virtual void OnAddProperty() { }
 	public virtual void OnRemoveProperty() {}
