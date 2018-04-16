@@ -11,12 +11,13 @@ public class PR_Flaming : Property
     float dmg = 5.0f;
     float stun = 0.5f;
     float hd = -0.5f;
-    Vector2 kb = new Vector2(5.0f, 5.0f);
+    Vector2 kb = new Vector2(0.0f, 0.0f);
     HitboxDoT fireSurround;
 
     float time_tracker = 0.0f;
     float flaming_period = 0.1f;
     float flaming_damage = 5.0f;
+	GameObject fx;
 
 
 
@@ -24,13 +25,16 @@ public class PR_Flaming : Property
     {
         GetComponent<Attackable>().Faction = FactionType.HOSTILE;
         fireResist = GetComponent<Attackable>().AddResistence(ElementType.FIRE, 50.0f, false, false);
-        fireSurround = GetComponent<HitboxMaker>().CreateHitboxDoT(scl, off, dmg, stun, hd, kb, false, false, ElementType.FIRE);
+        fireSurround = GetComponent<HitboxMaker>().CreateHitboxDoT(scl, off, dmg, stun, hd, kb,false, true, ElementType.FIRE);
+		fireSurround.GetComponent<Hitbox> ().Faction = FactionType.HOSTILE;
+		fx = GetComponent<PropertyHolder> ().AddBodyEffect (FXBody.Instance.FXFlame);
     }
 
     public override void OnRemoveProperty()
     {
         GetComponent<Attackable>().RemoveResistence(fireResist);
         GetComponent<HitboxMaker>().ClearHitboxes();
+		GetComponent<PropertyHolder> ().RemoveBodyEffect (fx);
     }
 
     public override void OnUpdate()
@@ -38,7 +42,7 @@ public class PR_Flaming : Property
         if (Time.time > time_tracker)
         {
             time_tracker += flaming_period;
-            GetComponent<Attackable>().DamageObj(flaming_damage);
+			GetComponent<Attackable>().TakeHit(fireSurround);
         }
     }
 

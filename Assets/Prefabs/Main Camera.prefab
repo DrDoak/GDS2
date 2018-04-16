@@ -63,6 +63,7 @@ GameObject:
   - component: {fileID: 114492427968823046}
   - component: {fileID: 114339495911034272}
   - component: {fileID: 114231003385873444}
+  - component: {fileID: 114536962784456648}
   m_Layer: 0
   m_Name: Main Camera
   m_TagString: MainCamera
@@ -436,6 +437,7 @@ GameObject:
   - component: {fileID: 114353998176784946}
   - component: {fileID: 114943849274451914}
   - component: {fileID: 114388255198215346}
+  - component: {fileID: 114624203721454350}
   m_Layer: 0
   m_Name: PR_List
   m_TagString: Untagged
@@ -1688,6 +1690,22 @@ MonoBehaviour:
   m_FillAmount: 1
   m_FillClockwise: 1
   m_FillOrigin: 0
+--- !u!114 &114536962784456648
+MonoBehaviour:
+  m_ObjectHideFlags: 1
+  m_PrefabParentObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 100100000}
+  m_GameObject: {fileID: 1035150032497560}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 3bcbaa1b97ce1b640a99dc342e2e6a32, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  Hitbox: {fileID: 1000014045791988, guid: fe2b3e2d27b9cbe498fc049e74fb9ecf, type: 2}
+  HitboxLine: {fileID: 1208028220725142, guid: 26fc9fe904c00d54e8bc882bbd2c61f4, type: 2}
+  HitboxMulti: {fileID: 1853591291749974, guid: 41e8e83734762644d87fc477e6a6a118,
+    type: 2}
+  HitboxDoT: {fileID: 1614423068172546, guid: aa989206ffff44e4891ef5c1a6b9c615, type: 2}
 --- !u!114 &114545484630015968
 MonoBehaviour:
   m_ObjectHideFlags: 1
@@ -1742,6 +1760,21 @@ MonoBehaviour:
   m_FillAmount: 1
   m_FillClockwise: 1
   m_FillOrigin: 0
+--- !u!114 &114624203721454350
+MonoBehaviour:
+  m_ObjectHideFlags: 1
+  m_PrefabParentObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 100100000}
+  m_GameObject: {fileID: 1593684310463946}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: bab5c3f0a5f76fc42b9c3e981bede595, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  Stealable: 1
+  PropertyName: Flaming
+  Description: Constant Fire Hitbox, drains health
+  icon: {fileID: 21300000, guid: 3ce279433fa810641908000de8ced2af, type: 3}
 --- !u!114 &114653739362612380
 MonoBehaviour:
   m_ObjectHideFlags: 1

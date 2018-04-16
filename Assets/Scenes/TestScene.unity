@@ -262,11 +262,11 @@ Prefab:
     m_Modifications:
     - target: {fileID: 4646274840876410, guid: 6378e06717580cd4d85acbe34ed78eae, type: 2}
       propertyPath: m_LocalPosition.x
-      value: -78.7
+      value: -76.59
       objectReference: {fileID: 0}
     - target: {fileID: 4646274840876410, guid: 6378e06717580cd4d85acbe34ed78eae, type: 2}
       propertyPath: m_LocalPosition.y
-      value: 12.8
+      value: 2.08
       objectReference: {fileID: 0}
     - target: {fileID: 4646274840876410, guid: 6378e06717580cd4d85acbe34ed78eae, type: 2}
       propertyPath: m_LocalPosition.z
@@ -333,6 +333,24 @@ Prefab:
       propertyPath: m_Size.y
       value: 1.5
       objectReference: {fileID: 0}
+    - target: {fileID: 114172135786992996, guid: 6378e06717580cd4d85acbe34ed78eae,
+        type: 2}
+      propertyPath: HitboxDoTClass
+      value: 
+      objectReference: {fileID: 1614423068172546, guid: aa989206ffff44e4891ef5c1a6b9c615,
+        type: 2}
+    - target: {fileID: 114172135786992996, guid: 6378e06717580cd4d85acbe34ed78eae,
+        type: 2}
+      propertyPath: HitboxMultiClass
+      value: 
+      objectReference: {fileID: 1853591291749974, guid: 41e8e83734762644d87fc477e6a6a118,
+        type: 2}
+    - target: {fileID: 114172135786992996, guid: 6378e06717580cd4d85acbe34ed78eae,
+        type: 2}
+      propertyPath: LineHBClass
+      value: 
+      objectReference: {fileID: 1208028220725142, guid: 26fc9fe904c00d54e8bc882bbd2c61f4,
+        type: 2}
     m_RemovedComponents: []
   m_ParentPrefab: {fileID: 100100000, guid: 6378e06717580cd4d85acbe34ed78eae, type: 2}
   m_IsPrefabParent: 0
@@ -464,11 +482,11 @@ Prefab:
     m_Modifications:
     - target: {fileID: 4646274840876410, guid: 6378e06717580cd4d85acbe34ed78eae, type: 2}
       propertyPath: m_LocalPosition.x
-      value: -69.19
+      value: -41.45
       objectReference: {fileID: 0}
     - target: {fileID: 4646274840876410, guid: 6378e06717580cd4d85acbe34ed78eae, type: 2}
       propertyPath: m_LocalPosition.y
-      value: 1.18
+      value: 1.86
       objectReference: {fileID: 0}
     - target: {fileID: 4646274840876410, guid: 6378e06717580cd4d85acbe34ed78eae, type: 2}
       propertyPath: m_LocalPosition.z
@@ -545,21 +563,6 @@ Prefab:
     - target: {fileID: 4000010357641300, guid: b15804536ba015e47a5885912f930b08, type: 2}
       propertyPath: m_RootOrder
       value: 2
-      objectReference: {fileID: 0}
-    - target: {fileID: 114539315782141988, guid: b15804536ba015e47a5885912f930b08,
-        type: 2}
-      propertyPath: Element
-      value: 3
-      objectReference: {fileID: 0}
-    - target: {fileID: 114921325707834286, guid: b15804536ba015e47a5885912f930b08,
-        type: 2}
-      propertyPath: Element
-      value: 3
-      objectReference: {fileID: 0}
-    - target: {fileID: 114499401245312444, guid: b15804536ba015e47a5885912f930b08,
-        type: 2}
-      propertyPath: Element
-      value: 0
       objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_ParentPrefab: {fileID: 100100000, guid: b15804536ba015e47a5885912f930b08, type: 2}
@@ -662,6 +665,21 @@ MonoBehaviour:
   m_Enabled: 1
   m_EditorHideFlags: 0
   m_Script: {fileID: 11500000, guid: b4089da560040304bbe1fba0d635de27, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  Stealable: 1
+  PropertyName: None
+  Description: No description provided.
+  icon: {fileID: 0}
+--- !u!114 &1756800063
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_PrefabParentObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 0}
+  m_GameObject: {fileID: 1756800053}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: bab5c3f0a5f76fc42b9c3e981bede595, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
   Stealable: 1
