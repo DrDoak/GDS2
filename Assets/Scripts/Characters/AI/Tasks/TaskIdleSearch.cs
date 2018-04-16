@@ -12,7 +12,7 @@ public class TaskIdleSearch : FighterTask {
 	public override void Init(Fighter player, AIFighter fighter, FighterRoutine routine) {
 		base.Init (player, fighter, routine);
 		m_lastObservable = 0;
-		m_observer = Fighter.GetComponent<Observer> ();
+		m_observer = Fighter.gameObject.GetComponent<Observer> ();
 		m_attackable = Fighter.GetComponent<Attackable> ();
 	}
 

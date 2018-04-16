@@ -8,5 +8,6 @@ public class ButtonProperty : MonoBehaviour {
 
 	public void OnSelection() {
 		Debug.Log ("Button Selected!:" + SelectedProperty);
+        GUIHandler.UpdateAbility(SelectedProperty);
 	}
 }

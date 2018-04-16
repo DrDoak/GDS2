@@ -26,8 +26,6 @@ public class PropertyHolder : MonoBehaviour {
 			//GUIHandler.CreatePropertyList(m_properties, "Test List", Vector3.zero);
 		}
 	}
-	// Update is called once per frame
-	void Update () {}
 
 	public List<Property> GetStealableProperties() {
 		List<Property> lp = new List<Property> ();

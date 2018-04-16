@@ -39,6 +39,8 @@ public class GUIHandler : MonoBehaviour {
 	private int attemptNumber;
 	private List<GameObject> PropertyLists;
 
+    private Ability abiliityToUpdate;
+
 	void Awake () {
 		if (Instance == null)
 			Instance = this;
@@ -117,4 +119,17 @@ public class GUIHandler : MonoBehaviour {
 		}
 		Instance.PropertyLists.Clear ();
 	}
+
+    public static void SetAbility(Ability a)
+    {
+        Instance.abiliityToUpdate = a;
+    }
+
+    public static void UpdateAbility(Property p = null, Ability a = null)
+    {
+        if(p)
+            Instance.abiliityToUpdate.UpdateProperty(p);
+        if (a)
+            Instance.abiliityToUpdate.UpdateAbility(a);
+    }
 }
