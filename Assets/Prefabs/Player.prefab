@@ -31,9 +31,18 @@ GameObject:
   - component: {fileID: 114506322611810582}
   - component: {fileID: 114845752184036596}
   - component: {fileID: 114005842911401118}
-  - component: {fileID: 114353830228327670}
-  - component: {fileID: 114337298696420656}
+  - component: {fileID: 114539315782141988}
+  - component: {fileID: 114921325707834286}
   - component: {fileID: 114499401245312444}
+  - component: {fileID: 58570337935571182}
+  - component: {fileID: 114068985379166096}
+  - component: {fileID: 114430644777843744}
+  - component: {fileID: 114397494433287954}
+  - component: {fileID: 58651677492516040}
+  - component: {fileID: 114741832052861578}
+  - component: {fileID: 114198099819178160}
+  - component: {fileID: 114812700117942146}
+  - component: {fileID: 114228185329302898}
   m_Layer: 9
   m_Name: Player
   m_TagString: Player
@@ -48,7 +57,7 @@ Transform:
   m_PrefabInternal: {fileID: 100100000}
   m_GameObject: {fileID: 1000013670716774}
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_LocalPosition: {x: -73.97, y: 1.73, z: 0}
+  m_LocalPosition: {x: -12.69, y: 4.42, z: 0}
   m_LocalScale: {x: 3, y: 3, z: 4}
   m_Children: []
   m_Father: {fileID: 0}
@@ -74,6 +83,36 @@ Rigidbody2D:
   m_SleepingMode: 1
   m_CollisionDetection: 0
   m_Constraints: 0
+--- !u!58 &58570337935571182
+CircleCollider2D:
+  m_ObjectHideFlags: 1
+  m_PrefabParentObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 100100000}
+  m_GameObject: {fileID: 1000013670716774}
+  m_Enabled: 1
+  m_Density: 1
+  m_Material: {fileID: 0}
+  m_IsTrigger: 1
+  m_UsedByEffector: 0
+  m_UsedByComposite: 0
+  m_Offset: {x: 0, y: 0.25}
+  serializedVersion: 2
+  m_Radius: 0.9268983
+--- !u!58 &58651677492516040
+CircleCollider2D:
+  m_ObjectHideFlags: 1
+  m_PrefabParentObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 100100000}
+  m_GameObject: {fileID: 1000013670716774}
+  m_Enabled: 1
+  m_Density: 1
+  m_Material: {fileID: 0}
+  m_IsTrigger: 1
+  m_UsedByEffector: 0
+  m_UsedByComposite: 0
+  m_Offset: {x: 0, y: 0.25}
+  serializedVersion: 2
+  m_Radius: 0.9268983
 --- !u!61 &61000013016729168
 BoxCollider2D:
   m_ObjectHideFlags: 1
@@ -127,6 +166,18 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 7209baf354a64e1408f7faeb13592322, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+--- !u!114 &114068985379166096
+MonoBehaviour:
+  m_ObjectHideFlags: 1
+  m_PrefabParentObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 100100000}
+  m_GameObject: {fileID: 1000013670716774}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 9252997a19d5c324eb51c01becd4ca04, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  keys: 6a000000690000006b0000006c0000000d000000
 --- !u!114 &114183775052015364
 MonoBehaviour:
   m_ObjectHideFlags: 1
@@ -143,6 +194,17 @@ MonoBehaviour:
   DeathTime: 0
   Faction: 3
   Resistences: []
+--- !u!114 &114198099819178160
+MonoBehaviour:
+  m_ObjectHideFlags: 1
+  m_PrefabParentObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 100100000}
+  m_GameObject: {fileID: 1000013670716774}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 2fc953f928abe2343a4c32aa493ad2e6, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
 --- !u!114 &114223702759941158
 MonoBehaviour:
   m_ObjectHideFlags: 1
@@ -164,6 +226,21 @@ MonoBehaviour:
   m_inputedMove: {x: 0, y: 0}
   TerminalVelocity: -5
   FacingLeft: 0
+--- !u!114 &114228185329302898
+MonoBehaviour:
+  m_ObjectHideFlags: 1
+  m_PrefabParentObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 100100000}
+  m_GameObject: {fileID: 1000013670716774}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: e7f3a23a200c3974e9a62192219e0e74, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  Stealable: 1
+  PropertyName: None
+  Description: No description provided.
+  icon: {fileID: 0}
 --- !u!114 &114319908791872480
 MonoBehaviour:
   m_ObjectHideFlags: 1
@@ -184,7 +261,7 @@ MonoBehaviour:
   m_minDistance: 1
   m_abandonDistance: 10
   m_stuckTime: 0
---- !u!114 &114337298696420656
+--- !u!114 &114397494433287954
 MonoBehaviour:
   m_ObjectHideFlags: 1
   m_PrefabParentObject: {fileID: 0}
@@ -192,62 +269,12 @@ MonoBehaviour:
   m_GameObject: {fileID: 1000013670716774}
   m_Enabled: 1
   m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: e3a755994f39c76499f938d2991150e9, type: 3}
+  m_Script: {fileID: 11500000, guid: b0be7e067ec5bf04fb5569367cdd729c, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  IsHitboxCreater: 1
-  HitboxScale: {x: 2, y: 2}
-  HitboxOffset: {x: 1, y: -1}
-  UniqueAIPrediction: 0
-  AIPredictionHitbox: {x: 0, y: 0}
-  AIPredictionOffset: {x: 0, y: 0}
-  Damage: 10
-  Stun: 1.5
-  HitboxDuration: 0.5
-  Knockback: {x: 10, y: 10}
-  AnimSpeed: 1
-  StartUpTime: 1
-  AttackTime: 0
-  RecoveryTime: 0.75
-  AttackName: give
-  Element: 3
-  StartUpAnimation: give_s
-  RecoveryAnimation: give_r
-  AttackFX: {fileID: 0}
-  StartupSoundFX: {fileID: 0}
-  AttackSoundFX: {fileID: 0}
---- !u!114 &114353830228327670
-MonoBehaviour:
-  m_ObjectHideFlags: 1
-  m_PrefabParentObject: {fileID: 0}
-  m_PrefabInternal: {fileID: 100100000}
-  m_GameObject: {fileID: 1000013670716774}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 6a7a136bf345fc94da910d4acc8321d8, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  IsHitboxCreater: 1
-  HitboxScale: {x: 2, y: 1}
-  HitboxOffset: {x: 1, y: -0.5}
-  UniqueAIPrediction: 0
-  AIPredictionHitbox: {x: 0, y: 0}
-  AIPredictionOffset: {x: 0, y: 0}
-  Damage: 10
-  Stun: 2
-  HitboxDuration: 0.5
-  Knockback: {x: 10, y: 10}
-  AnimSpeed: 1
-  StartUpTime: 0.5
-  AttackTime: 0
-  RecoveryTime: 1
-  AttackName: steal
-  Element: 3
-  StartUpAnimation: take_s
-  RecoveryAnimation: take_r
-  AttackFX: {fileID: 0}
-  StartupSoundFX: {fileID: 0}
-  AttackSoundFX: {fileID: 0}
+  Abilities:
+  - {fileID: 0}
+  - {fileID: 0}
 --- !u!114 &114407925808802884
 MonoBehaviour:
   m_ObjectHideFlags: 1
@@ -266,6 +293,17 @@ MonoBehaviour:
   AirAnimation: air
   AttackSound: {fileID: 0}
   StunTime: 0
+--- !u!114 &114430644777843744
+MonoBehaviour:
+  m_ObjectHideFlags: 1
+  m_PrefabParentObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 100100000}
+  m_GameObject: {fileID: 1000013670716774}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 2fc953f928abe2343a4c32aa493ad2e6, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
 --- !u!114 &114499401245312444
 MonoBehaviour:
   m_ObjectHideFlags: 1
@@ -291,7 +329,7 @@ MonoBehaviour:
   StartUpTime: 0.5
   AttackTime: 0
   RecoveryTime: 0.5
-  AttackName: default
+  AttackName: melee
   Element: 1
   StartUpAnimation: melee_s
   RecoveryAnimation: melee_r
@@ -316,6 +354,45 @@ MonoBehaviour:
   LineHBClass: {fileID: 1208028220725142, guid: 26fc9fe904c00d54e8bc882bbd2c61f4,
     type: 2}
   Faction: 0
+--- !u!114 &114539315782141988
+MonoBehaviour:
+  m_ObjectHideFlags: 1
+  m_PrefabParentObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 100100000}
+  m_GameObject: {fileID: 1000013670716774}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 644613c0ee5ceb447bc0a2018c7619c2, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  IsHitboxCreater: 1
+  HitboxScale: {x: 2, y: 2}
+  HitboxOffset: {x: 1, y: -1}
+  UniqueAIPrediction: 0
+  AIPredictionHitbox: {x: 0, y: 0}
+  AIPredictionOffset: {x: 0, y: 0}
+  Damage: 5
+  Stun: 1.5
+  HitboxDuration: 0.5
+  Knockback: {x: 10, y: 10}
+  AnimSpeed: 1
+  StartUpTime: 1
+  AttackTime: 0
+  RecoveryTime: 0.75
+  AttackName: give
+  Element: 3
+  StartUpAnimation: give_s
+  RecoveryAnimation: give_r
+  AttackFX: {fileID: 0}
+  StartupSoundFX: {fileID: 0}
+  AttackSoundFX: {fileID: 0}
+  StartUpDash: {x: 0, y: 0}
+  StartUpDuration: 0
+  AttackDash: {x: 0, y: 0}
+  AttackDashDuration: 0
+  ConclusionDash: {x: 0, y: 0}
+  ConclusionDuration: 0
+  mAbility: {fileID: 0}
 --- !u!114 &114667538344402448
 MonoBehaviour:
   m_ObjectHideFlags: 1
@@ -328,6 +405,30 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   m_currentAnim: 
+--- !u!114 &114741832052861578
+MonoBehaviour:
+  m_ObjectHideFlags: 1
+  m_PrefabParentObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 100100000}
+  m_GameObject: {fileID: 1000013670716774}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 9252997a19d5c324eb51c01becd4ca04, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  keys: 6a000000690000006b0000006c0000000d000000
+--- !u!114 &114812700117942146
+MonoBehaviour:
+  m_ObjectHideFlags: 1
+  m_PrefabParentObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 100100000}
+  m_GameObject: {fileID: 1000013670716774}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: b0be7e067ec5bf04fb5569367cdd729c, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  Abilities: []
 --- !u!114 &114845752184036596
 MonoBehaviour:
   m_ObjectHideFlags: 1
@@ -340,6 +441,45 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   movt: {fileID: 0}
+--- !u!114 &114921325707834286
+MonoBehaviour:
+  m_ObjectHideFlags: 1
+  m_PrefabParentObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 100100000}
+  m_GameObject: {fileID: 1000013670716774}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 644613c0ee5ceb447bc0a2018c7619c2, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  IsHitboxCreater: 1
+  HitboxScale: {x: 2, y: 1}
+  HitboxOffset: {x: 1, y: -0.5}
+  UniqueAIPrediction: 0
+  AIPredictionHitbox: {x: 0, y: 0}
+  AIPredictionOffset: {x: 0, y: 0}
+  Damage: 5
+  Stun: 0.3
+  HitboxDuration: 0.5
+  Knockback: {x: 10, y: 10}
+  AnimSpeed: 1
+  StartUpTime: 0.5
+  AttackTime: 0
+  RecoveryTime: 1
+  AttackName: take
+  Element: 3
+  StartUpAnimation: take_s
+  RecoveryAnimation: take_r
+  AttackFX: {fileID: 0}
+  StartupSoundFX: {fileID: 0}
+  AttackSoundFX: {fileID: 0}
+  StartUpDash: {x: -10, y: 0}
+  StartUpDuration: 0.2
+  AttackDash: {x: 15, y: 0}
+  AttackDashDuration: 0.3
+  ConclusionDash: {x: 0, y: 0}
+  ConclusionDuration: 0
+  mAbility: {fileID: 0}
 --- !u!212 &212358539921992486
 SpriteRenderer:
   m_ObjectHideFlags: 1

@@ -13,6 +13,10 @@ public abstract class Ability:ScriptableObject {
     protected Property _mPropertyToTransfer;
     protected Ability _mSelected;
 
+	//I added this for when you want to use Melee Hitboxes
+	//instead of Distance (circle) hitboxes. 
+	public bool UseAttackHitbox = false;
+
     private int _mtier = 1;
 
     public abstract void UseAbility();
@@ -25,6 +29,7 @@ public abstract class Ability:ScriptableObject {
     public void UpdateProperty(Property p)
     {
         _mPropertyToTransfer = p;
+		Debug.Log ("Updated property: " + p);
     }
 
     public void UpdateAbility(Ability a)

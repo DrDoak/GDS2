@@ -58,7 +58,7 @@ public class BasicMovement : MonoBehaviour
 		
 	internal void Update()
 	{
-		if (IsCurrentPlayer && Input.GetButton ("Fire1")) {
+		/* if (IsCurrentPlayer && Input.GetButton ("Fire1")) {
 			GetComponent<Fighter> ().TryAttack ("default");
 		}
 		if (IsCurrentPlayer && Input.GetButton ("Fire2")) {
@@ -66,7 +66,7 @@ public class BasicMovement : MonoBehaviour
 		}
 		if (IsCurrentPlayer && Input.GetButton ("Fire3")) {
 			GetComponent<Fighter> ().TryAttack ("give");
-		}
+		} */
 		if (!m_physics.CanMove)
 			return;
 		

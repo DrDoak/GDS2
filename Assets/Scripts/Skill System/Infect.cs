@@ -7,9 +7,9 @@ public class Infect : Ability {
     public new AbilityType AbilityClassification = AbilityType.SPECIAL;
 
     private List<Property> _mPlayerProps;
-    private List<Property> _mEnemyProps;
+	private List<Property> _mEnemyProps;
 
-    private bool _mTriggered = false;
+	private bool _mTriggered = false;
 
     public override void UseAbility()
     {
@@ -20,7 +20,7 @@ public class Infect : Ability {
         }
         GetPlayerProperties();
         GetTargetProperties();
-        if (!_mTriggered)
+		if (!_mTriggered)
             DisplayPropertyUI();
         else
             TransferProperty();
@@ -40,17 +40,19 @@ public class Infect : Ability {
     private void DisplayPropertyUI()
     {
         GUIHandler.SetAbility(this);
-        GUIHandler.CreatePropertyList(_mPlayerProps, "player", Player.transform.position, true);
-        GUIHandler.CreatePropertyList(_mEnemyProps, "bad guy", Target.transform.position, false);
-        _mTriggered = true;
+		GUIHandler.CreatePropertyList(_mPlayerProps, "player", new Vector3(100f,-200f,0f), true);
+		GUIHandler.CreatePropertyList(_mEnemyProps, "bad guy", new Vector3(400f,-200f,0f), false);
+		PauseGame.Pause (false);
+		_mTriggered = true;
     }
 
     private void TransferProperty()
     {
         GUIHandler.ClosePropertyLists();
+		PauseGame.Resume ();
         if(_mPropertyToTransfer)
-            Target.GetComponent<PropertyHolder>().AddProperty(_mPropertyToTransfer);
-        _mTriggered = false;
+			Player.GetComponent<PropertyHolder>().TransferProperty(_mPropertyToTransfer,Target.GetComponent<PropertyHolder>());
+		_mTriggered = false;
         Target = null;
     }
 }

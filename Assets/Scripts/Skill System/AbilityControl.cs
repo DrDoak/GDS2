@@ -29,8 +29,11 @@ public class AbilityControl : MonoBehaviour {
     {
         if(collision.gameObject.GetComponent<PropertyHolder>())
         {
-            foreach (Ability a in _mBasicControl.Abilities)
-                a.SetTarget(collision.gameObject);
+			foreach (Ability a in _mBasicControl.Abilities) {
+				if (!a.UseAttackHitbox) {
+					a.SetTarget (collision.gameObject);
+				}
+			}
         }
     }
 
