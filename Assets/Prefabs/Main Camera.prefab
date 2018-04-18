@@ -1095,11 +1095,11 @@ MonoBehaviour:
     type: 2}
   IconPropertyPrefab: {fileID: 1936846605727008, guid: f4a01bee0f13c3c48bbf4841721d58d4,
     type: 2}
-  TextPropertyPrefab: {fileID: 1556893302754994, guid: a6ffcd8dcff66a0438953a56fcc5038c,
-    type: 2}
   UnknownPropertyIcon: {fileID: 21300000, guid: 08ab236fe846cab4a9aa8ad7e41a3b41,
     type: 3}
   CurrentPlayer: {fileID: 0}
+  HealthBarPrefab: {fileID: 1479986152861066, guid: 3ca0aed60fc75674da453e473879a943,
+    type: 2}
 --- !u!114 &114536962784456648
 MonoBehaviour:
   m_ObjectHideFlags: 1
@@ -1566,7 +1566,7 @@ RectTransform:
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 0, y: 1}
   m_AnchorMax: {x: 0, y: 1}
-  m_AnchoredPosition: {x: 100, y: -52}
+  m_AnchoredPosition: {x: 100, y: -60}
   m_SizeDelta: {x: 180, y: 32}
   m_Pivot: {x: 0.5, y: 0.5}
 --- !u!224 &224676616269933650

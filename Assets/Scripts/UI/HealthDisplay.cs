@@ -69,7 +69,7 @@ public class HealthDisplay : MonoBehaviour {
 	}
 	public void TakeDamage(float diff, float currentHealth) {
 		m_s.value = (currentHealth / m_maxHealth);
-		if (diff > 0f && diff < 1f)
+		if (diff >= 0f && diff < 1f)
 			return;
 		if (Mathf.Sign (m_cumulativeDamage) != Mathf.Sign (diff)) {
 			m_cumulativeDamage = 0f;
@@ -85,6 +85,7 @@ public class HealthDisplay : MonoBehaviour {
 		bar_displayed = true;
 		num_displayed = true;
 		m_alpha = 1.0f;
+		m_textAlpha = 1.0f;
 		SetAlpha (1.0f);
 	}
 	public void SetMaxHealth(float maxHealth) {

@@ -18,7 +18,6 @@ public class GameManager : MonoBehaviour
 	public GameObject FXPropertyGetPrefab;
 
 	public GameObject IconPropertyPrefab;
-	public GameObject TextPropertyPrefab;
 	public Sprite UnknownPropertyIcon;
 	public GameObject CurrentPlayer;
 	public GameObject HealthBarPrefab;
@@ -128,21 +127,6 @@ public class GameManager : MonoBehaviour
 		if (m_iconList.ContainsKey (p.GetType().ToString())) {
 			Destroy (m_iconList [p.GetType().ToString()]);
 			m_iconList.Remove (p.GetType().ToString());
-		}
-	}
-
-	public void AddPropertyText(Property p, Vector3 v) {
-		GameObject go = Instantiate (TextPropertyPrefab);
-		go.GetComponent<RectTransform> ().position = v;
-		go.GetComponent<RectTransform> ().rotation = Quaternion.identity;
-		System.Type sysType = p.GetType ();
-		Property mp = (Property)GetComponentInChildren (sysType);
-		if (mp != null) {
-			go.GetComponent<PropertyText> ().PropertyName = mp.PropertyName;
-			go.GetComponent<PropertyText> ().Description = mp.Description;
-		} else {
-			go.GetComponent<PropertyText> ().PropertyName = "Unregistered Property";
-			go.GetComponent<PropertyText> ().Description = "Properties unknown, likely dangerous";
 		}
 	}
 }

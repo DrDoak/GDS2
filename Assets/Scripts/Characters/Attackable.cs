@@ -198,7 +198,9 @@ public class Attackable : MonoBehaviour
 	}
 
 	void TakeDoT(HitboxDoT hbdot) {
-		DamageObj (hbdot.Damage * Time.deltaTime);
+		Resistence r =  GetResistence(hbdot.Element);
+		float d = hbdot.Damage - (hbdot.Damage * (r.Percentage / 100f));
+		DamageObj (d * Time.deltaTime);
 		if (hbdot.IsFixedKnockback) {
 			GetComponent<PhysicsSS>().AddToVelocity (hbdot.Knockback * Time.deltaTime);
 		} else {

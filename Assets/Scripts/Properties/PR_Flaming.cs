@@ -39,13 +39,13 @@ public class PR_Flaming : Property
 
     public override void OnUpdate()
     {
-        if (Time.time > time_tracker)
-        {
-            time_tracker += flaming_period;
+       // if (Time.time > time_tracker)
+        //{
+          //  time_tracker += flaming_period;
 			GetComponent<Attackable>().TakeHit(fireSurround);
 			GetComponent<Attackable>().TakeHit(fireSurround);
 			GetComponent<Attackable>().TakeHit(fireSurround);
-        }
+        //}
     }
 
 
