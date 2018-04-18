@@ -33,6 +33,9 @@ public class Attackable : MonoBehaviour
 	private PhysicsSS m_movementController;
 	private Fighter m_fighter;
 
+	public bool DisplayHealth = true;
+	private HealthDisplay m_display;
+
 
 	// public AudioClip Hit;
 
@@ -61,6 +64,11 @@ public class Attackable : MonoBehaviour
 	}
 	internal void Start() {
 		ExecuteEvents.Execute<ICustomMessageTarget> (gameObject, null, (x, y) => x.OnCreation ());
+		if (DisplayHealth) {
+			Debug.Log (GameManager.Instance.HealthBarPrefab);
+			m_display = Instantiate (GameManager.Instance.HealthBarPrefab, this.transform).GetComponent<HealthDisplay>();
+			m_display.SetMaxHealth (MaxHealth);
+		}
 	}
 
 	private void CheckDeath()
@@ -247,7 +255,9 @@ public class Attackable : MonoBehaviour
 		float healthBefore = m_health;
 		m_health = Mathf.Max(Mathf.Min(MaxHealth, m_health - damage), 0);
 		Alive = (m_health > 0);
-		return m_health - healthBefore;
+		float diff =  m_health - healthBefore;
+		m_display.TakeDamage (diff, m_health);
+		return diff;
 	}
 
 	public bool CanAttack(FactionType otherFaction) {

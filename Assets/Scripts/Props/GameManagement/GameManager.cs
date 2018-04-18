@@ -21,6 +21,7 @@ public class GameManager : MonoBehaviour
 	public GameObject TextPropertyPrefab;
 	public Sprite UnknownPropertyIcon;
 	public GameObject CurrentPlayer;
+	public GameObject HealthBarPrefab;
 
 	Dictionary<string,GameObject> m_iconList;
 
