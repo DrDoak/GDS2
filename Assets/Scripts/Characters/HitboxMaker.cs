@@ -56,6 +56,8 @@ public class HitboxMaker : MonoBehaviour
 		if (followObj) {
 			go.transform.SetParent (gameObject.transform);
 			newBox.transform.localScale = new Vector2 (hitboxScale.x / transform.localScale.x, hitboxScale.y / transform.localScale.y);
+		} else {
+			newBox.SetScale (hitboxScale);
 		}
 		newBox.Damage = damage;
 		newBox.Duration = hitboxDuration;
@@ -85,9 +87,8 @@ public class HitboxMaker : MonoBehaviour
 			go.transform.SetParent (gameObject.transform);
 			newBox.transform.localScale = new Vector2 (hitboxScale.x / transform.localScale.x, hitboxScale.y / transform.localScale.y);
 		} else {
-			
+			newBox.SetScale (hitboxScale);
 		}
-		//newBox.SetScale (hitboxScale);
 		newBox.Damage = damage;
 		newBox.Duration = hitboxDuration;
 		newBox.Knockback = m_physics.OrientVectorToDirection(knockback);
@@ -108,10 +109,15 @@ public class HitboxMaker : MonoBehaviour
 		Vector2 cOff = m_physics.OrientVectorToDirection(offset);
 		Vector3 newPos = transform.position + (Vector3)cOff;
 		var go = GameObject.Instantiate(HitboxList.Instance.HitboxMulti, newPos, Quaternion.identity);
-		if (followObj)
-			go.transform.SetParent(gameObject.transform);
-
 		HitboxMulti newBox = go.GetComponent<HitboxMulti>();
+
+		if (followObj) {
+			go.transform.SetParent (gameObject.transform);
+			newBox.transform.localScale = new Vector2 (hitboxScale.x / transform.localScale.x, hitboxScale.y / transform.localScale.y);
+		} else {
+			newBox.SetScale (hitboxScale);
+		}
+
 		newBox.transform.localScale = new Vector2(hitboxScale.x/ transform.localScale.x,hitboxScale.y/ transform.localScale.y);
 		newBox.Damage = damage;
 		newBox.Duration = hitboxDuration;

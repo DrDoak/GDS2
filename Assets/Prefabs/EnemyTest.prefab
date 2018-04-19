@@ -246,11 +246,13 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 6cecf518dba7e8f429d2dc6df9ba9177, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  m_health: 100
   MaxHealth: 100
   Alive: 1
-  DeathTime: 0
+  DeathTime: 2
   Faction: 3
   Resistences: []
+  DisplayHealth: 1
 --- !u!114 &114342479770708504
 MonoBehaviour:
   m_ObjectHideFlags: 1
@@ -262,6 +264,8 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 7209baf354a64e1408f7faeb13592322, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  MaxSlots: 4
+  NumTransfers: 2
 --- !u!114 &114482614744153130
 MonoBehaviour:
   m_ObjectHideFlags: 1
@@ -379,12 +383,6 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: b2f176fa900675a449256a92aa0193c7, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  HitboxClass: {fileID: 1000014045791988, guid: fe2b3e2d27b9cbe498fc049e74fb9ecf,
-    type: 2}
-  HitboxDoTClass: {fileID: 0}
-  HitboxMultiClass: {fileID: 0}
-  LineHBClass: {fileID: 1208028220725142, guid: 26fc9fe904c00d54e8bc882bbd2c61f4,
-    type: 2}
   Faction: 0
 --- !u!114 &114978030491855044
 MonoBehaviour:

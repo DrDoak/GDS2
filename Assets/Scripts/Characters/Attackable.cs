@@ -80,6 +80,7 @@ public class Attackable : MonoBehaviour
 			ExecuteEvents.Execute<ICustomMessageTarget> (gameObject, null, (x, y) => x.OnDeath ());
 			Destroy (gameObject);
 		}
+		GetComponent<SpriteRenderer>().color = Color.Lerp (Color.white, Color.black, (DeathTime - m_currDeathTime) / DeathTime);
 		m_currDeathTime -= Time.deltaTime;
 	}
 
