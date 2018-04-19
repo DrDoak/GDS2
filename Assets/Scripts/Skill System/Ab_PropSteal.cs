@@ -42,7 +42,6 @@ public class Ab_PropSteal : Ability {
 		_mEnemyProps = Target.GetComponent<PropertyHolder>().GetStealableProperties();
 	}
 
-
 	private void DisplayPropertyUI()
 	{
 		GUIHandler.SetAbility(this);
@@ -52,13 +51,39 @@ public class Ab_PropSteal : Ability {
 		_mTriggered = true;
 	}
 
+    private void CheckRemovals()
+    {
+        foreach (Property p in _mPropertyToTransfer)
+        {
+            if (_mEnemyProps.Contains(p))
+                _mPropertyToTransfer.Remove(p);
+        }
+        foreach (Property p in _mPropertiesToKeep)
+        {
+            if (_mPlayerProps.Contains(p))
+                _mPropertiesToKeep.Remove(p);
+        }
+    }
+
 	private void TransferProperty()
 	{
 		GUIHandler.ClosePropertyLists();
 		PauseGame.Resume ();
-		if(_mPropertyToTransfer)
-			Target.GetComponent<PropertyHolder>().TransferProperty(_mPropertyToTransfer,Player.GetComponent<PropertyHolder>());
-		_mTriggered = false;
+        CheckRemovals();
+
+		foreach(Property p in _mPropertyToTransfer)
+			Target.GetComponent<PropertyHolder>().TransferProperty(p,Player.GetComponent<PropertyHolder>());
+        foreach(Property p in _mPropertiesToKeep)
+            Player.GetComponent<PropertyHolder>().TransferProperty(p, Target.GetComponent<PropertyHolder>());
+
+	    int i = 0;
+	    foreach (Ability a in _mSelected)
+	    {
+	        Player.GetComponent<AbilityControl>().AbsorbAbility(a,i);
+	        i++;
+	    }
+
+	    _mTriggered = false;
 		Target = null;
 	}
 }

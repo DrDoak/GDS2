@@ -56,9 +56,10 @@ public class Ab_PropGive : Ability {
 	{
 		GUIHandler.ClosePropertyLists();
 		PauseGame.Resume ();
-		if(_mPropertyToTransfer)
-			Player.GetComponent<PropertyHolder>().TransferProperty(_mPropertyToTransfer,Target.GetComponent<PropertyHolder>());
+		foreach(Property p in _mPropertyToTransfer)
+			Player.GetComponent<PropertyHolder>().TransferProperty(p,Target.GetComponent<PropertyHolder>());
 		_mTriggered = false;
 		Target = null;
+        ClearLists();
 	}
 }

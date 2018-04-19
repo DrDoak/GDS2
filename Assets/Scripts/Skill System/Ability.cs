@@ -1,4 +1,5 @@
-﻿using System.Collections;
+﻿using System;
+using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 
@@ -10,8 +11,9 @@ public abstract class Ability:ScriptableObject {
     public AbilityType AbilityClassification;
     public string AnimStateName;
     protected GameObject Target;
-    protected Property _mPropertyToTransfer;
-    protected Ability _mSelected;
+    protected List<Property> _mPropertyToTransfer;
+    protected List<Ability> _mSelected;
+    protected List<Property> _mPropertiesToKeep;
 
 	//I added this for when you want to use Melee Hitboxes
 	//instead of Distance (circle) hitboxes. 
@@ -21,6 +23,11 @@ public abstract class Ability:ScriptableObject {
 
     public abstract void UseAbility();
 
+    void Awake()
+    {
+        ClearLists();
+    }
+
     public virtual void TriggerAnimation()
     {
         //TriggerAnimation using the string AnimStateName
@@ -28,18 +35,32 @@ public abstract class Ability:ScriptableObject {
 
     public void UpdateProperty(Property p)
     {
-        _mPropertyToTransfer = p;
+        _mPropertyToTransfer.Add(p);
 		Debug.Log ("Updated property: " + p);
     }
 
     public void UpdateAbility(Ability a)
     {
-        _mSelected = a;
+        _mSelected.Add(a);
     }
-
+    
     public void SetTarget(GameObject g)
     {
         Target = g;
+    }
+
+    protected void ClearLists()
+    {
+        _mPropertyToTransfer = new List<Property>();
+        _mPropertiesToKeep = new List<Property>();
+        _mSelected = new List<Ability>();
+    }
+
+    public void SetTransferLists(List<Property> forPlayerProps, List<Ability> forPlayerAbs, List<Property> forTargetProps)
+    {
+        _mPropertiesToKeep = forPlayerProps;
+        _mPropertyToTransfer = forTargetProps;
+        _mSelected = forPlayerAbs;
     }
 
 }

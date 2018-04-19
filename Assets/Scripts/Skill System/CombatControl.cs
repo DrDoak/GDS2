@@ -7,7 +7,8 @@ using System.Linq;
 /// <summary>
 /// Combat Control manages the keyed abilities of the Player
 /// </summary>
-public class CombatControl : MonoBehaviour {
+public class CombatControl : MonoBehaviour
+{
 
     public List<KeyCode> keys;
     public Dictionary<KeyCode, Ability> SlottedAbilities;
@@ -21,13 +22,16 @@ public class CombatControl : MonoBehaviour {
         {
             SlottedAbilities.Add(k, null);
         }
-		SlotAbility(keys[0], ScriptableObject.CreateInstance<Ab_Melee>());
-		SlotAbility(keys[1], ScriptableObject.CreateInstance<Ab_PropSteal>());
-		SlotAbility(keys[2], ScriptableObject.CreateInstance<Ab_PropGive>());
-		SlotAbility(KeyCode.Return, ScriptableObject.CreateInstance<Loot>());
+
+        SlotAbility(keys[0], ScriptableObject.CreateInstance<Ab_Melee>());
+        SlotAbility(keys[1], ScriptableObject.CreateInstance<Ab_PropSteal>());
+        SlotAbility(keys[2], ScriptableObject.CreateInstance<Ab_PropGive>());
+
+        SlotAbility(KeyCode.Return, ScriptableObject.CreateInstance<Ab_Transfer>());
         Ability.Player = gameObject;
     }
-   // Update is called once per frame
+
+    // Update is called once per frame
     void Update()
     {
         if (Input.anyKeyDown)
@@ -52,14 +56,14 @@ public class CombatControl : MonoBehaviour {
     /// </summary>
     public void UseAbility()
     {
-		if (KeyPressed == KeyCode.None)
-			return;
-		Debug.Log("Using ability: " + KeyPressed);
+        if (KeyPressed == KeyCode.None)
+            return;
+        Debug.Log("Using ability: " + KeyPressed);
         Ability a = SlottedAbilities[KeyPressed];
         if (a != null)
             a.UseAbility();
     }
-    
+
     /// <summary>
     /// Slots the passed ability into the Player's designated keyslot
     /// </summary>

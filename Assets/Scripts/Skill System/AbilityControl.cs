@@ -12,17 +12,28 @@ public class AbilityControl : MonoBehaviour {
         _mCombatControl = GetComponent<CombatControl>();
         _mBasicControl = GetComponent<BasicAbilityControl>();
 	}
-	
     
-    public void AbsorbAbility(Ability a)
+    public void AbsorbAbility(Ability a, int i)
     {
-        _mCombatControl.SlotAbility(ChooseKeySlot(), a);
+        _mCombatControl.SlotAbility(ChooseKeySlot(i), a);
     }
 
-    public KeyCode ChooseKeySlot()
+    private KeyCode ChooseKeySlot(int i)
     {
-        Debug.Log("Choose keyslot");
-        return KeyCode.J;
+        KeyCode k = KeyCode.J;
+        int j = 0;
+        foreach (KeyCode kc in _mCombatControl.keys)
+        {
+            if (j == i)
+            {
+                k = kc;
+                break;
+            }
+
+            j++;
+        }
+
+        return k;
     }
 
     private void OnTriggerEnter2D(Collider2D collision)
