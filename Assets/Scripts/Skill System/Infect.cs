@@ -40,8 +40,6 @@ public class Infect : Ability {
     private void DisplayPropertyUI()
     {
         GUIHandler.SetAbility(this);
-		GUIHandler.CreatePropertyList(_mPlayerProps, "player", new Vector3(100f,-200f,0f), true);
-		GUIHandler.CreatePropertyList(_mEnemyProps, "bad guy", new Vector3(400f,-200f,0f), false);
 		PauseGame.Pause (false);
 		_mTriggered = true;
     }

@@ -11,7 +11,6 @@ public class Ab_PropGive : Ability {
 	private bool _mTriggered = false;
 
 	void Awake() {
-		Debug.Log ("awake");
 		UseAttackHitbox = true;
 	}
 
@@ -46,16 +45,12 @@ public class Ab_PropGive : Ability {
 	private void DisplayPropertyUI()
 	{
 		GUIHandler.SetAbility(this);
-		GUIHandler.CreatePropertyList(_mPlayerProps, "Item to Give", new Vector3(100f,-200f,0f), true);
-		GUIHandler.CreatePropertyList(_mEnemyProps, "Target", new Vector3(400f,-200f,0f), false);
-		PauseGame.Pause (false);
 		_mTriggered = true;
 	}
 
 	private void TransferProperty()
 	{
 		GUIHandler.ClosePropertyLists();
-		PauseGame.Resume ();
 		if(_mPropertyToTransfer)
 			Player.GetComponent<PropertyHolder>().TransferProperty(_mPropertyToTransfer,Target.GetComponent<PropertyHolder>());
 		_mTriggered = false;

@@ -65,7 +65,6 @@ public class Attackable : MonoBehaviour
 	internal void Start() {
 		ExecuteEvents.Execute<ICustomMessageTarget> (gameObject, null, (x, y) => x.OnCreation ());
 		if (DisplayHealth) {
-			Debug.Log (GameManager.Instance.HealthBarPrefab);
 			m_display = Instantiate (GameManager.Instance.HealthBarPrefab, this.transform).GetComponent<HealthDisplay>();
 			m_display.SetMaxHealth (MaxHealth);
 		}

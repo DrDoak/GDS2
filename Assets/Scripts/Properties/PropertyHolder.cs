@@ -7,6 +7,8 @@ public class PropertyHolder : MonoBehaviour {
 
 	List<Property> m_properties;
 	bool m_currentPlayer;
+	public int MaxSlots = 4;
+	public int NumTransfers = 2;
 	// Use this for initialization
 	void Awake () {
 		m_properties = new List<Property> ();
@@ -58,14 +60,19 @@ public class PropertyHolder : MonoBehaviour {
 
 	public void RemoveProperty(Property p) {
 		if (HasProperty(p)) {
-			RemoveProperty (p.GetType().Name);
+			Type pType = p.GetType();
+			Property mp = (Property)gameObject.GetComponent(pType);
+			m_properties.Remove (mp);
+			mp.OnRemoveProperty ();
+			Destroy(mp);
+
 			if (m_currentPlayer) {
 				GameManager.Instance.RemovePropIcon (p);
 			}
 		}
 	}
 
-	public void RemoveProperty(string pName) {
+	/*public void RemoveProperty(string pName) {
 		if (HasProperty (pName)) {
 			Type pType = Type.GetType (pName);
 			Property mp = (Property)gameObject.GetComponent(pType);
@@ -74,15 +81,19 @@ public class PropertyHolder : MonoBehaviour {
 			Destroy(mp);
 		}
 
-	}
+	}*/
 
 	public bool HasProperty(Property p) {
-		return (HasProperty(p.GetType().Name));
+		foreach (Property mp in m_properties) {
+			if (mp.GetType() == p.GetType())
+				return true;
+		}
+		return false;
 	}
 
 	public bool HasProperty(string pName) {
 		foreach (Property p in m_properties) {
-			if (p.GetType ().Name == pName)
+			if (GameManager.Instance.GetPropInfo(p).PropertyName == pName)
 				return true;
 		}
 		return false;

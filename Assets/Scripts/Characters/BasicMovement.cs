@@ -53,20 +53,17 @@ public class BasicMovement : MonoBehaviour
 		m_physics.SetGravityScale (gravity * (1.0f/60f));
 		jumpVelocity = Mathf.Abs(gravity) * TimeToJumpApex;
 		jumpVector = new Vector2 (0f, jumpVelocity);*/
+
+		/*if (IsCurrentPlayer) {
+			Debug.Log (Mathf.Sign (0f));
+			Debug.Log (Mathf.Sign (0.2f));
+			Debug.Log (Mathf.Sign (-0.1f));
+		}*/
 	}
 		
 		
 	internal void Update()
 	{
-		/* if (IsCurrentPlayer && Input.GetButton ("Fire1")) {
-			GetComponent<Fighter> ().TryAttack ("default");
-		}
-		if (IsCurrentPlayer && Input.GetButton ("Fire2")) {
-			GetComponent<Fighter> ().TryAttack ("steal");
-		}
-		if (IsCurrentPlayer && Input.GetButton ("Fire3")) {
-			GetComponent<Fighter> ().TryAttack ("give");
-		} */
 		if (!m_physics.CanMove)
 			return;
 		

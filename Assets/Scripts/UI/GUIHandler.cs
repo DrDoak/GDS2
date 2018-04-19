@@ -11,6 +11,7 @@ public class GUIHandler : MonoBehaviour {
 
 	public GameObject MenuProperty;
 	public GameObject SelectionProperty;
+	public TransferMenu MTransferMenu;
 
 	[TextArea(1,10)]
 	public string textMessage = "";
@@ -80,7 +81,6 @@ public class GUIHandler : MonoBehaviour {
 
 	void OnGUI() {
 		if (displayTextMessage) {
-//			Debug.Log (Screen.width + ", " + Screen.height);
 			var centeredStyle = GUI.skin.GetStyle("Label");
 			centeredStyle.fontSize = 32;
 			centeredStyle.alignment = TextAnchor.UpperCenter;
@@ -90,29 +90,19 @@ public class GUIHandler : MonoBehaviour {
 		}
 	}
 
-	public static void CreatePropertyList(List<Property> pList, string userName, Vector3 position, bool clickable = true) {
-		Instance.InternalPropertyList (pList, userName, position, clickable);
+	public static void CreateTransferMenu(PropertyHolder ph1, PropertyHolder ph2) {
+		Instance.InternalTransferMenu (ph1 , ph2);
 	}
 
-	void InternalPropertyList(List<Property> pList, string userName, Vector3 position, bool clickable) {
-		GameObject gMenu = Instantiate (MenuProperty);
-		gMenu.GetComponent<RectTransform> ().anchorMax = new Vector2(0f,1f);
-		gMenu.GetComponent<RectTransform> ().anchorMin = new Vector2(0f,1f);
-		gMenu.GetComponent<RectTransform> ().anchoredPosition = position;
-		gMenu.GetComponent<RectTransform> ().SetParent (transform.Find ("PauseCanvas"), false);
-		Debug.Log ("Positions: " + position);
-		gMenu.transform.Find ("UserName").GetComponent<TextMeshProUGUI> ().SetText (userName);
-		foreach (Property p in pList) {
-			Property mp = (Property)GameManager.Instance.gameObject.GetComponentInChildren (p.GetType());
-			GameObject selection = Instantiate (SelectionProperty, gMenu.transform.Find ("PropList"), false);
-			selection.GetComponent<ButtonProperty> ().SelectedProperty = p;
-			selection.transform.Find ("Image").GetComponent<Image>().sprite = mp.icon;
-			selection.transform.Find ("Title").GetComponent<TextMeshProUGUI>().SetText( mp.PropertyName);
-			selection.transform.Find ("Description").GetComponent<TextMeshProUGUI>().SetText( mp.Description);
-			selection.GetComponent<Button> ().enabled = clickable;
-		}
-		PropertyLists.Add (gMenu);
+	void InternalTransferMenu(PropertyHolder ph1, PropertyHolder ph2) {
+		MTransferMenu.gameObject.SetActive (true);
+		MTransferMenu.Clear ();
+
+		MTransferMenu.AddPropertyHolder (ph1,0);
+		MTransferMenu.AddPropertyHolder (ph2,1);
+		MTransferMenu.init (ph1.NumTransfers);
 	}
+
 	public static void ClosePropertyLists() {
 		foreach (GameObject go in Instance.PropertyLists) {
 			Destroy (go);
