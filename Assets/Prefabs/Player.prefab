@@ -38,10 +38,7 @@ GameObject:
   - component: {fileID: 114068985379166096}
   - component: {fileID: 114430644777843744}
   - component: {fileID: 114397494433287954}
-  - component: {fileID: 114741832052861578}
-  - component: {fileID: 114198099819178160}
-  - component: {fileID: 114812700117942146}
-  - component: {fileID: 114228185329302898}
+  - component: {fileID: 114342544975165680}
   m_Layer: 9
   m_Name: Player
   m_TagString: Player
@@ -161,7 +158,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 9252997a19d5c324eb51c01becd4ca04, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  keys: 6a000000690000006b0000006c0000000d000000
+  keys: 6a0000006b0000006c0000003b0000000d000000
 --- !u!114 &114183775052015364
 MonoBehaviour:
   m_ObjectHideFlags: 1
@@ -179,17 +176,7 @@ MonoBehaviour:
   DeathTime: 0
   Faction: 3
   Resistences: []
---- !u!114 &114198099819178160
-MonoBehaviour:
-  m_ObjectHideFlags: 1
-  m_PrefabParentObject: {fileID: 0}
-  m_PrefabInternal: {fileID: 100100000}
-  m_GameObject: {fileID: 1000013670716774}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 2fc953f928abe2343a4c32aa493ad2e6, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
+  DisplayHealth: 1
 --- !u!114 &114223702759941158
 MonoBehaviour:
   m_ObjectHideFlags: 1
@@ -211,21 +198,6 @@ MonoBehaviour:
   m_inputedMove: {x: 0, y: 0}
   TerminalVelocity: -5
   FacingLeft: 0
---- !u!114 &114228185329302898
-MonoBehaviour:
-  m_ObjectHideFlags: 1
-  m_PrefabParentObject: {fileID: 0}
-  m_PrefabInternal: {fileID: 100100000}
-  m_GameObject: {fileID: 1000013670716774}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: e7f3a23a200c3974e9a62192219e0e74, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  Stealable: 1
-  PropertyName: None
-  Description: No description provided.
-  icon: {fileID: 0}
 --- !u!114 &114319908791872480
 MonoBehaviour:
   m_ObjectHideFlags: 1
@@ -240,12 +212,27 @@ MonoBehaviour:
   IsCurrentPlayer: 1
   JumpHeight: 6
   TimeToJumpApex: 0.4
-  MoveSpeed: 8
+  MoveSpeed: 10
   jumpVector: {x: 0, y: 0}
   m_inputMove: {x: 0, y: 0}
   m_minDistance: 1
   m_abandonDistance: 10
   m_stuckTime: 0
+--- !u!114 &114342544975165680
+MonoBehaviour:
+  m_ObjectHideFlags: 1
+  m_PrefabParentObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 100100000}
+  m_GameObject: {fileID: 1000013670716774}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: e7f3a23a200c3974e9a62192219e0e74, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  Stealable: 1
+  PropertyName: None
+  Description: No description provided.
+  icon: {fileID: 0}
 --- !u!114 &114397494433287954
 MonoBehaviour:
   m_ObjectHideFlags: 1
@@ -301,8 +288,8 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   IsHitboxCreater: 1
-  HitboxScale: {x: 2, y: 1}
-  HitboxOffset: {x: 2, y: -0.5}
+  HitboxScale: {x: 3, y: 1}
+  HitboxOffset: {x: 0.5, y: -0.5}
   UniqueAIPrediction: 0
   AIPredictionHitbox: {x: 0, y: 0}
   AIPredictionOffset: {x: 0, y: 0}
@@ -384,30 +371,6 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   m_currentAnim: 
---- !u!114 &114741832052861578
-MonoBehaviour:
-  m_ObjectHideFlags: 1
-  m_PrefabParentObject: {fileID: 0}
-  m_PrefabInternal: {fileID: 100100000}
-  m_GameObject: {fileID: 1000013670716774}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 9252997a19d5c324eb51c01becd4ca04, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  keys: 6a000000690000006b0000006c0000000d000000
---- !u!114 &114812700117942146
-MonoBehaviour:
-  m_ObjectHideFlags: 1
-  m_PrefabParentObject: {fileID: 0}
-  m_PrefabInternal: {fileID: 100100000}
-  m_GameObject: {fileID: 1000013670716774}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: b0be7e067ec5bf04fb5569367cdd729c, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  Abilities: []
 --- !u!114 &114845752184036596
 MonoBehaviour:
   m_ObjectHideFlags: 1

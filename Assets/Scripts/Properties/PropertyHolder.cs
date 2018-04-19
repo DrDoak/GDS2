@@ -52,7 +52,6 @@ public class PropertyHolder : MonoBehaviour {
 		p.OnAddProperty ();
 		m_properties.Add (p);
 		if (m_currentPlayer) {
-			GameManager.Instance.AddPropertyText (p, transform.position);
 			GameManager.Instance.AddPropIcon (p);
 		}
 	}

@@ -248,41 +248,42 @@ public class PhysicsSS : MonoBehaviour
 			} else {
 				rayOrigin += Vector2.up * (m_horizontalRaySpacing/2f * i);
 			}
-			RaycastHit2D hit = Physics2D.Raycast(rayOrigin, Vector2.right * directionX, rayLength, CollisionMask);
-			if (hit) {
-				Debug.DrawRay(rayOrigin, Vector2.right * directionX * rayLength,Color.red);
-			} else {
-				Debug.DrawRay(rayOrigin, Vector2.right * directionX * rayLength,Color.green);
-			}
-
-			if (hit && !hit.collider.isTrigger) {
-
-				if (handleStairs(hit,velocity) ){
-
+			//RaycastHit2D hit = Physics2D.Raycast(rayOrigin, Vector2.right * directionX, rayLength, CollisionMask);
+			RaycastHit2D [] hitL = Physics2D.RaycastAll(rayOrigin, Vector2.right * directionX, rayLength, CollisionMask);
+			//Debug.Log (hitL.Length + " : " + gameObject);
+			foreach (RaycastHit2D hit in hitL) {
+				if (hit) {
+					Debug.DrawRay(rayOrigin, Vector2.right * directionX * rayLength,Color.red);
 				} else {
-					float slopeAngle = Vector2.Angle (hit.normal, Vector2.up);
-					if (i == 0 && slopeAngle <= MaxClimbAngle) {
-						float distanceToSlopeStart = 0;
-						if (slopeAngle != m_collisions.slopeAngleOld) {
-							distanceToSlopeStart = hit.distance - m_skinWidth;
-							//velocity.x -= distanceToSlopeStart * directionX;
+					Debug.DrawRay(rayOrigin, Vector2.right * directionX * rayLength,Color.green);
+				}
+				if (hit && !hit.collider.isTrigger) {
+					if (handleStairs(hit,velocity) ){
+					} else {
+						float slopeAngle = Vector2.Angle (hit.normal, Vector2.up);
+						if (i == 0 && slopeAngle <= MaxClimbAngle) {
+							float distanceToSlopeStart = 0;
+							if (slopeAngle != m_collisions.slopeAngleOld) {
+								distanceToSlopeStart = hit.distance - m_skinWidth;
+								//velocity.x -= distanceToSlopeStart * directionX;
+								velocity.x = (Mathf.Abs(velocity.x) + distanceToSlopeStart) * directionX;
+							}
+							ClimbSlope (ref velocity, slopeAngle);
+							//velocity.x += distanceToSlopeStart * directionX;
 							velocity.x = (Mathf.Abs(velocity.x) + distanceToSlopeStart) * directionX;
 						}
-						ClimbSlope (ref velocity, slopeAngle);
-						//velocity.x += distanceToSlopeStart * directionX;
-						velocity.x = (Mathf.Abs(velocity.x) + distanceToSlopeStart) * directionX;
-					}
+						if (!m_collisions.climbingSlope || slopeAngle > MaxClimbAngle) {
+							velocity.x = (hit.distance - m_skinWidth) * directionX;
+							rayLength = hit.distance;
 
-					if (!m_collisions.climbingSlope || slopeAngle > MaxClimbAngle) {
-						velocity.x = (hit.distance - m_skinWidth) * directionX;
-						rayLength = hit.distance;
+							if (m_collisions.climbingSlope) {
+								velocity.y = Mathf.Tan (m_collisions.slopeAngle * Mathf.Deg2Rad) * Mathf.Abs (velocity.x);
+							}
 
-						if (m_collisions.climbingSlope) {
-							velocity.y = Mathf.Tan (m_collisions.slopeAngle * Mathf.Deg2Rad) * Mathf.Abs (velocity.x);
+							m_collisions.left = directionX == -1;
+							m_collisions.right = directionX == 1;
+							break;
 						}
-
-						m_collisions.left = directionX == -1;
-						m_collisions.right = directionX == 1;
 					}
 				}
 			}
