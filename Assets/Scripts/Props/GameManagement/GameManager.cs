@@ -108,7 +108,6 @@ public class GameManager : MonoBehaviour
 	}
 
 	public void AddPropIcon(Property p) { 
-		Debug.Log ("Adding?: " + p.GetType().ToString());
 		if (!m_iconList.ContainsKey(p.GetType().ToString()) ){
 			System.Type sysType = p.GetType ();
 			Property mp = (Property)GetComponentInChildren (sysType);

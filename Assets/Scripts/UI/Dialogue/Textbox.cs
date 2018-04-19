@@ -20,7 +20,7 @@ public class Textbox : MonoBehaviour {
 	int lastCharacter;
 	public float pauseAfterType = 2f;
 	TextMeshProUGUI mText;
-	Color tC;
+	public Color tC;
 	public bool conclude = false;
 
 	// Use this for initialization
@@ -187,7 +187,8 @@ public class Textbox : MonoBehaviour {
 
 	public void setTargetObj(GameObject gameObj) {
 		targetedObj = gameObj;
-		lastPos = gameObj.transform.position;
+		if (targetedObj != null)
+			lastPos = gameObj.transform.position;
 	}
 	public void setTypeMode(bool type) {
 		typing = type;

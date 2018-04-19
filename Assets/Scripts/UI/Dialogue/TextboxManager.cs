@@ -15,6 +15,7 @@ public class TextboxManager : MonoBehaviour {
 	//public delegate void optionResponse(int r);
 	List<GameObject> textboxes;
 	public GameObject textboxPrefab;
+	public GameObject textboxStaticPrefab;
 
 	Camera cam;
 	bool type;
@@ -41,11 +42,8 @@ public class TextboxManager : MonoBehaviour {
 		cam = FindObjectOfType<Camera> ();
 		TextboxColor = new Color (1.0f, 0.0f, 0.0f, 0.5f);
 	}
-	
-	// Update is called once per frame
-	void Update () {}
 
-	public static void StartSequence(string text,GameObject speaker) {
+	public static void StartSequence(string text,GameObject speaker = null) {
 		DialogueSequence ds = Instance.parseSequence (text);
 		ds.Speaker = speaker;
 		ds.advanceSequence ();
@@ -116,8 +114,15 @@ public class TextboxManager : MonoBehaviour {
 		return m_instance.addTextbox (text, targetObj, true, 0.1f,Color.black);
 	}
 	public Textbox addTextbox(string text,GameObject targetObj,bool typeText,float textSpeed, Color tbColor) {
-		Vector2 newPos = findPosition (targetObj.transform.position);
-		GameObject newTextbox = Instantiate (textboxPrefab,newPos,Quaternion.identity);
+		Vector2 newPos = new Vector2();
+		GameObject newTextbox;
+		if (targetObj != null) {
+			newPos = findPosition (targetObj.transform.position);
+			newTextbox = Instantiate (textboxPrefab, newPos, Quaternion.identity);
+		} else {
+			newTextbox = Instantiate (textboxStaticPrefab);
+		}
+		
 		Textbox tb = newTextbox.GetComponent<Textbox> ();
 		if (!type) {
 			//Debug.Log ("displaying Textbox: " + text);
@@ -127,7 +132,7 @@ public class TextboxManager : MonoBehaviour {
 
 		tb.setTypeMode (typeText);			
 		tb.setText(text);
-		tb.transform.position = newPos;
+		//tb.transform.position = newPos;
 		tb.setTargetObj (targetObj);
 		tb.pauseAfterType = timeAfter;
 		tb.timeBetweenChar = textSpeed;
