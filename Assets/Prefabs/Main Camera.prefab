@@ -49,6 +49,7 @@ GameObject:
   - component: {fileID: 114339495911034272}
   - component: {fileID: 114231003385873444}
   - component: {fileID: 114536962784456648}
+  - component: {fileID: 114575582161956048}
   m_Layer: 0
   m_Name: Main Camera
   m_TagString: MainCamera
@@ -884,7 +885,7 @@ MonoBehaviour:
   m_timeSinceExit: 0
   m_highLightedColor: {r: 1, g: 0.80689657, b: 0, a: 1}
   m_deactiveColor: {r: 0.097, g: 0.091, b: 0.066, a: 1}
-  m_normalColor: {r: 0, g: 0.0033520795, b: 0.39215687, a: 1}
+  m_normalColor: {r: 0, g: 0.0059080264, b: 0.6911765, a: 1}
   m_highlightDeactiveColor: {r: 0.403, g: 0.403, b: 0.403, a: 1}
 --- !u!114 &114043226801996708
 MonoBehaviour:
@@ -2134,6 +2135,20 @@ MonoBehaviour:
   - {fileID: 0}
   m_baseMaterial: {fileID: 0}
   m_maskOffset: {x: 0, y: 0, z: 0, w: 0}
+--- !u!114 &114575582161956048
+MonoBehaviour:
+  m_ObjectHideFlags: 1
+  m_PrefabParentObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 100100000}
+  m_GameObject: {fileID: 1035150032497560}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 7414a3bfb9b80cc44b2173f65f93211c, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  textboxPrefab: {fileID: 0}
+  dialogueBoxPrefab: {fileID: 0}
+  listPrefab: {fileID: 0}
 --- !u!114 &114581608621251998
 MonoBehaviour:
   m_ObjectHideFlags: 1
