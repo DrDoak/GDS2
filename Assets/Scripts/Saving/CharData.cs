@@ -1,7 +1,8 @@
-﻿using System.Collections;
+﻿using UnityEngine;
+using System;
 using System.Collections.Generic;
-using UnityEngine;
 
+[Serializable]
 public class CharData {
 	public string regID = "Not Assigned";
 	public string name;

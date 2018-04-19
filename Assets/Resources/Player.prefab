@@ -39,6 +39,7 @@ GameObject:
   - component: {fileID: 114430644777843744}
   - component: {fileID: 114397494433287954}
   - component: {fileID: 114342544975165680}
+  - component: {fileID: 114691824885118858}
   m_Layer: 9
   m_Name: Player
   m_TagString: Player
@@ -53,7 +54,7 @@ Transform:
   m_PrefabInternal: {fileID: 100100000}
   m_GameObject: {fileID: 1000013670716774}
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_LocalPosition: {x: -73.69, y: 2.35, z: 0}
+  m_LocalPosition: {x: 49.6, y: -47.49, z: 0}
   m_LocalScale: {x: 3, y: 3, z: 4}
   m_Children: []
   m_Father: {fileID: 0}
@@ -147,6 +148,8 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 7209baf354a64e1408f7faeb13592322, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  MaxSlots: 4
+  NumTransfers: 2
 --- !u!114 &114068985379166096
 MonoBehaviour:
   m_ObjectHideFlags: 1
@@ -371,6 +374,36 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   m_currentAnim: 
+--- !u!114 &114691824885118858
+MonoBehaviour:
+  m_ObjectHideFlags: 1
+  m_PrefabParentObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 100100000}
+  m_GameObject: {fileID: 1000013670716774}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 92acc23af4626be4fa32c868acac10d0, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  saveID: autoID
+  prefabName: none
+  pos: {x: 0, y: 0, z: 0}
+  targetID: none
+  targetDir: 4
+  healthVal: 0
+  data:
+    regID: Not Assigned
+    name: 
+    pos: {x: 0, y: 0, z: 0}
+    health: 100
+    energy: 100
+    prefabPath: 
+    targetID: 
+    targetDir: 0
+    IsCurrentCharacter: 0
+    IsFacingLeft: 0
+    IsSheathed: 0
+  recreated: 0
 --- !u!114 &114845752184036596
 MonoBehaviour:
   m_ObjectHideFlags: 1

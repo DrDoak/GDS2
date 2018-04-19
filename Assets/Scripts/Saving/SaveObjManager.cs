@@ -27,6 +27,8 @@ public class SaveObjManager : MonoBehaviour{
 			return;
 		}
 		registeredPermItems = new List<string> ();
+		SceneManager.sceneLoaded += onRoomLoad;
+		curRoom = SceneManager.GetActiveScene ().name;
 	}
 	public void saveCurrentRoom() {}
 	public void resetRoomData() {
@@ -34,6 +36,7 @@ public class SaveObjManager : MonoBehaviour{
 		{
 			File.Delete(file);      
 		}
+		registeredPermItems = new List<string> ();
 	}
 	public List<string> loadRegisteredIDs() {
 		List<string> ids = new List<string> ();
@@ -43,16 +46,17 @@ public class SaveObjManager : MonoBehaviour{
 		}
 		return ids;
 	}
-	public void onRoomLoad(string roomName) {
+	public void onRoomLoad(Scene scene, LoadSceneMode mode) {
 		//curRoomInfo = getRoom(roomName);
-		curRoom = roomName;
+		curRoom = SceneManager.GetActiveScene ().name;;
 		sceneTriggers = GameObject.FindObjectsOfType<SceneTrigger> ();
 		recreateItems (curRoom);
+		GameManager.Instance.FindPlayer ();
 		//registerPersItems (curRoom);
 	}
 
 	public void recreateItems(string RoomName) {
-		//Debug.Log ("Recreating items for room: " + RoomName);
+		Debug.Log ("Recreating items for room: " + RoomName);
 		LoadRoom (savePath + RoomName);
 	}
 
@@ -80,15 +84,19 @@ public class SaveObjManager : MonoBehaviour{
 	}
 
 	void m_moveItem(GameObject go,string newRoom, string newID,RoomDirection newDir) {
-		Debug.Log ("Moving item to " + newRoom + " at position: " + newID + " direction: " + newDir);
+		Debug.Log ("Moving " + go.name + " to " + newRoom + " at position: " + newID + " direction: " + newDir);
 		PersistentItem item = go.GetComponent<PersistentItem> ();
+		//Remove the current data.
 		item.StoreData ();
 		refreshPersItems();
 		DelCharData (item.data);
+
+		//load the list of things in the new room and add the current character to it
 		CharacterSaveContainer cc = LoadChars(savePath + newRoom);
-		item.targetID = newID;
-		item.targetDir = newDir;
+		item.data.targetID = newID;
+		item.data.targetDir = newDir;
 		cc.actors.Add (item.data);
+		Debug.Log ("What is this anyways?: " + item.data.targetID + " : " + item.data.targetDir);
 		Save (savePath+newRoom, cc);
 		ResaveRoom ();
 		LoadChars (savePath + curRoom);
@@ -101,8 +109,8 @@ public class SaveObjManager : MonoBehaviour{
 	bool m_checkRegister(GameObject go) {
 		PersistentItem c = go.GetComponent<PersistentItem> ();
 		string id = go.name + "-" + SceneManager.GetActiveScene ().name + ((int)go.transform.position.x).ToString() + ((int)go.transform.position.y).ToString();
-		//Debug.Log ("Checking if character: " + c + " registered id is: " + c.data.regID);
-		//Debug.Log ("incoming ID: " + c.data.regID);
+		Debug.Log ("Checking if character: " + c + " registered id is: " + c.data.regID);
+		Debug.Log ("incoming ID: " + c.data.regID);
 		if (c.data.regID != "Not Assigned") {
 			id = c.data.regID;
 		}
@@ -116,11 +124,11 @@ public class SaveObjManager : MonoBehaviour{
 				return true;
 			}
 		}
-		//Debug.Log ("new entity. Adding to registry");
+		Debug.Log ("new entity. Adding to registry");
 		registeredPermItems.Add(id);
 		c.data.regID = id;
-		//Debug.Log ("saved ID is: " + c.data.regID);
-		//Debug.Log ("Length of registry is: " + registeredPermItems.Count);
+		Debug.Log ("saved ID is: " + c.data.regID);
+		Debug.Log ("Length of registry is: " + registeredPermItems.Count);
 		return false;
 	}
 
@@ -129,12 +137,12 @@ public class SaveObjManager : MonoBehaviour{
 		charContainer.actors.Clear ();
 		foreach (PersistentItem c in cList) {
 			c.StoreData ();
-			//Debug.Log ("Adding character: " + c);
+			Debug.Log ("Adding character: " + c);
 			charContainer.actors.Add(c.data);
 		}
 	}
 	public void ResaveRoom() {
-		//Debug.Log ("Resaved characters: " + charContainer.actors.Count);
+		Debug.Log ("Resaved characters: " + charContainer.actors.Count);
 		Save (savePath + curRoom, charContainer);
 	}
 	//-----------------------------------------------------------
@@ -167,10 +175,10 @@ public class SaveObjManager : MonoBehaviour{
 		if (File.Exists(path+ ".txt"))
 		{
 			string json = File.ReadAllText(path+ ".txt");
-			//Debug.Log ("Chars from path: " + path + " : " + json);
+			Debug.Log ("Chars from path: " + path + " : " + json);
 			return JsonUtility.FromJson<CharacterSaveContainer>(json);
 		} else {
-			//Debug.Log("no save data found, creating new file");
+			Debug.Log("no save data found, creating new file");
 			CharacterSaveContainer cc = new CharacterSaveContainer();
 			SaveActors(path,cc);
 			return cc;
@@ -191,7 +199,8 @@ public class SaveObjManager : MonoBehaviour{
 			Vector3 nv = data.pos;
 			bool found = false;
 			foreach (SceneTrigger rm in sceneTriggers) {
-				if (rm.changerID == data.targetID) {
+				Debug.Log ("COMPARE: " + rm.TriggerID + " : " + data.targetID);
+				if (rm.TriggerID == data.targetID) {
 					if (data.targetDir == RoomDirection.LEFT) {
 							nv = rm.transform.position - new Vector3 (rm.GetComponent<BoxCollider2D> ().size.x + 3f, 0f);
 					} else if (data.targetDir == RoomDirection.RIGHT) {
@@ -217,7 +226,7 @@ public class SaveObjManager : MonoBehaviour{
 		return actor;
 	}
 	public static void AddCharData(CharData data) {
-		//Debug.Log ("Adding character");
+		Debug.Log ("Adding character");
 		charContainer.actors.Add(data);
 	}
 	public static void DelCharData(CharData data) {
@@ -234,9 +243,9 @@ public class SaveObjManager : MonoBehaviour{
 	}
 	private static void SaveActors(string path, CharacterSaveContainer actors) {
 		string json = JsonUtility.ToJson(actors);
-		//Debug.Log ("jsoN: " + json);
-		//Debug.Log ("save to path: " + path+".txt");
-		//Debug.Log("Saving: " + json.ToString() + " to path: " + path);
+		Debug.Log ("jsoN: " + json);
+		Debug.Log ("save to path: " + path+ ".txt");
+		Debug.Log("Saving: " + json.ToString() + " to path: " + path);
 		StreamWriter sw = File.CreateText(path + ".txt");
 		sw.Close();
 		File.WriteAllText(path+ ".txt", json);

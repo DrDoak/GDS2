@@ -31,7 +31,7 @@ public class PersistentItem : MonoBehaviour {
 	}
 
 	public void StoreData() {
-		//Debug.Log ("storing data: player is " + GetComponent<Playable> ().IsCurrentPlayer);
+		Debug.Log ("storing data: player is " + GetComponent<BasicMovement> ().IsCurrentPlayer);
 		data.name = gameObject.name;
 		data.pos = transform.position;
 		data.health = GetComponent<Attackable>().Health;
@@ -45,7 +45,7 @@ public class PersistentItem : MonoBehaviour {
 				break;
 			}
 		}
-		//Debug.Log("ID: " + properName);
+		Debug.Log("ID: " + properName);
 		data.prefabPath = properName; //gameObject.name;*/
 	}
 

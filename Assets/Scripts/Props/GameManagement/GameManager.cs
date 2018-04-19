@@ -47,7 +47,11 @@ public class GameManager : MonoBehaviour
 		}
 
 		DontDestroyOnLoad(gameObject);
+		FindPlayer ();
+		Reset ();
 
+	}
+	public void FindPlayer() {
 		foreach (BasicMovement bm in FindObjectsOfType<BasicMovement>()) {
 			if (bm.IsCurrentPlayer) {
 				SetPlayer (bm);
@@ -56,7 +60,7 @@ public class GameManager : MonoBehaviour
 		}
 	}
 	public void LoadRoom(string roomName) {
-		Debug.Log ("---LOADING ROOM: " + name);
+		Debug.Log ("---LOADING ROOM: " + roomName);
 		GetComponent<SaveObjManager>().ResaveRoom ();
 		SceneManager.LoadScene (roomName, LoadSceneMode.Single);
 	}
@@ -90,5 +94,11 @@ public class GameManager : MonoBehaviour
 			Destroy (m_iconList [p.GetType().ToString()]);
 			m_iconList.Remove (p.GetType().ToString());
 		}
+	}
+
+	public static void Reset() {
+		SaveObjManager.charContainer = new CharacterSaveContainer ();
+		Instance.GetComponent<SaveObjManager>().resetRoomData ();
+		Debug.Log ("Resetting");
 	}
 }
