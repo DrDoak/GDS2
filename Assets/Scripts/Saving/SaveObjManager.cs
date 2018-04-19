@@ -223,6 +223,7 @@ public class SaveObjManager : MonoBehaviour{
 			actor = RecreatePersistentItem(path, data.pos, rotation);
 		}
 		actor.data = data;
+		actor.LoadData ();
 		return actor;
 	}
 	public static void AddCharData(CharData data) {

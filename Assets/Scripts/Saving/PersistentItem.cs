@@ -2,6 +2,8 @@
 using System.Collections.Generic;
 using UnityEngine;
 
+[RequireComponent (typeof (PhysicsSS))]
+[RequireComponent (typeof (Attackable))]
 public class PersistentItem : MonoBehaviour {
 	public string saveID = "autoID";
 	public string prefabName = "none";
@@ -50,24 +52,25 @@ public class PersistentItem : MonoBehaviour {
 	}
 
 	public void LoadData() {
-		name = data.name;
-		transform.position = data.pos;
-		//GetComponent<Attackable>().Health = data.health;
+		Debug.Log ("Loading data");
+		GetComponent<Attackable>().SetHealth( data.health);
+		GetComponent<PhysicsSS> ().SetDirection (data.IsFacingLeft);
 	}
 
-	public void ApplyData() {
+	/*public void ApplyData() {
+		Debug.Log ("applying data");
 		SaveObjManager.AddCharData(data);
-	}
+	}*/
 
 	void OnEnable() {
 		SaveObjManager.OnLoaded += LoadData;
 		SaveObjManager.OnBeforeSave += StoreData;
-		SaveObjManager.OnBeforeSave += ApplyData;
+		//SaveObjManager.OnBeforeSave += ApplyData;
 	}
 
 	void OnDisable() {
 		SaveObjManager.OnLoaded -= LoadData;
 		SaveObjManager.OnBeforeSave -= StoreData;
-		SaveObjManager.OnBeforeSave -= ApplyData;
+		//SaveObjManager.OnBeforeSave -= ApplyData;
 	}
 }
