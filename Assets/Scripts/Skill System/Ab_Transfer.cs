@@ -74,7 +74,11 @@ public class Ab_Transfer : Ability {
         foreach (Property p in toRemove)
             _mPropertiesToKeep.Remove(p);
     }
-
+    /// <summary>
+    /// TransferProperty transfers both properties and skills between player and target
+    /// FOR NEW FUNCTIONALITY:
+    ///     Uncomment CheckRemovals
+    /// </summary>
     private void TransferProperty()
     {
         GUIHandler.ClosePropertyLists();

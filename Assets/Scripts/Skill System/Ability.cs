@@ -32,13 +32,20 @@ public abstract class Ability:ScriptableObject {
     {
         //TriggerAnimation using the string AnimStateName
     }
-
+    /// <summary>
+    /// Old functionality requirement. Use SetTransferLists instead
+    /// </summary>
+    /// <param name="p"></param>
     public void UpdateProperty(Property p)
     {
         _mPropertyToTransfer.Add(p);
 		Debug.Log ("Updated property: " + p);
     }
 
+    /// <summary>
+    /// Old functionality requirement. Use SetTransferLists instead
+    /// </summary>
+    /// <param name="a"></param>
     public void UpdateAbility(Ability a)
     {
         _mSelected.Add(a);
@@ -56,6 +63,12 @@ public abstract class Ability:ScriptableObject {
         _mSelected = new List<Ability>();
     }
 
+    /// <summary>
+    /// Sets the appropriate Lists for transferring between player and Target
+    /// </summary>
+    /// <param name="forPlayerProps"></param>
+    /// <param name="forPlayerAbs"></param>
+    /// <param name="forTargetProps"></param>
     public void SetTransferLists(List<Property> forPlayerProps, List<Ability> forPlayerAbs, List<Property> forTargetProps)
     {
         _mPropertiesToKeep = forPlayerProps;
