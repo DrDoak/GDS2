@@ -14,7 +14,7 @@ public class SpawnBehavior : MonoBehaviour
 	void Start()
 	{
 		m_gm = GameObject.FindObjectOfType<GameManager>();
-		m_spawnPos = m_gm.GetPlayerSpawnPosition();
+		//m_spawnPos = m_gm.GetPlayerSpawnPosition();
 		SpawnThisObject();
 	}
 
