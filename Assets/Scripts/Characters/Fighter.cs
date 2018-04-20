@@ -51,9 +51,8 @@ public class Fighter : MonoBehaviour
 
 	internal void Update()
 	{
+		ActivateStunIfDead ();
 		if (ProgressStun())
-			return;
-		if (ActivateStunIfDead())
 			return;
 		if (ProgressAttack())
 			return;
@@ -73,12 +72,11 @@ public class Fighter : MonoBehaviour
 		return true;
 	}
 
-	private bool ActivateStunIfDead()
+	private void ActivateStunIfDead()
 	{
 		if (m_attackable.Alive)
-			return false;
+			return;
 		StartHitState(3.0f);
-		return true;
 	}
 
 	private bool ProgressAttack()

@@ -110,7 +110,6 @@ public class GameManager : MonoBehaviour
 	public void AddPropIcon(Property p) { 
 		Debug.Log ("Adding?: " + p.GetType().ToString());
 		if (!m_iconList.ContainsKey(p.GetType().ToString()) ){
-			Debug.Log (p.GetType().ToString());
 			System.Type sysType = p.GetType ();
 			Property mp = (Property)GetComponentInChildren (sysType);
 			GameObject go = Instantiate (IconPropertyPrefab);
@@ -122,6 +121,10 @@ public class GameManager : MonoBehaviour
 			}
 			m_iconList [p.GetType().ToString()] = go;
 		}
+	}
+	public Property GetPropInfo(Property p ) {
+		System.Type sysType = p.GetType ();
+		return (Property)GetComponentInChildren (sysType);
 	}
 	public void RemovePropIcon(Property p) {
 		if (m_iconList.ContainsKey (p.GetType().ToString())) {
