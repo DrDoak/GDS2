@@ -209,6 +209,7 @@ public class TransferMenu : MonoBehaviour {
 			Destroy (m_currentGhost);
 		Clear ();
 
+		m_CurrentMenu.holder.TransferProperty (p, m_OtherMenu.holder);
 		//something.SetTransferLists(m_propMenus [0].propertyList, new List<Ability>(), m_propMenus [1].propertyList)
 		AddPropertyHolder (m_propMenus [0].holder, 0);
 		AddPropertyHolder (m_propMenus [1].holder, 1);

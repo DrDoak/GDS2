@@ -57,7 +57,16 @@ public class PropertyHolder : MonoBehaviour {
 			GameManager.Instance.AddPropIcon (p);
 		}
 	}
-
+	public void ClearProperties() {
+		foreach (Property p in m_properties) {
+			p.OnRemoveProperty();
+			Destroy (p);
+			if (m_currentPlayer) {
+				GameManager.Instance.RemovePropIcon (p);
+			}
+		}
+		m_properties.Clear();
+	}
 	public void RemoveProperty(Property p) {
 		if (HasProperty(p)) {
 			Type pType = p.GetType();
@@ -71,17 +80,6 @@ public class PropertyHolder : MonoBehaviour {
 			}
 		}
 	}
-
-	/*public void RemoveProperty(string pName) {
-		if (HasProperty (pName)) {
-			Type pType = Type.GetType (pName);
-			Property mp = (Property)gameObject.GetComponent(pType);
-			m_properties.Remove (mp);
-			mp.OnRemoveProperty ();
-			Destroy(mp);
-		}
-
-	}*/
 
 	public bool HasProperty(Property p) {
 		foreach (Property mp in m_properties) {

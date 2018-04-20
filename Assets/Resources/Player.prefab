@@ -38,7 +38,6 @@ GameObject:
   - component: {fileID: 114068985379166096}
   - component: {fileID: 114430644777843744}
   - component: {fileID: 114397494433287954}
-  - component: {fileID: 114342544975165680}
   - component: {fileID: 114691824885118858}
   m_Layer: 9
   m_Name: Player
@@ -54,7 +53,7 @@ Transform:
   m_PrefabInternal: {fileID: 100100000}
   m_GameObject: {fileID: 1000013670716774}
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_LocalPosition: {x: 49.6, y: -47.49, z: 0}
+  m_LocalPosition: {x: 40.7, y: -38.1, z: 0}
   m_LocalScale: {x: 3, y: 3, z: 4}
   m_Children: []
   m_Father: {fileID: 0}
@@ -176,7 +175,7 @@ MonoBehaviour:
   m_health: 100
   MaxHealth: 100
   Alive: 1
-  DeathTime: 0
+  DeathTime: 2
   Faction: 3
   Resistences: []
   DisplayHealth: 1
@@ -221,21 +220,6 @@ MonoBehaviour:
   m_minDistance: 1
   m_abandonDistance: 10
   m_stuckTime: 0
---- !u!114 &114342544975165680
-MonoBehaviour:
-  m_ObjectHideFlags: 1
-  m_PrefabParentObject: {fileID: 0}
-  m_PrefabInternal: {fileID: 100100000}
-  m_GameObject: {fileID: 1000013670716774}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: e7f3a23a200c3974e9a62192219e0e74, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  Stealable: 1
-  PropertyName: None
-  Description: No description provided.
-  icon: {fileID: 0}
 --- !u!114 &114397494433287954
 MonoBehaviour:
   m_ObjectHideFlags: 1
@@ -399,6 +383,7 @@ MonoBehaviour:
     energy: 100
     prefabPath: 
     targetID: 
+    propertyList: []
     targetDir: 0
     IsCurrentCharacter: 0
     IsFacingLeft: 0
@@ -434,7 +419,7 @@ MonoBehaviour:
   AIPredictionHitbox: {x: 0, y: 0}
   AIPredictionOffset: {x: 0, y: 0}
   Damage: 5
-  Stun: 0.3
+  Stun: 1.5
   HitboxDuration: 0.5
   Knockback: {x: 10, y: 10}
   AnimSpeed: 1

@@ -1,6 +1,7 @@
 ﻿using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using System;
 
 [RequireComponent (typeof (PhysicsSS))]
 [RequireComponent (typeof (Attackable))]
@@ -17,6 +18,7 @@ public class PersistentItem : MonoBehaviour {
 	protected bool m_registryChecked = false;
 
 	public void registryCheck() {
+		m_registryChecked = true;
 		if (data.regID == "") {
 			data.regID = "Not Assigned";
 		}
@@ -24,7 +26,6 @@ public class PersistentItem : MonoBehaviour {
 			Debug.Log ("Object Already registered, deleting duplicate");
 			Destroy(gameObject);
 		}
-		m_registryChecked = true;
 	}
 	void Update () {
 		if (!m_registryChecked) {
@@ -39,6 +40,12 @@ public class PersistentItem : MonoBehaviour {
 		data.health = GetComponent<Attackable>().Health;
 		data.IsCurrentCharacter = GetComponent<BasicMovement> ().IsCurrentPlayer;
 		data.IsFacingLeft = GetComponent<PhysicsSS> ().FacingLeft;
+		Property[] pL = GetComponents<Property> ();
+		string[] allPs = new string[pL.Length];
+		for (int i = 0; i < pL.Length; i++) {
+			allPs [i] = pL [i].GetType().ToString();
+		}
+		data.propertyList = allPs;
 		string properName = "";
 		foreach (char c in gameObject.name) {
 			if (!c.Equals ('(')) {
@@ -55,6 +62,11 @@ public class PersistentItem : MonoBehaviour {
 		Debug.Log ("Loading data");
 		GetComponent<Attackable>().SetHealth( data.health);
 		GetComponent<PhysicsSS> ().SetDirection (data.IsFacingLeft);
+		GetComponent<PropertyHolder> ().ClearProperties ();
+		for (int i = 0; i < data.propertyList.Length; i++) {
+			Type t = Type.GetType (data.propertyList [i]);
+			gameObject.AddComponent( t );
+		}
 	}
 
 	/*public void ApplyData() {
