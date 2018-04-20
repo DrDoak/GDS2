@@ -10,7 +10,7 @@ public class SaveObjManager : MonoBehaviour{
 	static SceneTrigger [] sceneTriggers;
 	bool second = false;
 	string curRoom;
-	static string savePath = "Assets/SaveData/";
+	static string savePath = "SaveData/";
 	List<string> registeredPermItems;
 
 	public static SaveObjManager Instance
@@ -124,7 +124,7 @@ public class SaveObjManager : MonoBehaviour{
 				return true;
 			}
 		}
-		Debug.Log ("new entity. Adding to registry");
+		Debug.Log ("new entity. " + id + " Adding to registry");
 		registeredPermItems.Add(id);
 		c.data.regID = id;
 		Debug.Log ("saved ID is: " + c.data.regID);
