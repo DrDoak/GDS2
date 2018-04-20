@@ -33,6 +33,7 @@ public class TransferMenu : MonoBehaviour {
 
 	bool exiting = false;
 	bool starting = false;
+	bool m_active = false;
 
 	const float SCROLL_SPEED = 1000f;
 	private class PropertyMenu {
@@ -123,6 +124,7 @@ public class TransferMenu : MonoBehaviour {
 		HighlightKey (m_selectedButton);
 		PauseGame.SlowToPause ();
 		starting = true;
+		m_active = true;
 	}
 
 	public void Clear() {
@@ -155,13 +157,16 @@ public class TransferMenu : MonoBehaviour {
 	}
 
 	void Update () {
-		if (exiting) {
+		if (m_active && !exiting && (m_CurrentMenu.holder == null || m_OtherMenu.holder == null))
+			ExitMenu ();
+		if (m_active && exiting) {
 			m_timeSinceExit += Time.unscaledDeltaTime;
 			if (m_timeSinceExit > 0.5f) {
 				GetComponent<RectTransform> ().Translate (new Vector3 (0, 1000f * Time.unscaledDeltaTime, 0f));
 				if (GetComponent<RectTransform> ().localPosition.y > 600) {
 					PauseGame.Resume ();
 					exiting = false;
+					m_active = false;
 				}
 			}
 		}
@@ -208,6 +213,8 @@ public class TransferMenu : MonoBehaviour {
 		if (m_currentGhost != null)
 			Destroy (m_currentGhost);
 		Clear ();
+
+		m_CurrentMenu.holder.TransferProperty (p, m_OtherMenu.holder);
 		//something.SetTransferLists(m_propMenus [0].propertyList, new List<Ability>(), m_propMenus [1].propertyList)
 		AddPropertyHolder (m_propMenus [0].holder, 0);
 		AddPropertyHolder (m_propMenus [1].holder, 1);
@@ -237,7 +244,7 @@ public class TransferMenu : MonoBehaviour {
 			Destroy (m_currentGhost);
 		exiting = true;
 		m_selectedButton = null;
-
+		Debug.Log ("Attempting to quit");
 	}
 
 	void AddPropertyList(List<Property> pList, string userName, int menuIndex = 0) {

@@ -170,7 +170,6 @@ public class Fighter : MonoBehaviour
 	{
 		if (m_currentAttack != null) {
 			m_currentAttack.OnInterrupt (StunTime, defaultStun, hb);
-			Debug.Log ("Attack interrupted");
 		}
 		if (defaultStun) {
 			StartHitState (st);
@@ -223,7 +222,6 @@ public class Fighter : MonoBehaviour
 		m_physics.CanMove = false;
 		m_currentAttack.ResetAndProgress();
 		ExecuteEvents.Execute<ICustomMessageTarget> (gameObject, null, (x, y) => x.OnAttack ());
-		Debug.Log (m_currentAttack);
 		return m_currentAttack;
 	}
 

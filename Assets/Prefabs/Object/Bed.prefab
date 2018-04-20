@@ -27,7 +27,7 @@ GameObject:
   - component: {fileID: 114172135786992996}
   - component: {fileID: 114454105005453386}
   m_Layer: 8
-  m_Name: ExplosiveCrate
+  m_Name: Bed
   m_TagString: Player
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -102,11 +102,6 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: b2f176fa900675a449256a92aa0193c7, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  HitboxClass: {fileID: 1000014045791988, guid: fe2b3e2d27b9cbe498fc049e74fb9ecf,
-    type: 2}
-  HitboxDoTClass: {fileID: 0}
-  HitboxMultiClass: {fileID: 0}
-  LineHBClass: {fileID: 0}
   Faction: 0
 --- !u!114 &114303295318086422
 MonoBehaviour:
@@ -119,11 +114,13 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 6cecf518dba7e8f429d2dc6df9ba9177, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  m_health: 100
   MaxHealth: 200
   Alive: 1
   DeathTime: 0
   Faction: 3
   Resistences: []
+  DisplayHealth: 1
 --- !u!114 &114454105005453386
 MonoBehaviour:
   m_ObjectHideFlags: 1
@@ -135,6 +132,8 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 7209baf354a64e1408f7faeb13592322, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  MaxSlots: 4
+  NumTransfers: 2
 --- !u!114 &114937255538544378
 MonoBehaviour:
   m_ObjectHideFlags: 1

@@ -50,6 +50,7 @@ GameObject:
   - component: {fileID: 114231003385873444}
   - component: {fileID: 114536962784456648}
   - component: {fileID: 114575582161956048}
+  - component: {fileID: 114401216325681676}
   m_Layer: 0
   m_Name: Main Camera
   m_TagString: MainCamera
@@ -1538,6 +1539,17 @@ MonoBehaviour:
   m_FallbackScreenDPI: 96
   m_DefaultSpriteDPI: 96
   m_DynamicPixelsPerUnit: 1
+--- !u!114 &114401216325681676
+MonoBehaviour:
+  m_ObjectHideFlags: 1
+  m_PrefabParentObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 100100000}
+  m_GameObject: {fileID: 1035150032497560}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 51f67a8a3348f384a81aed9c60ce84b6, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
 --- !u!114 &114401705266847712
 MonoBehaviour:
   m_ObjectHideFlags: 1
@@ -2146,9 +2158,10 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 7414a3bfb9b80cc44b2173f65f93211c, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  textboxPrefab: {fileID: 0}
-  dialogueBoxPrefab: {fileID: 0}
-  listPrefab: {fileID: 0}
+  textboxPrefab: {fileID: 1616444891034824, guid: bb84bfd68d96ce2499f5adcfb98267aa,
+    type: 2}
+  textboxStaticPrefab: {fileID: 1807564994350790, guid: 945d6cc25e5bd664b87cebac9927416f,
+    type: 2}
 --- !u!114 &114581608621251998
 MonoBehaviour:
   m_ObjectHideFlags: 1

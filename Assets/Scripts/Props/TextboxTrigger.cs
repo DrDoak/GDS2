@@ -7,6 +7,7 @@ public class TextboxTrigger : Interactable {
 	public string displayText;
 	public bool typeText = true;
 	public bool autoTrigger = true;
+	public bool FloatingHitbox = true;
 	float interval = 2.0f;
 	float currentInterval = 0.0f;
 
@@ -31,7 +32,10 @@ public class TextboxTrigger : Interactable {
 	protected virtual void triggerText() {
 		currentInterval = interval;
 		Color c = new Color (0, 0, 0);
-		TextboxManager.StartSequence (displayText,gameObject);
+		if (FloatingHitbox)
+			TextboxManager.StartSequence (displayText,gameObject);
+		else
+			TextboxManager.StartSequence (displayText);
 	}
 	/* public override void onInteract(BasicMovement interactor) {
 		if (!autoTrigger) {

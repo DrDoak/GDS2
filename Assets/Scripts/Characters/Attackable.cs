@@ -252,13 +252,18 @@ public class Attackable : MonoBehaviour
 		ExecuteEvents.Execute<ICustomMessageTarget> (gameObject, null, (x, y) => x.OnAttack ());
 	}
 
+	public void SetHealth (float newHealth) {
+		DamageObj (Health - newHealth);
+	}
 	public float DamageObj(float damage)
 	{
 		float healthBefore = m_health;
 		m_health = Mathf.Max(Mathf.Min(MaxHealth, m_health - damage), 0);
 		Alive = (m_health > 0);
 		float diff =  m_health - healthBefore;
-		m_display.TakeDamage (diff, m_health);
+		if (m_display != null) {
+			m_display.TakeDamage (diff, m_health);
+		}
 		return diff;
 	}
 
