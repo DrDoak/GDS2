@@ -10,16 +10,28 @@ public class PR_Explosive : Property {
     float stun = 1.0f;
     float hd = 0.5f;
     Vector2 kb = new Vector2(25.0f, 60.0f);
+	float oldDeathTime = 0.0f;
+		
+	public override void OnAddProperty()
+	{
+		oldDeathTime = GetComponent<Attackable> ().DeathTime;
+		GetComponent<Attackable>().DeathTime = 0.0f;
+	}
 
-    public override void OnCreation()
-    {
+	public override void OnRemoveProperty()
+	{
+		GetComponent<Attackable>().DeathTime = oldDeathTime;
+	}
 
-    }
 
 	public override void OnHit(Hitbox hb, GameObject attacker) { 
 		if (hb.Element == ElementType.FIRE) {
-			//Debug.Log ("Additional FIre damage");
-			GetComponent<Attackable> ().DamageObj (hb.Damage * 2f);
+			HitboxDoT hd = hb as HitboxDoT;
+			if (hd != null) {
+				GetComponent<Attackable> ().DamageObj (hb.Damage * Time.deltaTime);
+			} else {
+				GetComponent<Attackable> ().DamageObj (hb.Damage);
+			}
 		}
 	}
     public override void OnDeath()

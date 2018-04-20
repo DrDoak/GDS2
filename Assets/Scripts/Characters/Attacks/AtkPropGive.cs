@@ -8,7 +8,7 @@ public class AtkPropGive : AttackInfo {
 		if (other.GetComponent<PropertyHolder> () != null) {
 			PropertyHolder other_ph = other.GetComponent<PropertyHolder> ();
 			PropertyHolder m_ph = GetComponent<PropertyHolder> ();
-			List<Property> pList = m_ph.GetStealableProperties ();
+			List<Property> pList = m_ph.GetVisibleProperties ();
 			foreach (Property p in pList) {
 				m_ph.TransferProperty (p, other_ph);
 			}

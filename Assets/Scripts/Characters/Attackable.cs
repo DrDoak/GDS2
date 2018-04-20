@@ -44,7 +44,7 @@ public class Attackable : MonoBehaviour
 		m_movementController = GetComponent<PhysicsSS>();
 		m_fighter = GetComponent<Fighter>();
 		m_health = Mathf.Min (m_health, MaxHealth);
-		m_currDeathTime = DeathTime;
+		m_currDeathTime = 0.0f;
 		InitResistences ();
 	}
 
@@ -76,12 +76,12 @@ public class Attackable : MonoBehaviour
 		if (Alive)
 			return;
 		
-		if (m_currDeathTime < 0.0f) {
+		if (m_currDeathTime > DeathTime) {
 			ExecuteEvents.Execute<ICustomMessageTarget> (gameObject, null, (x, y) => x.OnDeath ());
 			Destroy (gameObject);
 		}
 		GetComponent<SpriteRenderer>().color = Color.Lerp (Color.white, Color.black, (DeathTime - m_currDeathTime) / DeathTime);
-		m_currDeathTime -= Time.deltaTime;
+		m_currDeathTime += Time.deltaTime;
 	}
 
 	private void CheckResistanceValidities()

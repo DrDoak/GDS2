@@ -8,6 +8,8 @@ public class FXBody : MonoBehaviour {
 	public GameObject FXFlame;
 	public GameObject FXIron;
 	public GameObject FXLightning;
+	public GameObject FXFan;
+	public GameObject FXBurner;
 
 	public static FXBody Instance
 	{

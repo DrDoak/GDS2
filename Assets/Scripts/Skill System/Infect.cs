@@ -28,12 +28,12 @@ public class Infect : Ability {
 
     private void GetPlayerProperties()
     {
-        _mPlayerProps = Player.GetComponent<PropertyHolder>().GetStealableProperties();
+        _mPlayerProps = Player.GetComponent<PropertyHolder>().GetVisibleProperties();
     }
 
     private void GetTargetProperties()
     {
-        _mEnemyProps = Target.GetComponent<PropertyHolder>().GetStealableProperties();
+        _mEnemyProps = Target.GetComponent<PropertyHolder>().GetVisibleProperties();
     }
 
 

@@ -379,6 +379,8 @@ GameObject:
   - component: {fileID: 114943849274451914}
   - component: {fileID: 114388255198215346}
   - component: {fileID: 114624203721454350}
+  - component: {fileID: 114903073656809836}
+  - component: {fileID: 114219010189781118}
   m_Layer: 0
   m_Name: PR_List
   m_TagString: Untagged
@@ -679,6 +681,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   Stealable: 1
+  Viewable: 1
   PropertyName: Phantom
   Description: Cannot hurt or be hurt
   icon: {fileID: 21300000, guid: 01072e332ce100f41851d90285200017, type: 3}
@@ -1294,6 +1297,22 @@ MonoBehaviour:
   textMessage: 
   P1HealthBar: {fileID: 114410072651279416}
   CurrentTarget: {fileID: 0}
+--- !u!114 &114219010189781118
+MonoBehaviour:
+  m_ObjectHideFlags: 1
+  m_PrefabParentObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 100100000}
+  m_GameObject: {fileID: 1593684310463946}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 066605c4a150d7c4cb19808ef35853ac, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  Stealable: 1
+  Viewable: 1
+  PropertyName: Fan
+  Description: Active when powered by Electricity
+  icon: {fileID: 21300000, guid: 5d560eae4d53c7447a82c777d39837a1, type: 3}
 --- !u!114 &114222262049283436
 MonoBehaviour:
   m_ObjectHideFlags: 1
@@ -1428,6 +1447,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   Stealable: 1
+  Viewable: 1
   PropertyName: Explosive
   Description: Explode on death and Watch out for fire!
   icon: {fileID: 21300000, guid: ad3796c22f155d14a92cda7356fbc7a1, type: 3}
@@ -1470,6 +1490,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   Stealable: 1
+  Viewable: 1
   PropertyName: Decay
   Description: Steady health drain
   icon: {fileID: 21300000, guid: d70ef8b226510c441af3eda5373a1ec9, type: 3}
@@ -1488,6 +1509,8 @@ MonoBehaviour:
   FXIron: {fileID: 1119190279977020, guid: a3a2e53633752fc4fbef70bfff92d7ac, type: 2}
   FXLightning: {fileID: 1332243557514174, guid: de3693835746ee04ea2c6c6622e74081,
     type: 2}
+  FXFan: {fileID: 1437993637605198, guid: b98dc82469662384b8d4c274f55cb454, type: 2}
+  FXBurner: {fileID: 1102092423099954, guid: 27d4075e19b16f640b38c7cdc02ca3bd, type: 2}
 --- !u!114 &114353998176784946
 MonoBehaviour:
   m_ObjectHideFlags: 1
@@ -1500,6 +1523,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   Stealable: 1
+  Viewable: 1
   PropertyName: Biological
   Description: Very slowly heals when damaged
   icon: {fileID: 21300000, guid: 465cf2a099ee6b94787a3adbda53273d, type: 3}
@@ -1515,8 +1539,9 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   Stealable: 1
+  Viewable: 1
   PropertyName: Iron
-  Description: Resist Physical attacks but slow down
+  Description: Resist Physical/Fire attacks but slow down
   icon: {fileID: 21300000, guid: 058d0fcc4a4741444a59c0efa6ca7262, type: 3}
 --- !u!114 &114389900829790488
 MonoBehaviour:
@@ -2288,6 +2313,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   Stealable: 1
+  Viewable: 1
   PropertyName: Flaming
   Description: Constant Fire Hitbox, drains health
   icon: {fileID: 21300000, guid: 3ce279433fa810641908000de8ced2af, type: 3}
@@ -2795,6 +2821,22 @@ MonoBehaviour:
   m_Spacing: {x: 0, y: 0}
   m_Constraint: 0
   m_ConstraintCount: 2
+--- !u!114 &114903073656809836
+MonoBehaviour:
+  m_ObjectHideFlags: 1
+  m_PrefabParentObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 100100000}
+  m_GameObject: {fileID: 1593684310463946}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 330e46a1e797daa459ada4f2ab7f3788, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  Stealable: 0
+  Viewable: 1
+  PropertyName: Mechanical
+  Description: Active when powered by Electricity
+  icon: {fileID: 21300000, guid: 5d560eae4d53c7447a82c777d39837a1, type: 3}
 --- !u!114 &114943849274451914
 MonoBehaviour:
   m_ObjectHideFlags: 1
@@ -2807,8 +2849,9 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   Stealable: 1
+  Viewable: 1
   PropertyName: Electrical
-  Description: Changes attacks to Electric
+  Description: Changes attacks to Electric. Can power Machines
   icon: {fileID: 21300000, guid: f2d1f907122843844a9a6e915e69f0de, type: 3}
 --- !u!124 &124471629614023010
 Behaviour:
