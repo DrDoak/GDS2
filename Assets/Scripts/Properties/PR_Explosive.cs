@@ -25,7 +25,7 @@ public class PR_Explosive : Property {
 
 
 	public override void OnHit(Hitbox hb, GameObject attacker) { 
-		if (hb.Element == ElementType.FIRE) {
+		if (hb.HasElement(ElementType.FIRE)) {
 			HitboxDoT hd = hb as HitboxDoT;
 			if (hd != null) {
 				GetComponent<Attackable> ().DamageObj (hb.Damage * Time.deltaTime);

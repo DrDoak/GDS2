@@ -52,6 +52,6 @@ public class PR_Flaming : Property
 
     public override void OnHitboxCreate(Hitbox hitboxCreated)
     {
-        hitboxCreated.Element = ElementType.FIRE;
+		hitboxCreated.AddElement(ElementType.FIRE);
     }
 }

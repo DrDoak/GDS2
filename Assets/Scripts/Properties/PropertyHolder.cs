@@ -113,9 +113,12 @@ public class PropertyHolder : MonoBehaviour {
 		newGO.transform.parent = transform;
 		Vector3 newS = BodyScale ();
 		//newGO.transform.localScale = newS;
+		float z =  transform.rotation.eulerAngles.z;
 		for (int i = 0; i < newGO.transform.childCount; i++) {
 			ParticleSystem.ShapeModule s = newGO.transform.GetChild (i).GetComponent<ParticleSystem>().shape;
 			s.scale = newS;
+			Vector3 v = newGO.transform.GetChild (i).rotation.eulerAngles;
+			newGO.transform.GetChild (i).rotation = Quaternion.Euler(new Vector3(v.x,v.y, z));
 		}
 		return newGO;
 	}

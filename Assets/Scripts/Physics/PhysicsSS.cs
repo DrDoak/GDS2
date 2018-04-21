@@ -135,7 +135,7 @@ public class PhysicsSS : MonoBehaviour
 			HorizontalCollisions(ref m_velocity);
 		if (m_velocity.y != 0 || m_inputedMove.y != 0)
 			VerticalCollisions(ref m_velocity);
-		transform.Translate (m_velocity);
+		transform.Translate (m_velocity, Space.World);
 	}
 
 	public void AddToVelocity(Vector2 veloc)
@@ -399,10 +399,27 @@ public class PhysicsSS : MonoBehaviour
 		}
 	}
 
-	public Vector2 OrientVectorToDirection(Vector2 v) {
+	public Vector2 OrientVectorToDirection(Vector2 v, bool negativesAllowed = true) {
+		Vector2 newV = new Vector2 (v.x, v.y);
+		float z = transform.localRotation.eulerAngles.z;
+		if (z == 90f) {
+			newV.x = v.y;
+			newV.y = v.x;
+		} else if (z == 180f) {
+			newV.x = -v.x;
+			newV.y = v.y;
+		} else if (z == 270f) {
+			newV.x = v.y;
+			newV.y = -v.x;
+		}
+		Debug.Log ("GameObject: " + gameObject + " z: " + z + " : " + v + " out: " + newV);
 		if (FacingLeft)
-			return new Vector2 (-v.x, v.y);
-		return v;
+			newV.x *= -1f;
+		if (!negativesAllowed) {
+			newV.x = Mathf.Abs (newV.x);
+			newV.y = Mathf.Abs (newV.y);
+		}
+		return newV;
 	}
 
 	public void SetGravityScale(float gravScale) {

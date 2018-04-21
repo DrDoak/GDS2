@@ -18,4 +18,9 @@ public class PR_Wet : Property {
         GetComponent<Attackable>().RemoveResistence(fireResist);
         GetComponent<Attackable>().RemoveResistence(lightningWeakness);
     }
+	public override void OnHitboxCreate (Hitbox hitboxCreated) {
+		if (hitboxCreated.HasElement(ElementType.FIRE)) {
+			hitboxCreated.Damage = 0f;
+		}
+	}
 }

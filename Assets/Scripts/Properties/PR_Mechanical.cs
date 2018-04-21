@@ -36,7 +36,7 @@ public class PR_Mechanical : Property {
 		}
 	}
 	public override void OnHit(Hitbox hb, GameObject attacker) { 
-		if (hb.Element == ElementType.LIGHTNING) {
+		if (hb.HasElement(ElementType.LIGHTNING)) {
 			m_activeTime = 3f;
 		}
 	}

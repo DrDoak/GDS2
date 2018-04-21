@@ -27,7 +27,7 @@ public class PR_Wooden : Property {
 
 	public override void OnHit(Hitbox hb, GameObject attacker) { 
 		if (!GetComponent<PropertyHolder> ().HasProperty ("Flaming")) {
-			if (hb.Element == ElementType.FIRE) {
+			if (hb.HasElement(ElementType.FIRE)) {
 				HitboxDoT hd = hb as HitboxDoT;
 				if (hd != null) {
 					m_flameDamage += (Time.deltaTime * hb.Damage);
@@ -35,7 +35,6 @@ public class PR_Wooden : Property {
 					m_flameDamage += hb.Damage;
 				}
 				if (m_flameDamage >= FLAME_THREASHOLD) {
-					Debug.Log ("Adding flame property");
 					GetComponent<PropertyHolder> ().AddProperty ("PR_Flaming");
 				}
 			}
