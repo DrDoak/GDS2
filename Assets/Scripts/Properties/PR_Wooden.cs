@@ -11,14 +11,14 @@ public class PR_Wooden : Property {
 	{
 		m_flameDamage = 0f;
 		if (GetComponent<BasicMovement> () != null) {
-			GetComponent<BasicMovement> ().SetJumpData (GetComponent<BasicMovement> ().JumpHeight, GetComponent<BasicMovement> ().TimeToJumpApex * 1.5f);
+			GetComponent<BasicMovement> ().SetJumpData (GetComponent<BasicMovement> ().JumpHeight, GetComponent<BasicMovement> ().TimeToJumpApex * 1.4f);
 		}
 	}
 	public override void OnRemoveProperty()
 	{
 		m_flameDamage = 0f;
 		if (GetComponent<BasicMovement> () != null) {
-			GetComponent<BasicMovement> ().SetJumpData (GetComponent<BasicMovement> ().JumpHeight, GetComponent<BasicMovement> ().TimeToJumpApex / 1.5f);
+			GetComponent<BasicMovement> ().SetJumpData (GetComponent<BasicMovement> ().JumpHeight, GetComponent<BasicMovement> ().TimeToJumpApex / 1.4f);
 		}
 	}
 	public override void OnUpdate() { 

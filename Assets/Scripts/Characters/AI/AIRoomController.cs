@@ -12,6 +12,7 @@ public class AIRoomController : MonoBehaviour {
 	}
 
 	void CollectAndInitializeFighters() {
+		/*
 		m_aiFighters = new List<AIFighter>();
 		foreach (BasicMovement fighterObj in Object.FindObjectsOfType<BasicMovement>()) {
 			// Add Fighters that are not the current player
@@ -33,6 +34,7 @@ public class AIRoomController : MonoBehaviour {
 		foreach (AIFighter fighter in m_aiFighters) {
 			fighter.Routine.Init(m_player, fighter);
 		}
+		*/
 	}
 		
 }

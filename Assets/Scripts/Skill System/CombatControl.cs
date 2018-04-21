@@ -56,11 +56,10 @@ public class CombatControl : MonoBehaviour
     {
         if (KeyPressed == KeyCode.None)
             return;
-        Debug.Log("Using ability: " + KeyPressed);
+        //Debug.Log("Using ability: " + KeyPressed);
         Ability a = SlottedAbilities[KeyPressed];
 		if (a != null) {
 			a.UseAbility ();
-			Debug.Log ("Finished Using ability");
 		}
     }
 

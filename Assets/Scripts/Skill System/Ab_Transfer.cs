@@ -13,7 +13,6 @@ public class Ab_Transfer : Ability {
     void Awake()
     {
         ClearLists();
-        Debug.Log("awake");
         UseAttackHitbox = true;
     }
 

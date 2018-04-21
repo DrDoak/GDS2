@@ -20,7 +20,7 @@ public class PropertyHolder : MonoBehaviour {
 		Property[] prList = GetComponents<Property> ();
 		foreach (Property p in prList) {
 			Property mp = GameManager.Instance.GetPropInfo(p);
-			p.PropertyName = mp.PropertyName;
+			p.CopyPropInfo (mp);
 			m_properties.Add (p);
 			p.OnAddProperty ();
 		}
@@ -53,8 +53,7 @@ public class PropertyHolder : MonoBehaviour {
 	public List<Property> GetVisibleProperties() {
 		List<Property> lp = new List<Property> ();
 		foreach (Property p in m_properties) {
-			Property mp = GameManager.Instance.GetPropInfo (p);
-			if (mp.Viewable) {
+			if (p.Viewable) {
 				lp.Add (p);
 			}
 		}
@@ -70,14 +69,11 @@ public class PropertyHolder : MonoBehaviour {
 			return;
 		//Property p = (Property)(System.Activator.CreateInstance (Type.GetType (pName)));
 		Type t = Type.GetType (pName);
-		gameObject.AddComponent (t);
-		Property p = (Property)gameObject.GetComponent (t);
-		Property mp = GameManager.Instance.GetPropInfo(p);
-		p.Viewable = mp.Viewable;
-		p.PropertyName = mp.PropertyName;
-		p.Stealable = mp.Stealable;
-		p.OnAddProperty ();
+		Property p = (Property)gameObject.AddComponent (t);
+
+		p.CopyPropInfo (GameManager.Instance.GetPropInfo (p));
 		m_properties.Add (p);
+		p.OnAddProperty ();
 		if (m_currentPlayer) {
 			GameManager.Instance.AddPropIcon (p);
 		}
@@ -120,7 +116,7 @@ public class PropertyHolder : MonoBehaviour {
 
 	public bool HasProperty(string pName) {
 		foreach (Property p in m_properties) {
-			if (GameManager.Instance.GetPropInfo(p).PropertyName == pName)
+			if (p.PropertyName == pName)
 				return true;
 		}
 		return false;

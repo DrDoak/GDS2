@@ -11,20 +11,24 @@ public class PR_Explosive : Property {
     float hd = 0.5f;
     Vector2 kb = new Vector2(25.0f, 60.0f);
 	float oldDeathTime = 0.0f;
+	Resistence fireVulnerability;
 		
 	public override void OnAddProperty()
 	{
 		oldDeathTime = GetComponent<Attackable> ().DeathTime;
+		fireVulnerability = GetComponent<Attackable>().AddResistence(ElementType.FIRE, -100.0f, false, false);
+
 		GetComponent<Attackable>().DeathTime = 0.0f;
 	}
 
 	public override void OnRemoveProperty()
 	{
 		GetComponent<Attackable>().DeathTime = oldDeathTime;
+		GetComponent<Attackable>().RemoveResistence(fireVulnerability);
 	}
 
 
-	public override void OnHit(Hitbox hb, GameObject attacker) { 
+/*	public override void OnHit(Hitbox hb, GameObject attacker) { 
 		if (hb.HasElement(ElementType.FIRE)) {
 			HitboxDoT hd = hb as HitboxDoT;
 			if (hd != null) {
@@ -33,7 +37,7 @@ public class PR_Explosive : Property {
 				GetComponent<Attackable> ().DamageObj (hb.Damage);
 			}
 		}
-	}
+	}*/
     public override void OnDeath()
     {
 		GetComponent<HitboxMaker>().CreateHitbox(scl, off, dmg, stun, hd, kb, false,false,ElementType.FIRE);

@@ -101,6 +101,5 @@ public class GameManager : MonoBehaviour
 	public static void Reset() {
 		SaveObjManager.charContainer = new CharacterSaveContainer ();
 		Instance.GetComponent<SaveObjManager>().resetRoomData ();
-		Debug.Log ("Resetting");
 	}
 }

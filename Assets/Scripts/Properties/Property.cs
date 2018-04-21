@@ -23,8 +23,19 @@ public class Property : MonoBehaviour, ICustomMessageTarget
 
 	public bool Stealable = true;
 	public bool Viewable = true;
+	public bool Stackable = false;
 
 	public string PropertyName = "None";
 	public string Description = "No description provided.";
 	public Sprite icon;
+
+	public void CopyPropInfo(Property p) {
+		Stealable = p.Stealable;
+		Viewable = p.Viewable;
+		Stackable = p.Stackable;
+
+		PropertyName = p.PropertyName;
+		Description = p.Description;
+		icon = p.icon;;
+	}
 }

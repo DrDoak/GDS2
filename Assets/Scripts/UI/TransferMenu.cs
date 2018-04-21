@@ -237,7 +237,7 @@ public class TransferMenu : MonoBehaviour {
 			return false;
 		}
 		string pName = p.PropertyName;
-		if (other.holder.HasProperty(pName)) {
+		if (other.holder.HasProperty(pName) && !p.Stackable) {
 			return false;
 		}
 		return true;
@@ -338,7 +338,7 @@ public class TransferMenu : MonoBehaviour {
 		string pName = p.PropertyName;
 
 		//Debug.Log (pName + " : " + m_OtherMenu.holderName + " : " + m_OtherMenu.holder.HasProperty(pName));
-		if (m_OtherMenu.holder.HasProperty(pName)) {
+		if (m_OtherMenu.holder.HasProperty(pName) && !p.Stackable) {
 			m_centerImage.sprite = XImage;
 			if (m_listSelected == 1) {
 				m_infoText.text = "CANNOT TRANSFER! You already have this property";
