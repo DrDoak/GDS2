@@ -26,7 +26,6 @@ public class CombatControl : MonoBehaviour
         SlotAbility(keys[0], ScriptableObject.CreateInstance<Ab_Melee>());
         SlotAbility(KeyCode.Return, ScriptableObject.CreateInstance<Ab_Transfer>());
 
-        SlotAbility(KeyCode.Return, ScriptableObject.CreateInstance<Ab_Transfer>());
         Ability.Player = gameObject;
     }
 
@@ -59,8 +58,10 @@ public class CombatControl : MonoBehaviour
             return;
         Debug.Log("Using ability: " + KeyPressed);
         Ability a = SlottedAbilities[KeyPressed];
-        if (a != null)
-            a.UseAbility();
+		if (a != null) {
+			a.UseAbility ();
+			Debug.Log ("Finished Using ability");
+		}
     }
 
     /// <summary>

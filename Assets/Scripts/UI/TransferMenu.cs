@@ -218,7 +218,6 @@ public class TransferMenu : MonoBehaviour {
 
 		m_CurrentMenu.holder.TransferProperty (p, m_OtherMenu.holder);
 
-
 		AddPropertyHolder (m_propMenus [0].holder, 0);
 		AddPropertyHolder (m_propMenus [1].holder, 1);
 		m_transfersRemaining--;

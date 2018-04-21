@@ -412,7 +412,6 @@ public class PhysicsSS : MonoBehaviour
 			newV.x = v.y;
 			newV.y = -v.x;
 		}
-		Debug.Log ("GameObject: " + gameObject + " z: " + z + " : " + v + " out: " + newV);
 		if (FacingLeft)
 			newV.x *= -1f;
 		if (!negativesAllowed) {
