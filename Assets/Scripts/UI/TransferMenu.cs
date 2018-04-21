@@ -217,7 +217,8 @@ public class TransferMenu : MonoBehaviour {
 		Clear ();
 
 		m_CurrentMenu.holder.TransferProperty (p, m_OtherMenu.holder);
-		//something.SetTransferLists(m_propMenus [0].propertyList, new List<Ability>(), m_propMenus [1].propertyList)
+
+
 		AddPropertyHolder (m_propMenus [0].holder, 0);
 		AddPropertyHolder (m_propMenus [1].holder, 1);
 		m_transfersRemaining--;
@@ -244,7 +245,9 @@ public class TransferMenu : MonoBehaviour {
 	}
 
 	void ExitMenu() {
-		if (m_currentGhost != null)
+
+	    GUIHandler.UpdateAbility(m_propMenus[0].propertyList, new List<Ability>(), m_propMenus[1].propertyList);
+        if (m_currentGhost != null)
 			Destroy (m_currentGhost);
 		exiting = true;
 		m_selectedButton = null;
