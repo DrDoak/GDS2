@@ -10,6 +10,7 @@ public class FXBody : MonoBehaviour {
 	public GameObject FXLightning;
 	public GameObject FXFan;
 	public GameObject FXBurner;
+	public GameObject FXWet;
 
 	public static FXBody Instance
 	{

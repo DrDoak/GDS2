@@ -89,6 +89,7 @@ public class GameManager : MonoBehaviour
 		System.Type sysType = p.GetType ();
 		return (Property)GetComponentInChildren (sysType);
 	}
+
 	public void RemovePropIcon(Property p) {
 		if (m_iconList.ContainsKey (p.GetType().ToString())) {
 			Destroy (m_iconList [p.GetType().ToString()]);

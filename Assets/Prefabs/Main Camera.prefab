@@ -384,6 +384,7 @@ GameObject:
   - component: {fileID: 114261705902492600}
   - component: {fileID: 114130609724815702}
   - component: {fileID: 114478940930311460}
+  - component: {fileID: 114104474023580432}
   m_Layer: 0
   m_Name: PR_List
   m_TagString: Untagged
@@ -1033,6 +1034,22 @@ MonoBehaviour:
   - {fileID: 0}
   m_baseMaterial: {fileID: 0}
   m_maskOffset: {x: 0, y: 0, z: 0, w: 0}
+--- !u!114 &114104474023580432
+MonoBehaviour:
+  m_ObjectHideFlags: 1
+  m_PrefabParentObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 100100000}
+  m_GameObject: {fileID: 1593684310463946}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 6d31cb5121dfdc842a45785c03e7bb21, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  Stealable: 1
+  Viewable: 1
+  PropertyName: Wet
+  Description: Cannot Deal Fire Damage. Fire DEF UP. Lightning DEF DOWN
+  icon: {fileID: 0}
 --- !u!114 &114119961682952636
 MonoBehaviour:
   m_ObjectHideFlags: 1
@@ -1485,7 +1502,7 @@ MonoBehaviour:
   Stealable: 1
   Viewable: 1
   PropertyName: Explosive
-  Description: Explode on death and Watch out for fire!
+  Description: Fiery Explosion on Death. Fire DEF DOWN
   icon: {fileID: 21300000, guid: ad3796c22f155d14a92cda7356fbc7a1, type: 3}
 --- !u!114 &114326066465878784
 MonoBehaviour:
@@ -1547,6 +1564,7 @@ MonoBehaviour:
     type: 2}
   FXFan: {fileID: 1437993637605198, guid: b98dc82469662384b8d4c274f55cb454, type: 2}
   FXBurner: {fileID: 1102092423099954, guid: 27d4075e19b16f640b38c7cdc02ca3bd, type: 2}
+  FXWet: {fileID: 1493227779673882, guid: 3dd1b24361e4b354e9fcce2fc85fddc8, type: 2}
 --- !u!114 &114353998176784946
 MonoBehaviour:
   m_ObjectHideFlags: 1
@@ -1577,7 +1595,7 @@ MonoBehaviour:
   Stealable: 1
   Viewable: 1
   PropertyName: Iron
-  Description: Resist Physical/Fire attacks but slow down
+  Description: Become very heavy. Fire DEF UP. Physical DEF UP
   icon: {fileID: 21300000, guid: 058d0fcc4a4741444a59c0efa6ca7262, type: 3}
 --- !u!114 &114389900829790488
 MonoBehaviour:
@@ -2367,7 +2385,7 @@ MonoBehaviour:
   Stealable: 1
   Viewable: 1
   PropertyName: Flaming
-  Description: Constant Fire Hitbox, drains health
+  Description: Constant Fire Hitbox, drains health. Fire DEF UP
   icon: {fileID: 21300000, guid: 3ce279433fa810641908000de8ced2af, type: 3}
 --- !u!114 &114683732583571174
 MonoBehaviour:

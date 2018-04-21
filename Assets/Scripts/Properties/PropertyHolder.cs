@@ -9,14 +9,18 @@ public class PropertyHolder : MonoBehaviour {
 	bool m_currentPlayer;
 	public int MaxSlots = 4;
 	public int NumTransfers = 2;
+	List<string> m_toRemove;
 	// Use this for initialization
 	void Awake () {
 		m_properties = new List<Property> ();
+		m_toRemove = new List<string> ();
 	}
 
 	void Start() {
 		Property[] prList = GetComponents<Property> ();
 		foreach (Property p in prList) {
+			Property mp = GameManager.Instance.GetPropInfo(p);
+			p.PropertyName = mp.PropertyName;
 			m_properties.Add (p);
 			p.OnAddProperty ();
 		}
@@ -28,6 +32,22 @@ public class PropertyHolder : MonoBehaviour {
 			}
 			//GUIHandler.CreatePropertyList(m_properties, "Test List", Vector3.zero);
 		}
+	}
+
+	void LateUpdate() {
+		foreach (string s in m_toRemove ) {
+			Property toRemove = null;
+			foreach (Property p in m_properties) {
+				if (p.PropertyName == s) {
+					toRemove = p;
+					break;
+				}
+			}
+			if (toRemove != null) {
+				RemoveProperty (toRemove);
+			}
+		}
+		m_toRemove.Clear ();
 	}
 
 	public List<Property> GetVisibleProperties() {
@@ -71,6 +91,10 @@ public class PropertyHolder : MonoBehaviour {
 		}
 		m_properties.Clear();
 	}
+	public void RequestRemoveProperty(string pName) {
+		m_toRemove.Add (pName);
+	}
+
 	public void RemoveProperty(Property p) {
 		if (HasProperty(p)) {
 			Type pType = p.GetType();
