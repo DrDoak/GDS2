@@ -25,7 +25,7 @@ public class PR_Flaming : Property
     {
         GetComponent<Attackable>().Faction = FactionType.HOSTILE;
         fireResist = GetComponent<Attackable>().AddResistence(ElementType.FIRE, 50.0f, false, false);
-        fireSurround = GetComponent<HitboxMaker>().CreateHitboxDoT(scl, off, dmg, stun, hd, kb,false, true, ElementType.FIRE);
+		fireSurround = GetComponent<HitboxMaker>().CreateHitboxDoT(GetComponent<PropertyHolder> ().BodyScale (), off, dmg, stun, hd, kb,false, true, ElementType.FIRE);
 		fireSurround.GetComponent<Hitbox> ().Faction = FactionType.HOSTILE;
 		fx = GetComponent<PropertyHolder> ().AddBodyEffect (FXBody.Instance.FXFlame);
     }
@@ -33,7 +33,8 @@ public class PR_Flaming : Property
     public override void OnRemoveProperty()
     {
         GetComponent<Attackable>().RemoveResistence(fireResist);
-        GetComponent<HitboxMaker>().ClearHitboxes();
+       // GetComponent<HitboxMaker>().ClearHitboxes();
+		Destroy(fireSurround);
 		GetComponent<PropertyHolder> ().RemoveBodyEffect (fx);
     }
 
@@ -51,6 +52,6 @@ public class PR_Flaming : Property
 
     public override void OnHitboxCreate(Hitbox hitboxCreated)
     {
-        hitboxCreated.Element = ElementType.FIRE;
+		hitboxCreated.AddElement(ElementType.FIRE);
     }
 }

@@ -34,9 +34,11 @@ public class Hitbox : MonoBehaviour {
 	private bool m_isRandomKnockback = false;
 	public bool IsRandomKnockback { get { return m_isRandomKnockback; } set { m_isRandomKnockback = value; } }
 
+
+	//private ElementType m_element = ElementType.PHYSICAL;
 	[SerializeField]
-	private ElementType m_element = ElementType.PHYSICAL;
-	public ElementType Element { get { return m_element; } set { m_element = value; } }
+	private List<ElementType> m_elementList = new List<ElementType> ();
+	public List<ElementType> Element { get { return m_elementList; } set { m_elementList = value; } }
 
 	public FactionType Faction = FactionType.HOSTILE;
 
@@ -138,7 +140,7 @@ public class Hitbox : MonoBehaviour {
 		if (Creator != null) {
 			Creator.GetComponent<HitboxMaker> ().RegisterHit (atkObj.gameObject, this, r);
 		}
-		CreateHitFX (Element, atkObj.gameObject, Knockback, r);
+		CreateHitFX ( atkObj.gameObject, Knockback, r);
 		return r;
 	}
 
@@ -189,7 +191,25 @@ public class Hitbox : MonoBehaviour {
 		Gizmos.DrawCube (transform.position, transform.lossyScale);
 	}
 
-	protected void CreateHitFX(ElementType et, GameObject hitObj, Vector2 knockback, HitResult hr) {
+	public void AddElement(ElementType element) {
+		m_elementList.Add (element);
+	}
+	public bool HasElement(ElementType element) {
+		foreach (ElementType et in m_elementList) {
+			if (et == element)
+				return true;
+		}
+		return false;
+	}
+	public void ClearElement() {
+		m_elementList.Clear ();
+	}
+	protected void CreateHitFX(GameObject hitObj, Vector2 knockback, HitResult hr) {
+		foreach (ElementType et in m_elementList) {
+			m_hitFX (et, hitObj, knockback, hr);
+		}
+	}
+	private void m_hitFX(ElementType et, GameObject hitObj, Vector2 knockback, HitResult hr) {
 		GameObject fx = null;
 		if (hr == HitResult.BLOCKED) {
 			fx = GameObject.Instantiate (FXHit.Instance.FXHitBlock, hitObj.transform.position, Quaternion.identity);

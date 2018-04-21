@@ -22,6 +22,7 @@ public class Property : MonoBehaviour, ICustomMessageTarget
 	public virtual void OnRemoveProperty() {}
 
 	public bool Stealable = true;
+	public bool Viewable = true;
 
 	public string PropertyName = "None";
 	public string Description = "No description provided.";

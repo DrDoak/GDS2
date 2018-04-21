@@ -8,7 +8,7 @@ public class AtkPropSteal : AttackInfo {
 		if (other.GetComponent<PropertyHolder> () != null) {
 			PropertyHolder other_ph = other.GetComponent<PropertyHolder> ();
 			PropertyHolder m_ph = GetComponent<PropertyHolder> ();
-			List<Property> pList = other_ph.GetStealableProperties ();
+			List<Property> pList = other_ph.GetVisibleProperties ();
 			foreach (Property p in pList) {
 				other_ph.TransferProperty (p, m_ph);
 			}

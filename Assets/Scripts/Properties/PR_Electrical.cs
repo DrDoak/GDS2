@@ -7,7 +7,7 @@ public class PR_Electrical : Property {
 	GameObject fx;
 
 	public override void OnHitboxCreate (Hitbox hitboxCreated) {
-		hitboxCreated.Element = ElementType.LIGHTNING;
+		hitboxCreated.AddElement( ElementType.LIGHTNING );
 		hitboxCreated.Damage = hitboxCreated.Damage * 1.2f;
 	}
 	public override void OnAddProperty()

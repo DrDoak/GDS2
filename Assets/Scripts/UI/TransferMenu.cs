@@ -141,7 +141,7 @@ public class TransferMenu : MonoBehaviour {
 		pm = m_propMenus [coordIndex];
 		pm.holderName = ph.gameObject.name;
 		pm.MaxSlots = ph.MaxSlots;
-		pm.propertyList = ph.GetStealableProperties ();
+		pm.propertyList = ph.GetVisibleProperties ();
 		pm.holder = ph;
 
 		AddPropertyList (pm.propertyList, pm.holderName, coordIndex);
@@ -157,8 +157,10 @@ public class TransferMenu : MonoBehaviour {
 	}
 
 	void Update () {
-		if (m_active && !exiting && (m_CurrentMenu.holder == null || m_OtherMenu.holder == null))
+		if (!starting && m_active && !exiting && (m_CurrentMenu.holder == null || m_OtherMenu.holder == null)) {
+			m_remainingText.text = "Target Is Dead";
 			ExitMenu ();
+		}
 		if (m_active && exiting) {
 			m_timeSinceExit += Time.unscaledDeltaTime;
 			if (m_timeSinceExit > 0.5f) {
@@ -230,6 +232,8 @@ public class TransferMenu : MonoBehaviour {
 	}
 
 	bool CanSelectProperty(Property p, PropertyMenu other) {
+		if (!p.Stealable)
+			return false;
 		if (other.NumProps() >= other.MaxSlots) {
 			return false;
 		}
@@ -247,7 +251,6 @@ public class TransferMenu : MonoBehaviour {
 			Destroy (m_currentGhost);
 		exiting = true;
 		m_selectedButton = null;
-		Debug.Log ("Attempting to quit");
 	}
 
 	void AddPropertyList(List<Property> pList, string userName, int menuIndex = 0) {
@@ -318,6 +321,11 @@ public class TransferMenu : MonoBehaviour {
 			m_selectedButton.GetComponent<Image> ().color = m_highLightedColor;
 		else
 			m_selectedButton.GetComponent<Image> ().color = m_highlightDeactiveColor;
+		if (!p.Stealable) {
+			m_centerImage.sprite = XImage;
+			m_infoText.text = "CANNOT TRANSFER! This property cannot be transferred";
+			return;
+		}
 		if (m_OtherMenu.NumProps() >= m_OtherMenu.MaxSlots) {
 			m_centerImage.sprite = XImage;
 			if (m_listSelected == 1) {

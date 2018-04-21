@@ -30,10 +30,11 @@ public class PropertyHolder : MonoBehaviour {
 		}
 	}
 
-	public List<Property> GetStealableProperties() {
+	public List<Property> GetVisibleProperties() {
 		List<Property> lp = new List<Property> ();
 		foreach (Property p in m_properties) {
-			if (p.Stealable) {
+			Property mp = GameManager.Instance.GetPropInfo (p);
+			if (mp.Viewable) {
 				lp.Add (p);
 			}
 		}
@@ -51,6 +52,9 @@ public class PropertyHolder : MonoBehaviour {
 		Type t = Type.GetType (pName);
 		gameObject.AddComponent (t);
 		Property p = (Property)gameObject.GetComponent (t);
+		Property mp = GameManager.Instance.GetPropInfo(p);
+		p.Viewable = mp.Viewable;
+		p.Stealable = mp.Stealable;
 		p.OnAddProperty ();
 		m_properties.Add (p);
 		if (m_currentPlayer) {
@@ -105,19 +109,25 @@ public class PropertyHolder : MonoBehaviour {
 	}
 
 	public GameObject AddBodyEffect(GameObject go) {
-		Vector3 sc = transform.localScale;
 		GameObject newGO = Instantiate (go, transform.position, Quaternion.identity);
 		newGO.transform.parent = transform;
-		Vector2 v2 =  GetComponent<BoxCollider2D> ().size;
-		Vector3 newS = new Vector3(sc.x * v2.x,sc.y *v2.y,1f);
+		Vector3 newS = BodyScale ();
 		//newGO.transform.localScale = newS;
+		float z =  transform.rotation.eulerAngles.z;
 		for (int i = 0; i < newGO.transform.childCount; i++) {
 			ParticleSystem.ShapeModule s = newGO.transform.GetChild (i).GetComponent<ParticleSystem>().shape;
 			s.scale = newS;
+			Vector3 v = newGO.transform.GetChild (i).rotation.eulerAngles;
+			newGO.transform.GetChild (i).rotation = Quaternion.Euler(new Vector3(v.x,v.y, z));
 		}
 		return newGO;
 	}
 	public void RemoveBodyEffect(GameObject go) {
 		Destroy (go);
+	}
+	public Vector3 BodyScale() {
+		Vector3 sc = transform.localScale;
+		Vector2 v2 =  GetComponent<BoxCollider2D> ().size;
+		return new Vector3(sc.x * v2.x,sc.y *v2.y,1f);
 	}
 }

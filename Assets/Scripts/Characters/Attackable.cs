@@ -44,7 +44,7 @@ public class Attackable : MonoBehaviour
 		m_movementController = GetComponent<PhysicsSS>();
 		m_fighter = GetComponent<Fighter>();
 		m_health = Mathf.Min (m_health, MaxHealth);
-		m_currDeathTime = DeathTime;
+		m_currDeathTime = 0.0f;
 		InitResistences ();
 	}
 
@@ -76,12 +76,12 @@ public class Attackable : MonoBehaviour
 		if (Alive)
 			return;
 		
-		if (m_currDeathTime < 0.0f) {
+		if (m_currDeathTime > DeathTime) {
 			ExecuteEvents.Execute<ICustomMessageTarget> (gameObject, null, (x, y) => x.OnDeath ());
 			Destroy (gameObject);
 		}
 		GetComponent<SpriteRenderer>().color = Color.Lerp (Color.white, Color.black, (DeathTime - m_currDeathTime) / DeathTime);
-		m_currDeathTime -= Time.deltaTime;
+		m_currDeathTime += Time.deltaTime;
 	}
 
 	private void CheckResistanceValidities()
@@ -175,7 +175,7 @@ public class Attackable : MonoBehaviour
 
 	private void ApplyHitToPhysicsSS(Hitbox hb)
 	{
-		Resistence r = GetResistence (hb.Element);
+		Resistence r = GetAverageResistences (hb.Element);
 		Vector2 kb = hb.Knockback - (hb.Knockback * Mathf.Min(1f,(r.KnockbackResist/100f)));
 		if (!m_movementController)
 			return;
@@ -198,7 +198,7 @@ public class Attackable : MonoBehaviour
 	}
 
 	void TakeDoT(HitboxDoT hbdot) {
-		Resistence r =  GetResistence(hbdot.Element);
+		Resistence r =  GetAverageResistences(hbdot.Element);
 		float d = hbdot.Damage - (hbdot.Damage * (r.Percentage / 100f));
 		DamageObj (d * Time.deltaTime);
 		if (hbdot.IsFixedKnockback) {
@@ -224,7 +224,7 @@ public class Attackable : MonoBehaviour
 		if (GetComponent<AIFighter>()) {
 			GetComponent<AIFighter> ().OnHit (hb);
 		}
-		Resistence r =  GetResistence(hb.Element);
+		Resistence r =  GetAverageResistences(hb.Element);
 		float d;
 		d = hb.Damage - (hb.Damage * (r.Percentage / 100f));
 		d = DamageObj (d);
@@ -276,5 +276,20 @@ public class Attackable : MonoBehaviour
 		if (GetComponent<HitboxMaker> ())
 			GetComponent<HitboxMaker> ().Faction = f;
 	}
-		
+
+	private Resistence GetAverageResistences(List<ElementType> le) {
+		Resistence newR = new Resistence ();
+		int numResists = 0;
+		foreach (ElementType et in le) {
+			Resistence pr = GetResistence (et);
+			newR.Percentage += pr.Percentage;
+			newR.KnockbackResist += pr.KnockbackResist;
+			newR.StunResist += pr.StunResist;
+			numResists ++;
+		}
+		newR.Percentage /= numResists;
+		newR.KnockbackResist /= numResists;
+		newR.StunResist /= numResists;
+		return newR;
+	}
 }

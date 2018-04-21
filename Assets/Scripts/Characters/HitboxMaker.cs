@@ -37,7 +37,7 @@ public class HitboxMaker : MonoBehaviour
 		line.IsFixedKnockback = true;
 		line.Creator = gameObject;
 		line.Faction = Faction;
-		line.Element = element;
+		line.AddElement(element);
 		line.Stun = stun;
 		line.Init();
 
@@ -55,16 +55,16 @@ public class HitboxMaker : MonoBehaviour
 		Hitbox newBox = go.GetComponent<Hitbox>();
 		if (followObj) {
 			go.transform.SetParent (gameObject.transform);
-			newBox.transform.localScale = new Vector2 (hitboxScale.x / transform.localScale.x, hitboxScale.y / transform.localScale.y);
+			newBox.transform.localScale = m_physics.OrientVectorToDirection(new Vector2 (hitboxScale.x / transform.localScale.x, hitboxScale.y / transform.localScale.y), false);
 		} else {
-			newBox.SetScale (hitboxScale);
+			newBox.SetScale (m_physics.OrientVectorToDirection(hitboxScale,false));
 		}
 		newBox.Damage = damage;
 		newBox.Duration = hitboxDuration;
 		newBox.Knockback = m_physics.OrientVectorToDirection(knockback);
 		newBox.IsFixedKnockback = fixedKnockback;
 		newBox.Stun = stun;
-		newBox.Element = element;
+		newBox.AddElement(element);
 		newBox.Creator = gameObject;
 		newBox.Faction = Faction;
 		if (followObj)
@@ -85,16 +85,16 @@ public class HitboxMaker : MonoBehaviour
 		HitboxDoT newBox = go.GetComponent<HitboxDoT>();
 		if (followObj) {
 			go.transform.SetParent (gameObject.transform);
-			newBox.transform.localScale = new Vector2 (hitboxScale.x / transform.localScale.x, hitboxScale.y / transform.localScale.y);
+			newBox.transform.localScale = m_physics.OrientVectorToDirection(new Vector2 (hitboxScale.x / transform.localScale.x, hitboxScale.y / transform.localScale.y), false);
 		} else {
-			newBox.SetScale (hitboxScale);
+			newBox.SetScale (m_physics.OrientVectorToDirection(hitboxScale,false));
 		}
 		newBox.Damage = damage;
 		newBox.Duration = hitboxDuration;
 		newBox.Knockback = m_physics.OrientVectorToDirection(knockback);
 		newBox.IsFixedKnockback = fixedKnockback;
 		newBox.Stun = stun;
-		newBox.Element = element;
+		newBox.AddElement(element);
 		newBox.Creator = gameObject;
 		newBox.Faction = Faction;
 
@@ -113,22 +113,18 @@ public class HitboxMaker : MonoBehaviour
 
 		if (followObj) {
 			go.transform.SetParent (gameObject.transform);
-			newBox.transform.localScale = new Vector2 (hitboxScale.x / transform.localScale.x, hitboxScale.y / transform.localScale.y);
+			newBox.transform.localScale = m_physics.OrientVectorToDirection(new Vector2 (hitboxScale.x / transform.localScale.x, hitboxScale.y / transform.localScale.y), false);
 		} else {
-			newBox.SetScale (hitboxScale);
+			newBox.SetScale (m_physics.OrientVectorToDirection(hitboxScale,false));
 		}
-
-		newBox.transform.localScale = new Vector2(hitboxScale.x/ transform.localScale.x,hitboxScale.y/ transform.localScale.y);
 		newBox.Damage = damage;
 		newBox.Duration = hitboxDuration;
 		newBox.Knockback = m_physics.OrientVectorToDirection(knockback);
 		newBox.IsFixedKnockback = fixedKnockback;
 		newBox.Stun = stun;
-		newBox.Element = element;
+		newBox.AddElement(element);
 		newBox.Creator = gameObject;
 		newBox.Faction = Faction;
-		if (followObj)
-			newBox.SetFollow (gameObject,offset);
 
 		ExecuteEvents.Execute<ICustomMessageTarget> (gameObject, null, (x, y) => x.OnHitboxCreate(newBox));
 		newBox.Init();

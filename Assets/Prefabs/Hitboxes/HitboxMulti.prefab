@@ -50,7 +50,7 @@ BoxCollider2D:
   m_Enabled: 1
   m_Density: 1
   m_Material: {fileID: 0}
-  m_IsTrigger: 0
+  m_IsTrigger: 1
   m_UsedByEffector: 0
   m_UsedByComposite: 0
   m_Offset: {x: 0, y: 0}
@@ -84,9 +84,12 @@ MonoBehaviour:
   m_knockback: {x: 0, y: 40}
   m_stun: 0
   m_isRandomKnockback: 0
+  m_element: 0
   Faction: 0
   m_followObj: {fileID: 0}
   m_followOffset: {x: 0, y: 0}
   m_upRightDownLeftColliders: []
+  m_collidedObjs: []
+  m_overlappingControl: []
   refreshTime: 0.1
   timeSinceLast: 0
