@@ -263,13 +263,12 @@ public class TransferMenu : MonoBehaviour {
 	}
 
 	private GameObject AddProperty(GameObject go, Property p) {
-		Property mp = GameManager.Instance.GetPropInfo (p);
 		GameObject selection = Instantiate (SelectionPrefab, go.transform.Find ("PropList"), false);
-		selection.name = mp.PropertyName;
-		selection.GetComponent<ButtonProperty> ().SelectedProperty = mp;
-		selection.transform.Find ("Image").GetComponent<Image>().sprite = mp.icon;
-		selection.transform.Find ("Title").GetComponent<TextMeshProUGUI>().SetText( mp.PropertyName);
-		selection.transform.Find ("Description").GetComponent<TextMeshProUGUI>().SetText( mp.Description);
+		selection.name = p.PropertyName;
+		selection.GetComponent<ButtonProperty> ().SelectedProperty = p;
+		selection.transform.Find ("Image").GetComponent<Image>().sprite = p.icon;
+		selection.transform.Find ("Title").GetComponent<TextMeshProUGUI>().SetText( p.PropertyName);
+		selection.transform.Find ("Description").GetComponent<TextMeshProUGUI>().SetText( p.Description);
 		return selection;
 	}
 

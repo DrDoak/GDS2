@@ -33,9 +33,10 @@ public class Property : MonoBehaviour, ICustomMessageTarget
 		Stealable = p.Stealable;
 		Viewable = p.Viewable;
 		Stackable = p.Stackable;
-
-		PropertyName = p.PropertyName;
-		Description = p.Description;
+		if (PropertyName == "None")
+			PropertyName = p.PropertyName;
+		if (Description == "No description provided.")
+			Description = p.Description;
 		icon = p.icon;;
 	}
 }

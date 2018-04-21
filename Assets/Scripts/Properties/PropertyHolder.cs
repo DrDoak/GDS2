@@ -93,7 +93,14 @@ public class PropertyHolder : MonoBehaviour {
 	}
 
 	public void RemoveProperty(Property p) {
-		if (HasProperty(p)) {
+		if (m_properties.Contains(p)) {
+			m_properties.Remove (p);
+			p.OnRemoveProperty ();
+			Destroy(p);
+			if (m_currentPlayer) {
+				GameManager.Instance.RemovePropIcon (p);
+			}
+		} else if (HasProperty(p)) {
 			Type pType = p.GetType();
 			Property mp = (Property)gameObject.GetComponent(pType);
 			m_properties.Remove (mp);

@@ -17,8 +17,8 @@ public class GUIHandler : MonoBehaviour {
 	public string textMessage = "";
 
 	public Slider P1HealthBar;
-//	public Slider P1EnergyBar;
 	public GameObject CurrentTarget;
+	public TextMeshProUGUI ExpText;
 
 	private bool displayTextMessage = false;
 	private float displayTime;
@@ -59,6 +59,8 @@ public class GUIHandler : MonoBehaviour {
 			var P1Controller = CurrentTarget.GetComponent<Attackable> ();
 
 			P1HealthBar.value = P1Controller.Health;
+			var exp = CurrentTarget.GetComponent<ExperienceHolder> ();
+			ExpText.text = "Data: " + exp.VisualExperience;
 		}
 	}
 
