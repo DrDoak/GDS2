@@ -5,10 +5,11 @@ using UnityEngine;
 public class ChaseTarget : MonoBehaviour {
 
 	public PhysicsSS Target;
+	public Vector2 StartingVel = new Vector2();
 
 	bool Available = true;
 	bool m_targetingPoint = false;
-	float m_delay = 0.0f;
+	float m_currentDelay = 0.0f;
 	Vector3 m_currentTarget;
 	Vector2 m_speed;
 	float m_targetSpeed;
@@ -35,6 +36,9 @@ public class ChaseTarget : MonoBehaviour {
 	[SerializeField]
 	bool m_isDestroyWhenTargetGone = true;
 
+	[SerializeField]
+	float m_Delay = 0.5f;
+
 	void Start () {
 		m_sprite = GetComponent<SpriteRenderer> ();
 		m_currentTarget = new Vector2 ();
@@ -45,6 +49,11 @@ public class ChaseTarget : MonoBehaviour {
 
 	// Update is called once per frame
 	void FixedUpdate () {
+		if (m_currentDelay < m_Delay) {
+			m_currentDelay += Time.deltaTime;
+			transform.Translate (StartingVel * Time.deltaTime,Space.World);
+			return;
+		}
 		if (Target != null) {
 			m_currentTarget = Target.transform.position;
 			float d = Vector3.Distance (m_currentTarget, transform.position);

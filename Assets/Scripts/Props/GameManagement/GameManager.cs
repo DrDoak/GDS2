@@ -16,6 +16,7 @@ public class GameManager : MonoBehaviour
 	public GameObject FXExplosionPrefab;
 	public GameObject FXPropertyPrefab;
 	public GameObject FXPropertyGetPrefab;
+	public GameObject FXExperience;
 
 	public GameObject IconPropertyPrefab;
 	public Sprite UnknownPropertyIcon;

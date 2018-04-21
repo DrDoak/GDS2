@@ -34,6 +34,7 @@ public class Attackable : MonoBehaviour
 	private Fighter m_fighter;
 
 	public bool DisplayHealth = true;
+	public GameObject Killer;
 	private HealthDisplay m_display;
 
 
@@ -80,7 +81,7 @@ public class Attackable : MonoBehaviour
 			ExecuteEvents.Execute<ICustomMessageTarget> (gameObject, null, (x, y) => x.OnDeath ());
 			Destroy (gameObject);
 		}
-		GetComponent<SpriteRenderer>().color = Color.Lerp (Color.white, Color.black, (DeathTime - m_currDeathTime) / DeathTime);
+		GetComponent<SpriteRenderer>().color = Color.Lerp (Color.white, Color.black, (m_currDeathTime) / DeathTime);
 		m_currDeathTime += Time.deltaTime;
 	}
 
@@ -201,6 +202,9 @@ public class Attackable : MonoBehaviour
 		Resistence r =  GetAverageResistences(hbdot.Element);
 		float d = hbdot.Damage - (hbdot.Damage * (r.Percentage / 100f));
 		DamageObj (d * Time.deltaTime);
+		if (Health <= 0f) {
+			Killer = hbdot.Creator;
+		}
 		if (hbdot.IsFixedKnockback) {
 			GetComponent<PhysicsSS>().AddToVelocity (hbdot.Knockback * Time.deltaTime);
 		} else {
@@ -237,7 +241,9 @@ public class Attackable : MonoBehaviour
 			Debug.Log ("Registering Stun: " + s);
 			m_fighter.RegisterStun (s, true, hb);
 		}
-
+		if (Health <= 0f) {
+			Killer = hb.Creator;
+		}
 		if (d == 0f) {
 			return HitResult.NONE;
 		} else if (d < 0f) {

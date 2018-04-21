@@ -4,10 +4,11 @@ using UnityEngine;
 
 public class NanoEffect : MonoBehaviour {
 
+	public GameObject OnDestroyFX;
 	// Use this for initialization
 	void OnDestroy() {
 		if (GetComponent<ChaseTarget>().Target != null) {
-			Instantiate (GameManager.Instance.FXPropertyGetPrefab, GetComponent<ChaseTarget> ().Target.transform);
+			Instantiate (OnDestroyFX, GetComponent<ChaseTarget> ().Target.transform);
 		}
 	}
 }

@@ -40,7 +40,7 @@ GameObject:
   - component: {fileID: 114397494433287954}
   - component: {fileID: 114691824885118858}
   - component: {fileID: 114410743838092432}
-  - component: {fileID: 114285434388085970}
+  - component: {fileID: 114505256567422150}
   m_Layer: 9
   m_Name: Player
   m_TagString: Player
@@ -55,7 +55,7 @@ Transform:
   m_PrefabInternal: {fileID: 100100000}
   m_GameObject: {fileID: 1000013670716774}
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_LocalPosition: {x: -76.54, y: 2.25, z: 0}
+  m_LocalPosition: {x: -76.63, y: 2.9, z: 0}
   m_LocalScale: {x: 3, y: 3, z: 4}
   m_Children: []
   m_Father: {fileID: 0}
@@ -182,6 +182,7 @@ MonoBehaviour:
   Faction: 3
   Resistences: []
   DisplayHealth: 1
+  Killer: {fileID: 0}
 --- !u!114 &114223702759941158
 MonoBehaviour:
   m_ObjectHideFlags: 1
@@ -203,22 +204,6 @@ MonoBehaviour:
   m_inputedMove: {x: 0, y: 0}
   TerminalVelocity: -5
   FacingLeft: 0
---- !u!114 &114285434388085970
-MonoBehaviour:
-  m_ObjectHideFlags: 1
-  m_PrefabParentObject: {fileID: 0}
-  m_PrefabInternal: {fileID: 100100000}
-  m_GameObject: {fileID: 1000013670716774}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: bab5c3f0a5f76fc42b9c3e981bede595, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  Stealable: 1
-  Viewable: 1
-  PropertyName: None
-  Description: No description provided.
-  icon: {fileID: 0}
 --- !u!114 &114319908791872480
 MonoBehaviour:
   m_ObjectHideFlags: 1
@@ -330,6 +315,18 @@ MonoBehaviour:
   AttackFX: {fileID: 0}
   StartupSoundFX: {fileID: 0}
   AttackSoundFX: {fileID: 0}
+--- !u!114 &114505256567422150
+MonoBehaviour:
+  m_ObjectHideFlags: 1
+  m_PrefabParentObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 100100000}
+  m_GameObject: {fileID: 1000013670716774}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 581441eaf6befcc44b2578a2b8ba926b, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  Experience: 0
 --- !u!114 &114506322611810582
 MonoBehaviour:
   m_ObjectHideFlags: 1
@@ -448,8 +445,8 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   IsHitboxCreater: 1
-  HitboxScale: {x: 3, y: 2}
-  HitboxOffset: {x: 0.5, y: -1}
+  HitboxScale: {x: 2, y: 2}
+  HitboxOffset: {x: 1, y: -1}
   UniqueAIPrediction: 0
   AIPredictionHitbox: {x: 0, y: 0}
   AIPredictionOffset: {x: 0, y: 0}
