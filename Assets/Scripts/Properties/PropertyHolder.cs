@@ -9,7 +9,7 @@ public class PropertyHolder : MonoBehaviour {
 	bool m_currentPlayer;
 	public int MaxSlots = 4;
 	public int NumTransfers = 2;
-	List<string> m_toRemove;
+	public List<string> m_toRemove;
 	// Use this for initialization
 	void Awake () {
 		m_properties = new List<Property> ();
@@ -74,6 +74,7 @@ public class PropertyHolder : MonoBehaviour {
 		Property p = (Property)gameObject.GetComponent (t);
 		Property mp = GameManager.Instance.GetPropInfo(p);
 		p.Viewable = mp.Viewable;
+		p.PropertyName = mp.PropertyName;
 		p.Stealable = mp.Stealable;
 		p.OnAddProperty ();
 		m_properties.Add (p);
