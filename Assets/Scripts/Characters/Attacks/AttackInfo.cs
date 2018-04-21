@@ -5,6 +5,42 @@ using UnityEngine;
 public enum AttackState { STARTUP, ATTACK, RECOVERY, INACTIVE };
 public delegate void AttackProgress(AttackState attackState);
 
+[System.Serializable]
+public class AttackAnimInfo {
+	public float AnimSpeed = 1f;
+	public float StartUpTime = 0.5f;
+	public float AttackTime = 0.0f;
+	public float RecoveryTime = 0.5f;
+	public string StartUpAnimation = "none";
+	public string RecoveryAnimation = "none";
+}
+
+[System.Serializable]
+public class HitboxInfo {
+	public bool IsHitboxCreater = true;
+	public Vector2 HitboxScale = new Vector2 (1.0f, 1.0f);
+	public Vector2 HitboxOffset = new Vector2(0f,0f);
+	public float Damage = 10.0f;
+	public float Stun = 0.3f;
+	public float HitboxDuration = 0.5f;
+	public Vector2 Knockback = new Vector2(10.0f,10.0f);
+	public ElementType Element = ElementType.PHYSICAL;
+}
+
+[System.Serializable]
+public class SoundInfo {
+	public GameObject AttackFX;
+	public AudioClip StartupSoundFX;
+	public AudioClip AttackSoundFX;
+}
+
+[System.Serializable]
+public class AIInfo {
+	public bool UniqueAIPrediction = false;
+	public Vector2 AIPredictionHitbox = Vector2.zero;
+	public Vector2 AIPredictionOffset = Vector2.zero;
+}
+
 public class AttackInfo : MonoBehaviour
 {
 	private AttackState m_progress;
@@ -15,32 +51,12 @@ public class AttackInfo : MonoBehaviour
 	public AttackState CurrentProgress { get { return m_progress; } }
 	private event AttackProgress ProgressEvent = delegate {};
 
-	public bool IsHitboxCreater = true;
-	public Vector2 HitboxScale = new Vector2 (1.0f, 1.0f);
-	public Vector2 HitboxOffset = new Vector2(0f,0f);
-
-	public bool UniqueAIPrediction = false;
-	public Vector2 AIPredictionHitbox = Vector2.zero;
-	public Vector2 AIPredictionOffset = Vector2.zero;
-
-	public float Damage = 10.0f;
-	public float Stun = 0.3f;
-	public float HitboxDuration = 0.5f;
-	public Vector2 Knockback = new Vector2(10.0f,10.0f);
-
-	public float AnimSpeed = 1f;
-	public float StartUpTime = 0.5f;
-	public float AttackTime = 0.0f;
-	public float RecoveryTime = 0.5f;
-
 	public string AttackName = "default";
-	public ElementType Element = ElementType.PHYSICAL;
-	public string StartUpAnimation = "none";
-	public string RecoveryAnimation = "none";
 
-	public GameObject AttackFX;
-	public AudioClip StartupSoundFX;
-	public AudioClip AttackSoundFX;
+	public HitboxInfo m_HitboxInfo;
+	public AttackAnimInfo m_AttackAnimInfo;
+	public AIInfo m_AIInfo;
+	public SoundInfo m_SoundInfo;
 
 	protected PhysicsSS m_physics;
 	protected HitboxMaker m_hitboxMaker;
@@ -53,9 +69,9 @@ public class AttackInfo : MonoBehaviour
 		m_progress = AttackState.INACTIVE;
 		m_progressEndTimes = new Dictionary<AttackState, float>()
 		{
-			{ AttackState.STARTUP, StartUpTime },
-			{ AttackState.ATTACK, StartUpTime + AttackTime },
-			{ AttackState.RECOVERY, StartUpTime + AttackTime + RecoveryTime },
+			{ AttackState.STARTUP, m_AttackAnimInfo.StartUpTime },
+			{ AttackState.ATTACK,  m_AttackAnimInfo.StartUpTime +  m_AttackAnimInfo.AttackTime },
+			{ AttackState.RECOVERY,  m_AttackAnimInfo.StartUpTime +  m_AttackAnimInfo.AttackTime +  m_AttackAnimInfo.RecoveryTime },
 			{ AttackState.INACTIVE, 0 }
 		};
 		m_progressCalls = new Dictionary<AttackState, Action>()
@@ -103,15 +119,15 @@ public class AttackInfo : MonoBehaviour
 
 	protected virtual void OnStartUp()
 	{
-		if (UniqueAIPrediction == false){
-			AIPredictionHitbox = HitboxScale;
-			AIPredictionOffset = HitboxOffset;
+		if (m_AIInfo.UniqueAIPrediction == false){
+			m_AIInfo.AIPredictionHitbox = m_HitboxInfo.HitboxScale;
+			m_AIInfo.AIPredictionOffset = m_HitboxInfo.HitboxOffset;
 		}
 	}
 
 	protected virtual void OnAttack()
 	{
-		if (IsHitboxCreater) {
+		if (m_HitboxInfo.IsHitboxCreater) {
 			CreateHitbox ();
 		}
 	}
@@ -127,8 +143,9 @@ public class AttackInfo : MonoBehaviour
 	private void CreateHitbox()
 	{
 		//m_hitboxMaker.AddHitType(HitType);
-		Vector2 offset = m_physics.OrientVectorToDirection(HitboxOffset);
-		m_hitboxMaker.CreateHitbox(HitboxScale, offset, Damage, Stun, HitboxDuration, Knockback, true, true,Element);
+		Vector2 offset = m_physics.OrientVectorToDirection(m_HitboxInfo.HitboxOffset);
+		m_hitboxMaker.CreateHitbox(m_HitboxInfo.HitboxScale, offset, m_HitboxInfo.Damage,
+			m_HitboxInfo.Stun, m_HitboxInfo.HitboxDuration, m_HitboxInfo.Knockback, true, true,m_HitboxInfo.Element);
 	}
 }
 

@@ -130,6 +130,35 @@ public class HitboxMaker : MonoBehaviour
 		newBox.Init();
 		return newBox;
 	}
+	public Projectile CreateProjectile(GameObject prefab, Vector2 creationPoint, Vector2 targetPoint,
+		float projectileSpeed, float damage, float stun, float projectileDuration, Vector2 knockback, 
+		bool fixedKnockback = true, ElementType element = ElementType.PHYSICAL)
+	{
+		Vector2 cOff = m_physics.OrientVectorToDirection(creationPoint);
+		Vector3 newPos = transform.position + (Vector3)cOff;
+		GameObject go;
+		if (prefab != null) {
+			go = GameObject.Instantiate (prefab, newPos, Quaternion.identity);
+		} else {
+			go = GameObject.Instantiate (HitboxList.Instance.StandardProjectile, newPos, Quaternion.identity);
+		}
+		Projectile newProjectile = go.GetComponent<Projectile>();
+
+		newProjectile.Damage = damage;
+		newProjectile.Duration = projectileDuration;
+		newProjectile.Knockback = m_physics.OrientVectorToDirection(knockback);
+		newProjectile.IsFixedKnockback = fixedKnockback;
+		newProjectile.Stun = stun;
+		newProjectile.AddElement(element);
+		newProjectile.Creator = gameObject;
+		newProjectile.Faction = Faction;
+		newProjectile.AimPoint = m_physics.OrientVectorToDirection(targetPoint);
+		newProjectile.ProjectileSpeed = projectileSpeed;
+
+		ExecuteEvents.Execute<ICustomMessageTarget> (gameObject, null, (x, y) => x.OnHitboxCreate(newProjectile));
+		newProjectile.Init();
+		return newProjectile;
+	}
 
 	public void ClearHitboxes()
 	{

@@ -174,29 +174,40 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 4bf5e64c9922bfd46b2d80ea951d85db, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  IsHitboxCreater: 0
-  HitboxScale: {x: 1, y: 1}
-  HitboxOffset: {x: 0, y: 0}
-  UniqueAIPrediction: 1
-  AIPredictionHitbox: {x: 5, y: 0.5}
-  AIPredictionOffset: {x: 3, y: 0}
-  Damage: 25
-  Stun: 0.3
-  HitboxDuration: 0.3
-  Knockback: {x: 10, y: 0}
-  AnimSpeed: 1
-  StartUpTime: 1
-  AttackTime: 0
-  RecoveryTime: 0.5
   AttackName: default
-  Element: 0
-  StartUpAnimation: attack_s
-  RecoveryAnimation: attack_r
-  AttackFX: {fileID: 0}
-  StartupSoundFX: {fileID: 0}
-  AttackSoundFX: {fileID: 0}
-  range: 20
-  direction: {x: 1, y: 0}
+  m_HitboxInfo:
+    IsHitboxCreater: 0
+    HitboxScale: {x: 1, y: 1}
+    HitboxOffset: {x: 0, y: 0}
+    Damage: 10
+    Stun: 0.3
+    HitboxDuration: 0.5
+    Knockback: {x: 10, y: 10}
+    Element: 0
+  m_AttackAnimInfo:
+    AnimSpeed: 0.75
+    StartUpTime: 0.75
+    AttackTime: 0
+    RecoveryTime: 0.5
+    StartUpAnimation: attack_s
+    RecoveryAnimation: attack_r
+  m_AIInfo:
+    UniqueAIPrediction: 1
+    AIPredictionHitbox: {x: 20, y: -1}
+    AIPredictionOffset: {x: 10, y: 2}
+  m_SoundInfo:
+    AttackFX: {fileID: 0}
+    StartupSoundFX: {fileID: 0}
+    AttackSoundFX: {fileID: 0}
+  m_lineInfo:
+    range: 30
+    direction: {x: 1, y: 0}
+    HitboxOffset: {x: 0.3, y: 0.2}
+    Damage: 24
+    Stun: 0.5
+    HitboxDuration: 0.2
+    Knockback: {x: 20, y: 0}
+    Element: 0
 --- !u!114 &114120006898314288
 MonoBehaviour:
   m_ObjectHideFlags: 1
@@ -234,6 +245,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   Stealable: 1
   Viewable: 1
+  Stackable: 0
   PropertyName: None
   Description: No description provided.
   icon: {fileID: 0}

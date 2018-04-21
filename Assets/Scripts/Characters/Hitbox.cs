@@ -124,9 +124,9 @@ public class Hitbox : MonoBehaviour {
 		m_knockback.y = Random.Range (m_knockbackRanges.z, m_knockbackRanges.w);
 	}
 
-	protected HitResult OnAttackable(Attackable atkObj)
+	protected virtual HitResult OnAttackable(Attackable atkObj)
 	{
-		if (!atkObj || (atkObj.gameObject == Creator) || m_collidedObjs.Contains (atkObj) || !atkObj.CanAttack(Faction))
+		if (!canAttack(atkObj))
 			return HitResult.NONE;
 		if (IsRandomKnockback)
 			RandomizeKnockback();
@@ -144,7 +144,9 @@ public class Hitbox : MonoBehaviour {
 		return r;
 	}
 
-
+	protected bool canAttack(Attackable atkObj) {
+		return !(!atkObj || (atkObj.gameObject == Creator) || m_collidedObjs.Contains (atkObj) || !atkObj.CanAttack (Faction));
+	}
 	internal HitResult OnTriggerEnter2D(Collider2D other)
 	{
 		//Debug.Log ("On trigger enter");
