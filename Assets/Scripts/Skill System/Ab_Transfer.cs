@@ -50,8 +50,7 @@ public class Ab_Transfer : Ability {
     private void DisplayPropertyUI()
     {
         GUIHandler.SetAbility(this);
-        GUIHandler.CreatePropertyList(_mPlayerProps, "You", new Vector3(100f, -200f, 0f), false);
-        GUIHandler.CreatePropertyList(_mEnemyProps, "Item to Steal", new Vector3(400f, -200f, 0f), true);
+        GUIHandler.CreateTransferMenu(Player.GetComponent<PropertyHolder>(), Target.GetComponent<PropertyHolder>());
         PauseGame.Pause(false);
         _mTriggered = true;
     }
@@ -76,14 +75,11 @@ public class Ab_Transfer : Ability {
     }
     /// <summary>
     /// TransferProperty transfers both properties and skills between player and target
-    /// FOR NEW FUNCTIONALITY:
-    ///     Uncomment CheckRemovals
     /// </summary>
     private void TransferProperty()
     {
-        GUIHandler.ClosePropertyLists();
         PauseGame.Resume();
-        //CheckRemovals();
+        CheckRemovals();
 
         foreach (Property p in _mPropertyToTransfer)
             Target.GetComponent<PropertyHolder>().TransferProperty(p, Player.GetComponent<PropertyHolder>());
