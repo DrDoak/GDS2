@@ -11,18 +11,18 @@ public class PR_Wooden : Property {
 	{
 		m_flameDamage = 0f;
 		if (GetComponent<BasicMovement> () != null) {
-			GetComponent<BasicMovement> ().SetJumpData (GetComponent<BasicMovement> ().JumpHeight, GetComponent<BasicMovement> ().TimeToJumpApex * 1.5f);
+			GetComponent<BasicMovement> ().SetJumpData (GetComponent<BasicMovement> ().JumpHeight, GetComponent<BasicMovement> ().TimeToJumpApex * 1.4f);
 		}
 	}
 	public override void OnRemoveProperty()
 	{
 		m_flameDamage = 0f;
 		if (GetComponent<BasicMovement> () != null) {
-			GetComponent<BasicMovement> ().SetJumpData (GetComponent<BasicMovement> ().JumpHeight, GetComponent<BasicMovement> ().TimeToJumpApex / 1.5f);
+			GetComponent<BasicMovement> ().SetJumpData (GetComponent<BasicMovement> ().JumpHeight, GetComponent<BasicMovement> ().TimeToJumpApex / 1.4f);
 		}
 	}
 	public override void OnUpdate() { 
-		//m_flameDamage -= Time.deltaTime;
+		m_flameDamage -= (0.2f * Time.deltaTime);
 	}
 
 	public override void OnHit(Hitbox hb, GameObject attacker) { 
@@ -36,6 +36,7 @@ public class PR_Wooden : Property {
 				}
 				if (m_flameDamage >= FLAME_THREASHOLD) {
 					GetComponent<PropertyHolder> ().AddProperty ("PR_Flaming");
+					m_flameDamage = 0f;
 				}
 			}
 		}

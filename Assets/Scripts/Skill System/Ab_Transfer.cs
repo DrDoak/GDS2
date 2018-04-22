@@ -13,7 +13,6 @@ public class Ab_Transfer : Ability {
     void Awake()
     {
         ClearLists();
-        Debug.Log("awake");
         UseAttackHitbox = true;
     }
 
@@ -34,6 +33,7 @@ public class Ab_Transfer : Ability {
                 DisplayPropertyUI();
             else
                 TransferProperty();
+			Target = null;
         }
     }
 
@@ -51,8 +51,8 @@ public class Ab_Transfer : Ability {
     {
         GUIHandler.SetAbility(this);
         GUIHandler.CreateTransferMenu(Player.GetComponent<PropertyHolder>(), Target.GetComponent<PropertyHolder>());
-        PauseGame.Pause(false);
-        _mTriggered = true;
+        //PauseGame.Pause(false);
+       // _mTriggered = true;
     }
 
     private void CheckRemovals()

@@ -9,14 +9,18 @@ public class PropertyHolder : MonoBehaviour {
 	bool m_currentPlayer;
 	public int MaxSlots = 4;
 	public int NumTransfers = 2;
+	public List<string> m_toRemove;
 	// Use this for initialization
 	void Awake () {
 		m_properties = new List<Property> ();
+		m_toRemove = new List<string> ();
 	}
 
 	void Start() {
 		Property[] prList = GetComponents<Property> ();
 		foreach (Property p in prList) {
+			Property mp = GameManager.Instance.GetPropInfo(p);
+			p.CopyPropInfo (mp);
 			m_properties.Add (p);
 			p.OnAddProperty ();
 		}
@@ -30,11 +34,26 @@ public class PropertyHolder : MonoBehaviour {
 		}
 	}
 
+	void LateUpdate() {
+		foreach (string s in m_toRemove ) {
+			Property toRemove = null;
+			foreach (Property p in m_properties) {
+				if (p.PropertyName == s) {
+					toRemove = p;
+					break;
+				}
+			}
+			if (toRemove != null) {
+				RemoveProperty (toRemove);
+			}
+		}
+		m_toRemove.Clear ();
+	}
+
 	public List<Property> GetVisibleProperties() {
 		List<Property> lp = new List<Property> ();
 		foreach (Property p in m_properties) {
-			Property mp = GameManager.Instance.GetPropInfo (p);
-			if (mp.Viewable) {
+			if (p.Viewable) {
 				lp.Add (p);
 			}
 		}
@@ -50,13 +69,11 @@ public class PropertyHolder : MonoBehaviour {
 			return;
 		//Property p = (Property)(System.Activator.CreateInstance (Type.GetType (pName)));
 		Type t = Type.GetType (pName);
-		gameObject.AddComponent (t);
-		Property p = (Property)gameObject.GetComponent (t);
-		Property mp = GameManager.Instance.GetPropInfo(p);
-		p.Viewable = mp.Viewable;
-		p.Stealable = mp.Stealable;
-		p.OnAddProperty ();
+		Property p = (Property)gameObject.AddComponent (t);
+
+		p.CopyPropInfo (GameManager.Instance.GetPropInfo (p));
 		m_properties.Add (p);
+		p.OnAddProperty ();
 		if (m_currentPlayer) {
 			GameManager.Instance.AddPropIcon (p);
 		}
@@ -71,8 +88,19 @@ public class PropertyHolder : MonoBehaviour {
 		}
 		m_properties.Clear();
 	}
+	public void RequestRemoveProperty(string pName) {
+		m_toRemove.Add (pName);
+	}
+
 	public void RemoveProperty(Property p) {
-		if (HasProperty(p)) {
+		if (m_properties.Contains(p)) {
+			m_properties.Remove (p);
+			p.OnRemoveProperty ();
+			Destroy(p);
+			if (m_currentPlayer) {
+				GameManager.Instance.RemovePropIcon (p);
+			}
+		} else if (HasProperty(p)) {
 			Type pType = p.GetType();
 			Property mp = (Property)gameObject.GetComponent(pType);
 			m_properties.Remove (mp);
@@ -95,7 +123,7 @@ public class PropertyHolder : MonoBehaviour {
 
 	public bool HasProperty(string pName) {
 		foreach (Property p in m_properties) {
-			if (GameManager.Instance.GetPropInfo(p).PropertyName == pName)
+			if (p.PropertyName == pName)
 				return true;
 		}
 		return false;

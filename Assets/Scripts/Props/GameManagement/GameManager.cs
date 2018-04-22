@@ -16,6 +16,7 @@ public class GameManager : MonoBehaviour
 	public GameObject FXExplosionPrefab;
 	public GameObject FXPropertyPrefab;
 	public GameObject FXPropertyGetPrefab;
+	public GameObject FXExperience;
 
 	public GameObject IconPropertyPrefab;
 	public Sprite UnknownPropertyIcon;
@@ -89,6 +90,7 @@ public class GameManager : MonoBehaviour
 		System.Type sysType = p.GetType ();
 		return (Property)GetComponentInChildren (sysType);
 	}
+
 	public void RemovePropIcon(Property p) {
 		if (m_iconList.ContainsKey (p.GetType().ToString())) {
 			Destroy (m_iconList [p.GetType().ToString()]);
@@ -99,6 +101,5 @@ public class GameManager : MonoBehaviour
 	public static void Reset() {
 		SaveObjManager.charContainer = new CharacterSaveContainer ();
 		Instance.GetComponent<SaveObjManager>().resetRoomData ();
-		Debug.Log ("Resetting");
 	}
 }

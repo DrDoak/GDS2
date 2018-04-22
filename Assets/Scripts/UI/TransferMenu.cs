@@ -218,7 +218,6 @@ public class TransferMenu : MonoBehaviour {
 
 		m_CurrentMenu.holder.TransferProperty (p, m_OtherMenu.holder);
 
-
 		AddPropertyHolder (m_propMenus [0].holder, 0);
 		AddPropertyHolder (m_propMenus [1].holder, 1);
 		m_transfersRemaining--;
@@ -238,7 +237,7 @@ public class TransferMenu : MonoBehaviour {
 			return false;
 		}
 		string pName = p.PropertyName;
-		if (other.holder.HasProperty(pName)) {
+		if (other.holder.HasProperty(pName) && !p.Stackable) {
 			return false;
 		}
 		return true;
@@ -264,13 +263,12 @@ public class TransferMenu : MonoBehaviour {
 	}
 
 	private GameObject AddProperty(GameObject go, Property p) {
-		Property mp = GameManager.Instance.GetPropInfo (p);
 		GameObject selection = Instantiate (SelectionPrefab, go.transform.Find ("PropList"), false);
-		selection.name = mp.PropertyName;
-		selection.GetComponent<ButtonProperty> ().SelectedProperty = mp;
-		selection.transform.Find ("Image").GetComponent<Image>().sprite = mp.icon;
-		selection.transform.Find ("Title").GetComponent<TextMeshProUGUI>().SetText( mp.PropertyName);
-		selection.transform.Find ("Description").GetComponent<TextMeshProUGUI>().SetText( mp.Description);
+		selection.name = p.PropertyName;
+		selection.GetComponent<ButtonProperty> ().SelectedProperty = p;
+		selection.transform.Find ("Image").GetComponent<Image>().sprite = p.icon;
+		selection.transform.Find ("Title").GetComponent<TextMeshProUGUI>().SetText( p.PropertyName);
+		selection.transform.Find ("Description").GetComponent<TextMeshProUGUI>().SetText( p.Description);
 		return selection;
 	}
 
@@ -339,7 +337,7 @@ public class TransferMenu : MonoBehaviour {
 		string pName = p.PropertyName;
 
 		//Debug.Log (pName + " : " + m_OtherMenu.holderName + " : " + m_OtherMenu.holder.HasProperty(pName));
-		if (m_OtherMenu.holder.HasProperty(pName)) {
+		if (m_OtherMenu.holder.HasProperty(pName) && !p.Stackable) {
 			m_centerImage.sprite = XImage;
 			if (m_listSelected == 1) {
 				m_infoText.text = "CANNOT TRANSFER! You already have this property";

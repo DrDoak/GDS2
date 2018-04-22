@@ -9,7 +9,7 @@ public class PR_Biological : Property
     float damagetime_tracker = 0.0f;
     float damagetime_period = 3.0f;
     float heal_period = 0.1f;
-    float heal_amount = 0.05f;
+    float heal_amount = 2f;
 
     public override void OnUpdate()
     {
@@ -18,7 +18,7 @@ public class PR_Biological : Property
             time_tracker += heal_period;
             if(Time.time > damagetime_tracker + damagetime_period)
             {
-                GetComponent<Attackable>().DamageObj(heal_amount * -1.0f);
+				GetComponent<Attackable>().DamageObj(heal_amount * -1.0f * Time.deltaTime);
             }
             
         }

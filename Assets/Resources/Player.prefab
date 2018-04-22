@@ -39,6 +39,8 @@ GameObject:
   - component: {fileID: 114430644777843744}
   - component: {fileID: 114397494433287954}
   - component: {fileID: 114691824885118858}
+  - component: {fileID: 114410743838092432}
+  - component: {fileID: 114505256567422150}
   m_Layer: 9
   m_Name: Player
   m_TagString: Player
@@ -53,7 +55,7 @@ Transform:
   m_PrefabInternal: {fileID: 100100000}
   m_GameObject: {fileID: 1000013670716774}
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_LocalPosition: {x: 40.7, y: -38.1, z: 0}
+  m_LocalPosition: {x: -76.63, y: 2.9, z: 0}
   m_LocalScale: {x: 3, y: 3, z: 4}
   m_Children: []
   m_Father: {fileID: 0}
@@ -149,6 +151,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   MaxSlots: 4
   NumTransfers: 2
+  m_toRemove: []
 --- !u!114 &114068985379166096
 MonoBehaviour:
   m_ObjectHideFlags: 1
@@ -179,6 +182,7 @@ MonoBehaviour:
   Faction: 3
   Resistences: []
   DisplayHealth: 1
+  Killer: {fileID: 0}
 --- !u!114 &114223702759941158
 MonoBehaviour:
   m_ObjectHideFlags: 1
@@ -252,6 +256,22 @@ MonoBehaviour:
   AirAnimation: air
   AttackSound: {fileID: 0}
   StunTime: 0
+--- !u!114 &114410743838092432
+MonoBehaviour:
+  m_ObjectHideFlags: 1
+  m_PrefabParentObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 100100000}
+  m_GameObject: {fileID: 1000013670716774}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 6003dfd63db640349b0f443958c83178, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  Stealable: 1
+  Viewable: 1
+  PropertyName: None
+  Description: No description provided.
+  icon: {fileID: 0}
 --- !u!114 &114430644777843744
 MonoBehaviour:
   m_ObjectHideFlags: 1
@@ -295,6 +315,18 @@ MonoBehaviour:
   AttackFX: {fileID: 0}
   StartupSoundFX: {fileID: 0}
   AttackSoundFX: {fileID: 0}
+--- !u!114 &114505256567422150
+MonoBehaviour:
+  m_ObjectHideFlags: 1
+  m_PrefabParentObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 100100000}
+  m_GameObject: {fileID: 1000013670716774}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 581441eaf6befcc44b2578a2b8ba926b, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  Experience: 0
 --- !u!114 &114506322611810582
 MonoBehaviour:
   m_ObjectHideFlags: 1
@@ -413,15 +445,15 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   IsHitboxCreater: 1
-  HitboxScale: {x: 2, y: 1}
-  HitboxOffset: {x: 1, y: -0.5}
+  HitboxScale: {x: 2, y: 2}
+  HitboxOffset: {x: 1, y: -1}
   UniqueAIPrediction: 0
   AIPredictionHitbox: {x: 0, y: 0}
   AIPredictionOffset: {x: 0, y: 0}
   Damage: 5
   Stun: 1.5
   HitboxDuration: 0.5
-  Knockback: {x: 10, y: 10}
+  Knockback: {x: 5, y: 10}
   AnimSpeed: 1
   StartUpTime: 0.5
   AttackTime: 0
@@ -433,7 +465,7 @@ MonoBehaviour:
   AttackFX: {fileID: 0}
   StartupSoundFX: {fileID: 0}
   AttackSoundFX: {fileID: 0}
-  StartUpDash: {x: -10, y: 0}
+  StartUpDash: {x: -5, y: 0}
   StartUpDuration: 0.1
   AttackDash: {x: 15, y: 0}
   AttackDashDuration: 0.3
