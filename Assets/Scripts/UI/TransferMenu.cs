@@ -123,6 +123,7 @@ public class TransferMenu : MonoBehaviour {
 		m_selectedButton = m_CurrentMenu.propertyButtons [m_propSelected];
 		HighlightKey (m_selectedButton);
 		PauseGame.SlowToPause ();
+		PauseGame.CanPause = false;
 		starting = true;
 		m_active = true;
 	}
@@ -250,6 +251,7 @@ public class TransferMenu : MonoBehaviour {
 			Destroy (m_currentGhost);
 		exiting = true;
 		m_selectedButton = null;
+		PauseGame.CanPause = true;
 	}
 
 	void AddPropertyList(List<Property> pList, string userName, int menuIndex = 0) {

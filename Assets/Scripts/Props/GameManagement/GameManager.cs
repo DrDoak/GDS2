@@ -31,9 +31,6 @@ public class GameManager : MonoBehaviour
 		set { m_instance = value; }
 	}
 
-	private SessionPersistentData m_data;
-	private GameProgress m_progress;
-
 	void Awake()
 	{
 		m_iconList = new Dictionary<string,GameObject>();

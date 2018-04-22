@@ -10,14 +10,42 @@ public class SaveObjManager : MonoBehaviour{
 	static SceneTrigger [] sceneTriggers;
 	bool second = false;
 	string curRoom;
-	static string savePath = "SaveData/";
+	static string saveBase = "SaveData/";
+	static string savePath = "SaveData/Debug";
+	static string saveFolder = "Debug/";
 	List<string> registeredPermItems;
 
+	public bool SetDirectory(string directory) {
+		if (IsAlphaNum (directory) && directory.Length < 16) {
+			saveFolder = directory + "/";
+			savePath = saveBase + saveFolder;
+			if (!Directory.Exists (savePath)) {
+				Directory.CreateDirectory (savePath);
+			}
+			return true;
+		}
+		return false;
+	}
 	public static SaveObjManager Instance
 	{
 		get { return m_instance; }
 		set { m_instance = value; }
 	}
+	
+	bool IsAlphaNum(string str)
+	{
+		if (string.IsNullOrEmpty(str))
+			return false;
+
+		for (int i = 0; i < str.Length; i++)
+		{
+			if (!(char.IsLetter(str[i])) && (!(char.IsNumber(str[i]))))
+				return false;
+		}
+
+		return true;
+	}
+
 	void Awake()
 	{
 		if (m_instance == null) {

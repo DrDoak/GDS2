@@ -8,8 +8,11 @@ public class PauseGame : MonoBehaviour
 	private static PauseGame m_instance;
 
 	public static bool isPaused = false;
+	public static bool CanPause = true;
 
 	GameObject m_pauseMenuUI;
+	GameObject m_saveScreen;
+	GameObject m_loadScreen;
 
 	float m_slowingSpeed = 0.0f;
 	float m_speedingSpeed = 0.0f;
@@ -32,24 +35,30 @@ public class PauseGame : MonoBehaviour
 			return;
 		}
 		m_pauseMenuUI = transform.GetChild (0).gameObject;
+		m_saveScreen = transform.GetChild (1).gameObject;
+		m_loadScreen = transform.GetChild (2).gameObject;
 		m_pauseMenuUI.SetActive(false);
+		m_saveScreen.SetActive (false);
+		m_loadScreen.SetActive (false);
 	}
 		
 	void Update () {
-		/*if (Input.GetButtonDown ("Pause"))
+		if (CanPause && Input.GetButtonDown ("Pause"))
 		{
 			if (isPaused)
 				Resume();
 			else
 				Pause();
-		}*/
+		}
+	}
+
+	void speedSlowManage() {
 		if (m_slowingSpeed > 0.0f && Time.timeScale > 0f) {
 			Time.timeScale = Mathf.Max (0f, Time.timeScale - (m_slowingSpeed * Time.unscaledDeltaTime));
 			if (Time.timeScale == 0f) {
 				m_slowingSpeed = 0f;
 			}
 		}
-
 		if (m_speedingSpeed > 0.0f && Time.timeScale < 1f) {
 			Time.timeScale = Mathf.Min (1f, Time.timeScale + (m_speedingSpeed * Time.unscaledDeltaTime));
 			if (Time.timeScale == 1f) {
@@ -57,6 +66,7 @@ public class PauseGame : MonoBehaviour
 			}
 		}
 	}
+
 	public static void Resume() {
 		m_instance.mResume ();
 		m_instance.m_slowingSpeed = 0f;
@@ -65,6 +75,8 @@ public class PauseGame : MonoBehaviour
 	public void mResume()
 	{
 		m_pauseMenuUI.SetActive(false);
+		m_saveScreen.SetActive (false);
+		m_loadScreen.SetActive (false);
 		Time.timeScale = 1f;
 		isPaused = false;
 	}
@@ -88,19 +100,33 @@ public class PauseGame : MonoBehaviour
 		}
 		Time.timeScale = 0f;
 		isPaused = true;
-		//Vector3 v = new Vector3 (150f, 300f);
 	}
-
-	public void LoadMenu()
-	{
+//-------------------------------------------------
+	public void MenuResume() {
+		mResume ();
+	}
+	public void MenuNew() {
+	}
+	public void MenuSave() {
+		m_pauseMenuUI.SetActive(false);
+		m_saveScreen.SetActive (true);
+	}
+	public void MenuLoad() {
+		m_pauseMenuUI.SetActive(false);
+		m_loadScreen.SetActive (true);
+	}
+	public void MenuMainMenu() {
 		Time.timeScale = 1f;
 		Debug.Log("Loading Menu...");
 		SceneManager.LoadScene("StartMenu"); //get rid of this hardcode
 	}
-
-	public void QuitGame()
-	{
+	public void MenuExit() {
 		Debug.Log("Quiting Game...");
 		Application.Quit();
+	}
+	public void ReturnToPause() {
+		m_pauseMenuUI.SetActive(true);
+		m_saveScreen.SetActive (false);
+		m_loadScreen.SetActive (false);
 	}
 }

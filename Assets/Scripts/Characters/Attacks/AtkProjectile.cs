@@ -6,7 +6,7 @@ using UnityEngine;
 class ProjectileInfo {
 	public GameObject Projectile;
 	public Vector2 ProjectileCreatePos = new Vector2 (1.0f, 0f);
-	public Vector2 ProjectileAimPoint = new Vector2 (1.0f, 0f);
+	public Vector2 ProjectileAimDirection = new Vector2 (1.0f, 0f);
 	public float ProjectileSpeed = 10.0f;
 	public int PenetrativePower = 1;
 	public float Damage = 10.0f;
@@ -17,7 +17,7 @@ class ProjectileInfo {
 }
 
 
-public class AtkProjectile : AttackInfo {
+public class AtkProjectile : AtkDash {
 	
 	[SerializeField]
 	private ProjectileInfo m_ProjectileData;
@@ -26,7 +26,7 @@ public class AtkProjectile : AttackInfo {
 	{
 		base.OnAttack();
 		Projectile p = GetComponent<HitboxMaker> ().CreateProjectile (m_ProjectileData.Projectile, m_ProjectileData.ProjectileCreatePos, 
-			m_ProjectileData.ProjectileAimPoint, m_ProjectileData.ProjectileSpeed,
+			m_ProjectileData.ProjectileAimDirection, m_ProjectileData.ProjectileSpeed,
 			m_ProjectileData.Damage,m_ProjectileData.Stun,m_ProjectileData.HitboxDuration,m_ProjectileData.Knockback,true,
 			m_ProjectileData.Element);
 		p.PenetrativePower = m_ProjectileData.PenetrativePower;

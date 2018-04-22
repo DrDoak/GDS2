@@ -8,7 +8,6 @@ public class Textbox : MonoBehaviour {
 
 	public DialogueUnit masterSequence;
 	GameObject targetedObj;
-	LineRenderer line;
 	public bool typing;
 	Vector3 lastPos;
 	public string FullText;
@@ -25,9 +24,6 @@ public class Textbox : MonoBehaviour {
 
 	// Use this for initialization
 	void Start () {
-		line = GetComponent<LineRenderer> ();
-		line.sortingOrder = 0;
-		line.transform.position = new Vector3 (transform.position.x, transform.position.y, -3);
 		mText = GetComponentInChildren<TextMeshProUGUI> ();
 		if (!typing) {
 			mText.text = FullText;
@@ -48,8 +44,6 @@ public class Textbox : MonoBehaviour {
 		GetComponentInChildren<Image> ().color = tC;
 		float avgCol = (1.0f - tC.r + 1.0f - tC.g + 1.0f - tC.b)/3f;
 		GetComponentInChildren<TextMeshProUGUI> ().color = new Color(avgCol,avgCol,avgCol,tC.a + 0.5f);
-		line.startColor = tC;
-		line.endColor = tC;
 	}
 	public void setColor(Color C) {
 		tC = C;
@@ -79,8 +73,6 @@ public class Textbox : MonoBehaviour {
 			transform.position += targetedObj.transform.position-lastPos;
 			//transform.position = targetedObj.transform.position;
 			lastPos = targetedObj.transform.position;
-			line.SetPosition (0, transform.position);
-			line.SetPosition (1, targetedObj.transform.position);
 		}
 		if (typing ) {
 			if (lastCharacter < FullText.Length) { 

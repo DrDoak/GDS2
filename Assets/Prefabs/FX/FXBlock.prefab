@@ -36,8 +36,8 @@ GameObject:
   serializedVersion: 5
   m_Component:
   - component: {fileID: 4883328693203258}
-  - component: {fileID: 114112616556618908}
-  - component: {fileID: 114344506030036028}
+  - component: {fileID: 114996710117572380}
+  - component: {fileID: 114257563704503466}
   m_Layer: 0
   m_Name: FXBlock
   m_TagString: Untagged
@@ -95,7 +95,7 @@ Transform:
   m_PrefabInternal: {fileID: 100100000}
   m_GameObject: {fileID: 1538784016814420}
   m_LocalRotation: {x: -0, y: -0, z: -0, w: 1}
-  m_LocalPosition: {x: 0, y: 0, z: -10}
+  m_LocalPosition: {x: -66.46338, y: -2.0962543, z: -10}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_Children:
   - {fileID: 4004929340346128}
@@ -103,7 +103,7 @@ Transform:
   m_Father: {fileID: 0}
   m_RootOrder: 0
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
---- !u!114 &114112616556618908
+--- !u!114 &114257563704503466
 MonoBehaviour:
   m_ObjectHideFlags: 1
   m_PrefabParentObject: {fileID: 0}
@@ -111,26 +111,25 @@ MonoBehaviour:
   m_GameObject: {fileID: 1538784016814420}
   m_Enabled: 1
   m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 54690adb16b8e6b459df3b50229d547f, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  duration: 3
-  toDisappear: 1
-  TickingSound: {fileID: 0}
---- !u!114 &114344506030036028
-MonoBehaviour:
-  m_ObjectHideFlags: 1
-  m_PrefabParentObject: {fileID: 0}
-  m_PrefabInternal: {fileID: 100100000}
-  m_GameObject: {fileID: 1538784016814420}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: c4bb9c6c98612e24e81206957168dc3f, type: 3}
+  m_Script: {fileID: 11500000, guid: 85d440db7d356f24c807e46b19d841d5, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
   followObj: {fileID: 0}
   toFollow: 0
   followOffset: {x: 0, y: 0, z: 0}
+--- !u!114 &114996710117572380
+MonoBehaviour:
+  m_ObjectHideFlags: 1
+  m_PrefabParentObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 100100000}
+  m_GameObject: {fileID: 1538784016814420}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 1cf7e9a5d12ee7342bf242a3d92820a4, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  duration: 3
+  toDisappear: 1
 --- !u!198 &198124058998920664
 ParticleSystem:
   m_ObjectHideFlags: 1

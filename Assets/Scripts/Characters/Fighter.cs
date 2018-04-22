@@ -5,6 +5,8 @@ using UnityEngine.EventSystems;
 
 [RequireComponent (typeof (HitboxMaker))]
 [RequireComponent (typeof (PhysicsSS))]
+[RequireComponent (typeof (AnimatorSprite))]
+[RequireComponent (typeof (Attackable))]
 public class Fighter : MonoBehaviour
 {
 	[HideInInspector]
