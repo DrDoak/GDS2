@@ -56,8 +56,11 @@ public class PersistentItem : MonoBehaviour {
 				break;
 			}
 		}
-		Debug.Log("ID: " + properName);
+		if (GetComponent<ExperienceHolder> ())
+			data.Experience = GetComponent<ExperienceHolder> ().Experience;
+		//Debug.Log("ID: " + properName);
 		data.prefabPath = properName; //gameObject.name;*/
+
 	}
 
 	public void LoadData() {
@@ -70,6 +73,9 @@ public class PersistentItem : MonoBehaviour {
 				Type t = Type.GetType (data.propertyList [i]);
 				gameObject.AddComponent (t);
 			}
+		}
+		if (GetComponent<ExperienceHolder> ()) {
+			GetComponent<ExperienceHolder> ().Experience = data.Experience;
 		}
 	}
 

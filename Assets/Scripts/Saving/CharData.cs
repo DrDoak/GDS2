@@ -16,4 +16,5 @@ public class CharData {
 	public bool IsCurrentCharacter;
 	public bool IsFacingLeft;
 	public bool IsSheathed;
+	public int Experience;
 }
