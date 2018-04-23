@@ -24,6 +24,9 @@ public class PersistentItem : MonoBehaviour {
 		}
 		if (SaveObjManager.CheckRegistered(gameObject)) {
 			Debug.Log ("Object Already registered, deleting duplicate");
+			if (GetComponent<ExperienceDrop> ()) { 
+				GetComponent<ExperienceDrop> ();
+			}
 			Destroy(gameObject);
 		}
 	}

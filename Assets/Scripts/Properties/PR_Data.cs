@@ -5,7 +5,6 @@ using UnityEngine;
 public class PR_Data : Property {
 
 	GameObject fx;
-	const int EXPERIENCE = 200;
 
 	public override void OnAddProperty()
 	{
@@ -36,6 +35,7 @@ public class PR_Data : Property {
 			go.GetComponent<ChaseTarget> ().StartingVel = new Vector2 (Random.Range (-10f, 10f), 10f);
 			expDropped += 50;
 		}
+		Debug.Log ("Dropping experience " + value);
 		if (eh != null)
 			eh.AddExperience ((int)value);
 		GetComponent<PropertyHolder> ().RequestRemoveProperty ("Data");

@@ -62,8 +62,19 @@ public class PropertyHolder : MonoBehaviour {
 		return lp;
 	}
 
-	public void AddProperty(Property p) {
-		AddProperty (p.GetType().Name);
+	public void AddProperty(Property originalP) {
+		if (originalP.GetType() == null)
+			return;
+		//Property p = (Property)(System.Activator.CreateInstance (Type.GetType (pName)));
+		Type t = originalP.GetType();
+		Property p = (Property)gameObject.AddComponent (t);
+
+		p.CopyPropInfo (originalP);
+		p.CopyPropInfo (GameManager.Instance.GetPropInfo (p));
+		m_properties.Add (p);
+		p.OnAddProperty ();
+		if (m_currentPlayer)
+			GameManager.Instance.AddPropIcon (p);
 	}
 
 	public void AddProperty(string pName) {
