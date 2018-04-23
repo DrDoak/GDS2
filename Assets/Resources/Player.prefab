@@ -256,8 +256,8 @@ Transform:
   m_PrefabInternal: {fileID: 100100000}
   m_GameObject: {fileID: 1000013670716774}
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_LocalPosition: {x: -76.63, y: 2.9, z: 0}
-  m_LocalScale: {x: 3, y: 3, z: 4}
+  m_LocalPosition: {x: 9.16, y: -13.93, z: 0}
+  m_LocalScale: {x: 1.5, y: 1.5, z: 4}
   m_Children:
   - {fileID: 224955614621487344}
   - {fileID: 224701550629221996}
@@ -352,6 +352,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 7209baf354a64e1408f7faeb13592322, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  m_properties: []
   MaxSlots: 4
   NumTransfers: 2
   m_toRemove: []
@@ -391,10 +392,17 @@ MonoBehaviour:
     AttackFX: {fileID: 0}
     StartupSoundFX: {fileID: 0}
     AttackSoundFX: {fileID: 0}
+  m_dashInfo:
+    StartUpDash: {x: 0, y: 0}
+    StartUpDuration: 0
+    AttackDash: {x: 0, y: 0}
+    AttackDashDuration: 0
+    ConclusionDash: {x: 0, y: 0}
+    ConclusionDuration: 0
   m_ProjectileData:
     Projectile: {fileID: 0}
     ProjectileCreatePos: {x: 1, y: 0}
-    ProjectileAimPoint: {x: 1, y: 0}
+    ProjectileAimDirection: {x: 1, y: 0}
     ProjectileSpeed: 10
     PenetrativePower: 0
     Damage: 10
@@ -477,10 +485,10 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   IsCurrentPlayer: 1
-  JumpHeight: 6
+  JumpHeight: 3
   TimeToJumpApex: 0.4
-  MoveSpeed: 10
-  jumpVector: {x: 0, y: 29.999998}
+  MoveSpeed: 6
+  jumpVector: {x: 0, y: 15}
   m_inputMove: {x: 0, y: 0}
   m_minDistance: 1
   m_abandonDistance: 10
@@ -718,12 +726,12 @@ MonoBehaviour:
   AttackName: melee
   m_HitboxInfo:
     IsHitboxCreater: 1
-    HitboxScale: {x: 2.5, y: 1}
-    HitboxOffset: {x: 1, y: -0.5}
+    HitboxScale: {x: 2, y: 0.5}
+    HitboxOffset: {x: 0.55, y: -0.25}
     Damage: 24
     Stun: 0.5
     HitboxDuration: 0.25
-    Knockback: {x: 10, y: 10}
+    Knockback: {x: 8, y: 5}
     Element: 0
   m_AttackAnimInfo:
     AnimSpeed: 1
@@ -1172,8 +1180,8 @@ MonoBehaviour:
   AttackName: take
   m_HitboxInfo:
     IsHitboxCreater: 1
-    HitboxScale: {x: 2, y: 2}
-    HitboxOffset: {x: 1.5, y: -1}
+    HitboxScale: {x: 1, y: 1}
+    HitboxOffset: {x: 0.75, y: -0.5}
     Damage: 5
     Stun: 2
     HitboxDuration: 0.5
@@ -1195,9 +1203,9 @@ MonoBehaviour:
     StartupSoundFX: {fileID: 0}
     AttackSoundFX: {fileID: 0}
   m_dashInfo:
-    StartUpDash: {x: -5, y: 0}
+    StartUpDash: {x: -2.5, y: 0}
     StartUpDuration: 0.1
-    AttackDash: {x: 15, y: 0}
+    AttackDash: {x: 7, y: 0}
     AttackDashDuration: 0.1
     ConclusionDash: {x: 0, y: 0}
     ConclusionDuration: 0

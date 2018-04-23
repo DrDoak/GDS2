@@ -198,7 +198,6 @@ public class Hitbox : MonoBehaviour {
 	}
 	public bool HasElement(ElementType element) {
 		foreach (ElementType et in m_elementList) {
-			Debug.Log (et);
 			if (et == element)
 				return true;
 		}

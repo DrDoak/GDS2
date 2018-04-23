@@ -27,6 +27,8 @@ GameObject:
   - component: {fileID: 114287812958643092}
   - component: {fileID: 114956636068374680}
   - component: {fileID: 114738212662302146}
+  - component: {fileID: 114075146464476376}
+  - component: {fileID: 114602981617129310}
   m_Layer: 8
   m_Name: Cabinet
   m_TagString: Player
@@ -41,8 +43,8 @@ Transform:
   m_PrefabInternal: {fileID: 100100000}
   m_GameObject: {fileID: 1786320237212698}
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_LocalPosition: {x: -69.222855, y: 1.3062024, z: 0}
-  m_LocalScale: {x: 1.5, y: 1.5, z: 4}
+  m_LocalPosition: {x: 30.92, y: -15.28, z: 0}
+  m_LocalScale: {x: 1, y: 1, z: 4}
   m_Children: []
   m_Father: {fileID: 0}
   m_RootOrder: 0
@@ -76,7 +78,7 @@ BoxCollider2D:
   m_Enabled: 1
   m_Density: 1
   m_Material: {fileID: 0}
-  m_IsTrigger: 1
+  m_IsTrigger: 0
   m_UsedByEffector: 0
   m_UsedByComposite: 0
   m_Offset: {x: 0, y: 0}
@@ -111,6 +113,37 @@ MonoBehaviour:
   Resistences: []
   DisplayHealth: 1
   Killer: {fileID: 0}
+--- !u!114 &114075146464476376
+MonoBehaviour:
+  m_ObjectHideFlags: 1
+  m_PrefabParentObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 100100000}
+  m_GameObject: {fileID: 1786320237212698}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 92acc23af4626be4fa32c868acac10d0, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  saveID: autoID
+  prefabName: none
+  pos: {x: 0, y: 0, z: 0}
+  targetID: none
+  targetDir: 4
+  healthVal: 0
+  data:
+    regID: Not Assigned
+    name: 
+    pos: {x: 0, y: 0, z: 0}
+    health: 100
+    energy: 100
+    prefabPath: 
+    targetID: 
+    propertyList: []
+    targetDir: 0
+    IsCurrentCharacter: 0
+    IsFacingLeft: 0
+    IsSheathed: 0
+  recreated: 0
 --- !u!114 &114287812958643092
 MonoBehaviour:
   m_ObjectHideFlags: 1
@@ -123,6 +156,23 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   Faction: 0
+--- !u!114 &114602981617129310
+MonoBehaviour:
+  m_ObjectHideFlags: 1
+  m_PrefabParentObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 100100000}
+  m_GameObject: {fileID: 1786320237212698}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 0fab1a9ed0be9674b9975fb90103ae97, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  Stealable: 1
+  Viewable: 1
+  Stackable: 0
+  PropertyName: None
+  Description: No description provided.
+  icon: {fileID: 0}
 --- !u!114 &114738212662302146
 MonoBehaviour:
   m_ObjectHideFlags: 1
@@ -152,6 +202,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 7209baf354a64e1408f7faeb13592322, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  m_properties: []
   MaxSlots: 4
   NumTransfers: 2
   m_toRemove: []

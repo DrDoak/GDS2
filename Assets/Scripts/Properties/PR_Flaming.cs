@@ -25,7 +25,9 @@ public class PR_Flaming : Property
     {
         GetComponent<Attackable>().Faction = FactionType.HOSTILE;
         fireResist = GetComponent<Attackable>().AddResistence(ElementType.FIRE, 50.0f, false, false);
-		fireSurround = GetComponent<HitboxMaker>().CreateHitboxDoT(GetComponent<PropertyHolder> ().BodyScale (), off, dmg, stun, hd, kb,false, true, ElementType.FIRE);
+		Vector3 sc = GetComponent<PropertyHolder> ().BodyScale ();
+		sc *= 1.2f;
+		fireSurround = GetComponent<HitboxMaker>().CreateHitboxDoT(sc, off, dmg, stun, hd, kb,false, true, ElementType.FIRE);
 		fireSurround.GetComponent<Hitbox> ().Faction = FactionType.HOSTILE;
 		fx = GetComponent<PropertyHolder> ().AddBodyEffect (FXBody.Instance.FXFlame);
     }
@@ -45,7 +47,7 @@ public class PR_Flaming : Property
           //  time_tracker += flaming_period;
 			GetComponent<Attackable>().TakeHit(fireSurround);
 			GetComponent<Attackable>().TakeHit(fireSurround);
-			GetComponent<Attackable>().TakeHit(fireSurround);
+			//GetComponent<Attackable>().TakeHit(fireSurround);
         //}
     }
 

@@ -27,7 +27,6 @@ GameObject:
   - component: {fileID: 114799333499058266}
   - component: {fileID: 114918862554736458}
   - component: {fileID: 114361203687084022}
-  - component: {fileID: 114654544392307288}
   m_Layer: 8
   m_Name: Iron_Door
   m_TagString: Player
@@ -42,8 +41,8 @@ Transform:
   m_PrefabInternal: {fileID: 100100000}
   m_GameObject: {fileID: 1420928245615650}
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_LocalPosition: {x: 72.27, y: -29.99, z: 0}
-  m_LocalScale: {x: 1.5, y: 2.000707, z: 4}
+  m_LocalPosition: {x: 54.64, y: -17.96, z: 0}
+  m_LocalScale: {x: 1, y: 1, z: 4}
   m_Children: []
   m_Father: {fileID: 0}
   m_RootOrder: 0
@@ -126,7 +125,47 @@ MonoBehaviour:
   Alive: 1
   DeathTime: 0
   Faction: 3
-  Resistences: []
+  Resistences:
+  - Element: 3
+    Duration: 0
+    Percentage: 0
+    Timed: 0
+    StunResist: 0
+    KnockbackResist: 100
+    AvoidOverflow: 0
+    OverflowAmount: 0
+  - Element: 2
+    Duration: 0
+    Percentage: 0
+    Timed: 0
+    StunResist: 0
+    KnockbackResist: 100
+    AvoidOverflow: 0
+    OverflowAmount: 0
+  - Element: 0
+    Duration: 0
+    Percentage: 0
+    Timed: 0
+    StunResist: 0
+    KnockbackResist: 100
+    AvoidOverflow: 0
+    OverflowAmount: 0
+  - Element: 1
+    Duration: 0
+    Percentage: 0
+    Timed: 0
+    StunResist: 0
+    KnockbackResist: 100
+    AvoidOverflow: 0
+    OverflowAmount: 0
+  - Element: 4
+    Duration: 0
+    Percentage: 0
+    Timed: 0
+    StunResist: 0
+    KnockbackResist: 100
+    AvoidOverflow: 0
+    OverflowAmount: 0
   DisplayHealth: 1
   Killer: {fileID: 0}
 --- !u!114 &114626188665485212
@@ -150,23 +189,6 @@ MonoBehaviour:
   m_inputedMove: {x: 0, y: 0}
   TerminalVelocity: -5
   FacingLeft: 0
---- !u!114 &114654544392307288
-MonoBehaviour:
-  m_ObjectHideFlags: 1
-  m_PrefabParentObject: {fileID: 0}
-  m_PrefabInternal: {fileID: 100100000}
-  m_GameObject: {fileID: 1420928245615650}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 5cb91baab9f732641a0bab1dc8e7a9fc, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  Stealable: 1
-  Viewable: 1
-  Stackable: 0
-  PropertyName: None
-  Description: No description provided.
-  icon: {fileID: 0}
 --- !u!114 &114799333499058266
 MonoBehaviour:
   m_ObjectHideFlags: 1
@@ -190,6 +212,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 7209baf354a64e1408f7faeb13592322, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  m_properties: []
   MaxSlots: 4
   NumTransfers: 2
   m_toRemove: []

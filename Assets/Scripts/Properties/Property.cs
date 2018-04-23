@@ -26,6 +26,7 @@ public class Property : MonoBehaviour, ICustomMessageTarget
 	public bool Stackable = false;
 
 	public string PropertyName = "None";
+	[TextArea(3,5)]
 	public string Description = "No description provided.";
 	public Sprite icon;
 

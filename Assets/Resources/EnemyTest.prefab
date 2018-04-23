@@ -70,8 +70,8 @@ Transform:
   m_PrefabInternal: {fileID: 100100000}
   m_GameObject: {fileID: 1614439459565114}
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_LocalPosition: {x: -53.03, y: 4.93, z: 0}
-  m_LocalScale: {x: 3, y: 3, z: 4}
+  m_LocalPosition: {x: 19.19, y: -14.4, z: 0}
+  m_LocalScale: {x: 1.5, y: 1.5, z: 4}
   m_Children:
   - {fileID: 4416458896656566}
   m_Father: {fileID: 0}
@@ -194,20 +194,20 @@ MonoBehaviour:
     RecoveryAnimation: attack_r
   m_AIInfo:
     UniqueAIPrediction: 1
-    AIPredictionHitbox: {x: 20, y: -1}
-    AIPredictionOffset: {x: 10, y: 2}
+    AIPredictionHitbox: {x: 6, y: -1}
+    AIPredictionOffset: {x: 3, y: 2}
   m_SoundInfo:
     AttackFX: {fileID: 0}
     StartupSoundFX: {fileID: 0}
     AttackSoundFX: {fileID: 0}
   m_lineInfo:
-    range: 30
+    range: 10
     direction: {x: 1, y: 0}
-    HitboxOffset: {x: 0.3, y: 0.2}
+    HitboxOffset: {x: 0.15, y: 0.1}
     Damage: 24
     Stun: 0.5
     HitboxDuration: 0.2
-    Knockback: {x: 20, y: 0}
+    Knockback: {x: 10, y: 0}
     Element: 0
 --- !u!114 &114120006898314288
 MonoBehaviour:
@@ -280,6 +280,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 7209baf354a64e1408f7faeb13592322, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  m_properties: []
   MaxSlots: 4
   NumTransfers: 2
   m_toRemove: []
@@ -358,7 +359,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 6b8f763d8a94c8f48bc3407cf514507a, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  detectionRange: 15
+  detectionRange: 7
   VisibleObjs: []
 --- !u!114 &114588472549599360
 MonoBehaviour:
@@ -456,9 +457,9 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   IsCurrentPlayer: 0
-  JumpHeight: 6
+  JumpHeight: 3
   TimeToJumpApex: 0.4
-  MoveSpeed: 8
+  MoveSpeed: 4
   jumpVector: {x: 0, y: 0}
   m_inputMove: {x: 0, y: 0}
   m_minDistance: 3
