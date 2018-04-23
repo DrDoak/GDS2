@@ -1398,6 +1398,29 @@ Prefab:
     m_RemovedComponents: []
   m_ParentPrefab: {fileID: 100100000, guid: 8b2eaa62f53d99048bd82ea2f6b808db, type: 2}
   m_IsPrefabParent: 0
+--- !u!1 &2058379489 stripped
+GameObject:
+  m_PrefabParentObject: {fileID: 1614439459565114, guid: 8b2eaa62f53d99048bd82ea2f6b808db,
+    type: 2}
+  m_PrefabInternal: {fileID: 2058379488}
+--- !u!114 &2058379490
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_PrefabParentObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 0}
+  m_GameObject: {fileID: 2058379489}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 2f47185e50bc3c74f8408a104b490f7b, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  Stealable: 1
+  Viewable: 1
+  Stackable: 0
+  value: 10
+  PropertyName: None
+  Description: Medicine
+  icon: {fileID: 0}
 --- !u!1001 &2074724253
 Prefab:
   m_ObjectHideFlags: 0
