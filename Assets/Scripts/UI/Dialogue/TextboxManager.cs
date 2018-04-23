@@ -111,7 +111,7 @@ public class TextboxManager : MonoBehaviour {
 	}
 
 	public static Textbox addTextbox(string text,GameObject targetObj) {
-		return m_instance.addTextbox (text, targetObj, true, 0.1f,Color.black);
+		return m_instance.addTextbox (text, targetObj, true, 0.05f,Color.black);
 	}
 	public Textbox addTextbox(string text,GameObject targetObj,bool typeText,float textSpeed, Color tbColor) {
 		Vector2 newPos = new Vector2();
@@ -137,19 +137,18 @@ public class TextboxManager : MonoBehaviour {
 		tb.pauseAfterType = timeAfter;
 		tb.timeBetweenChar = textSpeed;
 		RectTransform[] transforms = newTextbox.GetComponentsInChildren<RectTransform> ();
-		if (text.Length > 50) {
+		if (text.Length > 200) {
 			Vector2 v = new Vector2 ();
 			foreach (RectTransform r in transforms) {
 				v.y = r.sizeDelta.y * 2f;
 				v.x = r.sizeDelta.x;
-				if (text.Length > 100) {
+				if (text.Length > 300) {
 					v.x = r.sizeDelta.x * 1.5f;
 				}
 				r.sizeDelta = v;
 			}
 		}
-		LineRenderer line = newTextbox.GetComponent<LineRenderer> ();
-		line.SetPosition (0, new Vector3 (newPos.x, newPos.y, 0f));
+
 		//textboxes.Add (newTextbox);
 		tb.setColor (tbColor);
 		return tb;

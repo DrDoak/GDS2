@@ -3,8 +3,10 @@ using System.Collections.Generic;
 using UnityEngine;
 
 public class TextboxTrigger : Interactable {
-
+	
+	[TextArea(3,5)]
 	public string displayText;
+
 	public bool typeText = true;
 	public bool autoTrigger = true;
 	public bool FloatingHitbox = true;
