@@ -216,8 +216,9 @@ public class SaveObjManager : MonoBehaviour{
 
 	}
 	public static PersistentItem RecreatePersistentItem(string path, Vector3 position, Quaternion rotation) {
-		//Debug.Log ("re-instantiating object: " + path);
+		Debug.Log ("re-instantiating object: " + path);
 		GameObject prefab = Resources.Load<GameObject>(path);
+		Debug.Log (prefab);
 		GameObject go = GameObject.Instantiate(prefab, position, rotation) as GameObject;
 		PersistentItem actor = go.GetComponent<PersistentItem>() ?? go.AddComponent<PersistentItem>();
 		actor.recreated = true;

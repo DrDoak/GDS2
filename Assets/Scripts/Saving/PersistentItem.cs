@@ -50,7 +50,7 @@ public class PersistentItem : MonoBehaviour {
 		}
 		string properName = "";
 		foreach (char c in gameObject.name) {
-			if (!c.Equals ('(')) {
+			if (!c.Equals ('(') && !c.Equals(' ')) {
 				properName += c;
 			} else {
 				break;
