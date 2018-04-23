@@ -309,9 +309,37 @@ Prefab:
       propertyPath: m_AnchorMax.y
       value: 1
       objectReference: {fileID: 0}
+    - target: {fileID: 114755828500083012, guid: 86856ebb1cc73c04a86115975021a18e,
+        type: 2}
+      propertyPath: value
+      value: 200
+      objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_ParentPrefab: {fileID: 100100000, guid: 86856ebb1cc73c04a86115975021a18e, type: 2}
   m_IsPrefabParent: 0
+--- !u!1 &52149604 stripped
+GameObject:
+  m_PrefabParentObject: {fileID: 1593684310463946, guid: 86856ebb1cc73c04a86115975021a18e,
+    type: 2}
+  m_PrefabInternal: {fileID: 52149603}
+--- !u!114 &52149605
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_PrefabParentObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 0}
+  m_GameObject: {fileID: 52149604}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 2f47185e50bc3c74f8408a104b490f7b, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  Stealable: 1
+  Viewable: 1
+  Stackable: 0
+  value: 25
+  PropertyName: HealthPack
+  Description: Use for 25 Health
+  icon: {fileID: 21300000, guid: 478280faf7595fd4d8f66bfbabd0fb39, type: 3}
 --- !u!1001 &156459734
 Prefab:
   m_ObjectHideFlags: 0

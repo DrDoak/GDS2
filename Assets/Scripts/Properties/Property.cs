@@ -24,6 +24,7 @@ public class Property : MonoBehaviour, ICustomMessageTarget
 	public bool Stealable = true;
 	public bool Viewable = true;
 	public bool Stackable = false;
+	public float value = 0f;
 
 	public string PropertyName = "None";
 	[TextArea(3,5)]
@@ -38,6 +39,8 @@ public class Property : MonoBehaviour, ICustomMessageTarget
 			PropertyName = p.PropertyName;
 		if (Description == "No description provided.")
 			Description = p.Description;
+		if (value == 0f)
+			value = p.value;
 		icon = p.icon;;
 	}
 }

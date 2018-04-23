@@ -4,8 +4,6 @@ using UnityEngine;
 
 public class PR_Data : Property {
 
-	Resistence fireResist;
-	Resistence lightningWeakness;
 	GameObject fx;
 	const int EXPERIENCE = 200;
 
@@ -29,7 +27,7 @@ public class PR_Data : Property {
 		} else {
 			eh = FindObjectOfType<ExperienceHolder> ();
 		}
-		while (expDropped < EXPERIENCE) {
+		while (expDropped < value) {
 			GameObject go = Instantiate (GameManager.Instance.FXExperience, transform.position, Quaternion.identity);
 			if (eh != null) {
 				go.GetComponent<ChaseTarget> ().Target = eh.GetComponent<PhysicsSS> ();
@@ -39,7 +37,7 @@ public class PR_Data : Property {
 			expDropped += 50;
 		}
 		if (eh != null)
-			eh.AddExperience (EXPERIENCE);
+			eh.AddExperience ((int)value);
 		GetComponent<PropertyHolder> ().RequestRemoveProperty ("Data");
 	}
 }
