@@ -84,7 +84,7 @@ public class BasicMovement : MonoBehaviour
 	internal void JumpMovement() {
 		if (Input.GetButtonDown("Jump")) {
 			if (m_inputMove.y < -0f) {
-				m_physics.setDropTime(0.05f);
+				m_physics.setDropTime(0.2f);
 			}
 			else {
 				AttemptJump ();
@@ -203,7 +203,7 @@ public class BasicMovement : MonoBehaviour
 			m_verticalStuckTime += Time.deltaTime;
 			if (m_verticalStuckTime > NPC_STUCK_JUMP_TIME) {
 				m_verticalStuckTime = 0f;
-				m_physics.setDropTime(0.05f);
+				m_physics.setDropTime(0.2f);
 			}
 		} else {
 			m_verticalStuckTime = 0f;

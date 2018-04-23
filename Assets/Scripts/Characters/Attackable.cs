@@ -206,7 +206,8 @@ public class Attackable : MonoBehaviour
 			Killer = hbdot.Creator;
 		}
 		if (hbdot.IsFixedKnockback) {
-			GetComponent<PhysicsSS>().AddToVelocity (hbdot.Knockback * Time.deltaTime);
+			Vector2 kb = hbdot.Knockback  - (hbdot.Knockback * Mathf.Min(1f,(r.KnockbackResist/100f)));
+			GetComponent<PhysicsSS>().AddToVelocity (kb * Time.deltaTime);
 		} else {
 			Vector3 otherPos = gameObject.transform.position;
 			float angle = Mathf.Atan2 (transform.position.y - otherPos.y, transform.position.x - otherPos.x); //*180.0f / Mathf.PI;
@@ -238,7 +239,6 @@ public class Attackable : MonoBehaviour
 		if (hb.Stun > 0f && m_fighter) {
 			if (s <= 0f)
 				return HitResult.BLOCKED;
-			Debug.Log ("Registering Stun: " + s);
 			m_fighter.RegisterStun (s, true, hb);
 		}
 		if (Health <= 0f) {

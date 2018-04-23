@@ -50,6 +50,7 @@ public class PauseGame : MonoBehaviour
 			else
 				Pause();
 		}
+		speedSlowManage ();
 	}
 
 	void speedSlowManage() {

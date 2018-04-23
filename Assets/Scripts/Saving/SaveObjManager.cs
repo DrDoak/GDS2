@@ -136,7 +136,9 @@ public class SaveObjManager : MonoBehaviour{
 
 	bool m_checkRegister(GameObject go) {
 		PersistentItem c = go.GetComponent<PersistentItem> ();
-		string id = go.name + "-" + SceneManager.GetActiveScene ().name + ((int)go.transform.position.x).ToString() + ((int)go.transform.position.y).ToString();
+		string xID = (((int)(go.transform.position.x/2))*2).ToString ();
+		string yID = (((int)(go.transform.position.y/2))*2).ToString ();
+		string id = go.name + "-" + SceneManager.GetActiveScene ().name + xID + yID;
 		//Debug.Log ("Checking if character: " + c + " registered id is: " + c.data.regID);
 		//Debug.Log ("incoming ID: " + c.data.regID);
 		if (c.data.regID != "Not Assigned") {

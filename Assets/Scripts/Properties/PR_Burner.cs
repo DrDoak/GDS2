@@ -15,7 +15,7 @@ public class PR_Burner : PR_Mechanical {
 	GameObject fx;
 
 	protected override void OnActive() {
-		dotBox = GetComponent<HitboxMaker>().CreateHitboxDoT(scl, off, dmg, stun, hd, kb,true, true, ElementType.PHYSICAL);
+		dotBox = GetComponent<HitboxMaker>().CreateHitboxDoT(scl, off, dmg, stun, hd, kb,true, true, ElementType.FIRE);
 		fx = GetComponent<PropertyHolder> ().AddBodyEffect (FXBody.Instance.FXBurner);
 	}
 	protected override void OnDisable() {
