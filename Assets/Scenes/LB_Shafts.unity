@@ -224,6 +224,7 @@ MonoBehaviour:
   Stealable: 1
   Viewable: 1
   Stackable: 0
+  value: 0
   PropertyName: None
   Description: No description provided.
   icon: {fileID: 0}
@@ -582,6 +583,26 @@ Prefab:
       propertyPath: m_AnchorMax.y
       value: 0
       objectReference: {fileID: 0}
+    - target: {fileID: 114490317635394222, guid: 86856ebb1cc73c04a86115975021a18e,
+        type: 2}
+      propertyPath: UseCameraLimits
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 114490317635394222, guid: 86856ebb1cc73c04a86115975021a18e,
+        type: 2}
+      propertyPath: minVertex.y
+      value: -26
+      objectReference: {fileID: 0}
+    - target: {fileID: 114490317635394222, guid: 86856ebb1cc73c04a86115975021a18e,
+        type: 2}
+      propertyPath: maxVertex.x
+      value: 65
+      objectReference: {fileID: 0}
+    - target: {fileID: 114490317635394222, guid: 86856ebb1cc73c04a86115975021a18e,
+        type: 2}
+      propertyPath: maxVertex.y
+      value: -2
+      objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_ParentPrefab: {fileID: 100100000, guid: 86856ebb1cc73c04a86115975021a18e, type: 2}
   m_IsPrefabParent: 0
@@ -750,6 +771,7 @@ MonoBehaviour:
   Stealable: 1
   Viewable: 1
   Stackable: 0
+  value: 0
   PropertyName: None
   Description: No description provided.
   icon: {fileID: 0}
@@ -1106,11 +1128,11 @@ Prefab:
     m_Modifications:
     - target: {fileID: 4101088348531282, guid: 8c08a87432167bb4da031f3030a08646, type: 2}
       propertyPath: m_LocalPosition.x
-      value: 13.56
+      value: 13.28
       objectReference: {fileID: 0}
     - target: {fileID: 4101088348531282, guid: 8c08a87432167bb4da031f3030a08646, type: 2}
       propertyPath: m_LocalPosition.y
-      value: -16.08
+      value: -16.02
       objectReference: {fileID: 0}
     - target: {fileID: 4101088348531282, guid: 8c08a87432167bb4da031f3030a08646, type: 2}
       propertyPath: m_LocalPosition.z
@@ -1134,7 +1156,7 @@ Prefab:
       objectReference: {fileID: 0}
     - target: {fileID: 4101088348531282, guid: 8c08a87432167bb4da031f3030a08646, type: 2}
       propertyPath: m_RootOrder
-      value: 11
+      value: 12
       objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_ParentPrefab: {fileID: 100100000, guid: 8c08a87432167bb4da031f3030a08646, type: 2}
