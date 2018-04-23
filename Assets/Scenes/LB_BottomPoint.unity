@@ -457,12 +457,12 @@ Prefab:
     - target: {fileID: 224651395152028732, guid: 86856ebb1cc73c04a86115975021a18e,
         type: 2}
       propertyPath: m_AnchorMax.x
-      value: 1
+      value: 0
       objectReference: {fileID: 0}
     - target: {fileID: 224651395152028732, guid: 86856ebb1cc73c04a86115975021a18e,
         type: 2}
       propertyPath: m_AnchorMax.y
-      value: 1
+      value: 0
       objectReference: {fileID: 0}
     - target: {fileID: 20308652176285678, guid: 86856ebb1cc73c04a86115975021a18e,
         type: 2}
@@ -477,6 +477,11 @@ Prefab:
     - target: {fileID: 114490317635394222, guid: 86856ebb1cc73c04a86115975021a18e,
         type: 2}
       propertyPath: UseCameraLimits
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 224469006374697170, guid: 86856ebb1cc73c04a86115975021a18e,
+        type: 2}
+      propertyPath: m_LocalPosition.z
       value: 0
       objectReference: {fileID: 0}
     m_RemovedComponents: []
@@ -683,6 +688,7 @@ MonoBehaviour:
   Stealable: 1
   Viewable: 1
   Stackable: 0
+  value: 0
   PropertyName: None
   Description: No description provided.
   icon: {fileID: 0}
@@ -994,22 +1000,22 @@ Prefab:
     - target: {fileID: 224273697566053254, guid: b15804536ba015e47a5885912f930b08,
         type: 2}
       propertyPath: m_AnchorMax.x
-      value: 1
+      value: 0
       objectReference: {fileID: 0}
     - target: {fileID: 224273697566053254, guid: b15804536ba015e47a5885912f930b08,
         type: 2}
       propertyPath: m_AnchorMax.y
-      value: 1
+      value: 0
       objectReference: {fileID: 0}
     - target: {fileID: 224645790095496590, guid: b15804536ba015e47a5885912f930b08,
         type: 2}
       propertyPath: m_AnchorMax.x
-      value: 1
+      value: 0
       objectReference: {fileID: 0}
     - target: {fileID: 224645790095496590, guid: b15804536ba015e47a5885912f930b08,
         type: 2}
       propertyPath: m_AnchorMax.y
-      value: 1
+      value: 0
       objectReference: {fileID: 0}
     - target: {fileID: 114319908791872480, guid: b15804536ba015e47a5885912f930b08,
         type: 2}
