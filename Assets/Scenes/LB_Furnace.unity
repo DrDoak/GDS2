@@ -164,6 +164,29 @@ Prefab:
     m_RemovedComponents: []
   m_ParentPrefab: {fileID: 100100000, guid: 8b2eaa62f53d99048bd82ea2f6b808db, type: 2}
   m_IsPrefabParent: 0
+--- !u!1 &16439197 stripped
+GameObject:
+  m_PrefabParentObject: {fileID: 1614439459565114, guid: 8b2eaa62f53d99048bd82ea2f6b808db,
+    type: 2}
+  m_PrefabInternal: {fileID: 16439196}
+--- !u!114 &16439198
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_PrefabParentObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 0}
+  m_GameObject: {fileID: 16439197}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 2f47185e50bc3c74f8408a104b490f7b, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  Stealable: 1
+  Viewable: 1
+  Stackable: 0
+  value: 15
+  PropertyName: None
+  Description: Bandages
+  icon: {fileID: 0}
 --- !u!1001 &31132287
 Prefab:
   m_ObjectHideFlags: 0
@@ -302,17 +325,22 @@ Prefab:
     - target: {fileID: 224651395152028732, guid: 86856ebb1cc73c04a86115975021a18e,
         type: 2}
       propertyPath: m_AnchorMax.x
-      value: 1
+      value: 0
       objectReference: {fileID: 0}
     - target: {fileID: 224651395152028732, guid: 86856ebb1cc73c04a86115975021a18e,
         type: 2}
       propertyPath: m_AnchorMax.y
-      value: 1
+      value: 0
       objectReference: {fileID: 0}
     - target: {fileID: 114755828500083012, guid: 86856ebb1cc73c04a86115975021a18e,
         type: 2}
       propertyPath: value
       value: 200
+      objectReference: {fileID: 0}
+    - target: {fileID: 224469006374697170, guid: 86856ebb1cc73c04a86115975021a18e,
+        type: 2}
+      propertyPath: m_LocalPosition.z
+      value: 0
       objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_ParentPrefab: {fileID: 100100000, guid: 86856ebb1cc73c04a86115975021a18e, type: 2}
@@ -1369,6 +1397,29 @@ Prefab:
     m_RemovedComponents: []
   m_ParentPrefab: {fileID: 100100000, guid: 8c08a87432167bb4da031f3030a08646, type: 2}
   m_IsPrefabParent: 0
+--- !u!1 &1324638720 stripped
+GameObject:
+  m_PrefabParentObject: {fileID: 1358689916205372, guid: 8c08a87432167bb4da031f3030a08646,
+    type: 2}
+  m_PrefabInternal: {fileID: 1324638719}
+--- !u!114 &1324638721
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_PrefabParentObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 0}
+  m_GameObject: {fileID: 1324638720}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 2f47185e50bc3c74f8408a104b490f7b, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  Stealable: 1
+  Viewable: 1
+  Stackable: 0
+  value: 50
+  PropertyName: None
+  Description: Repair Kit
+  icon: {fileID: 0}
 --- !u!1001 &1385245796
 Prefab:
   m_ObjectHideFlags: 0
@@ -1754,6 +1805,29 @@ Prefab:
     m_RemovedComponents: []
   m_ParentPrefab: {fileID: 100100000, guid: 540e4e4b3809f1748a6b4e4d4f6ea0cf, type: 2}
   m_IsPrefabParent: 0
+--- !u!1 &1652688268 stripped
+GameObject:
+  m_PrefabParentObject: {fileID: 1786320237212698, guid: 540e4e4b3809f1748a6b4e4d4f6ea0cf,
+    type: 2}
+  m_PrefabInternal: {fileID: 1652688267}
+--- !u!114 &1652688269
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_PrefabParentObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 0}
+  m_GameObject: {fileID: 1652688268}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 2f47185e50bc3c74f8408a104b490f7b, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  Stealable: 1
+  Viewable: 1
+  Stackable: 0
+  value: 35
+  PropertyName: None
+  Description: Medical Supplies
+  icon: {fileID: 0}
 --- !u!1001 &1742034320
 Prefab:
   m_ObjectHideFlags: 0
