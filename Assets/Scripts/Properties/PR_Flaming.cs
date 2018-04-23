@@ -19,6 +19,7 @@ public class PR_Flaming : Property
     float flaming_damage = 5.0f;
 	GameObject fx;
 
+	List<ElementType> fireOnly;
 
 
     public override void OnAddProperty()
@@ -30,6 +31,8 @@ public class PR_Flaming : Property
 		fireSurround = GetComponent<HitboxMaker>().CreateHitboxDoT(sc, off, dmg, stun, hd, kb,false, true, ElementType.FIRE);
 		fireSurround.GetComponent<Hitbox> ().Faction = FactionType.HOSTILE;
 		fx = GetComponent<PropertyHolder> ().AddBodyEffect (FXBody.Instance.FXFlame);
+		fireOnly = new List<ElementType> ();
+		fireOnly.Add (ElementType.FIRE);
     }
 
     public override void OnRemoveProperty()
@@ -42,6 +45,8 @@ public class PR_Flaming : Property
 
     public override void OnUpdate()
     {
+		List<ElementType> oldEle = fireSurround.Element;
+		fireSurround.Element = fireOnly;
        // if (Time.time > time_tracker)
         //{
           //  time_tracker += flaming_period;
@@ -49,6 +54,7 @@ public class PR_Flaming : Property
 			GetComponent<Attackable>().TakeHit(fireSurround);
 			//GetComponent<Attackable>().TakeHit(fireSurround);
         //}
+		fireSurround.Element = oldEle;
     }
 
 
