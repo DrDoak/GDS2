@@ -841,6 +841,7 @@ GameObject:
   - component: {fileID: 114219010189781118}
   - component: {fileID: 114130609724815702}
   - component: {fileID: 114237286382270734}
+  - component: {fileID: 114368253722704762}
   m_Layer: 0
   m_Name: PR_List
   m_TagString: Untagged
@@ -1415,7 +1416,7 @@ Transform:
   m_PrefabInternal: {fileID: 100100000}
   m_GameObject: {fileID: 1035150032497560}
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_LocalPosition: {x: 0, y: 0, z: -10}
+  m_LocalPosition: {x: 48.748177, y: -23.732582, z: -10}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_Children:
   - {fileID: 224866136947452724}
@@ -1534,6 +1535,7 @@ MonoBehaviour:
   Stealable: 1
   Viewable: 1
   Stackable: 0
+  value: 0
   PropertyName: Phantom
   Description: Cannot hurt or be hurt
   icon: {fileID: 21300000, guid: 01072e332ce100f41851d90285200017, type: 3}
@@ -2305,6 +2307,7 @@ MonoBehaviour:
   Stealable: 1
   Viewable: 1
   Stackable: 0
+  value: 0
   PropertyName: Wet
   Description: 'Cannot Deal Fire Damage. DEFENSES: Fire +25%, Lightning -25%'
   icon: {fileID: 21300000, guid: e95d2bbdb8a2677459ff8f0087ffcf06, type: 3}
@@ -2476,6 +2479,7 @@ MonoBehaviour:
   Stealable: 1
   Viewable: 0
   Stackable: 0
+  value: 0
   PropertyName: Invincible
   Description: You dirty cheater!
   icon: {fileID: 21300000, guid: d70ef8b226510c441af3eda5373a1ec9, type: 3}
@@ -3097,6 +3101,7 @@ MonoBehaviour:
   Stealable: 0
   Viewable: 1
   Stackable: 0
+  value: 0
   PropertyName: Fan
   Description: Active when powered by Electricity
   icon: {fileID: 21300000, guid: 5d560eae4d53c7447a82c777d39837a1, type: 3}
@@ -3152,6 +3157,7 @@ MonoBehaviour:
   Stealable: 0
   Viewable: 1
   Stackable: 0
+  value: 0
   PropertyName: Cannon
   Description: Activated by Fire
   icon: {fileID: 21300000, guid: c257864eee4086b4e94000d1f49f50cb, type: 3}
@@ -3169,6 +3175,7 @@ MonoBehaviour:
   Stealable: 1
   Viewable: 1
   Stackable: 0
+  value: 0
   PropertyName: Wooden
   Description: Catches Fire Easily, Very Light
   icon: {fileID: 21300000, guid: ccb01decd2d069c4689dbd97046079c8, type: 3}
@@ -3418,6 +3425,7 @@ MonoBehaviour:
   Stealable: 1
   Viewable: 1
   Stackable: 0
+  value: 0
   PropertyName: Explosive
   Description: 'Fiery Explosion on Death. DEFENSES: Fire -100%'
   icon: {fileID: 21300000, guid: ad3796c22f155d14a92cda7356fbc7a1, type: 3}
@@ -3690,6 +3698,7 @@ MonoBehaviour:
   Stealable: 1
   Viewable: 1
   Stackable: 0
+  value: 0
   PropertyName: Decay
   Description: Steady health drain
   icon: {fileID: 21300000, guid: d70ef8b226510c441af3eda5373a1ec9, type: 3}
@@ -3725,6 +3734,7 @@ MonoBehaviour:
   Stealable: 1
   Viewable: 1
   Stackable: 0
+  value: 0
   PropertyName: Biological
   Description: Very slowly heals when damaged
   icon: {fileID: 21300000, guid: 465cf2a099ee6b94787a3adbda53273d, type: 3}
@@ -3854,6 +3864,24 @@ MonoBehaviour:
   - {fileID: 0}
   m_baseMaterial: {fileID: 0}
   m_maskOffset: {x: 0, y: 0, z: 0, w: 0}
+--- !u!114 &114368253722704762
+MonoBehaviour:
+  m_ObjectHideFlags: 1
+  m_PrefabParentObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 100100000}
+  m_GameObject: {fileID: 1593684310463946}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 2f47185e50bc3c74f8408a104b490f7b, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  Stealable: 1
+  Viewable: 1
+  Stackable: 0
+  value: 25
+  PropertyName: HealthPack
+  Description: Use for 25 Health
+  icon: {fileID: 21300000, guid: 478280faf7595fd4d8f66bfbabd0fb39, type: 3}
 --- !u!114 &114388255198215346
 MonoBehaviour:
   m_ObjectHideFlags: 1
@@ -3868,6 +3896,7 @@ MonoBehaviour:
   Stealable: 1
   Viewable: 1
   Stackable: 0
+  value: 0
   PropertyName: Iron
   Description: 'Become very heavy. DEFENSES: Fire +50%, Physical -25%, Lightning +25%'
   icon: {fileID: 21300000, guid: 058d0fcc4a4741444a59c0efa6ca7262, type: 3}
@@ -4256,6 +4285,7 @@ MonoBehaviour:
   Stealable: 0
   Viewable: 1
   Stackable: 0
+  value: 0
   PropertyName: Burner
   Description: Active when powered by Electricity
   icon: {fileID: 21300000, guid: 5d560eae4d53c7447a82c777d39837a1, type: 3}
@@ -5273,6 +5303,7 @@ MonoBehaviour:
   Stealable: 1
   Viewable: 1
   Stackable: 0
+  value: 0
   PropertyName: Flaming
   Description: 'Constant Fire Hitbox, drains health. DEFENSES: Fire +50%'
   icon: {fileID: 21300000, guid: 3ce279433fa810641908000de8ced2af, type: 3}
@@ -5881,6 +5912,7 @@ MonoBehaviour:
   Stealable: 1
   Viewable: 1
   Stackable: 1
+  value: 200
   PropertyName: Data
   Description: 'Provides 200 data. '
   icon: {fileID: 21300000, guid: 24e831a00c3030a40856dc292804e175, type: 3}
@@ -6473,6 +6505,7 @@ MonoBehaviour:
   Stealable: 0
   Viewable: 1
   Stackable: 0
+  value: 0
   PropertyName: Mechanical
   Description: Active when powered by Electricity
   icon: {fileID: 21300000, guid: 5d560eae4d53c7447a82c777d39837a1, type: 3}
@@ -6687,6 +6720,7 @@ MonoBehaviour:
   Stealable: 1
   Viewable: 1
   Stackable: 0
+  value: 0
   PropertyName: Electrical
   Description: Changes attacks to Electric. Can power Machines
   icon: {fileID: 21300000, guid: f2d1f907122843844a9a6e915e69f0de, type: 3}
