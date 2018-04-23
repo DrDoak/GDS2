@@ -21,13 +21,16 @@ public class PR_Wooden : Property {
 			GetComponent<BasicMovement> ().SetJumpData (GetComponent<BasicMovement> ().JumpHeight, GetComponent<BasicMovement> ().TimeToJumpApex / 1.4f);
 		}
 	}
-	public override void OnUpdate() { 
-		m_flameDamage -= (0.2f * Time.deltaTime);
+	public override void OnUpdate() {
+		if (m_flameDamage > 0f)
+			m_flameDamage -= (0.2f * Time.deltaTime);
 	}
 
 	public override void OnHit(Hitbox hb, GameObject attacker) { 
 		if (!GetComponent<PropertyHolder> ().HasProperty ("Flaming")) {
+			//Debug.Log ("Does not have flaming");
 			if (hb.HasElement(ElementType.FIRE)) {
+				//Debug.Log ("has flaming");
 				HitboxDoT hd = hb as HitboxDoT;
 				if (hd != null) {
 					m_flameDamage += (Time.deltaTime * hb.Damage);

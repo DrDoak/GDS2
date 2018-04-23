@@ -123,6 +123,7 @@ public class TransferMenu : MonoBehaviour {
 		m_selectedButton = m_CurrentMenu.propertyButtons [m_propSelected];
 		HighlightKey (m_selectedButton);
 		PauseGame.SlowToPause ();
+		PauseGame.CanPause = false;
 		starting = true;
 		m_active = true;
 	}
@@ -139,7 +140,7 @@ public class TransferMenu : MonoBehaviour {
 	public void AddPropertyHolder(PropertyHolder ph, int coordIndex) {
 		PropertyMenu pm;
 		pm = m_propMenus [coordIndex];
-		pm.holderName = ph.gameObject.name;
+		pm.holderName = removeParenthesis(ph.gameObject.name);
 		pm.MaxSlots = ph.MaxSlots;
 		pm.propertyList = ph.GetVisibleProperties ();
 		pm.holder = ph;
@@ -250,6 +251,7 @@ public class TransferMenu : MonoBehaviour {
 			Destroy (m_currentGhost);
 		exiting = true;
 		m_selectedButton = null;
+		PauseGame.CanPause = true;
 	}
 
 	void AddPropertyList(List<Property> pList, string userName, int menuIndex = 0) {
@@ -356,5 +358,17 @@ public class TransferMenu : MonoBehaviour {
 			m_infoText.text = "Press 'J' to steal " + pName;
 			AddGhostProperty (m_propMenus[0].MenuPrefab,p);
 		}
+	}
+
+	string removeParenthesis(string name) {
+		string properName = "";
+		foreach (char c in name) {
+			if (!c.Equals ('(')) {
+				properName += c;
+			} else {
+				break;
+			}
+		}
+		return properName; //gameObject.name;*/
 	}
 }

@@ -9,6 +9,7 @@ public class HitboxList : MonoBehaviour {
 	public GameObject HitboxLine;
 	public GameObject HitboxMulti;
 	public GameObject HitboxDoT;
+	public GameObject StandardProjectile;
 
 	public static HitboxList Instance
 	{

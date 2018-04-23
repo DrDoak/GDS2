@@ -21,6 +21,7 @@ public class CameraFollow : MonoBehaviour {
 	float lookAheadDirX;
 	float smoothLookVelocityX;
 	float smoothVelocityY;
+	const float DISTANCE_SNAP = 20f;
 
 	bool lookAheadStopped;
 
@@ -37,8 +38,12 @@ public class CameraFollow : MonoBehaviour {
 	void Update() {
 		if (target != null) {
 			focusArea.Update (target.GetComponent<Collider2D> ().bounds,minVertex,maxVertex,UseCameraLimits);
+			if (Vector3.Distance (target.transform.position, transform.position) > DISTANCE_SNAP) {
+				transform.position = target.transform.position;
+			}
 		}
 		Vector2 focusPosition = focusArea.centre + Vector2.up * verticalOffset;
+
 
 		if (focusArea.velocity.x != 0) {
 			lookAheadDirX = Mathf.Sign (focusArea.velocity.x);

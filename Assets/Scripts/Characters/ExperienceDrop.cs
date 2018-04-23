@@ -5,7 +5,7 @@ using UnityEngine;
 public class ExperienceDrop : MonoBehaviour {
 	public int Experience = 100;
 	void OnDestroy() {
-		int expDropped = 0;
+		/*int expDropped = 0;
 		ExperienceHolder eh = null;
 		if (GetComponent<Attackable> ().Killer != null && GetComponent<Attackable> ().Killer.GetComponent<ExperienceHolder> ()) {
 			eh = GetComponent<Attackable> ().Killer.GetComponent<ExperienceHolder> ();
@@ -22,6 +22,6 @@ public class ExperienceDrop : MonoBehaviour {
 			expDropped += 50;
 		}
 		if (eh != null)
-			eh.AddExperience (Experience);
+			eh.AddExperience (Experience);*/
 	}
 }

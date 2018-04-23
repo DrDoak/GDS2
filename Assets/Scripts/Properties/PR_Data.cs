@@ -4,10 +4,7 @@ using UnityEngine;
 
 public class PR_Data : Property {
 
-	Resistence fireResist;
-	Resistence lightningWeakness;
 	GameObject fx;
-	const int EXPERIENCE = 200;
 
 	public override void OnAddProperty()
 	{
@@ -29,7 +26,7 @@ public class PR_Data : Property {
 		} else {
 			eh = FindObjectOfType<ExperienceHolder> ();
 		}
-		while (expDropped < EXPERIENCE) {
+		while (expDropped < value) {
 			GameObject go = Instantiate (GameManager.Instance.FXExperience, transform.position, Quaternion.identity);
 			if (eh != null) {
 				go.GetComponent<ChaseTarget> ().Target = eh.GetComponent<PhysicsSS> ();
@@ -38,8 +35,9 @@ public class PR_Data : Property {
 			go.GetComponent<ChaseTarget> ().StartingVel = new Vector2 (Random.Range (-10f, 10f), 10f);
 			expDropped += 50;
 		}
+		Debug.Log ("Dropping experience " + value);
 		if (eh != null)
-			eh.AddExperience (EXPERIENCE);
+			eh.AddExperience ((int)value);
 		GetComponent<PropertyHolder> ().RequestRemoveProperty ("Data");
 	}
 }

@@ -8,7 +8,7 @@ public class PR_Electrical : Property {
 
 	public override void OnHitboxCreate (Hitbox hitboxCreated) {
 		hitboxCreated.AddElement( ElementType.LIGHTNING );
-		hitboxCreated.Damage = hitboxCreated.Damage * 1.2f;
+		hitboxCreated.Stun = hitboxCreated.Stun * 1.5f;
 	}
 	public override void OnAddProperty()
 	{

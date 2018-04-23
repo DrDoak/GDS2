@@ -24,6 +24,9 @@ public class PersistentItem : MonoBehaviour {
 		}
 		if (SaveObjManager.CheckRegistered(gameObject)) {
 			Debug.Log ("Object Already registered, deleting duplicate");
+			if (GetComponent<ExperienceDrop> ()) { 
+				GetComponent<ExperienceDrop> ();
+			}
 			Destroy(gameObject);
 		}
 	}
@@ -34,38 +37,48 @@ public class PersistentItem : MonoBehaviour {
 	}
 
 	public void StoreData() {
-		Debug.Log ("storing data: player is " + GetComponent<BasicMovement> ().IsCurrentPlayer);
 		data.name = gameObject.name;
 		data.pos = transform.position;
 		data.health = GetComponent<Attackable>().Health;
-		data.IsCurrentCharacter = GetComponent<BasicMovement> ().IsCurrentPlayer;
+		if (GetComponent<BasicMovement>())
+			data.IsCurrentCharacter = GetComponent<BasicMovement> ().IsCurrentPlayer;
 		data.IsFacingLeft = GetComponent<PhysicsSS> ().FacingLeft;
-		Property[] pL = GetComponents<Property> ();
-		string[] allPs = new string[pL.Length];
-		for (int i = 0; i < pL.Length; i++) {
-			allPs [i] = pL [i].GetType().ToString();
+		if (GetComponent<PropertyHolder> ()) {
+			Property[] pL = GetComponents<Property> ();
+			string[] allPs = new string[pL.Length];
+			for (int i = 0; i < pL.Length; i++) {
+				allPs [i] = pL [i].GetType ().ToString ();
+			}
+			data.propertyList = allPs;
 		}
-		data.propertyList = allPs;
 		string properName = "";
 		foreach (char c in gameObject.name) {
-			if (!c.Equals ('(')) {
+			if (!c.Equals ('(') && !c.Equals(' ')) {
 				properName += c;
 			} else {
 				break;
 			}
 		}
-		Debug.Log("ID: " + properName);
+		if (GetComponent<ExperienceHolder> ())
+			data.Experience = GetComponent<ExperienceHolder> ().Experience;
+		//Debug.Log("ID: " + properName);
 		data.prefabPath = properName; //gameObject.name;*/
+
 	}
 
 	public void LoadData() {
 		Debug.Log ("Loading data");
 		GetComponent<Attackable>().SetHealth( data.health);
 		GetComponent<PhysicsSS> ().SetDirection (data.IsFacingLeft);
-		GetComponent<PropertyHolder> ().ClearProperties ();
-		for (int i = 0; i < data.propertyList.Length; i++) {
-			Type t = Type.GetType (data.propertyList [i]);
-			gameObject.AddComponent( t );
+		if (GetComponent<PropertyHolder> ()) {
+			GetComponent<PropertyHolder> ().ClearProperties ();
+			for (int i = 0; i < data.propertyList.Length; i++) {
+				Type t = Type.GetType (data.propertyList [i]);
+				gameObject.AddComponent (t);
+			}
+		}
+		if (GetComponent<ExperienceHolder> ()) {
+			GetComponent<ExperienceHolder> ().Experience = data.Experience;
 		}
 	}
 

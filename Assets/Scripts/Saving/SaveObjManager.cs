@@ -10,14 +10,42 @@ public class SaveObjManager : MonoBehaviour{
 	static SceneTrigger [] sceneTriggers;
 	bool second = false;
 	string curRoom;
-	static string savePath = "SaveData/";
+	static string saveBase = "SaveData/";
+	static string savePath = "SaveData/Debug";
+	static string saveFolder = "Debug/";
 	List<string> registeredPermItems;
 
+	public bool SetDirectory(string directory) {
+		if (IsAlphaNum (directory) && directory.Length < 16) {
+			saveFolder = directory + "/";
+			savePath = saveBase + saveFolder;
+			if (!Directory.Exists (savePath)) {
+				Directory.CreateDirectory (savePath);
+			}
+			return true;
+		}
+		return false;
+	}
 	public static SaveObjManager Instance
 	{
 		get { return m_instance; }
 		set { m_instance = value; }
 	}
+	
+	bool IsAlphaNum(string str)
+	{
+		if (string.IsNullOrEmpty(str))
+			return false;
+
+		for (int i = 0; i < str.Length; i++)
+		{
+			if (!(char.IsLetter(str[i])) && (!(char.IsNumber(str[i]))))
+				return false;
+		}
+
+		return true;
+	}
+
 	void Awake()
 	{
 		if (m_instance == null) {
@@ -108,7 +136,9 @@ public class SaveObjManager : MonoBehaviour{
 
 	bool m_checkRegister(GameObject go) {
 		PersistentItem c = go.GetComponent<PersistentItem> ();
-		string id = go.name + "-" + SceneManager.GetActiveScene ().name + ((int)go.transform.position.x).ToString() + ((int)go.transform.position.y).ToString();
+		string xID = (((int)(go.transform.position.x/2))*2).ToString ();
+		string yID = (((int)(go.transform.position.y/2))*2).ToString ();
+		string id = go.name + "-" + SceneManager.GetActiveScene ().name + xID + yID;
 		//Debug.Log ("Checking if character: " + c + " registered id is: " + c.data.regID);
 		//Debug.Log ("incoming ID: " + c.data.regID);
 		if (c.data.regID != "Not Assigned") {
@@ -186,8 +216,9 @@ public class SaveObjManager : MonoBehaviour{
 
 	}
 	public static PersistentItem RecreatePersistentItem(string path, Vector3 position, Quaternion rotation) {
-		//Debug.Log ("re-instantiating object: " + path);
+		Debug.Log ("re-instantiating object: " + path);
 		GameObject prefab = Resources.Load<GameObject>(path);
+		Debug.Log (prefab);
 		GameObject go = GameObject.Instantiate(prefab, position, rotation) as GameObject;
 		PersistentItem actor = go.GetComponent<PersistentItem>() ?? go.AddComponent<PersistentItem>();
 		actor.recreated = true;
