@@ -4,8 +4,11 @@ using UnityEngine;
 using UnityEngine.UI;
 using TMPro;
 
+public enum HealthTextMode {DAMAGE, HEALTH};
+
 public class HealthDisplay : MonoBehaviour {
 
+	public HealthTextMode HealthTextDisplay = HealthTextMode.HEALTH;
 	TextMeshProUGUI m_number;
 	Slider m_s;
 	const float DISPLAY_TIME = 2.0f;
@@ -50,7 +53,7 @@ public class HealthDisplay : MonoBehaviour {
 						m_number.faceColor = new Color (c.r,c.g,c.b, m_textAlpha);
 					} else {
 						num_displayed = false;
-						m_textAlpha = 1.0f;
+						m_textAlpha = 0.0f;
 						m_cumulativeDamage = 0;
 					}
 				}
@@ -73,19 +76,30 @@ public class HealthDisplay : MonoBehaviour {
 			return;
 		if (Mathf.Sign (m_cumulativeDamage) != Mathf.Sign (diff)) {
 			m_cumulativeDamage = 0f;
+			m_cumulativeDamage += diff;
+			if (Mathf.Abs (m_cumulativeDamage) < 1f)
+				return;
 			if (diff > 0f) {
 				m_number.faceColor = Color.green;
 			} else {
 				m_number.faceColor = Color.red;
 			}
-		}
+		} 
 		m_cumulativeDamage += diff;
-		m_number.SetText (Mathf.Abs(Mathf.RoundToInt (m_cumulativeDamage)).ToString ());
+		if (Mathf.Abs (m_cumulativeDamage) < 1f)
+			return;
+		if (HealthTextDisplay == HealthTextMode.HEALTH) {
+			m_number.SetText (Mathf.RoundToInt (currentHealth).ToString () + " HP");
+		} else {
+			m_number.SetText (Mathf.Abs (Mathf.RoundToInt (m_cumulativeDamage)).ToString () + " DMG");
+		}
 		m_timeDisplayed = 0.0f;
 		bar_displayed = true;
 		num_displayed = true;
 		m_alpha = 1.0f;
 		m_textAlpha = 1.0f;
+		Color c = m_number.faceColor;
+		m_number.faceColor = new Color (c.r,c.g,c.b, m_textAlpha);
 		SetAlpha (1.0f);
 	}
 	public void SetMaxHealth(float maxHealth) {

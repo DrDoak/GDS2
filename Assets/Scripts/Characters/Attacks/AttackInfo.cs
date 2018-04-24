@@ -25,6 +25,7 @@ public class HitboxInfo {
 	public float HitboxDuration = 0.5f;
 	public Vector2 Knockback = new Vector2(10.0f,10.0f);
 	public ElementType Element = ElementType.PHYSICAL;
+	public bool ApplyProps = true;
 }
 
 [System.Serializable]
@@ -145,7 +146,7 @@ public class AttackInfo : MonoBehaviour
 		//m_hitboxMaker.AddHitType(HitType);
 		Vector2 offset = m_physics.OrientVectorToDirection(m_HitboxInfo.HitboxOffset);
 		m_hitboxMaker.CreateHitbox(m_HitboxInfo.HitboxScale, offset, m_HitboxInfo.Damage,
-			m_HitboxInfo.Stun, m_HitboxInfo.HitboxDuration, m_HitboxInfo.Knockback, true, true,m_HitboxInfo.Element);
+			m_HitboxInfo.Stun, m_HitboxInfo.HitboxDuration, m_HitboxInfo.Knockback, true, true,m_HitboxInfo.Element,m_HitboxInfo.ApplyProps);
 	}
 }
 

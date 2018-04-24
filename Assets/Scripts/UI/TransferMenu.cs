@@ -198,7 +198,7 @@ public class TransferMenu : MonoBehaviour {
 				SelectProperty (1, 0);
 			} else if (e.keyCode == KeyCode.A) {
 				SelectProperty (-1, 0);
-			} else if (e.keyCode == KeyCode.J) {
+			} else if (e.keyCode == KeyCode.Return) {
 				OnPropertySelect ();
 			} else if (e.keyCode == KeyCode.Escape) {
 				m_remainingText.text = "Ending Transfer";
@@ -351,11 +351,11 @@ public class TransferMenu : MonoBehaviour {
 
 		if (m_listSelected == 0) {
 			m_centerImage.sprite = ArrowRight;
-			m_infoText.text = "Press 'J' to implant " + pName;
+			m_infoText.text = "Press 'Enter' to implant " + pName;
 			AddGhostProperty (m_propMenus[1].MenuPrefab,p);
 		} else {
 			m_centerImage.sprite = ArrowLeft;
-			m_infoText.text = "Press 'J' to steal " + pName;
+			m_infoText.text = "Press 'Enter' to steal " + pName;
 			AddGhostProperty (m_propMenus[0].MenuPrefab,p);
 		}
 	}
