@@ -377,6 +377,7 @@ MonoBehaviour:
     HitboxDuration: 0.5
     Knockback: {x: 10, y: 10}
     Element: 0
+    ApplyProps: 1
   m_AttackAnimInfo:
     AnimSpeed: 1
     StartUpTime: 0.5
@@ -473,6 +474,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: bba45427a03e27144b58ced5b4d4dbef, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  HealthTextDisplay: 1
 --- !u!114 &114319908791872480
 MonoBehaviour:
   m_ObjectHideFlags: 1
@@ -733,6 +735,7 @@ MonoBehaviour:
     HitboxDuration: 0.25
     Knockback: {x: 8, y: 5}
     Element: 0
+    ApplyProps: 1
   m_AttackAnimInfo:
     AnimSpeed: 1
     StartUpTime: 0.5
@@ -885,6 +888,7 @@ MonoBehaviour:
     IsCurrentCharacter: 0
     IsFacingLeft: 0
     IsSheathed: 0
+    Experience: 0
   recreated: 0
 --- !u!114 &114737819746017758
 MonoBehaviour:
@@ -1106,6 +1110,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: bba45427a03e27144b58ced5b4d4dbef, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  HealthTextDisplay: 1
 --- !u!114 &114845752184036596
 MonoBehaviour:
   m_ObjectHideFlags: 1
@@ -1182,11 +1187,12 @@ MonoBehaviour:
     IsHitboxCreater: 1
     HitboxScale: {x: 1, y: 1}
     HitboxOffset: {x: 0.75, y: -0.5}
-    Damage: 5
+    Damage: 0.1
     Stun: 2
     HitboxDuration: 0.5
-    Knockback: {x: 5, y: 10}
-    Element: 0
+    Knockback: {x: 0, y: 0}
+    Element: 3
+    ApplyProps: 0
   m_AttackAnimInfo:
     AnimSpeed: 1
     StartUpTime: 0.5
