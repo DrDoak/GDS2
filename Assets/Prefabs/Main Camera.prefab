@@ -859,6 +859,7 @@ GameObject:
   - component: {fileID: 114130609724815702}
   - component: {fileID: 114237286382270734}
   - component: {fileID: 114368253722704762}
+  - component: {fileID: 114163015257245428}
   m_Layer: 0
   m_Name: PR_List
   m_TagString: Untagged
@@ -2554,7 +2555,7 @@ MonoBehaviour:
       Version=1.0.0.0, Culture=neutral, PublicKeyToken=null
   m_text: 'Use Movement keys to select
 
-    Press Escape to Cancel'
+    Press Escape to End Transfer'
   m_isRightToLeft: 0
   m_fontAsset: {fileID: 11400000, guid: 715b80e429c437e40867928a4e1fc975, type: 2}
   m_sharedMaterial: {fileID: 2100000, guid: 74e06d99c1657fc4abd33f20685ea9ff, type: 2}
@@ -2621,10 +2622,10 @@ MonoBehaviour:
   m_margin: {x: 0, y: 0, z: 0, w: 0}
   m_textInfo:
     textComponent: {fileID: 114139836958767136}
-    characterCount: 50
+    characterCount: 56
     spriteCount: 0
-    spaceCount: 8
-    wordCount: 9
+    spaceCount: 9
+    wordCount: 10
     linkCount: 0
     lineCount: 2
     pageCount: 1
@@ -2713,6 +2714,24 @@ MonoBehaviour:
   m_FallbackScreenDPI: 96
   m_DefaultSpriteDPI: 96
   m_DynamicPixelsPerUnit: 1
+--- !u!114 &114163015257245428
+MonoBehaviour:
+  m_ObjectHideFlags: 1
+  m_PrefabParentObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 100100000}
+  m_GameObject: {fileID: 1593684310463946}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 2f47185e50bc3c74f8408a104b490f7b, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  Stealable: 1
+  Viewable: 1
+  Stackable: 0
+  value: 0
+  PropertyName: None
+  Description: No description provided.
+  icon: {fileID: 0}
 --- !u!114 &114175286064703482
 MonoBehaviour:
   m_ObjectHideFlags: 1
@@ -4060,7 +4079,7 @@ MonoBehaviour:
   Stackable: 0
   value: 0
   PropertyName: Iron
-  Description: 'Become very heavy. DEFENSES: Fire +50%, Physical -25%, Lightning +25%'
+  Description: 'Become very heavy. DEFENSES: Fire +50%, Physical +25%, Lightning -25%'
   icon: {fileID: 21300000, guid: 058d0fcc4a4741444a59c0efa6ca7262, type: 3}
 --- !u!114 &114389900829790488
 MonoBehaviour:
@@ -4748,8 +4767,8 @@ MonoBehaviour:
   verticalSmoothTime: 0.4
   focusAreaSize: {x: 2, y: 2.5}
   UseCameraLimits: 0
-  minVertex: {x: 2, y: -20}
-  maxVertex: {x: 45, y: -3}
+  minVertex: {x: 2, y: -32}
+  maxVertex: {x: 42, y: -1}
 --- !u!114 &114492427968823046
 MonoBehaviour:
   m_ObjectHideFlags: 1
