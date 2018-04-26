@@ -15,4 +15,7 @@ public interface ICustomMessageTarget : IEventSystemHandler
 	void OnCollision();
 	void OnAttack();
 	void OnHitboxCreate (Hitbox hitboxCreated);
+
+	void OnWaterEnter(WaterHitbox waterCollided);
+	void OnWaterExit (WaterHitbox waterCollided);
 }

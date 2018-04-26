@@ -15,12 +15,22 @@ public class PR_Iron : Property {
         fireResist = GetComponent<Attackable>().AddResistence(ElementType.FIRE, 50.0f, false, false,0.0f,0.0f,100.0f);
         lightningResist = GetComponent<Attackable>().AddResistence(ElementType.LIGHTNING, -25.0f, false,false,0.0f,-25.0f,100.0f);
 		if (GetComponent<BasicMovement> () != null) {
-			GetComponent<BasicMovement> ().SetMoveSpeed (GetComponent<BasicMovement> ().MoveSpeed / 1.5f);
+			GetComponent<BasicMovement> ().SetMoveSpeed (GetComponent<BasicMovement> ().MoveSpeed / 1.25f);
 			GetComponent<BasicMovement> ().SetJumpData (GetComponent<BasicMovement> ().JumpHeight / 1.5f, GetComponent<BasicMovement> ().TimeToJumpApex);
 		}
 		fx = GetComponent<PropertyHolder> ().AddBodyEffect (FXBody.Instance.FXIron);
      //   GetComponent<PhysicsSS>().SetGravityScale(-2.0f);
     }
+
+	public override void OnUpdate() {
+		GetComponent<PhysicsSS> ().UseBuoyancy = false;
+		if (GetComponent<BasicMovement> () != null) {
+			GetComponent<BasicMovement> ().Submerged = false;
+		}
+		if (GetComponent<PropertyHolder> ().SubmergedHitbox != null) {
+			GetComponent<PhysicsSS> ().AddToVelocity (new Vector2 (0f, -20f * Time.deltaTime));
+		}
+	}
 
     public override void OnRemoveProperty()
     {
@@ -28,11 +38,20 @@ public class PR_Iron : Property {
         GetComponent<Attackable>().RemoveResistence(fireResist);
         GetComponent<Attackable>().RemoveResistence(lightningResist);
 		if (GetComponent<BasicMovement> () != null) {
-			GetComponent<BasicMovement> ().SetMoveSpeed (GetComponent<BasicMovement> ().MoveSpeed * 1.5f);
+			GetComponent<BasicMovement> ().SetMoveSpeed (GetComponent<BasicMovement> ().MoveSpeed * 1.25f);
 			GetComponent<BasicMovement> ().SetJumpData (GetComponent<BasicMovement> ().JumpHeight * 1.5f, GetComponent<BasicMovement> ().TimeToJumpApex);
 		}
 		GetComponent<PropertyHolder> ().RemoveBodyEffect (fx);
         //GetComponent<PhysicsSS>().SetGravityScale(-1.0f);
     }
-
+	public override void OnWaterEnter(WaterHitbox waterCollided)  {
+		Debug.Log ("Water enter");
+		if (GetComponent<BasicMovement>() != null)
+			GetComponent<BasicMovement> ().SetMoveSpeed (GetComponent<BasicMovement> ().MoveSpeed * 2f);
+	}
+	public override void OnWaterExit(WaterHitbox waterCollided) {
+		Debug.Log ("Water exit");
+		if (GetComponent<BasicMovement>() != null)
+			GetComponent<BasicMovement> ().SetMoveSpeed (GetComponent<BasicMovement> ().MoveSpeed / 2f);
+	}
 }

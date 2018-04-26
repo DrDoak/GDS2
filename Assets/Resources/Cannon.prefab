@@ -29,7 +29,6 @@ GameObject:
   - component: {fileID: 114559490275541958}
   - component: {fileID: 114905873449551766}
   - component: {fileID: 114700733103270682}
-  - component: {fileID: 114809536855686376}
   - component: {fileID: 114460414412254486}
   - component: {fileID: 114989652510017016}
   m_Layer: 0
@@ -185,6 +184,7 @@ MonoBehaviour:
     HitboxDuration: 0.5
     Knockback: {x: 10, y: 10}
     Element: 0
+    ApplyProps: 1
   m_AttackAnimInfo:
     AnimSpeed: 1
     StartUpTime: 0.1
@@ -245,23 +245,7 @@ MonoBehaviour:
   Stealable: 1
   Viewable: 1
   Stackable: 0
-  PropertyName: None
-  Description: No description provided.
-  icon: {fileID: 0}
---- !u!114 &114809536855686376
-MonoBehaviour:
-  m_ObjectHideFlags: 1
-  m_PrefabParentObject: {fileID: 0}
-  m_PrefabInternal: {fileID: 100100000}
-  m_GameObject: {fileID: 1121840088476732}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: b4089da560040304bbe1fba0d635de27, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  Stealable: 1
-  Viewable: 1
-  Stackable: 0
+  value: 0
   PropertyName: None
   Description: No description provided.
   icon: {fileID: 0}
@@ -294,6 +278,7 @@ MonoBehaviour:
   Stealable: 1
   Viewable: 1
   Stackable: 0
+  value: 0
   PropertyName: None
   Description: No description provided.
   icon: {fileID: 0}

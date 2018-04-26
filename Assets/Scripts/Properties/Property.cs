@@ -21,6 +21,9 @@ public class Property : MonoBehaviour, ICustomMessageTarget
 	public virtual void OnAddProperty() { }
 	public virtual void OnRemoveProperty() {}
 
+	public virtual void OnWaterEnter(WaterHitbox waterCollided) { }
+	public virtual void OnWaterExit(WaterHitbox waterCollided) {}
+
 	public bool Stealable = true;
 	public bool Viewable = true;
 	public bool Stackable = false;

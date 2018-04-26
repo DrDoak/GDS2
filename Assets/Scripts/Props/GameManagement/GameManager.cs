@@ -17,6 +17,7 @@ public class GameManager : MonoBehaviour
 	public GameObject FXPropertyPrefab;
 	public GameObject FXPropertyGetPrefab;
 	public GameObject FXExperience;
+	public GameObject FXWaterSplash;
 
 	public GameObject IconPropertyPrefab;
 	public Sprite UnknownPropertyIcon;

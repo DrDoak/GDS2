@@ -44,9 +44,12 @@ public class PhysicsSS : MonoBehaviour
 	public Vector2 m_inputedMove = Vector2.zero;
 	public Vector2 InputedMove { get { return m_inputedMove; } }
 	public float TerminalVelocity = -5f;
-	private float m_gravityScale = -1.0f;
+	public float GravityScale = -1.0f;
 
 	public bool FacingLeft = false;
+	public bool UseBuoyancy = false;
+	public float BuoyancyScale = -1.0f;
+
 
 	// Tracking m_sprite orientation (flipping if left)...
 	SpriteRenderer m_sprite;
@@ -113,12 +116,13 @@ public class PhysicsSS : MonoBehaviour
 
 		foreach (ForceSS force in forcesToRemove)
 			m_forces.Remove(force);
-
-		if (m_velocity.y > TerminalVelocity){
+		if (UseBuoyancy) {
+			m_velocity.y += BuoyancyScale * Time.fixedDeltaTime;
+		} else if (m_velocity.y > TerminalVelocity){
 			if (Yf || !m_collisions.below) {
-				m_velocity.y += m_gravityScale * Time.fixedDeltaTime;
+				m_velocity.y += GravityScale * Time.fixedDeltaTime;
 			} else if (m_collisions.below) { //force player to stick to slopes
-				m_velocity.y += m_gravityScale * Time.fixedDeltaTime * 6f;
+				m_velocity.y += GravityScale * Time.fixedDeltaTime * 6f;
 			}
 		}
 		m_velocity += m_accumulatedVelocity * Time.fixedDeltaTime;
@@ -422,7 +426,7 @@ public class PhysicsSS : MonoBehaviour
 	}
 
 	public void SetGravityScale(float gravScale) {
-		m_gravityScale = gravScale;
+		GravityScale = gravScale;
 	}
 
 	private bool JumpThruTag( GameObject obj ) {

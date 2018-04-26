@@ -38,6 +38,7 @@ public class BasicMovement : MonoBehaviour
 
 	public float m_minDistance = 1.0f;
 	public float m_abandonDistance = 10.0f;
+	public bool Submerged = false;
 	private float m_lastJump = 0.0f;
 	public float m_stuckTime = 0.0f;
 	private float m_verticalStuckTime = 0.0f; 
@@ -134,15 +135,23 @@ public class BasicMovement : MonoBehaviour
 
 	private void AttemptJump() {
 		float dt = (Time.timeSinceLevelLoad - m_lastJump);
-		//Debug.Log ("Attempting Jump ground: " + m_physics.OnGround + " time: " + dt);
-		if (!m_physics.OnGround || (Time.timeSinceLevelLoad - m_lastJump) < MIN_JUMP_INTERVAL) {
+		if ((Time.timeSinceLevelLoad - m_lastJump) < MIN_JUMP_INTERVAL)
 			return;
+		Vector2 jv = new Vector2 (jumpVector.x, jumpVector.y - Mathf.Max (0, m_physics.TrueVelocity.y / Time.deltaTime));
+		if (!Submerged) {
+			if (!m_physics.OnGround)
+				return;
+		} else {
+			jv.y *= 0.6f;
 		}
-		Vector2 jv = new Vector2 (jumpVector.x, jumpVector.y - Mathf.Max (0, m_physics.TrueVelocity.y/Time.deltaTime));
+		//Debug.Log ("Attempting Jump ground: " + m_physics.OnGround + " time: " + dt);
+		
+
 		m_physics.AddSelfForce (jv, 0f);
-	
+
 		//Debug.Log ("Jumped");
 		m_lastJump = Time.timeSinceLevelLoad;
+		
 	}
 
 	public void MoveToPoint(Vector3 point)
