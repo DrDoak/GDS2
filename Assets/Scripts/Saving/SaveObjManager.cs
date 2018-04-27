@@ -27,20 +27,28 @@ public class SaveObjManager : MonoBehaviour{
 		}
 		return false;
 	}
-	public void DeleteProfile(string profileName) {
+	public bool DeleteProfile(string profileName) {
 		string p = saveBase + profileName;
+		if (!Directory.Exists (p))
+			return false;
 		foreach (string file in Directory.GetFiles(p)) {
 			//File.Copy (file, savePath + file);
 			string s = file.Substring (p.Length);
 			File.Delete (file); 
 		}
 		Directory.Delete (p);
+		return true;
 	}
-	public void LoadProfile(string profileName) {
+	public bool ProfileExists(string profileName) {
+		string f = profileName + "/";
+		string p = saveBase + f;
+		return Directory.Exists (p);
+	}
+	public bool LoadProfile(string profileName) {
 		string f = profileName + "/";
 		string p = saveBase + f;
 		if (!Directory.Exists (p)) {
-			return;
+			return false;
 		}
 		if (profileName + "/" != saveFolder) {
 			foreach (string file in Directory.GetFiles(savePath)) {
@@ -59,8 +67,9 @@ public class SaveObjManager : MonoBehaviour{
 		registeredPermItems = CurrentSaveInfo.RegisteredIDs;
 
 		SceneManager.LoadScene (CurrentSaveInfo.LastRoomName, LoadSceneMode.Single);
+		return true;
 	}
-	public void SaveProfile(string profileName) {
+	public bool SaveProfile(string profileName) {
 		string f = profileName + "/";
 		string p = saveBase + f;
 		if (!Directory.Exists (p)) {
@@ -79,7 +88,7 @@ public class SaveObjManager : MonoBehaviour{
 			string s = file.Substring(savePath.Length);
 			File.Copy (file, p + s); 
 		}
-
+		return true;
 	}
 	public static SaveObjManager Instance
 	{
@@ -185,11 +194,23 @@ public class SaveObjManager : MonoBehaviour{
 		return m_instance.m_checkRegister (go);
 	}
 
+	public string GenerateID (GameObject go) {
+		string xID = (Mathf.CeilToInt(go.transform.position.x/2)*2).ToString ();
+		string yID = (Mathf.CeilToInt(go.transform.position.y/2)*2).ToString ();
+		string id = "";
+		foreach (char c in go.name) {
+			if (!c.Equals ('(') && !c.Equals(' ')) {
+				id += c;
+			} else {
+				break;
+			}
+		}
+		id += "-" + SceneManager.GetActiveScene ().name + xID + "_" + yID;
+		return id;
+	}
 	bool m_checkRegister(GameObject go) {
 		PersistentItem c = go.GetComponent<PersistentItem> ();
-		string xID = (((int)(go.transform.position.x/2))*2).ToString ();
-		string yID = (((int)(go.transform.position.y/2))*2).ToString ();
-		string id = go.name + "-" + SceneManager.GetActiveScene ().name + xID + yID;
+		string id = GenerateID (go);
 		//Debug.Log ("Checking if character: " + c + " registered id is: " + c.data.regID);
 		//Debug.Log ("incoming ID: " + c.data.regID);
 		if (c.data.regID != "Not Assigned") {
@@ -197,7 +218,7 @@ public class SaveObjManager : MonoBehaviour{
 		}
 		if (registeredPermItems.Contains(id) ){
 			if (c.recreated) {
-				//Debug.Log ("Recreated entity.");
+				Debug.Log ("Recreated entity: " + c.data.regID);
 				c.recreated = false;
 				return false;
 			} else {

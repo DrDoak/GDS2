@@ -2,6 +2,8 @@
 using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.SceneManagement;
+using TMPro;
+using UnityEngine.UI;
 
 public class PauseGame : MonoBehaviour
 {
@@ -14,9 +16,14 @@ public class PauseGame : MonoBehaviour
 	GameObject m_saveScreen;
 	GameObject m_loadScreen;
 	GameObject m_deadScreen;
+	GameObject m_warningScreen;
 
 	float m_slowingSpeed = 0.0f;
 	float m_speedingSpeed = 0.0f;
+
+	public delegate void ButtonClickEvent();
+	ButtonClickEvent m_buttonEvent;
+	GameObject WarningPrevious;
 
 	[SerializeField] public Scene startMenu;
 	public static PauseGame Instance
@@ -39,11 +46,13 @@ public class PauseGame : MonoBehaviour
 		m_saveScreen = transform.GetChild (1).gameObject;
 		m_loadScreen = transform.GetChild (2).gameObject;
 		m_deadScreen = transform.GetChild (3).gameObject;
+		m_warningScreen = transform.GetChild (4).gameObject;
 
 		m_pauseMenuUI.SetActive(false);
 		m_saveScreen.SetActive (false);
 		m_loadScreen.SetActive (false);
 		m_deadScreen.SetActive (false);
+		m_warningScreen.SetActive (false);
 	}
 		
 	void Update () {
@@ -125,6 +134,7 @@ public class PauseGame : MonoBehaviour
 		m_pauseMenuUI.SetActive(false);
 		m_loadScreen.SetActive (true);
 		m_loadScreen.GetComponent<SaveLoadMenu> ().Refresh ();
+		PauseGame.CanPause = false;
 	}
 	public void MenuMainMenu() {
 		Time.timeScale = 1f;
@@ -138,6 +148,7 @@ public class PauseGame : MonoBehaviour
 		m_saveScreen.SetActive (false);
 		m_loadScreen.SetActive (false);
 		m_deadScreen.SetActive (false);
+		PauseGame.CanPause = true;
 	}
 	public static void OnPlayerDeath() {
 		SlowToPause ();
@@ -146,5 +157,24 @@ public class PauseGame : MonoBehaviour
 		Instance.m_saveScreen.SetActive (false);
 		Instance.m_loadScreen.SetActive (false);
 		Instance.m_deadScreen.SetActive (true);
+	}
+
+	public static void DisplayWarning(string warningMessage, GameObject oldMenu, ButtonClickEvent func, string title="Warning") {
+		Instance.m_warningScreen.SetActive (true);
+		oldMenu.SetActive (false);
+		Instance.WarningPrevious = oldMenu;
+		Instance.m_warningScreen.transform.Find ("Message").GetComponent<TextMeshProUGUI> ().SetText (warningMessage);
+		Instance.m_warningScreen.transform.Find ("Title").GetComponent<TextMeshProUGUI> ().SetText (title);
+		Instance.m_buttonEvent = func;
+	}
+
+	public void OnCancelWarning() {
+		m_warningScreen.SetActive (false);
+		WarningPrevious.SetActive (true);
+	}
+	public void OnConfirmWarning() {
+		m_warningScreen.SetActive (false);
+		WarningPrevious.SetActive (true);
+		m_buttonEvent ();
 	}
 }

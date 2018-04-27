@@ -16,7 +16,12 @@ public class PersistentItem : MonoBehaviour {
 	public bool recreated = false;
 
 	protected bool m_registryChecked = false;
-
+	void Start() {
+		if (data.regID == "") {
+			data.regID = SaveObjManager.Instance.GenerateID (gameObject);
+		}
+		saveID = data.regID;
+	}
 	public void registryCheck() {
 		m_registryChecked = true;
 		if (data.regID == "") {
@@ -44,10 +49,16 @@ public class PersistentItem : MonoBehaviour {
 		if (GetComponent<PropertyHolder> ()) {
 			Property[] pL = GetComponents<Property> ();
 			string[] allPs = new string[pL.Length];
+			string[] allDs = new string[pL.Length];
+			float[] allVs = new float[pL.Length];
 			for (int i = 0; i < pL.Length; i++) {
 				allPs [i] = pL [i].GetType ().ToString ();
+				allDs [i] = pL [i].Description;
+				allVs [i] = pL [i].value;
 			}
 			data.propertyList = allPs;
+			data.propertyDescriptions = allDs;
+			data.propertyValues = allVs;
 		}
 		string properName = "";
 		foreach (char c in gameObject.name) {
@@ -72,7 +83,9 @@ public class PersistentItem : MonoBehaviour {
 			GetComponent<PropertyHolder> ().ClearProperties ();
 			for (int i = 0; i < data.propertyList.Length; i++) {
 				Type t = Type.GetType (data.propertyList [i]);
-				gameObject.AddComponent (t);
+				Property p = (Property)gameObject.AddComponent (t);
+				p.Description = data.propertyDescriptions [i];
+				p.value = data.propertyValues [i];
 			}
 		}
 		if (GetComponent<ExperienceHolder> ()) {

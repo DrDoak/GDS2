@@ -102,7 +102,6 @@ public class PropertyHolder : MonoBehaviour {
 	public void ClearProperties() {
 		Property[] prList = GetComponents<Property> ();
 		foreach (Property p in prList) {
-			Debug.Log ("Clearing " + p + " in " + gameObject);
 			if (m_properties.Contains (p)) {
 				m_properties.Remove (p);
 			}

@@ -12,6 +12,8 @@ public class CharData {
 	public string prefabPath;
 	public string targetID;
 	public string [] propertyList;
+	public string [] propertyDescriptions;
+	public float[] propertyValues;
 	public RoomDirection targetDir;
 	public bool IsCurrentCharacter;
 	public bool IsFacingLeft;
