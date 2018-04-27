@@ -22,6 +22,7 @@ public class MainMenu : MonoBehaviour {
 	{
 		m_menuUI.SetActive(false);
 		m_loadScreen.SetActive (false);
+		PauseGame.CanPause = true;
 	}
 			
 	//-------------------------------------------------
@@ -33,6 +34,7 @@ public class MainMenu : MonoBehaviour {
 		m_menuUI.SetActive(false);
 		m_loadScreen.SetActive (true);
 		m_loadScreen.GetComponent<SaveLoadMenu> ().Refresh ();
+		m_loadScreen.GetComponent<SaveLoadMenu> ().Reset ();
 	}
 
 	public void MenuExit() {

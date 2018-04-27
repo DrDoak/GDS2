@@ -19,11 +19,8 @@ public class SaveLoadMenu : MonoBehaviour {
 	void Awake () {
 		DropDown = transform.Find ("Dropdown").GetComponent<TMP_Dropdown>();
 		m_message = transform.Find ("Message").GetComponent<TextMeshProUGUI> ();
-		Debug.Log (DropDown);
 		if (transform.Find ("ProfileInput") != null) {
 			Input = transform.Find ("ProfileInput").gameObject.GetComponent<TMP_InputField> ();
-			Debug.Log ("Found input field!");
-			Debug.Log (Input);
 		}
 		if (m_selectedIndex != 0 && m_selectedIndex < DropDown.options.Count) {
 			DropDown.value = m_selectedIndex;
@@ -46,12 +43,13 @@ public class SaveLoadMenu : MonoBehaviour {
 			//Debug.Log (dir + " : " + s);
 			m_savedProfiles.Add (s);
 		}
+		if (MainMenu)
+			m_savedProfiles.Remove ("AutoSave");
 		DropDown.ClearOptions ();
 		DropDown.AddOptions (m_savedProfiles);
 	}
 	public void OnProfileSelect(int index) {
 		if (Input != null) {
-			Debug.Log("setting input to: " + m_savedProfiles [DropDown.value]);
 			Input.text = m_savedProfiles [DropDown.value];
 		}
 		m_selectedIndex = DropDown.value;

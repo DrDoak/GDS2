@@ -129,11 +129,13 @@ public class PauseGame : MonoBehaviour
 		m_pauseMenuUI.SetActive(false);
 		m_saveScreen.SetActive (true);
 		m_saveScreen.GetComponent<SaveLoadMenu> ().Refresh ();
+		m_saveScreen.GetComponent<SaveLoadMenu> ().Reset ();
 	}
 	public void MenuLoad() {
 		m_pauseMenuUI.SetActive(false);
 		m_loadScreen.SetActive (true);
 		m_loadScreen.GetComponent<SaveLoadMenu> ().Refresh ();
+		m_loadScreen.GetComponent<SaveLoadMenu> ().Reset ();
 		PauseGame.CanPause = false;
 	}
 	public void MenuMainMenu() {
