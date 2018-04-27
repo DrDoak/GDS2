@@ -10,6 +10,8 @@ public class PropertyHolder : MonoBehaviour {
 	public int MaxSlots = 4;
 	public int NumTransfers = 2;
 	public List<string> m_toRemove;
+	public WaterHitbox SubmergedHitbox = null;
+
 	// Use this for initialization
 	void Awake () {
 		m_properties = new List<Property> ();
@@ -24,6 +26,8 @@ public class PropertyHolder : MonoBehaviour {
 				p.CopyPropInfo (mp);
 				m_properties.Add (p);
 				p.OnAddProperty ();
+				if (SubmergedHitbox != null)
+					p.OnWaterEnter (SubmergedHitbox);
 			}
 		}
 		m_currentPlayer = (GetComponent<BasicMovement> () && GetComponent<BasicMovement> ().IsCurrentPlayer);
@@ -73,6 +77,8 @@ public class PropertyHolder : MonoBehaviour {
 		p.CopyPropInfo (GameManager.Instance.GetPropInfo (p));
 		m_properties.Add (p);
 		p.OnAddProperty ();
+		if (SubmergedHitbox != null)
+			p.OnWaterEnter (SubmergedHitbox);
 		if (m_currentPlayer)
 			GameManager.Instance.AddPropIcon (p);
 	}
@@ -87,6 +93,8 @@ public class PropertyHolder : MonoBehaviour {
 		p.CopyPropInfo (GameManager.Instance.GetPropInfo (p));
 		m_properties.Add (p);
 		p.OnAddProperty ();
+		if (SubmergedHitbox != null)
+			p.OnWaterEnter (SubmergedHitbox);
 		if (m_currentPlayer) {
 			GameManager.Instance.AddPropIcon (p);
 		}
@@ -99,6 +107,9 @@ public class PropertyHolder : MonoBehaviour {
 				m_properties.Remove (p);
 			}
 			p.OnRemoveProperty();
+			if (SubmergedHitbox != null) {
+				p.OnWaterExit (SubmergedHitbox);
+			}
 			Destroy (p);
 			if (m_currentPlayer) {
 				GameManager.Instance.RemovePropIcon (p);
@@ -114,6 +125,8 @@ public class PropertyHolder : MonoBehaviour {
 		if (m_properties.Contains(p)) {
 			m_properties.Remove (p);
 			p.OnRemoveProperty ();
+			if (SubmergedHitbox != null)
+				p.OnWaterExit (SubmergedHitbox);
 			Destroy(p);
 			if (m_currentPlayer) {
 				GameManager.Instance.RemovePropIcon (p);
@@ -123,6 +136,8 @@ public class PropertyHolder : MonoBehaviour {
 			Property mp = (Property)gameObject.GetComponent(pType);
 			m_properties.Remove (mp);
 			mp.OnRemoveProperty ();
+			if (SubmergedHitbox != null)
+				mp.OnWaterExit (SubmergedHitbox);
 			Destroy(mp);
 
 			if (m_currentPlayer) {

@@ -135,8 +135,6 @@ public class Hitbox : MonoBehaviour {
 
 		if (!m_overlappingControl.Contains (atkObj))
 			m_overlappingControl.Add (atkObj);
-		//Debug.Log ("On attackable");
-		//Debug.Log (Creator);
 		if (Creator != null) {
 			Creator.GetComponent<HitboxMaker> ().RegisterHit (atkObj.gameObject, this, r);
 		}
@@ -149,7 +147,6 @@ public class Hitbox : MonoBehaviour {
 	}
 	internal HitResult OnTriggerEnter2D(Collider2D other)
 	{
-		//Debug.Log ("On trigger enter");
 		return OnAttackable (other.gameObject.GetComponent<Attackable> ());
 	}
 

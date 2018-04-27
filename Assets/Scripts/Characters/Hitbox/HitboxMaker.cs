@@ -46,7 +46,7 @@ public class HitboxMaker : MonoBehaviour
 	}
 
 	public Hitbox CreateHitbox(Vector2 hitboxScale, Vector2 offset, float damage, float stun, float hitboxDuration, Vector2 knockback, bool fixedKnockback = true,
-		bool followObj = true, ElementType element = ElementType.PHYSICAL)
+		bool followObj = true, ElementType element = ElementType.PHYSICAL, bool applyProps = true)
 	{
 		Vector2 cOff = m_physics.OrientVectorToDirection(offset);
 		Vector3 newPos = transform.position + (Vector3)cOff;
@@ -69,8 +69,8 @@ public class HitboxMaker : MonoBehaviour
 		newBox.Faction = Faction;
 		if (followObj)
 			newBox.SetFollow (gameObject,offset);
-		
-		ExecuteEvents.Execute<ICustomMessageTarget> (gameObject, null, (x, y) => x.OnHitboxCreate(newBox));
+		if (applyProps)
+			ExecuteEvents.Execute<ICustomMessageTarget> (gameObject, null, (x, y) => x.OnHitboxCreate(newBox));
 		newBox.Init();
 		return newBox;
 	}
