@@ -79,6 +79,8 @@ public class Attackable : MonoBehaviour
 		
 		if (m_currDeathTime > DeathTime) {
 			ExecuteEvents.Execute<ICustomMessageTarget> (gameObject, null, (x, y) => x.OnDeath ());
+			if (GetComponent<BasicMovement> () && GetComponent<BasicMovement> ().IsCurrentPlayer)
+				PauseGame.OnPlayerDeath ();
 			Destroy (gameObject);
 		}
 		GetComponent<SpriteRenderer>().color = Color.Lerp (Color.white, Color.black, (m_currDeathTime) / DeathTime);

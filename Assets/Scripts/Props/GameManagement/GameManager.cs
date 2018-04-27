@@ -66,6 +66,7 @@ public class GameManager : MonoBehaviour
 
 	public void SetPlayer(BasicMovement bm) {
 		GetComponent<CameraFollow> ().target = bm.GetComponent<PhysicsSS>();
+		GetComponent<CameraFollow> ().initFunct ();
 		GetComponent<GUIHandler> ().CurrentTarget = bm.gameObject;
 		CurrentPlayer = bm.gameObject;
 	}
@@ -98,7 +99,7 @@ public class GameManager : MonoBehaviour
 
 	public static void Reset() {
 		SaveObjManager.charContainer = new CharacterSaveContainer ();
-		Instance.GetComponent<SaveObjManager> ().SetDirectory ("Debug");
+		Instance.GetComponent<SaveObjManager> ().SetDirectory ("AutoSave");
 		Instance.GetComponent<SaveObjManager>().resetRoomData ();
 	}
 }

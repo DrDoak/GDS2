@@ -16,6 +16,7 @@ public class RoomSettings : MonoBehaviour {
 			cf.UseCameraLimits = true;
 			cf.minVertex = new Vector2 (transform.position.x - transform.localScale.x / 2f, transform.position.y - transform.localScale.y / 2f);
 			cf.maxVertex = new Vector2 (transform.position.x + transform.localScale.x / 2f, transform.position.y + transform.localScale.y / 2f);
+			cf.initFunct ();
 		}
 		if (DisplayLevelInfo == true) { 
 			GameManager.Instance.transform.GetChild(0).GetComponentInChildren<RoomDescription> ().SetNameDescription (RoomName, Description);

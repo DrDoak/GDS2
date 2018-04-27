@@ -23,10 +23,7 @@ public class PersistentItem : MonoBehaviour {
 			data.regID = "Not Assigned";
 		}
 		if (SaveObjManager.CheckRegistered(gameObject)) {
-			Debug.Log ("Object Already registered, deleting duplicate");
-			if (GetComponent<ExperienceDrop> ()) { 
-				GetComponent<ExperienceDrop> ();
-			}
+			Debug.Log (gameObject + " Already registered, deleting duplicate");
 			Destroy(gameObject);
 		}
 	}
@@ -39,6 +36,7 @@ public class PersistentItem : MonoBehaviour {
 	public void StoreData() {
 		data.name = gameObject.name;
 		data.pos = transform.position;
+		data.targetID = "";
 		data.health = GetComponent<Attackable>().Health;
 		if (GetComponent<BasicMovement>())
 			data.IsCurrentCharacter = GetComponent<BasicMovement> ().IsCurrentPlayer;

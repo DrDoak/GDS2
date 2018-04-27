@@ -13,6 +13,7 @@ public class PauseGame : MonoBehaviour
 	GameObject m_pauseMenuUI;
 	GameObject m_saveScreen;
 	GameObject m_loadScreen;
+	GameObject m_deadScreen;
 
 	float m_slowingSpeed = 0.0f;
 	float m_speedingSpeed = 0.0f;
@@ -37,9 +38,12 @@ public class PauseGame : MonoBehaviour
 		m_pauseMenuUI = transform.GetChild (0).gameObject;
 		m_saveScreen = transform.GetChild (1).gameObject;
 		m_loadScreen = transform.GetChild (2).gameObject;
+		m_deadScreen = transform.GetChild (3).gameObject;
+
 		m_pauseMenuUI.SetActive(false);
 		m_saveScreen.SetActive (false);
 		m_loadScreen.SetActive (false);
+		m_deadScreen.SetActive (false);
 	}
 		
 	void Update () {
@@ -78,7 +82,9 @@ public class PauseGame : MonoBehaviour
 		m_pauseMenuUI.SetActive(false);
 		m_saveScreen.SetActive (false);
 		m_loadScreen.SetActive (false);
+		m_deadScreen.SetActive (false);
 		Time.timeScale = 1f;
+		PauseGame.CanPause = true;
 		isPaused = false;
 	}
 
@@ -107,27 +113,38 @@ public class PauseGame : MonoBehaviour
 		mResume ();
 	}
 	public void MenuNew() {
+		SaveObjManager.Instance.resetRoomData ();
+		SceneManager.LoadScene ("LB_BottomPoint");
 	}
 	public void MenuSave() {
 		m_pauseMenuUI.SetActive(false);
 		m_saveScreen.SetActive (true);
+		m_saveScreen.GetComponent<SaveLoadMenu> ().Refresh ();
 	}
 	public void MenuLoad() {
 		m_pauseMenuUI.SetActive(false);
 		m_loadScreen.SetActive (true);
+		m_loadScreen.GetComponent<SaveLoadMenu> ().Refresh ();
 	}
 	public void MenuMainMenu() {
 		Time.timeScale = 1f;
-		Debug.Log("Loading Menu...");
-		SceneManager.LoadScene("StartMenu"); //get rid of this hardcode
+		SceneManager.LoadScene("MainMenu"); //get rid of this hardcode
 	}
 	public void MenuExit() {
-		Debug.Log("Quiting Game...");
 		Application.Quit();
 	}
 	public void ReturnToPause() {
 		m_pauseMenuUI.SetActive(true);
 		m_saveScreen.SetActive (false);
 		m_loadScreen.SetActive (false);
+		m_deadScreen.SetActive (false);
+	}
+	public static void OnPlayerDeath() {
+		SlowToPause ();
+		PauseGame.CanPause = false;
+		Instance.m_pauseMenuUI.SetActive(false);
+		Instance.m_saveScreen.SetActive (false);
+		Instance.m_loadScreen.SetActive (false);
+		Instance.m_deadScreen.SetActive (true);
 	}
 }
