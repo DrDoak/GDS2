@@ -10,9 +10,10 @@ public class SaveObjManager : MonoBehaviour{
 	static SceneTrigger [] sceneTriggers;
 	bool second = false;
 	string curRoom;
-	static string saveBase = "SaveData/";
-	static string savePath = "SaveData/Debug";
-	static string saveFolder = "Debug/";
+	public static string saveBase = "SaveData/";
+	static string savePath = "SaveData/AutoSave/";
+	static string saveFolder = "AutoSave/";
+	public static SaveProfileContainer CurrentSaveInfo = new SaveProfileContainer();
 	List<string> registeredPermItems;
 
 	public bool SetDirectory(string directory) {
@@ -25,6 +26,69 @@ public class SaveObjManager : MonoBehaviour{
 			return true;
 		}
 		return false;
+	}
+	public bool DeleteProfile(string profileName) {
+		string p = saveBase + profileName;
+		if (!Directory.Exists (p))
+			return false;
+		foreach (string file in Directory.GetFiles(p)) {
+			//File.Copy (file, savePath + file);
+			string s = file.Substring (p.Length);
+			File.Delete (file); 
+		}
+		Directory.Delete (p);
+		return true;
+	}
+	public bool ProfileExists(string profileName) {
+		string f = profileName + "/";
+		string p = saveBase + f;
+		return Directory.Exists (p);
+	}
+	public bool LoadProfile(string profileName) {
+		string f = profileName + "/";
+		string p = saveBase + f;
+		if (!Directory.Exists (p)) {
+			return false;
+		}
+		if (profileName + "/" != saveFolder) {
+			foreach (string file in Directory.GetFiles(savePath)) {
+				File.Delete (file);
+			}
+			foreach (string file in Directory.GetFiles(saveBase + profileName)) {
+				//File.Copy (file, savePath + file);
+				string s = file.Substring (p.Length);
+				File.Copy (file, savePath + s); 
+				Debug.Log ("Copying: " + file + " to " + savePath + s);
+			}
+		}
+		string json = File.ReadAllText(savePath+ "base.txt");
+		CurrentSaveInfo = JsonUtility.FromJson<SaveProfileContainer> (json);
+		registeredPermItems.Clear ();
+		registeredPermItems = CurrentSaveInfo.RegisteredIDs;
+
+		SceneManager.LoadScene (CurrentSaveInfo.LastRoomName, LoadSceneMode.Single);
+		return true;
+	}
+	public bool SaveProfile(string profileName) {
+		string f = profileName + "/";
+		string p = saveBase + f;
+		if (!Directory.Exists (p)) {
+			Directory.CreateDirectory (p);
+		}
+		refreshPersItems ();
+		ResaveRoom ();
+		foreach (string file in Directory.GetFiles(p))
+		{
+			File.Delete (file);
+		}
+
+		string name = SceneManager.GetActiveScene().name;
+		foreach (string file in Directory.GetFiles(savePath))
+		{
+			string s = file.Substring(savePath.Length);
+			File.Copy (file, p + s); 
+		}
+		return true;
 	}
 	public static SaveObjManager Instance
 	{
@@ -42,7 +106,6 @@ public class SaveObjManager : MonoBehaviour{
 			if (!(char.IsLetter(str[i])) && (!(char.IsNumber(str[i]))))
 				return false;
 		}
-
 		return true;
 	}
 
@@ -80,11 +143,10 @@ public class SaveObjManager : MonoBehaviour{
 		sceneTriggers = GameObject.FindObjectsOfType<SceneTrigger> ();
 		recreateItems (curRoom);
 		GameManager.Instance.FindPlayer ();
-		//registerPersItems (curRoom);
+		ResaveRoom ();
 	}
 
 	public void recreateItems(string RoomName) {
-		//Debug.Log ("Recreating items for room: " + RoomName);
 		LoadRoom (savePath + RoomName);
 	}
 
@@ -92,11 +154,9 @@ public class SaveObjManager : MonoBehaviour{
 		Instance.m_moveItem (go,newRoom,newPos);
 	}
 	void m_moveItem(GameObject go,string newRoom, Vector3 newPos) {
-		//Debug.Log ("Moving item to " + newRoom + " at position: " + newPos);
 		PersistentItem item = go.GetComponent<PersistentItem> ();
 		item.targetID = null;
 		item.StoreData ();
-		//Debug.Log ("moving item: " + item.name + " to " + newRoom);
 		refreshPersItems();
 		DelCharData (item.data);
 		CharacterSaveContainer cc = LoadChars(savePath + newRoom);
@@ -134,11 +194,23 @@ public class SaveObjManager : MonoBehaviour{
 		return m_instance.m_checkRegister (go);
 	}
 
+	public string GenerateID (GameObject go) {
+		string xID = (Mathf.CeilToInt(go.transform.position.x/2)*2).ToString ();
+		string yID = (Mathf.CeilToInt(go.transform.position.y/2)*2).ToString ();
+		string id = "";
+		foreach (char c in go.name) {
+			if (!c.Equals ('(') && !c.Equals(' ')) {
+				id += c;
+			} else {
+				break;
+			}
+		}
+		id += "-" + SceneManager.GetActiveScene ().name + xID + "_" + yID;
+		return id;
+	}
 	bool m_checkRegister(GameObject go) {
 		PersistentItem c = go.GetComponent<PersistentItem> ();
-		string xID = (((int)(go.transform.position.x/2))*2).ToString ();
-		string yID = (((int)(go.transform.position.y/2))*2).ToString ();
-		string id = go.name + "-" + SceneManager.GetActiveScene ().name + xID + yID;
+		string id = GenerateID (go);
 		//Debug.Log ("Checking if character: " + c + " registered id is: " + c.data.regID);
 		//Debug.Log ("incoming ID: " + c.data.regID);
 		if (c.data.regID != "Not Assigned") {
@@ -146,7 +218,7 @@ public class SaveObjManager : MonoBehaviour{
 		}
 		if (registeredPermItems.Contains(id) ){
 			if (c.recreated) {
-				//Debug.Log ("Recreated entity.");
+				Debug.Log ("Recreated entity: " + c.data.regID);
 				c.recreated = false;
 				return false;
 			} else {
@@ -172,10 +244,16 @@ public class SaveObjManager : MonoBehaviour{
 		}
 	}
 	public void ResaveRoom() {
-		//Debug.Log ("Resaved characters: " + charContainer.actors.Count);
 		Save (savePath + curRoom, charContainer);
+		if (File.Exists (savePath + "base.txt"))
+			File.Delete (savePath + "base.txt");
+		CurrentSaveInfo.LastRoomName = curRoom;
+		CurrentSaveInfo.RegisteredIDs = registeredPermItems;
+		string json = JsonUtility.ToJson(CurrentSaveInfo);
+		StreamWriter sw = File.CreateText(savePath + "base.txt");
+		sw.Close();
+		File.WriteAllText(savePath + "base.txt", json);
 	}
-	//-----------------------------------------------------------
 	//-----------------------------------------------------------
 
 	public static CharacterSaveContainer charContainer = new CharacterSaveContainer();
@@ -189,11 +267,11 @@ public class SaveObjManager : MonoBehaviour{
 	//Loading---------------
 	public static void LoadRoom(string path) {		
 		charContainer = LoadChars(path);	
-		//Debug.Log ("items to recreate: " + charContainer.actors.Count);
+		Debug.Log ("items to recreate: " + charContainer.actors.Count + " from: " + path);
 		foreach (CharData data in charContainer.actors) {
 			PersistentItem pi = RecreatePersistentItem (data, data.prefabPath,
 				data.pos, Quaternion.identity);
-			pi.registryCheck ();
+			//pi.registryCheck ();
 		}
 		//OnLoaded();
 		//ClearActorList();
@@ -268,11 +346,9 @@ public class SaveObjManager : MonoBehaviour{
 
 	//Saving --------------------
 	public static void Save(string path, CharacterSaveContainer actors) {
-		//OnBeforeSave();
-		//ClearSave(path);
 		SaveActors(path, actors);
-		//actors.actors.Clear ();
 	}
+
 	private static void SaveActors(string path, CharacterSaveContainer actors) {
 		string json = JsonUtility.ToJson(actors);
 		//Debug.Log ("jsoN: " + json);

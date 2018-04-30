@@ -67,10 +67,11 @@ public class AIFighter : MonoBehaviour {
 		float yDiff = Mathf.Abs(transform.position.y - otherPos.y);
 		List<string> atks = new List<string> ();
 		foreach (AttackInfo ainfo in allAttacks) {
-			if ((ainfo.m_AIInfo.AIPredictionHitbox.x + ainfo.m_AIInfo.AIPredictionOffset.x) +
-				(ainfo.m_AIInfo.AIPredictionHitbox.x + ainfo.m_AIInfo.AIPredictionOffset.x) * Random.Range (0f, 1f - spacing) > xDiff &&
-				(ainfo.m_AIInfo.AIPredictionHitbox.y + ainfo.m_AIInfo.AIPredictionOffset.y) +
-				(ainfo.m_AIInfo.AIPredictionHitbox.y + ainfo.m_AIInfo.AIPredictionOffset.y) * Random.Range (0f, 1f - spacing) > yDiff && Random.value > 0.5f) {
+			Vector2 offset = GetComponent<PhysicsSS> ().OrientVectorToDirection (ainfo.m_AIInfo.AIPredictionOffset);
+			if ((ainfo.m_AIInfo.AIPredictionHitbox.x + offset.x) +
+				(ainfo.m_AIInfo.AIPredictionHitbox.x + offset.x) * Random.Range (0f, 1f - spacing) > xDiff &&
+				(ainfo.m_AIInfo.AIPredictionHitbox.y + offset.y) +
+				(ainfo.m_AIInfo.AIPredictionHitbox.y + offset.y) * Random.Range (0f, 1f - spacing) > yDiff && Random.value > 0.5f) {
 				atks.Add (ainfo.AttackName);
 			}
 		}

@@ -9,6 +9,10 @@ public class Interactable : MonoBehaviour
 	public string InteractionString;
 	public bool HoldTrigger;
 	public bool PressTrigger;
+	public bool oneTime = true;
+	public bool TriggerUsed = false;
+	[TextArea(3,8)]
+	public string value;
 
 	void Start()
 	{
@@ -18,6 +22,13 @@ public class Interactable : MonoBehaviour
 		PressTrigger = false;
 	}
 
+	void Update() {
+		destroyAfterUse ();
+	}
+	protected void destroyAfterUse() {
+		if (oneTime && TriggerUsed)
+			Destroy (gameObject);
+	}
 	private void OnTriggerEnter2D(Collider2D collision)
 	{
 		if (Actor = collision.gameObject.GetComponent<Interactor>())

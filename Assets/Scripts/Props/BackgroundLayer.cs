@@ -31,6 +31,11 @@ public class BackgroundLayer : MonoBehaviour {
 	// The Background Layer MUST update after the camera in order to have stable scrolling.
 	// so we use LateUpdate to guarantee this.
 	void LateUpdate () {
+		if (m_camTransform == null) {
+			m_camTransform = FindObjectOfType<CameraFollow>().transform;
+			if (m_camTransform == null)
+				return;
+		}
 		if (IsParallax) {
 			float deltaX = m_camTransform.position.x - m_lastCamPos.x;
 			float deltaY = m_camTransform.position.y - m_lastCamPos.y;

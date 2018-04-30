@@ -185,6 +185,7 @@ MonoBehaviour:
     HitboxDuration: 0.5
     Knockback: {x: 10, y: 10}
     Element: 0
+    ApplyProps: 1
   m_AttackAnimInfo:
     AnimSpeed: 0.75
     StartUpTime: 0.75
@@ -195,7 +196,7 @@ MonoBehaviour:
   m_AIInfo:
     UniqueAIPrediction: 1
     AIPredictionHitbox: {x: 6, y: -1}
-    AIPredictionOffset: {x: 3, y: 2}
+    AIPredictionOffset: {x: 3.5, y: 2}
   m_SoundInfo:
     AttackFX: {fileID: 0}
     StartupSoundFX: {fileID: 0}
@@ -285,6 +286,7 @@ MonoBehaviour:
   MaxSlots: 4
   NumTransfers: 2
   m_toRemove: []
+  SubmergedHitbox: {fileID: 0}
 --- !u!114 &114482614744153130
 MonoBehaviour:
   m_ObjectHideFlags: 1
@@ -305,7 +307,10 @@ MonoBehaviour:
   MaxClimbAngle: 80
   m_inputedMove: {x: 0, y: 0}
   TerminalVelocity: -5
+  GravityScale: -1
   FacingLeft: 0
+  UseBuoyancy: 0
+  BuoyancyScale: -1
 --- !u!114 &114492024420699440
 MonoBehaviour:
   m_ObjectHideFlags: 1
@@ -472,6 +477,7 @@ MonoBehaviour:
   m_inputMove: {x: 0, y: 0}
   m_minDistance: 3
   m_abandonDistance: 20
+  Submerged: 0
   m_stuckTime: 0
 --- !u!212 &212579261813204232
 SpriteRenderer:

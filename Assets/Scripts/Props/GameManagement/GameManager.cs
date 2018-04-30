@@ -66,8 +66,13 @@ public class GameManager : MonoBehaviour
 
 	public void SetPlayer(BasicMovement bm) {
 		GetComponent<CameraFollow> ().target = bm.GetComponent<PhysicsSS>();
+		GetComponent<CameraFollow> ().initFunct ();
 		GetComponent<GUIHandler> ().CurrentTarget = bm.gameObject;
 		CurrentPlayer = bm.gameObject;
+		ClearPropIcons ();
+		foreach (Property p in CurrentPlayer.GetComponents<Property>()) {
+			AddPropIcon (p);
+		}
 	}
 
 	public void AddPropIcon(Property p) { 
@@ -88,7 +93,12 @@ public class GameManager : MonoBehaviour
 		System.Type sysType = p.GetType ();
 		return (Property)GetComponentInChildren (sysType);
 	}
-
+	public void ClearPropIcons() {
+		foreach ( GameObject g in m_iconList.Values) {
+			Destroy (g);
+		}
+		m_iconList.Clear ();
+	}
 	public void RemovePropIcon(Property p) {
 		if (m_iconList.ContainsKey (p.GetType().ToString())) {
 			Destroy (m_iconList [p.GetType().ToString()]);
@@ -98,7 +108,7 @@ public class GameManager : MonoBehaviour
 
 	public static void Reset() {
 		SaveObjManager.charContainer = new CharacterSaveContainer ();
-		Instance.GetComponent<SaveObjManager> ().SetDirectory ("Debug");
+		Instance.GetComponent<SaveObjManager> ().SetDirectory ("AutoSave");
 		Instance.GetComponent<SaveObjManager>().resetRoomData ();
 	}
 }

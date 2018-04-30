@@ -147,9 +147,11 @@ public class Hitbox : MonoBehaviour {
 	}
 	internal HitResult OnTriggerEnter2D(Collider2D other)
 	{
+		OnHitObject (other);
 		return OnAttackable (other.gameObject.GetComponent<Attackable> ());
 	}
-
+	protected virtual void OnHitObject(Collider2D other) {
+	}
 	internal void OnTriggerExit2D(Collider2D other)
 	{
 		/*
