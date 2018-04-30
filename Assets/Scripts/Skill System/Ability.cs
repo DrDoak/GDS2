@@ -7,23 +7,28 @@ public abstract class Ability:ScriptableObject {
 
     public static GameObject Player;
     public static AbilityManager Manager;
+
     public string AbilityName;
     public AbilityType AbilityClassification;
     public string AnimStateName;
+    public bool Ultimate = false;
+    public GameObject Creator;
+
     protected GameObject Target;
     protected List<Property> _mPropertyToTransfer;
     protected List<Ability> _mSelected;
     protected List<Property> _mPropertiesToKeep;
 
+
 	//I added this for when you want to use Melee Hitboxes
 	//instead of Distance (circle) hitboxes. 
 	public bool UseAttackHitbox = false;
 
-    private int _mtier = 1;
+    protected int _mtier = 1;
 
     public abstract void UseAbility();
 
-    void Awake()
+    public void Awake()
     {
         ClearLists();
     }
@@ -31,24 +36,6 @@ public abstract class Ability:ScriptableObject {
     public virtual void TriggerAnimation()
     {
         //TriggerAnimation using the string AnimStateName
-    }
-    /// <summary>
-    /// Old functionality requirement. Use SetTransferLists instead
-    /// </summary>
-    /// <param name="p"></param>
-    public void UpdateProperty(Property p)
-    {
-        _mPropertyToTransfer.Add(p);
-		Debug.Log ("Updated property: " + p);
-    }
-
-    /// <summary>
-    /// Old functionality requirement. Use SetTransferLists instead
-    /// </summary>
-    /// <param name="a"></param>
-    public void UpdateAbility(Ability a)
-    {
-        _mSelected.Add(a);
     }
     
     public void SetTarget(GameObject g)
@@ -80,5 +67,5 @@ public abstract class Ability:ScriptableObject {
 
 public enum AbilityType
 {
-    STEALTH, MAGIC, COMBAT, SPECIAL
+    ENVRIONMENTAL, ELEMENTAL, COMBAT, SPECIAL
 }

@@ -3,17 +3,27 @@ using System.Collections.Generic;
 using UnityEngine;
 
 public class Ab_Transfer : Ability {
+    private const float DISTANCE_ADDITION = 2f;
 
     public new AbilityType AbilityClassification = AbilityType.COMBAT;
+    protected static Ab_Transfer Instance;
 
     private List<Property> _mPlayerProps;
     private List<Property> _mEnemyProps;
-    private bool _mTriggered = false;
+    protected bool _mTriggered = false;
 
-    void Awake()
+    //Upgrade data
+    public static bool InfectUpgrade;
+    public static float _maxDistance = 2f;
+    public static int _maxTransfers = 1;
+
+
+    protected void Awake()
     {
-        ClearLists();
+        base.Awake();
         UseAttackHitbox = true;
+        InfectUpgrade = false;
+        Ab_Transfer.Instance = this;
     }
 
     public override void UseAbility()
@@ -38,6 +48,21 @@ public class Ab_Transfer : Ability {
                 TransferProperty();
 			Target = null;
         }
+    }
+
+    public void UpgradeToInfect()
+    {
+        InfectUpgrade = true;
+    }
+
+    public void UpgradeMaxDistance()
+    {
+        _maxDistance += DISTANCE_ADDITION;
+    }
+
+    public void UpgradeNumTransfers()
+    {
+        _maxTransfers++;
     }
 
     private void GetPlayerProperties()
@@ -79,7 +104,7 @@ public class Ab_Transfer : Ability {
     /// <summary>
     /// TransferProperty transfers both properties and skills between player and target
     /// </summary>
-    private void TransferProperty()
+    protected virtual void TransferProperty()
     {
         PauseGame.Resume();
         CheckRemovals();
@@ -89,14 +114,18 @@ public class Ab_Transfer : Ability {
         foreach (Property p in _mPropertiesToKeep)
             Player.GetComponent<PropertyHolder>().TransferProperty(p, Target.GetComponent<PropertyHolder>());
 
-        int i = 0;
-        foreach (Ability a in _mSelected)
+        if (InfectUpgrade)
         {
-            Player.GetComponent<AbilityControl>().AbsorbAbility(a, i);
-            i++;
+            int i = 0;
+            foreach (Ability a in _mSelected)
+            {
+                Player.GetComponent<AbilityControl>().AbsorbAbility(a, i);
+                i++;
+            }
         }
 
         _mTriggered = false;
         Target = null;
     }
+
 }
