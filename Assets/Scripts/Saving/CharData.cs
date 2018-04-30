@@ -8,7 +8,6 @@ public class CharData {
 	public string name;
 	public Vector3 pos;
 	public float health = 100f;
-	public float energy = 100f;
 	public string prefabPath;
 	public string targetID;
 	public string [] propertyList;
@@ -17,6 +16,8 @@ public class CharData {
 	public RoomDirection targetDir;
 	public bool IsCurrentCharacter;
 	public bool IsFacingLeft;
-	public bool IsSheathed;
 	public int Experience;
+
+	public bool TriggerUsed;
+	public string triggerString;
 }

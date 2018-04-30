@@ -5,6 +5,7 @@
   <terrain name="metal" tile="0"/>
   <terrain name="stone" tile="32"/>
   <terrain name="background_bolted" tile="0"/>
+  <terrain name="smooth_metal" tile="0"/>
  </terraintypes>
  <tile id="0" terrain=",,,1"/>
  <tile id="1" terrain=",,1,1"/>
@@ -38,16 +39,32 @@
  <tile id="51" terrain=",,2,2"/>
  <tile id="52" terrain=",,2,"/>
  <tile id="53" terrain="2,2,2,2"/>
+ <tile id="56" terrain=",,,3"/>
+ <tile id="57" terrain=",,3,3"/>
+ <tile id="58" terrain=",,3,"/>
+ <tile id="59" terrain=",,3,3"/>
  <tile id="60" terrain=",2,,2"/>
  <tile id="61" terrain="2,2,2,2"/>
  <tile id="62" terrain="2,,2,"/>
  <tile id="63" terrain="2,2,2,2"/>
+ <tile id="66" terrain=",3,,3"/>
+ <tile id="67" terrain="3,3,3,3"/>
+ <tile id="68" terrain="3,,3,"/>
+ <tile id="69" terrain="3,3,3,3"/>
  <tile id="70" terrain=",2,,"/>
  <tile id="71" terrain="2,2,,"/>
  <tile id="72" terrain="2,,,"/>
  <tile id="73" terrain="2,2,2,2"/>
+ <tile id="76" terrain=",3,,"/>
+ <tile id="77" terrain="3,3,,"/>
+ <tile id="78" terrain="3,,,"/>
+ <tile id="79" terrain="3,3,3,3"/>
  <tile id="80" terrain="2,2,2,"/>
  <tile id="81" terrain="2,2,,2"/>
+ <tile id="86" terrain="3,3,3,"/>
+ <tile id="87" terrain="3,3,,3"/>
  <tile id="90" terrain="2,,2,2"/>
  <tile id="91" terrain=",2,2,2"/>
+ <tile id="96" terrain="3,,3,3"/>
+ <tile id="97" terrain=",3,3,3"/>
 </tileset>

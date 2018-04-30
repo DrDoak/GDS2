@@ -3,8 +3,6 @@ using System.Collections.Generic;
 using UnityEngine;
 using System;
 
-[RequireComponent (typeof (PhysicsSS))]
-[RequireComponent (typeof (Attackable))]
 public class PersistentItem : MonoBehaviour {
 	public string saveID = "autoID";
 	public string prefabName = "none";
@@ -42,10 +40,16 @@ public class PersistentItem : MonoBehaviour {
 		data.name = gameObject.name;
 		data.pos = transform.position;
 		data.targetID = "";
-		data.health = GetComponent<Attackable>().Health;
+		if (GetComponent<Interactable>()) {
+			data.TriggerUsed = GetComponent<Interactable> ().TriggerUsed;
+			data.triggerString = GetComponent<Interactable> ().value;
+		}
+		if (GetComponent<Attackable>())
+			data.health = GetComponent<Attackable>().Health;
 		if (GetComponent<BasicMovement>())
 			data.IsCurrentCharacter = GetComponent<BasicMovement> ().IsCurrentPlayer;
-		data.IsFacingLeft = GetComponent<PhysicsSS> ().FacingLeft;
+		if (GetComponent<PhysicsSS>())
+			data.IsFacingLeft = GetComponent<PhysicsSS> ().FacingLeft;
 		if (GetComponent<PropertyHolder> ()) {
 			Property[] pL = GetComponents<Property> ();
 			string[] allPs = new string[pL.Length];
@@ -72,13 +76,14 @@ public class PersistentItem : MonoBehaviour {
 			data.Experience = GetComponent<ExperienceHolder> ().Experience;
 		//Debug.Log("ID: " + properName);
 		data.prefabPath = properName; //gameObject.name;*/
-
 	}
 
 	public void LoadData() {
 		Debug.Log ("Loading data");
-		GetComponent<Attackable>().SetHealth( data.health);
-		GetComponent<PhysicsSS> ().SetDirection (data.IsFacingLeft);
+		if (GetComponent<Attackable>())
+			GetComponent<Attackable>().SetHealth( data.health);
+		if (GetComponent<PhysicsSS>())
+			GetComponent<PhysicsSS> ().SetDirection (data.IsFacingLeft);
 		if (GetComponent<PropertyHolder> ()) {
 			GetComponent<PropertyHolder> ().ClearProperties ();
 			for (int i = 0; i < data.propertyList.Length; i++) {
@@ -90,6 +95,10 @@ public class PersistentItem : MonoBehaviour {
 		}
 		if (GetComponent<ExperienceHolder> ()) {
 			GetComponent<ExperienceHolder> ().Experience = data.Experience;
+		}
+		if (GetComponent<Interactable>()) {
+			GetComponent<Interactable> ().TriggerUsed = data.TriggerUsed;
+			GetComponent<Interactable> ().value = data.triggerString;
 		}
 	}
 

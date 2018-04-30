@@ -118,7 +118,7 @@ public class Textbox : MonoBehaviour {
 							string num = "";
 							string targetChar = null;
 							while (nextChar != '`') {
-								if (nextChar == ':') {
+								if (false) { //if (nextChar == ':') {
 									Debug.Log ("targeting: " + actStr);
 									targetChar = actStr;
 									actStr = "";

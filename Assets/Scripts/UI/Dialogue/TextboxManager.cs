@@ -77,7 +77,7 @@ public class TextboxManager : MonoBehaviour {
 				} else if (lastC == '`') {
 					specialGroup = true;
 					lastText += lastC;
-				} else if (!specialGroup && lastC == ':' && lastText.Length < 18) {
+				} else if (!specialGroup && false && lastText.Length < 18) { //&& lastC == ':' 
 					ds = new DialogueUnit ();
 					subDS.Add (ds);
 					//Debug.Log (targetCharName);
@@ -111,7 +111,7 @@ public class TextboxManager : MonoBehaviour {
 	}
 
 	public static Textbox addTextbox(string text,GameObject targetObj) {
-		return m_instance.addTextbox (text, targetObj, true, 0.05f,Color.black);
+		return m_instance.addTextbox (text, targetObj, true, 0.03f,Color.black);
 	}
 	public Textbox addTextbox(string text,GameObject targetObj,bool typeText,float textSpeed, Color tbColor) {
 		Vector2 newPos = new Vector2();

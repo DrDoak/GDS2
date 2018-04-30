@@ -4,8 +4,7 @@ using UnityEngine;
 
 public class TextboxTrigger : Interactable {
 	
-	[TextArea(3,5)]
-	public string displayText;
+
 
 	public bool typeText = true;
 	public bool autoTrigger = true;
@@ -21,6 +20,7 @@ public class TextboxTrigger : Interactable {
 		if (currentInterval > 0.0f) {
 			currentInterval -= Time.deltaTime;
 		}
+		destroyAfterUse ();
 	}
 	void OnDrawGizmos() {
 		Gizmos.color = new Color (1, 0, 1, .5f);
@@ -32,12 +32,13 @@ public class TextboxTrigger : Interactable {
 		}
 	}
 	protected virtual void triggerText() {
+		TriggerUsed = true;
 		currentInterval = interval;
 		Color c = new Color (0, 0, 0);
 		if (FloatingHitbox)
-			TextboxManager.StartSequence (displayText,gameObject);
+			TextboxManager.StartSequence (value,gameObject);
 		else
-			TextboxManager.StartSequence (displayText);
+			TextboxManager.StartSequence (value);
 	}
 	/* public override void onInteract(BasicMovement interactor) {
 		if (!autoTrigger) {

@@ -14,7 +14,6 @@ public enum RoomDirection {
 public class SceneTrigger : Interactable {
 
 	public Scene TestScene;
-	public bool oneTime = true;
 	public bool onContact = true;
 	public string sceneName;
 	public Vector3 newPos = Vector2.zero;
@@ -34,6 +33,7 @@ public class SceneTrigger : Interactable {
 	}
 	protected virtual void changeRoom(GameObject go) {
 		if (go.GetComponent<BasicMovement> ()) {
+			TriggerUsed = true;
 			if (TriggerID != "none") {
 				RoomDirection realDir = dir;
 				string realTarget = TargetTriggerID;
