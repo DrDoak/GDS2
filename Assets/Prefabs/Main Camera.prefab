@@ -1256,6 +1256,7 @@ GameObject:
   - component: {fileID: 114368253722704762}
   - component: {fileID: 114328087524231432}
   - component: {fileID: 114162285695431586}
+  - component: {fileID: 114322809825246834}
   m_Layer: 0
   m_Name: PR_List
   m_TagString: Untagged
@@ -2012,7 +2013,7 @@ Transform:
   m_PrefabInternal: {fileID: 100100000}
   m_GameObject: {fileID: 1035150032497560}
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_LocalPosition: {x: 13.154483, y: -4.2416162, z: -10}
+  m_LocalPosition: {x: 4.8109264, y: -10.912263, z: -10}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_Children:
   - {fileID: 224866136947452724}
@@ -2485,8 +2486,8 @@ MonoBehaviour:
     m_SelectOnRight: {fileID: 0}
   m_Transition: 1
   m_Colors:
-    m_NormalColor: {r: 0.5019608, g: 0.5019608, b: 0.5019608, a: 1}
-    m_HighlightedColor: {r: 0.9607843, g: 0.9607843, b: 0.9607843, a: 1}
+    m_NormalColor: {r: 1, g: 1, b: 1, a: 1}
+    m_HighlightedColor: {r: 1, g: 0, b: 0, a: 1}
     m_PressedColor: {r: 0.78431374, g: 0.78431374, b: 0.78431374, a: 1}
     m_DisabledColor: {r: 0.78431374, g: 0.78431374, b: 0.78431374, a: 0.5019608}
     m_ColorMultiplier: 1
@@ -4216,8 +4217,8 @@ MonoBehaviour:
   m_TargetGraphic: {fileID: 114544868182871724}
   m_HandleRect: {fileID: 224739168298920636}
   m_Direction: 2
-  m_Value: 0
-  m_Size: 1
+  m_Value: 1
+  m_Size: 0.9999999
   m_NumberOfSteps: 0
   m_OnValueChanged:
     m_PersistentCalls:
@@ -4983,6 +4984,24 @@ MonoBehaviour:
   PropertyName: Explosive
   Description: 'Fiery Explosion on Death. DEFENSES: Fire -100%'
   icon: {fileID: 21300000, guid: ad3796c22f155d14a92cda7356fbc7a1, type: 3}
+--- !u!114 &114322809825246834
+MonoBehaviour:
+  m_ObjectHideFlags: 1
+  m_PrefabParentObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 100100000}
+  m_GameObject: {fileID: 1593684310463946}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 1d350de7167e0bf45bdd8fc31c31b3e9, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  Stealable: 0
+  Viewable: 0
+  Stackable: 0
+  value: 0
+  PropertyName: KnockbackResist
+  Description: Cannot be knocked back
+  icon: {fileID: 0}
 --- !u!114 &114325668153017796
 MonoBehaviour:
   m_ObjectHideFlags: 1
@@ -5591,7 +5610,7 @@ MonoBehaviour:
   Stackable: 0
   value: 25
   PropertyName: HealthPack
-  Description: Use for 25 Health
+  Description: Transfer to instantly heal 25 health
   icon: {fileID: 21300000, guid: 478280faf7595fd4d8f66bfbabd0fb39, type: 3}
 --- !u!114 &114388255198215346
 MonoBehaviour:
@@ -5758,8 +5777,8 @@ MonoBehaviour:
   m_TargetGraphic: {fileID: 114047140302814550}
   m_HandleRect: {fileID: 224409164585238760}
   m_Direction: 2
-  m_Value: 0
-  m_Size: 1
+  m_Value: 1
+  m_Size: 0.9999999
   m_NumberOfSteps: 0
   m_OnValueChanged:
     m_PersistentCalls:
@@ -7106,8 +7125,8 @@ MonoBehaviour:
     m_SelectOnRight: {fileID: 0}
   m_Transition: 1
   m_Colors:
-    m_NormalColor: {r: 0.5019608, g: 0.5019608, b: 0.5019608, a: 1}
-    m_HighlightedColor: {r: 0.9607843, g: 0.9607843, b: 0.9607843, a: 1}
+    m_NormalColor: {r: 1, g: 1, b: 1, a: 1}
+    m_HighlightedColor: {r: 1, g: 0, b: 0, a: 1}
     m_PressedColor: {r: 0.78431374, g: 0.78431374, b: 0.78431374, a: 1}
     m_DisabledColor: {r: 0.78431374, g: 0.78431374, b: 0.78431374, a: 0.5019608}
     m_ColorMultiplier: 1
@@ -7788,7 +7807,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   MainMenu: 0
-  DefaultMessage: Please Select a Profile
+  DefaultMessage: Enter a new Profile name or select profile to overwrite.
 --- !u!114 &114643677060152866
 MonoBehaviour:
   m_ObjectHideFlags: 1
@@ -8320,7 +8339,7 @@ MonoBehaviour:
   m_HandleRect: {fileID: 224919683728530804}
   m_Direction: 2
   m_Value: 0
-  m_Size: 1
+  m_Size: 0.9999999
   m_NumberOfSteps: 0
   m_OnValueChanged:
     m_PersistentCalls:
@@ -9230,8 +9249,8 @@ MonoBehaviour:
     m_SelectOnRight: {fileID: 0}
   m_Transition: 1
   m_Colors:
-    m_NormalColor: {r: 0.5019608, g: 0.5019608, b: 0.5019608, a: 1}
-    m_HighlightedColor: {r: 0.9607843, g: 0.9607843, b: 0.9607843, a: 1}
+    m_NormalColor: {r: 1, g: 1, b: 1, a: 1}
+    m_HighlightedColor: {r: 1, g: 0, b: 0, a: 1}
     m_PressedColor: {r: 0.78431374, g: 0.78431374, b: 0.78431374, a: 1}
     m_DisabledColor: {r: 0.78431374, g: 0.78431374, b: 0.78431374, a: 0.5019608}
     m_ColorMultiplier: 1
@@ -11013,7 +11032,7 @@ RectTransform:
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 0, y: 1}
   m_AnchorMax: {x: 1, y: 1}
-  m_AnchoredPosition: {x: 0, y: -0.000017166138}
+  m_AnchoredPosition: {x: 0, y: -0.00001335144}
   m_SizeDelta: {x: 0, y: 28}
   m_Pivot: {x: 0.5, y: 1}
 --- !u!224 &224250070742080598
@@ -12219,7 +12238,7 @@ RectTransform:
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 0, y: 1}
   m_AnchorMax: {x: 1, y: 1}
-  m_AnchoredPosition: {x: 0, y: 0.000011444092}
+  m_AnchoredPosition: {x: 0, y: -0.000024795532}
   m_SizeDelta: {x: 0, y: 28}
   m_Pivot: {x: 0.5, y: 1}
 --- !u!224 &224780512741333096
@@ -12389,7 +12408,7 @@ RectTransform:
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 0, y: 1}
   m_AnchorMax: {x: 1, y: 1}
-  m_AnchoredPosition: {x: 0, y: 0}
+  m_AnchoredPosition: {x: 0, y: -0.000019073486}
   m_SizeDelta: {x: 0, y: 28}
   m_Pivot: {x: 0.5, y: 1}
 --- !u!224 &224866136947452724

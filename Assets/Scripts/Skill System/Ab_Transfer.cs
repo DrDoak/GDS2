@@ -18,7 +18,6 @@ public class Ab_Transfer : Ability {
 
     public override void UseAbility()
     {
-
         if (Target == null)
         {
             AtkAbilityHitTrigger at = (AtkAbilityHitTrigger)Player.GetComponent<Fighter>().TryAttack("take");
@@ -27,6 +26,10 @@ public class Ab_Transfer : Ability {
         }
         else
         {
+			if (Target.GetComponent<PropertyHolder> () == null) {
+				Target = null;
+				return;
+			}
             GetPlayerProperties();
             GetTargetProperties();
             if (!_mTriggered)

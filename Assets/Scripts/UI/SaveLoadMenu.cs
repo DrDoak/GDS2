@@ -95,7 +95,7 @@ public class SaveLoadMenu : MonoBehaviour {
 			return;
 		}
 		if (m_deleteProfile == "AutoSave") {
-			m_message.text = "Autosave cannot be deleted.";
+			m_message.text = "AutoSave cannot be deleted.";
 			return;
 		}
 		string w = "Are you sure you want to permanently delete: " + m_deleteProfile + "?";
