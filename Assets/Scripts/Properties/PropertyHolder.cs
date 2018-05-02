@@ -2,6 +2,7 @@
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using UnityEngine.EventSystems;
 
 public class PropertyHolder : MonoBehaviour {
 
@@ -39,8 +40,12 @@ public class PropertyHolder : MonoBehaviour {
 			}
 			//GUIHandler.CreatePropertyList(m_properties, "Test List", Vector3.zero);
 		}
+		ExecuteEvents.Execute<ICustomMessageTarget> (gameObject, null, (x, y) => x.OnCreation ());
 	}
 
+	void Update() {
+		ExecuteEvents.Execute<ICustomMessageTarget> (gameObject, null, (x, y) => x.OnUpdate ());
+	}
 	void LateUpdate() {
 		foreach (string s in m_toRemove ) {
 			Property toRemove = null;

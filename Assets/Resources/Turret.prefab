@@ -46,6 +46,7 @@ GameObject:
   - component: {fileID: 114490833563569272}
   - component: {fileID: 114826783964261144}
   - component: {fileID: 114015100558484896}
+  - component: {fileID: 50224766380123830}
   m_Layer: 0
   m_Name: Turret
   m_TagString: Untagged
@@ -80,6 +81,26 @@ Transform:
   m_Father: {fileID: 0}
   m_RootOrder: 0
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!50 &50224766380123830
+Rigidbody2D:
+  serializedVersion: 4
+  m_ObjectHideFlags: 1
+  m_PrefabParentObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 100100000}
+  m_GameObject: {fileID: 1987836765408362}
+  m_BodyType: 1
+  m_Simulated: 1
+  m_UseFullKinematicContacts: 0
+  m_UseAutoMass: 0
+  m_Mass: 1
+  m_LinearDrag: 0
+  m_AngularDrag: 0.05
+  m_GravityScale: 1
+  m_Material: {fileID: 0}
+  m_Interpolate: 0
+  m_SleepingMode: 1
+  m_CollisionDetection: 0
+  m_Constraints: 0
 --- !u!61 &61787525181816250
 BoxCollider2D:
   m_ObjectHideFlags: 1
@@ -138,9 +159,10 @@ MonoBehaviour:
   TurretHead: {fileID: 1978544064719756}
   Projectile: {fileID: 1328995660490666, guid: 060e9232e0c8008479e297f6624c5056, type: 2}
   ProjSpeed: 20
-  ProjDamage: 1
+  ProjDamage: 5
   ProjStun: 0.3
   ProjDuration: 1
+  ProjPenetration: 0
   ProjKB: {x: 10, y: 0}
   ProjElement: 0
   TimeBetweenVolleys: 3
@@ -158,8 +180,8 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 6cecf518dba7e8f429d2dc6df9ba9177, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  m_health: 100
-  MaxHealth: 100
+  m_health: 40
+  MaxHealth: 40
   Alive: 1
   DeathTime: 0
   Faction: 3

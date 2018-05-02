@@ -39,7 +39,7 @@ Transform:
   m_PrefabInternal: {fileID: 100100000}
   m_GameObject: {fileID: 1896962075796316}
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_LocalPosition: {x: 8.234326, y: -7.3642464, z: 0}
+  m_LocalPosition: {x: 26.695967, y: -21.78, z: 0}
   m_LocalScale: {x: 1, y: 1, z: 4}
   m_Children: []
   m_Father: {fileID: 0}
@@ -106,7 +106,47 @@ MonoBehaviour:
   Alive: 1
   DeathTime: 0
   Faction: 3
-  Resistences: []
+  Resistences:
+  - Element: 4
+    Duration: 0
+    Percentage: 100
+    Timed: 0
+    StunResist: 0
+    KnockbackResist: 100
+    AvoidOverflow: 0
+    OverflowAmount: 0
+  - Element: 3
+    Duration: 0
+    Percentage: 100
+    Timed: 0
+    StunResist: 0
+    KnockbackResist: 100
+    AvoidOverflow: 0
+    OverflowAmount: 0
+  - Element: 2
+    Duration: 0
+    Percentage: 100
+    Timed: 0
+    StunResist: 0
+    KnockbackResist: 100
+    AvoidOverflow: 0
+    OverflowAmount: 0
+  - Element: 1
+    Duration: 0
+    Percentage: 100
+    Timed: 0
+    StunResist: 0
+    KnockbackResist: 100
+    AvoidOverflow: 0
+    OverflowAmount: 0
+  - Element: 0
+    Duration: 0
+    Percentage: 100
+    Timed: 0
+    StunResist: 0
+    KnockbackResist: 100
+    AvoidOverflow: 0
+    OverflowAmount: 0
   DisplayHealth: 1
   Killer: {fileID: 0}
 --- !u!114 &114160720716154692
@@ -145,7 +185,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   m_properties: []
-  HolderName: SameAsObject
+  HolderName: Turret_Control
   MaxSlots: 4
   NumTransfers: 2
   m_toRemove: []

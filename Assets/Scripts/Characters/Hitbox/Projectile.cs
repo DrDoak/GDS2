@@ -39,11 +39,16 @@ public class Projectile : Hitbox {
 	protected override void OnHitObject(Collider2D other) {
 		if (TravelThroughWalls)
 			return;
-		Debug.Log ("Hit this: " + other.gameObject + " : " + Creator);
-		if (other.gameObject != Creator && !other.isTrigger && other.GetComponent<Attackable> () == null)
+		if (other.gameObject != Creator && !other.isTrigger && !JumpThruTag(other.gameObject)
+			&& other.GetComponent<Attackable> () == null)
 			Duration = 0f;
 	}
 	void orientToSpeed(Vector2 speed) {
 		transform.rotation = Quaternion.Euler (new Vector3(0f,0f,Mathf.Rad2Deg * Mathf.Atan2 (speed.y, speed.x)));
+	}
+
+	private bool JumpThruTag( GameObject obj ) {
+		return (obj.CompareTag ("JumpThru") || (obj.transform.parent != null &&
+			obj.transform.parent.CompareTag ("JumpThru")));
 	}
 }

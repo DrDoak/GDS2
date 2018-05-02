@@ -64,7 +64,7 @@ public class Attackable : MonoBehaviour
 		}
 	}
 	internal void Start() {
-		ExecuteEvents.Execute<ICustomMessageTarget> (gameObject, null, (x, y) => x.OnCreation ());
+		
 		if (DisplayHealth) {
 			m_display = Instantiate (GameManager.Instance.HealthBarPrefab, this.transform).GetComponent<HealthDisplay>();
 			m_display.SetMaxHealth (MaxHealth);
@@ -101,8 +101,7 @@ public class Attackable : MonoBehaviour
 
 	internal void Update() {
 		CheckDeath();
-		CheckResistanceValidities();
-		ExecuteEvents.Execute<ICustomMessageTarget> (gameObject, null, (x, y) => x.OnUpdate ());
+		CheckResistanceValidities ();
 	}
 	public Resistence SetResistence(ElementType element, float percentage, bool overflow = false, bool isTimed = false, float duration = 0f, 
 		float resistStun = 0f, float resistKnockback = 0f) {
