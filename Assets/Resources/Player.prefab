@@ -54,7 +54,7 @@ Transform:
   m_PrefabInternal: {fileID: 100100000}
   m_GameObject: {fileID: 1000013670716774}
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_LocalPosition: {x: 13.870128, y: -13.289233, z: 0}
+  m_LocalPosition: {x: 25.15, y: -17.57, z: 0}
   m_LocalScale: {x: 1.5, y: 1.5, z: 4}
   m_Children: []
   m_Father: {fileID: 0}
@@ -149,6 +149,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   m_properties: []
+  HolderName: SameAsObject
   MaxSlots: 4
   NumTransfers: 2
   m_toRemove: []
@@ -277,6 +278,8 @@ MonoBehaviour:
   IsCurrentPlayer: 1
   JumpHeight: 3
   TimeToJumpApex: 0.4
+  VariableJumpHeight: 1
+  variableJumpApplied: 0
   MoveSpeed: 6
   jumpVector: {x: 0, y: 15}
   m_inputMove: {x: 0, y: 0}
@@ -424,7 +427,6 @@ MonoBehaviour:
     name: 
     pos: {x: 0, y: 0, z: 0}
     health: 100
-    energy: 100
     prefabPath: 
     targetID: 
     propertyList: []
@@ -433,8 +435,9 @@ MonoBehaviour:
     targetDir: 0
     IsCurrentCharacter: 0
     IsFacingLeft: 0
-    IsSheathed: 0
     Experience: 0
+    TriggerUsed: 0
+    triggerString: 
   recreated: 0
 --- !u!114 &114845752184036596
 MonoBehaviour:

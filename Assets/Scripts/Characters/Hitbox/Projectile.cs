@@ -39,7 +39,8 @@ public class Projectile : Hitbox {
 	protected override void OnHitObject(Collider2D other) {
 		if (TravelThroughWalls)
 			return;
-		if (!other.isTrigger && other.GetComponent<Attackable> () == null)
+		Debug.Log ("Hit this: " + other.gameObject + " : " + Creator);
+		if (other.gameObject != Creator && !other.isTrigger && other.GetComponent<Attackable> () == null)
 			Duration = 0f;
 	}
 	void orientToSpeed(Vector2 speed) {

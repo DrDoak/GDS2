@@ -4,7 +4,6 @@ using UnityEngine;
 
 public class PR_Flaming : Property
 {
-    Resistence fireResist;
 
     Vector2 scl = new Vector2(1.0f, 1.0f);
     Vector2 off = new Vector2(0f, 0f);
@@ -25,7 +24,6 @@ public class PR_Flaming : Property
     public override void OnAddProperty()
     {
         GetComponent<Attackable>().Faction = FactionType.HOSTILE;
-        fireResist = GetComponent<Attackable>().AddResistence(ElementType.FIRE, 50.0f, false, false);
 		Vector3 sc = GetComponent<PropertyHolder> ().BodyScale ();
 		sc *= 1.2f;
 		fireSurround = GetComponent<HitboxMaker>().CreateHitboxDoT(sc, off, dmg, stun, hd, kb,false, true, ElementType.FIRE);
@@ -37,7 +35,6 @@ public class PR_Flaming : Property
 
     public override void OnRemoveProperty()
     {
-        GetComponent<Attackable>().RemoveResistence(fireResist);
        // GetComponent<HitboxMaker>().ClearHitboxes();
 		Destroy(fireSurround);
 		GetComponent<PropertyHolder> ().RemoveBodyEffect (fx);
@@ -50,7 +47,6 @@ public class PR_Flaming : Property
        // if (Time.time > time_tracker)
         //{
           //  time_tracker += flaming_period;
-			GetComponent<Attackable>().TakeHit(fireSurround);
 			GetComponent<Attackable>().TakeHit(fireSurround);
 			//GetComponent<Attackable>().TakeHit(fireSurround);
         //}

@@ -18,7 +18,7 @@ public class PhysicsSS : MonoBehaviour
 	private BoxCollider2D m_boxCollider;
 	private RaycastOrigins m_raycastOrigins;
 	private CollisionInfo m_collisions;
-	private const float m_skinWidth = .015f;
+	private const float m_skinWidth = .01f;
 	private int m_horizontalRayCount = 4;
 	private int m_verticalRayCount = 4;
 	private float m_horizontalRaySpacing;
@@ -103,7 +103,6 @@ public class PhysicsSS : MonoBehaviour
 	{
 		m_inputedForce.Force *= Time.fixedDeltaTime;
 		m_velocity.x = m_inputedForce.Force.x;
-		bool Yf = false;
 
 		List<ForceSS> forcesToRemove = new List<ForceSS>();
 		foreach (ForceSS force in m_forces)
@@ -119,7 +118,7 @@ public class PhysicsSS : MonoBehaviour
 		if (UseBuoyancy) {
 			m_velocity.y += BuoyancyScale * Time.fixedDeltaTime;
 		} else if (m_velocity.y > TerminalVelocity){
-			if (Yf || !m_collisions.below) {
+			if (!m_collisions.below) {
 				m_velocity.y += GravityScale * Time.fixedDeltaTime;
 			} else if (m_collisions.below) { //force player to stick to slopes
 				m_velocity.y += GravityScale * Time.fixedDeltaTime * 6f;

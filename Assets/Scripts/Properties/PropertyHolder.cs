@@ -6,6 +6,7 @@ using UnityEngine;
 public class PropertyHolder : MonoBehaviour {
 
 	public List<Property> m_properties;
+	public string HolderName = "SameAsObject";
 	bool m_currentPlayer;
 	public int MaxSlots = 4;
 	public int NumTransfers = 2;
@@ -56,17 +57,17 @@ public class PropertyHolder : MonoBehaviour {
 		m_toRemove.Clear ();
 	}
 
-	public List<Property> GetVisibleProperties() {
+	public virtual List<Property> GetVisibleProperties() {
 		List<Property> lp = new List<Property> ();
 		foreach (Property p in m_properties) {
-			if (p != null && p.Viewable) {
+			if (p != null && p.Viewable && !m_toRemove.Contains(p.PropertyName)) {
 				lp.Add (p);
 			}
 		}
 		return lp;
 	}
 
-	public void AddProperty(Property originalP) {
+	public virtual void AddProperty(Property originalP) {
 		if (originalP.GetType() == null)
 			return;
 		//Property p = (Property)(System.Activator.CreateInstance (Type.GetType (pName)));
@@ -83,7 +84,7 @@ public class PropertyHolder : MonoBehaviour {
 			GameManager.Instance.AddPropIcon (p);
 	}
 
-	public void AddProperty(string pName) {
+	public virtual void AddProperty(string pName) {
 		if (Type.GetType (pName) == null)
 			return;
 		//Property p = (Property)(System.Activator.CreateInstance (Type.GetType (pName)));
@@ -99,7 +100,7 @@ public class PropertyHolder : MonoBehaviour {
 			GameManager.Instance.AddPropIcon (p);
 		}
 	}
-	public void ClearProperties() {
+	public virtual void ClearProperties() {
 		Property[] prList = GetComponents<Property> ();
 		foreach (Property p in prList) {
 			if (m_properties.Contains (p)) {
@@ -116,11 +117,11 @@ public class PropertyHolder : MonoBehaviour {
 		}
 		m_properties.Clear();
 	}
-	public void RequestRemoveProperty(string pName) {
+	public virtual void RequestRemoveProperty(string pName) {
 		m_toRemove.Add (pName);
 	}
 
-	public void RemoveProperty(Property p) {
+	public virtual void RemoveProperty(Property p) {
 		if (m_properties.Contains(p)) {
 			m_properties.Remove (p);
 			p.OnRemoveProperty ();
@@ -145,7 +146,7 @@ public class PropertyHolder : MonoBehaviour {
 		}
 	}
 
-	public bool HasProperty(Property p) {
+	public virtual bool HasProperty(Property p) {
 		foreach (Property mp in m_properties) {
 			if (mp != null && mp.GetType() == p.GetType())
 				return true;
@@ -153,7 +154,7 @@ public class PropertyHolder : MonoBehaviour {
 		return false;
 	}
 
-	public bool HasProperty(string pName) {
+	public virtual bool HasProperty(string pName) {
 		foreach (Property p in m_properties) {
 			if (p != null && p.PropertyName == pName)
 				return true;
@@ -161,14 +162,14 @@ public class PropertyHolder : MonoBehaviour {
 		return false;
 	}
 
-	public void TransferProperty( Property p, PropertyHolder other) {
+	public virtual void TransferProperty( Property p, PropertyHolder other) {
 		RemoveProperty (p);
 		other.AddProperty (p);
 		GameObject go = Instantiate (GameManager.Instance.FXPropertyPrefab,transform.position,Quaternion.identity);
 		go.GetComponent<ChaseTarget> ().Target = other.GetComponent<PhysicsSS> ();
 	}
 
-	public GameObject AddBodyEffect(GameObject go) {
+	public virtual GameObject AddBodyEffect(GameObject go) {
 		GameObject newGO = Instantiate (go, transform.position, Quaternion.identity);
 		newGO.transform.parent = transform;
 		Vector3 newS = BodyScale ();
@@ -182,10 +183,10 @@ public class PropertyHolder : MonoBehaviour {
 		}
 		return newGO;
 	}
-	public void RemoveBodyEffect(GameObject go) {
+	public virtual void RemoveBodyEffect(GameObject go) {
 		Destroy (go);
 	}
-	public Vector3 BodyScale() {
+	public virtual Vector3 BodyScale() {
 		Vector3 sc = transform.localScale;
 		Vector2 v2 =  GetComponent<BoxCollider2D> ().size;
 		return new Vector3(sc.x * v2.x,sc.y *v2.y,1f);

@@ -14,7 +14,7 @@ public class PersistentItem : MonoBehaviour {
 	public bool recreated = false;
 
 	protected bool m_registryChecked = false;
-	void Start() {
+	void Awake() {
 		if (data.regID == "") {
 			data.regID = SaveObjManager.Instance.GenerateID (gameObject);
 		}

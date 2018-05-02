@@ -140,7 +140,10 @@ public class TransferMenu : MonoBehaviour {
 	public void AddPropertyHolder(PropertyHolder ph, int coordIndex) {
 		PropertyMenu pm;
 		pm = m_propMenus [coordIndex];
-		pm.holderName = removeParenthesis(ph.gameObject.name);
+		if (ph.HolderName == "SameAsObject")
+			pm.holderName = removeParenthesis (ph.gameObject.name);
+		else
+			pm.holderName = ph.HolderName;
 		pm.MaxSlots = ph.MaxSlots;
 		pm.propertyList = ph.GetVisibleProperties ();
 		pm.holder = ph;
@@ -321,13 +324,6 @@ public class TransferMenu : MonoBehaviour {
 	void HighlightKey(GameObject button) {
 		m_selectedButton = button;
 		Property p = button.GetComponent<ButtonProperty> ().SelectedProperty;
-		if (m_CurrentMenu.holder.HasProperty ("NanoLock")) {
-			m_infoText.text = "CANNOT TRANSFER! This item is NanoLocked";
-			return;
-		} else if (m_OtherMenu.holder.HasProperty ("NanoShield")) {
-			m_infoText.text = "CANNOT TRANSFER! Target is NanoShielded";
-			return;
-		}
 		if (CanSelectProperty(p,m_OtherMenu))
 			m_selectedButton.GetComponent<Image> ().color = m_highLightedColor;
 		else
@@ -335,6 +331,13 @@ public class TransferMenu : MonoBehaviour {
 		if (!p.Stealable) {
 			m_centerImage.sprite = XImage;
 			m_infoText.text = "CANNOT TRANSFER! This property cannot be transferred";
+			return;
+		}
+		if (m_CurrentMenu.holder.HasProperty ("NanoLock")) {
+			m_infoText.text = "CANNOT TRANSFER! This item is NanoLocked";
+			return;
+		} else if (m_OtherMenu.holder.HasProperty ("NanoShield")) {
+			m_infoText.text = "CANNOT TRANSFER! Target is NanoShielded";
 			return;
 		}
 		if (m_OtherMenu.NumProps() >= m_OtherMenu.MaxSlots) {

@@ -24,7 +24,7 @@ public class CombatControl : MonoBehaviour
         }
 
         SlotAbility(keys[0], ScriptableObject.CreateInstance<Ab_Melee>());
-        SlotAbility(keys[1], ScriptableObject.CreateInstance<Ab_Forcepush>());
+       // SlotAbility(keys[1], ScriptableObject.CreateInstance<Ab_Forcepush>());
         SlotAbility(KeyCode.Return, ScriptableObject.CreateInstance<Ab_Transfer>());
 
         Ability.Player = gameObject;

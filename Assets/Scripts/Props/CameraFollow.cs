@@ -37,10 +37,15 @@ public class CameraFollow : MonoBehaviour {
 	}
 	void Update() {
 		if (target != null) {
-			focusArea.Update (target.GetComponent<Collider2D> ().bounds,minVertex,maxVertex,UseCameraLimits);
+			focusArea.Update (target.GetComponent<Collider2D> ().bounds, minVertex, maxVertex, UseCameraLimits);
 			if (Vector3.Distance (target.transform.position, transform.position) > DISTANCE_SNAP) {
 				transform.position = target.transform.position;
 			}
+		} else {
+			GameObject pl = GameManager.Instance.CurrentPlayer;
+			if (pl == null)
+				return;
+			target = pl.GetComponent<PhysicsSS> ();
 		}
 		Vector2 focusPosition = focusArea.centre + Vector2.up * verticalOffset;
 

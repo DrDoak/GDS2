@@ -596,11 +596,11 @@ Prefab:
     m_Modifications:
     - target: {fileID: 4191079267498218, guid: e19dbd7becd744240b186d32ec54d074, type: 2}
       propertyPath: m_LocalPosition.x
-      value: -10.18
+      value: -7.38
       objectReference: {fileID: 0}
     - target: {fileID: 4191079267498218, guid: e19dbd7becd744240b186d32ec54d074, type: 2}
       propertyPath: m_LocalPosition.y
-      value: -14.98
+      value: -14.93
       objectReference: {fileID: 0}
     - target: {fileID: 4191079267498218, guid: e19dbd7becd744240b186d32ec54d074, type: 2}
       propertyPath: m_LocalPosition.z
@@ -629,9 +629,9 @@ Prefab:
     - target: {fileID: 114662688524436068, guid: e19dbd7becd744240b186d32ec54d074,
         type: 2}
       propertyPath: value
-      value: "Loudspeakers: To the rogue A.I module who attacked Dr. Livita.\nBe informed
-        we have completely shielded the lab door from your NANO abilities.\r\nThere
-        is no escape. `1`Surrender now, and we may only wipe your memory.\r"
+      value: "Loudspeakers: A message for the rogue A.I in the lab.\nWe have completely
+        shielded the lab door from your NANO abilities.\r\nThere is no escape. `1`Surrender
+        now, and we may only wipe your memory.\r"
       objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_ParentPrefab: {fileID: 100100000, guid: e19dbd7becd744240b186d32ec54d074, type: 2}
@@ -796,7 +796,7 @@ Prefab:
     m_Modifications:
     - target: {fileID: 4160601342242494, guid: e257e003c31bc9c45992adf9b725ae31, type: 2}
       propertyPath: m_LocalPosition.x
-      value: 27.23
+      value: 27.86
       objectReference: {fileID: 0}
     - target: {fileID: 4160601342242494, guid: e257e003c31bc9c45992adf9b725ae31, type: 2}
       propertyPath: m_LocalPosition.y
@@ -829,6 +829,29 @@ Prefab:
     m_RemovedComponents: []
   m_ParentPrefab: {fileID: 100100000, guid: e257e003c31bc9c45992adf9b725ae31, type: 2}
   m_IsPrefabParent: 0
+--- !u!1 &1382490422 stripped
+GameObject:
+  m_PrefabParentObject: {fileID: 1708268155150066, guid: e257e003c31bc9c45992adf9b725ae31,
+    type: 2}
+  m_PrefabInternal: {fileID: 1382490421}
+--- !u!114 &1382490423
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_PrefabParentObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 0}
+  m_GameObject: {fileID: 1382490422}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 2f47185e50bc3c74f8408a104b490f7b, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  Stealable: 1
+  Viewable: 1
+  Stackable: 0
+  value: 0
+  PropertyName: None
+  Description: No description provided.
+  icon: {fileID: 0}
 --- !u!1001 &1448375775
 Prefab:
   m_ObjectHideFlags: 0
@@ -1079,11 +1102,11 @@ Prefab:
     m_Modifications:
     - target: {fileID: 4936341498879160, guid: 582934a1180790b4c8d08f1f06c9a215, type: 2}
       propertyPath: m_LocalPosition.x
-      value: 24.35
+      value: 24.24
       objectReference: {fileID: 0}
     - target: {fileID: 4936341498879160, guid: 582934a1180790b4c8d08f1f06c9a215, type: 2}
       propertyPath: m_LocalPosition.y
-      value: -13.92
+      value: -13.99
       objectReference: {fileID: 0}
     - target: {fileID: 4936341498879160, guid: 582934a1180790b4c8d08f1f06c9a215, type: 2}
       propertyPath: m_LocalPosition.z
@@ -1462,7 +1485,7 @@ Prefab:
     - target: {fileID: 224409164585238760, guid: 86856ebb1cc73c04a86115975021a18e,
         type: 2}
       propertyPath: m_AnchorMin.y
-      value: 0
+      value: 0.00000011920929
       objectReference: {fileID: 0}
     - target: {fileID: 224409164585238760, guid: 86856ebb1cc73c04a86115975021a18e,
         type: 2}
@@ -1532,17 +1555,17 @@ Prefab:
     - target: {fileID: 224858247495619676, guid: 86856ebb1cc73c04a86115975021a18e,
         type: 2}
       propertyPath: m_AnchoredPosition.y
-      value: 0.0000019073486
+      value: -0.00001335144
       objectReference: {fileID: 0}
     - target: {fileID: 224209084733379808, guid: 86856ebb1cc73c04a86115975021a18e,
         type: 2}
       propertyPath: m_AnchoredPosition.y
-      value: -0.000017166138
+      value: 0.00002861023
       objectReference: {fileID: 0}
     - target: {fileID: 224777399314521252, guid: 86856ebb1cc73c04a86115975021a18e,
         type: 2}
       propertyPath: m_AnchoredPosition.y
-      value: -0.000024795532
+      value: 0.000020980835
       objectReference: {fileID: 0}
     - target: {fileID: 224919683728530804, guid: 86856ebb1cc73c04a86115975021a18e,
         type: 2}

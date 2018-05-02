@@ -24,7 +24,7 @@ GameObject:
   - component: {fileID: 212080651894880516}
   - component: {fileID: 50357972924389840}
   m_Layer: 2
-  m_Name: Projectile 1
+  m_Name: Bullet
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -37,8 +37,8 @@ Transform:
   m_PrefabInternal: {fileID: 100100000}
   m_GameObject: {fileID: 1328995660490666}
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_LocalPosition: {x: 21.301342, y: -21.831758, z: 0}
-  m_LocalScale: {x: 0.25, y: 0.25, z: 0.25}
+  m_LocalPosition: {x: 19.564548, y: -14.405328, z: 0}
+  m_LocalScale: {x: 1, y: 1, z: 1}
   m_Children: []
   m_Father: {fileID: 0}
   m_RootOrder: 0
@@ -79,14 +79,14 @@ BoxCollider2D:
   m_SpriteTilingProperty:
     border: {x: 0, y: 0, z: 0, w: 0}
     pivot: {x: 0.5, y: 0.5}
-    oldSize: {x: 1, y: 1}
+    oldSize: {x: 0.32, y: 0.32}
     newSize: {x: 0.2, y: 0.2}
     adaptiveTilingThreshold: 0.5
     drawMode: 0
     adaptiveTiling: 0
   m_AutoTiling: 0
   serializedVersion: 2
-  m_Size: {x: 1, y: 0.99999994}
+  m_Size: {x: 0.2, y: 0.2}
   m_EdgeRadius: 0
 --- !u!114 &114887477891299444
 MonoBehaviour:
@@ -117,6 +117,7 @@ MonoBehaviour:
   AimPoint: {x: 0, y: 0}
   PenetrativePower: 1
   TravelThroughWalls: 0
+  OrientToSpeed: 1
 --- !u!212 &212080651894880516
 SpriteRenderer:
   m_ObjectHideFlags: 1
@@ -151,7 +152,7 @@ SpriteRenderer:
   m_SortingLayerID: 0
   m_SortingLayer: 0
   m_SortingOrder: 0
-  m_Sprite: {fileID: 21300000, guid: 6d80ad21471dd8f439b9e48c2ff5714b, type: 3}
+  m_Sprite: {fileID: 21300000, guid: 525d6257e4e3deb42ba823293ad46d63, type: 3}
   m_Color: {r: 1, g: 1, b: 1, a: 1}
   m_FlipX: 0
   m_FlipY: 0
