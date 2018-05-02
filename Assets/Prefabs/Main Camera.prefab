@@ -1257,6 +1257,8 @@ GameObject:
   - component: {fileID: 114328087524231432}
   - component: {fileID: 114162285695431586}
   - component: {fileID: 114322809825246834}
+  - component: {fileID: 114457619060251532}
+  - component: {fileID: 114177150010413354}
   m_Layer: 0
   m_Name: PR_List
   m_TagString: Untagged
@@ -2013,7 +2015,7 @@ Transform:
   m_PrefabInternal: {fileID: 100100000}
   m_GameObject: {fileID: 1035150032497560}
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_LocalPosition: {x: 4.8109264, y: -10.912263, z: -10}
+  m_LocalPosition: {x: 0, y: 0, z: -10}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_Children:
   - {fileID: 224866136947452724}
@@ -3940,6 +3942,24 @@ MonoBehaviour:
   PropertyName: NanoShield
   Description: Cannot Transfer Properties into this object
   icon: {fileID: 21300000, guid: 186da3c3549f6354bb26775acc5b4bdb, type: 3}
+--- !u!114 &114177150010413354
+MonoBehaviour:
+  m_ObjectHideFlags: 1
+  m_PrefabParentObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 100100000}
+  m_GameObject: {fileID: 1593684310463946}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: b4ab54d6cdd45974ebb084eb8a8d6bde, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  Stealable: 1
+  Viewable: 1
+  Stackable: 0
+  value: 0
+  PropertyName: Electric_Door
+  Description: Open when powered by electricity
+  icon: {fileID: 21300000, guid: 5d560eae4d53c7447a82c777d39837a1, type: 3}
 --- !u!114 &114180510793556714
 MonoBehaviour:
   m_ObjectHideFlags: 1
@@ -4217,8 +4237,8 @@ MonoBehaviour:
   m_TargetGraphic: {fileID: 114544868182871724}
   m_HandleRect: {fileID: 224739168298920636}
   m_Direction: 2
-  m_Value: 1
-  m_Size: 0.9999999
+  m_Value: 0
+  m_Size: 1
   m_NumberOfSteps: 0
   m_OnValueChanged:
     m_PersistentCalls:
@@ -5628,7 +5648,8 @@ MonoBehaviour:
   Stackable: 0
   value: 0
   PropertyName: Iron
-  Description: 'Become very heavy. DEFENSES: Fire +50%, Physical +25%, Lightning -25%'
+  Description: 'Become very heavy. DEFENSES: Fire +100%, Physical +25%, Lightning
+    -25%'
   icon: {fileID: 21300000, guid: 058d0fcc4a4741444a59c0efa6ca7262, type: 3}
 --- !u!114 &114389900829790488
 MonoBehaviour:
@@ -5777,7 +5798,7 @@ MonoBehaviour:
   m_TargetGraphic: {fileID: 114047140302814550}
   m_HandleRect: {fileID: 224409164585238760}
   m_Direction: 2
-  m_Value: 1
+  m_Value: 0
   m_Size: 0.9999999
   m_NumberOfSteps: 0
   m_OnValueChanged:
@@ -5955,6 +5976,24 @@ MonoBehaviour:
   m_FillAmount: 1
   m_FillClockwise: 1
   m_FillOrigin: 0
+--- !u!114 &114457619060251532
+MonoBehaviour:
+  m_ObjectHideFlags: 1
+  m_PrefabParentObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 100100000}
+  m_GameObject: {fileID: 1593684310463946}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: dc4bb76cc1e333243bf31f36dc58c87e, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  Stealable: 0
+  Viewable: 1
+  Stackable: 0
+  value: 0
+  PropertyName: Turret
+  Description: Turned on when powered by Electricity
+  icon: {fileID: 21300000, guid: 5d560eae4d53c7447a82c777d39837a1, type: 3}
 --- !u!114 &114460414735779158
 MonoBehaviour:
   m_ObjectHideFlags: 1
@@ -7627,7 +7666,7 @@ MonoBehaviour:
   Stackable: 0
   value: 0
   PropertyName: Flaming
-  Description: 'Constant self-damaging hitbox. Adds Fire Element. DEFENSES: Fire +50%'
+  Description: Constant self-damaging hitbox. Adds Fire Element.
   icon: {fileID: 21300000, guid: 3ce279433fa810641908000de8ced2af, type: 3}
 --- !u!114 &114627092590536324
 MonoBehaviour:
@@ -11032,7 +11071,7 @@ RectTransform:
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 0, y: 1}
   m_AnchorMax: {x: 1, y: 1}
-  m_AnchoredPosition: {x: 0, y: -0.00001335144}
+  m_AnchoredPosition: {x: 0, y: -0.0000038146973}
   m_SizeDelta: {x: 0, y: 28}
   m_Pivot: {x: 0.5, y: 1}
 --- !u!224 &224250070742080598
@@ -12238,7 +12277,7 @@ RectTransform:
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 0, y: 1}
   m_AnchorMax: {x: 1, y: 1}
-  m_AnchoredPosition: {x: 0, y: -0.000024795532}
+  m_AnchoredPosition: {x: 0, y: -0.000005722046}
   m_SizeDelta: {x: 0, y: 28}
   m_Pivot: {x: 0.5, y: 1}
 --- !u!224 &224780512741333096
@@ -12408,7 +12447,7 @@ RectTransform:
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 0, y: 1}
   m_AnchorMax: {x: 1, y: 1}
-  m_AnchoredPosition: {x: 0, y: -0.000019073486}
+  m_AnchoredPosition: {x: 0, y: 0.000009536743}
   m_SizeDelta: {x: 0, y: 28}
   m_Pivot: {x: 0.5, y: 1}
 --- !u!224 &224866136947452724

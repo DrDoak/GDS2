@@ -4,14 +4,26 @@ using UnityEngine;
 
 public class PropertyProxy : PropertyHolder {
 
+	public string PropertyProxyTarget = "";
 	public PropertyHolder PropHolder;
 	// Use this for initialization
-	void Start () {}
-	
+	void Start () {
+		if (PropHolder == null) {
+			findTarget ();
+		}
+	}
+
+	void findTarget() {
+		GameObject target = GameObject.Find (PropertyProxyTarget);
+		if (target != null)
+			PropHolder = target.GetComponent<PropertyHolder> ();
+		if (target == null || PropHolder == null)
+			Destroy (this);
+	}
 	// Update is called once per frame
 	void Update () { 
 		if (PropHolder == null)
-			Destroy (this);
+			findTarget ();
 	}
 
 	public override List<Property> GetVisibleProperties() {

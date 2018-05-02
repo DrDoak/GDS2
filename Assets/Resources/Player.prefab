@@ -149,6 +149,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   m_properties: []
+  HolderName: SameAsObject
   MaxSlots: 4
   NumTransfers: 2
   m_toRemove: []
@@ -424,7 +425,6 @@ MonoBehaviour:
     name: 
     pos: {x: 0, y: 0, z: 0}
     health: 100
-    energy: 100
     prefabPath: 
     targetID: 
     propertyList: []
@@ -433,8 +433,9 @@ MonoBehaviour:
     targetDir: 0
     IsCurrentCharacter: 0
     IsFacingLeft: 0
-    IsSheathed: 0
     Experience: 0
+    TriggerUsed: 0
+    triggerString: 
   recreated: 0
 --- !u!114 &114845752184036596
 MonoBehaviour:
