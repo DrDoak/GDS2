@@ -1,0 +1,47 @@
+﻿<?xml version="1.0" encoding="utf-8" standalone="yes"?>
+<!--Tiled2Unity generated xml data-->
+<!--Do not modify by hand-->
+<!--Last exported: 5/2/2018 4:26:18 PM-->
+<Tiled2Unity version="1.0.13.2">
+  <Prefab name="CT_Start" orientation="Orthogonal" staggerAxis="Y" staggerIndex="Odd" hexSideLength="0" numLayers="5" numTilesWide="50" numTilesHigh="50" tileWidth="32" tileHeight="32" exportScale="1" mapWidthInPixels="1600" mapHeightInPixels="1600" backgroundColor="#808080" scale="0.03125">
+    <GameObject name="Background1" x="0" y="0" z="0">
+      <TileLayer offsetX="0" offsetY="0" />
+    </GameObject>
+    <GameObject name="Background2" x="0" y="0" z="0">
+      <TileLayer offsetX="0" offsetY="0" />
+    </GameObject>
+    <GameObject name="Background3" x="0" y="0" z="0">
+      <TileLayer offsetX="0" offsetY="0" />
+    </GameObject>
+    <GameObject name="Foreground1" x="0" y="0" z="0">
+      <TileLayer offsetX="0" offsetY="0" />
+    </GameObject>
+    <GameObject name="Foreground2" x="0" y="0" z="0">
+      <TileLayer offsetX="0" offsetY="0" />
+    </GameObject>
+    <GameObject name="walls" x="0" y="0" z="0" layer="Obstacle">
+      <ObjectLayer offsetX="0" offsetY="0" color="#ff808080" />
+      <GameObject name="PolylineObject" x="0" y="-1440" rotation="0">
+        <PolylineObjectComponent tmx-object-id="16" tmx-object-name="" tmx-object-type="" tmx-object-x="0" tmx-object-y="1440" tmx-object-width="0" tmx-object-height="0" tmx-object-rotation="0" />
+        <EdgeCollider2D>
+          <Points>0,0 672,0 672,928 128,928 128,1152 384,1152 384,1024 1600,1024 1600,800 1472,800 1472,704 1248,704 1248,800 928,800 928,-96 0,-96 0,0</Points>
+        </EdgeCollider2D>
+      </GameObject>
+    </GameObject>
+    <GameObject name="JumpThru" x="0" y="0" z="0" layer="Obstacle" tag="JumpThru">
+      <ObjectLayer offsetX="0" offsetY="0" color="#ff808080" />
+      <GameObject name="PolylineObject" x="672" y="-640" rotation="0">
+        <PolylineObjectComponent tmx-object-id="18" tmx-object-name="" tmx-object-type="" tmx-object-x="672" tmx-object-y="640" tmx-object-width="0" tmx-object-height="0" tmx-object-rotation="0" />
+        <EdgeCollider2D>
+          <Points>0,0 128,0 256,0</Points>
+        </EdgeCollider2D>
+      </GameObject>
+      <GameObject name="PolylineObject" x="672" y="-1536" rotation="0">
+        <PolylineObjectComponent tmx-object-id="17" tmx-object-name="" tmx-object-type="" tmx-object-x="672" tmx-object-y="1536" tmx-object-width="0" tmx-object-height="0" tmx-object-rotation="0" />
+        <EdgeCollider2D>
+          <Points>0,0 256,256 0,512 256,768 128,896</Points>
+        </EdgeCollider2D>
+      </GameObject>
+    </GameObject>
+  </Prefab>
+</Tiled2Unity>
