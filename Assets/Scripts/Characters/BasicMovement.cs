@@ -17,6 +17,8 @@ public class BasicMovement : MonoBehaviour
 	public bool IsCurrentPlayer = false;
 	public float JumpHeight = 4.0f;
 	public float TimeToJumpApex = .4f;
+	public bool VariableJumpHeight = false;
+	public bool variableJumpApplied = false;
 
 	// Physics helpers / configurables
 	public float MoveSpeed = 8.0f;
@@ -50,16 +52,6 @@ public class BasicMovement : MonoBehaviour
 	{
 		m_physics = GetComponent<PhysicsSS>();
 		SetJumpData (JumpHeight,TimeToJumpApex);
-		/*gravity = -(2 * JumpHeight) / Mathf.Pow (TimeToJumpApex, 2);
-		m_physics.SetGravityScale (gravity * (1.0f/60f));
-		jumpVelocity = Mathf.Abs(gravity) * TimeToJumpApex;
-		jumpVector = new Vector2 (0f, jumpVelocity);*/
-
-		/*if (IsCurrentPlayer) {
-			Debug.Log (Mathf.Sign (0f));
-			Debug.Log (Mathf.Sign (0.2f));
-			Debug.Log (Mathf.Sign (-0.1f));
-		}*/
 	}
 		
 		
@@ -90,6 +82,11 @@ public class BasicMovement : MonoBehaviour
 			else {
 				AttemptJump ();
 			}
+		}
+		float dt = (Time.timeSinceLevelLoad - m_lastJump);
+		if (VariableJumpHeight && dt > 0.1f && dt < 0.2f && Input.GetButton ("Jump") && !variableJumpApplied) {
+			variableJumpApplied = true;
+			applyJumpVector (new Vector2(1f, 0.35f));
 		}
 	}
 	private void NpcMovement()
@@ -137,21 +134,27 @@ public class BasicMovement : MonoBehaviour
 		float dt = (Time.timeSinceLevelLoad - m_lastJump);
 		if ((Time.timeSinceLevelLoad - m_lastJump) < MIN_JUMP_INTERVAL)
 			return;
-		Vector2 jv = new Vector2 (jumpVector.x, jumpVector.y - Mathf.Max (0, m_physics.TrueVelocity.y / Time.deltaTime));
-		if (!Submerged) {
-			if (!m_physics.OnGround)
-				return;
-		} else {
-			jv.y *= 0.6f;
-		}
-		//Debug.Log ("Attempting Jump ground: " + m_physics.OnGround + " time: " + dt);
-		
 
-		m_physics.AddSelfForce (jv, 0f);
+		if (!Submerged && !m_physics.OnGround)
+			return;
 
-		//Debug.Log ("Jumped");
+		if (Submerged)
+			applyJumpVector (new Vector2 (1f, 0.6f));
+		else if (VariableJumpHeight)
+			applyJumpVector (new Vector2 (1f, 0.8f));
+		else
+			applyJumpVector (new Vector2 (1f, 1f));
+
 		m_lastJump = Time.timeSinceLevelLoad;
-		
+		variableJumpApplied = false;
+	}
+	
+	private void applyJumpVector(Vector2 scale) {
+		float y = jumpVector.y;
+		Vector2 jv = new Vector2 (jumpVector.x, y ); //- Mathf.Max (0, m_physics.TrueVelocity.y / Time.deltaTime));
+		jv.x *= scale.x;
+		jv.y *= scale.y;
+		m_physics.AddSelfForce (jv, 0f);
 	}
 
 	public void MoveToPoint(Vector3 point)
