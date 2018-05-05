@@ -6,6 +6,7 @@ public class PropertyProxy : PropertyHolder {
 
 	public string PropertyProxyTarget = "";
 	public PropertyHolder PropHolder;
+	public Sprite DeactiveSprite;
 	// Use this for initialization
 	void Start () {
 		if (PropHolder == null) {
@@ -17,8 +18,11 @@ public class PropertyProxy : PropertyHolder {
 		GameObject target = GameObject.Find (PropertyProxyTarget);
 		if (target != null)
 			PropHolder = target.GetComponent<PropertyHolder> ();
-		if (target == null || PropHolder == null)
+		if (target == null || PropHolder == null) {
+			if (DeactiveSprite != null)
+				GetComponent<SpriteRenderer> ().sprite = DeactiveSprite;
 			Destroy (this);
+		}
 	}
 	// Update is called once per frame
 	void Update () { 

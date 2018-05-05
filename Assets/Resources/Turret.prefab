@@ -47,6 +47,7 @@ GameObject:
   - component: {fileID: 114826783964261144}
   - component: {fileID: 114015100558484896}
   - component: {fileID: 50224766380123830}
+  - component: {fileID: 114927404956554590}
   m_Layer: 0
   m_Name: Turret
   m_TagString: Untagged
@@ -277,6 +278,40 @@ MonoBehaviour:
   PropertyName: None
   Description: No description provided.
   icon: {fileID: 0}
+--- !u!114 &114927404956554590
+MonoBehaviour:
+  m_ObjectHideFlags: 1
+  m_PrefabParentObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 100100000}
+  m_GameObject: {fileID: 1987836765408362}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 92acc23af4626be4fa32c868acac10d0, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  saveID: autoID
+  prefabName: none
+  pos: {x: 0, y: 0, z: 0}
+  targetID: none
+  targetDir: 4
+  healthVal: 0
+  data:
+    regID: Not Assigned
+    name: 
+    pos: {x: 0, y: 0, z: 0}
+    health: 100
+    prefabPath: 
+    targetID: 
+    propertyList: []
+    propertyDescriptions: []
+    propertyValues: []
+    targetDir: 0
+    IsCurrentCharacter: 0
+    IsFacingLeft: 0
+    Experience: 0
+    TriggerUsed: 0
+    triggerString: 
+  recreated: 0
 --- !u!120 &120982452009377086
 LineRenderer:
   m_ObjectHideFlags: 1
@@ -399,7 +434,7 @@ SpriteRenderer:
   m_SortingLayerID: 0
   m_SortingLayer: 0
   m_SortingOrder: 0
-  m_Sprite: {fileID: 21300000, guid: 1de7446e44c1db24aa1daf53b01a1413, type: 3}
+  m_Sprite: {fileID: 21300000, guid: 7c393b3e159187741b09923949d57589, type: 3}
   m_Color: {r: 1, g: 1, b: 1, a: 1}
   m_FlipX: 0
   m_FlipY: 0
