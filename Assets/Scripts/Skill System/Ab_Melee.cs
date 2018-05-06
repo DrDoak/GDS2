@@ -4,7 +4,11 @@ using UnityEngine;
 
 public class Ab_Melee : Ability {
 
-	public new AbilityType AbilityClassification = AbilityType.COMBAT;
+	new public void Awake()
+	{
+		ClearLists();
+		base.AbilityClassification = AbilityType.COMBAT;
+	}
 
 	public override void UseAbility()
 	{

@@ -6,10 +6,8 @@ public class HitboxMulti : Hitbox {
 
 	public float refreshTime = 0.1f;
 	public float timeSinceLast = 0.0f;
-	// Use this for initialization
-	void Start () {}
 
-	void Update () {
+	new void Update () {
 		timeSinceLast += Time.deltaTime;
 		if (timeSinceLast > refreshTime) {
 			timeSinceLast = 0.0f;

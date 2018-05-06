@@ -6,14 +6,12 @@ using UnityEngine;
 [RequireComponent (typeof (SpriteRenderer))]
 public class AnimatorSprite : MonoBehaviour
 {
-	PhysicsSS m_physics;
 	Animator m_anim;
 	List<string> m_states;
 	public string m_currentAnim = "";
 
 	internal void Awake()
 	{
-		m_physics = GetComponent<PhysicsSS>();
 		m_states = new List<string>();
 		m_anim = GetComponent<Animator>();
 	}

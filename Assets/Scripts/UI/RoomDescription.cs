@@ -7,27 +7,23 @@ public class RoomDescription : MonoBehaviour {
 
 	string m_name;
 	string m_description;
-	TextMeshProUGUI name;
-	TextMeshProUGUI description;
-	bool name_displayed = false;
-	bool description_displayed = false;
+	TextMeshProUGUI roomNamePrefab;
+	TextMeshProUGUI descriptionPrefab;
 	float m_timeDisplayed = 0.0f;
 	float name_alpha = 0f;
 	float desc_alpha = 0f;
 	const float DISPLAY_TIME = 4.0f;
 	bool animating = false;
 	void Awake () {
-		name = transform.Find ("Name").gameObject.GetComponent<TextMeshProUGUI> ();
-		description = transform.Find ("Description").gameObject.GetComponent<TextMeshProUGUI> ();
+		roomNamePrefab = transform.Find ("Name").gameObject.GetComponent<TextMeshProUGUI> ();
+		descriptionPrefab = transform.Find ("Description").gameObject.GetComponent<TextMeshProUGUI> ();
 	}
 	public void SetNameDescription(string roomName,string roomDescription, bool animate=true) {
 		Debug.Log ("Setting name and descp");
 		m_name = roomName;
-		name.SetText (m_name);
-		description.SetText (roomDescription);
+		roomNamePrefab.SetText (m_name);
+		descriptionPrefab.SetText (roomDescription);
 		if (animate) {
-			name_displayed = true;
-			description_displayed = true;
 			m_timeDisplayed = 0.0f;
 			name_alpha = 0f;
 			desc_alpha = 0f;
@@ -45,7 +41,7 @@ public class RoomDescription : MonoBehaviour {
 			} else {
 				name_alpha = Mathf.Min (1f, 2f * m_timeDisplayed);
 			}
-			name.color = new Color (1f, 1f, 1f, name_alpha);
+			roomNamePrefab.color = new Color (1f, 1f, 1f, name_alpha);
 
 			float descTime = m_timeDisplayed - 2f;
 			if ( descTime > DISPLAY_TIME) {
@@ -57,11 +53,10 @@ public class RoomDescription : MonoBehaviour {
 			} else {
 				desc_alpha = Mathf.Min (1f, 2f * descTime);
 			}
-			description.color = new Color (1f, 1f, 1f, desc_alpha);				
+			descriptionPrefab.color = new Color (1f, 1f, 1f, desc_alpha);				
 		}
 	}
 	private void OnDisappear() {
-		name_displayed = false;
 		name_alpha = 0.0f;
 		desc_alpha = 0.0f;
 		animating = false;

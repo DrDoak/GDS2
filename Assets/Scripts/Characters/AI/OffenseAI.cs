@@ -11,13 +11,13 @@ public class OffenseAI : MonoBehaviour {
 	public BasicMovement CurrentTarget;
 
 	public float baseSpacing = 1.0f;
-	public float baseReactionSpeed = 1.0f;
-	public float baseDecisionMaking = 1.0f;
+	//public float baseReactionSpeed = 1.0f;
+	//public float baseDecisionMaking = 1.0f;
 	public float baseAggression = 0.5f;
 
 	float spacing;
-	float reactionSpeed;
-	float decisionMaking;
+	//float reactionSpeed;
+	//float decisionMaking;
 	float aggression;
 	Fighter m_fighter;
 	BasicMovement playable;
@@ -26,8 +26,8 @@ public class OffenseAI : MonoBehaviour {
 
 	void Start () {
 		spacing = baseSpacing;
-		reactionSpeed = baseReactionSpeed;
-		decisionMaking = baseDecisionMaking;
+		//reactionSpeed = baseReactionSpeed;
+		//decisionMaking = baseDecisionMaking;
 		aggression = baseAggression;
 		allAttacks = new List<AttackInfo>();
 		foreach (AttackInfo ai in GetComponents<AttackInfo> ()) {

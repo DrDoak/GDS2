@@ -8,10 +8,10 @@ public class HitboxDoT : Hitbox {
 	}
 	
 	// Update is called once per frame
-	void Update () {
+	new void Update () {
 		Tick ();
 	}
-	protected void Tick() {
+	protected override void Tick() {
 		if (!m_hasDuration || Duration > 0.0f) {
 			foreach(Attackable a in m_overlappingControl) {
 				a.TakeHit (this);
@@ -22,17 +22,12 @@ public class HitboxDoT : Hitbox {
 		}
 	}
 
-	void OnDrawGizmos() {
-		Gizmos.color = new Color (1, 0, 0, .5f);
-		Gizmos.DrawCube (transform.position, transform.lossyScale);
-	}
-
-	internal void OnTriggerEnter2D(Collider2D other) {
+	new internal void OnTriggerEnter2D(Collider2D other) {
 		if (other.gameObject.GetComponent<Attackable>() && !m_overlappingControl.Contains(other.gameObject.GetComponent<Attackable> ())) {
 			m_overlappingControl.Add (other.gameObject.GetComponent<Attackable> ()); 
 		}
 	} 
-	internal void OnTriggerExit2D(Collider2D other) {
+	new internal void OnTriggerExit2D(Collider2D other) {
 		if (other.gameObject.GetComponent<Attackable> () && m_overlappingControl.Contains(other.gameObject.GetComponent<Attackable> ())) {
 			m_overlappingControl.Remove (other.gameObject.GetComponent<Attackable> ()); //Removes the object from the list
 		}

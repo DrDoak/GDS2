@@ -130,6 +130,18 @@ public class HitboxMaker : MonoBehaviour
 		newBox.Init();
 		return newBox;
 	}
+	public GameObject CreateItem( GameObject prefab, Vector2 creationPoint, Vector2 throwPoint,
+		float throwSpeed) {
+		Vector2 cOff = m_physics.OrientVectorToDirection(creationPoint);
+		Vector3 newPos = transform.position + (Vector3)cOff;
+		GameObject go = Instantiate (prefab, newPos, Quaternion.identity);
+		if (go.GetComponent<PhysicsSS> ()) {
+			Vector2 throwVec = throwSpeed * throwPoint.normalized;
+			go.GetComponent<PhysicsSS> ().AddToVelocity (m_physics.OrientVectorToDirection (throwVec));
+		}
+		return go;
+	}
+
 	public Projectile CreateProjectile(GameObject prefab, Vector2 creationPoint, Vector2 targetPoint,
 		float projectileSpeed, float damage, float stun, float projectileDuration, Vector2 knockback, 
 		bool fixedKnockback = true, ElementType element = ElementType.PHYSICAL)

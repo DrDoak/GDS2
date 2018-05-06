@@ -20,24 +20,6 @@ public class GUIHandler : MonoBehaviour {
 	public GameObject CurrentTarget;
 	public TextMeshProUGUI ExpText;
 
-	private bool displayTextMessage = false;
-	private float displayTime;
-	private float displayStart;
-	private float displayTimePassed;
-
-	private bool flashRed = false;
-	private float flashTime;
-	private float flashStart;
-	private float flashTimePassed;
-
-	private bool mainMenu = false;
-	private float menuTime;
-	private float menuStart;
-	private float menuTimePassed;
-
-	private GameManager gameManager;
-
-	private int attemptNumber;
 	private List<GameObject> PropertyLists;
 
     private Ability abilityToUpdate;
@@ -48,10 +30,6 @@ public class GUIHandler : MonoBehaviour {
 		else if (Instance != this) {
 			Destroy (gameObject);
 		}
-		gameManager = FindObjectOfType<GameManager> ();
-
-		attemptNumber = 1;
-		mainMenu = false;
 		PropertyLists = new List<GameObject> ();
 	}
 	void Update() {
@@ -63,35 +41,7 @@ public class GUIHandler : MonoBehaviour {
 			ExpText.text = "Data: " + exp.VisualExperience;
 		}
 	}
-
-	public void displayText(string msg, float dTime) {
-		displayTextMessage = true;
-		textMessage = msg;
-		displayTime = dTime;
-		displayStart = Time.time;
-		displayTimePassed = 0f;
-	}
-	// goes to main menu in 2 seconds
-	private void GoToMainMenu(float wTime) {
-		if (mainMenu == false) {
-			mainMenu = true;
-			menuTime = wTime;
-			menuStart = Time.time;
-			menuTimePassed = 0f;
-		}
-	}
-
-	void OnGUI() {
-		if (displayTextMessage) {
-			var centeredStyle = GUI.skin.GetStyle("Label");
-			centeredStyle.fontSize = 32;
-			centeredStyle.alignment = TextAnchor.UpperCenter;
-			int w = 1000;
-			int h = 100;
-			GUI.Label (new Rect (Screen.width/2-w/2, Screen.height/2-h/2, w, h), textMessage, centeredStyle);
-		}
-	}
-
+		
 	public static void CreateTransferMenu(PropertyHolder ph1, PropertyHolder ph2) {
 		Instance.InternalTransferMenu (ph1 , ph2);
 	}

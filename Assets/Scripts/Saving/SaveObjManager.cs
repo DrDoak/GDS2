@@ -8,7 +8,6 @@ public class SaveObjManager : MonoBehaviour{
 	private static SaveObjManager m_instance;
 
 	static SceneTrigger [] sceneTriggers;
-	bool second = false;
 	string curRoom;
 	public static string saveBase = "SaveData/";
 	static string savePath = "SaveData/AutoSave/";
@@ -33,7 +32,7 @@ public class SaveObjManager : MonoBehaviour{
 			return false;
 		foreach (string file in Directory.GetFiles(p)) {
 			//File.Copy (file, savePath + file);
-			string s = file.Substring (p.Length);
+			file.Substring (p.Length);
 			File.Delete (file); 
 		}
 		Directory.Delete (p);
@@ -161,7 +160,7 @@ public class SaveObjManager : MonoBehaviour{
 		DelCharData (item.data);
 		CharacterSaveContainer cc = LoadChars(savePath + newRoom);
 		item.pos = newPos;
-		string json = JsonUtility.ToJson(new CharacterSaveContainer());
+		JsonUtility.ToJson(new CharacterSaveContainer());
 		cc.actors.Add (item.data);
 		Save (savePath + newRoom, cc);
 		ResaveRoom ();
@@ -269,8 +268,9 @@ public class SaveObjManager : MonoBehaviour{
 		charContainer = LoadChars(path);	
 		Debug.Log ("items to recreate: " + charContainer.actors.Count + " from: " + path);
 		foreach (CharData data in charContainer.actors) {
-			PersistentItem pi = RecreatePersistentItem (data, data.prefabPath,
+			RecreatePersistentItem (data, data.prefabPath,
 				data.pos, Quaternion.identity);
+			//PersistentItem pi = RecreatePersistentItem
 			//pi.registryCheck ();
 		}
 		//OnLoaded();

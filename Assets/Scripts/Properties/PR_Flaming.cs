@@ -5,17 +5,16 @@ using UnityEngine;
 public class PR_Flaming : Property
 {
 
-    Vector2 scl = new Vector2(1.0f, 1.0f);
     Vector2 off = new Vector2(0f, 0f);
-    float dmg = 5.0f;
+    float dmg = 10.0f;
     float stun = 0.5f;
     float hd = -0.5f;
     Vector2 kb = new Vector2(0.0f, 0.0f);
     HitboxDoT fireSurround;
 
-    float time_tracker = 0.0f;
-    float flaming_period = 0.1f;
-    float flaming_damage = 5.0f;
+    //float time_tracker = 0.0f;
+    //float flaming_period = 0.1f;
+    //float flaming_damage = 5.0f;
 	GameObject fx;
 
 	List<ElementType> fireOnly;

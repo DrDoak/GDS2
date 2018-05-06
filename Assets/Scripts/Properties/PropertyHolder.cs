@@ -24,8 +24,10 @@ public class PropertyHolder : MonoBehaviour {
 		Property[] prList = GetComponents<Property> ();
 		foreach (Property p in prList) {
 			if (p != null) {
-				Property mp = GameManager.Instance.GetPropInfo (p);
-				p.CopyPropInfo (mp);
+				if (GameManager.Instance != null) {
+					Property mp = GameManager.Instance.GetPropInfo (p);
+					p.CopyPropInfo (mp);
+				}
 				m_properties.Add (p);
 				p.OnAddProperty ();
 				if (SubmergedHitbox != null)
@@ -95,8 +97,9 @@ public class PropertyHolder : MonoBehaviour {
 		//Property p = (Property)(System.Activator.CreateInstance (Type.GetType (pName)));
 		Type t = Type.GetType (pName);
 		Property p = (Property)gameObject.AddComponent (t);
-
-		p.CopyPropInfo (GameManager.Instance.GetPropInfo (p));
+		if (GameManager.Instance != null) {
+			p.CopyPropInfo (GameManager.Instance.GetPropInfo (p));
+		}
 		m_properties.Add (p);
 		p.OnAddProperty ();
 		if (SubmergedHitbox != null)

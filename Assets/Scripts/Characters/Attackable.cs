@@ -25,7 +25,7 @@ public class Attackable : MonoBehaviour
 
 	public bool Alive = true;
 	public float DeathTime = 0.0f;
-	private float m_currDeathTime;
+	public float m_currDeathTime;
 	public FactionType Faction = FactionType.HOSTILE;
 
 	public List<Resistence> Resistences  = new List<Resistence>();
@@ -66,7 +66,7 @@ public class Attackable : MonoBehaviour
 	internal void Start() {
 		
 		if (DisplayHealth) {
-			m_display = Instantiate (GameManager.Instance.HealthBarPrefab, this.transform).GetComponent<HealthDisplay>();
+			m_display = Instantiate (UIList.Instance.HealthBarPrefab, this.transform).GetComponent<HealthDisplay>();
 			m_display.SetMaxHealth (MaxHealth);
 		}
 	}
@@ -79,7 +79,7 @@ public class Attackable : MonoBehaviour
 		
 		if (m_currDeathTime > DeathTime) {
 			ExecuteEvents.Execute<ICustomMessageTarget> (gameObject, null, (x, y) => x.OnDeath ());
-			if (GetComponent<BasicMovement> () && GetComponent<BasicMovement> ().IsCurrentPlayer)
+			if (GetComponent<BasicMovement> () && GetComponent<MGPlayer>() ==  null && GetComponent<BasicMovement> ().IsCurrentPlayer)
 				PauseGame.OnPlayerDeath ();
 			Destroy (gameObject);
 		}

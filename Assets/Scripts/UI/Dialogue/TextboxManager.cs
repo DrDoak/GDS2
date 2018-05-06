@@ -13,15 +13,12 @@ public class TextboxManager : MonoBehaviour {
 		set { m_instance = value; }
 	}
 	//public delegate void optionResponse(int r);
-	List<GameObject> textboxes;
 	public GameObject textboxPrefab;
 	public GameObject textboxStaticPrefab;
 
-	Camera cam;
-	bool type;
-	Color TextboxColor;
+	//Color TextboxColor;
 	float timeAfter = 2f;
-	float textSpeed = 0.05f;
+	float textSpeed = 0.03f;
 
 	void Awake()
 	{
@@ -38,9 +35,7 @@ public class TextboxManager : MonoBehaviour {
 
 	// Use this for initialization
 	void Start () {
-		textboxes = new List<GameObject> ();
-		cam = FindObjectOfType<Camera> ();
-		TextboxColor = new Color (1.0f, 0.0f, 0.0f, 0.5f);
+		//TextboxColor = new Color (1.0f, 0.0f, 0.0f, 0.5f);
 	}
 
 	public static void StartSequence(string text,GameObject speaker = null) {
@@ -59,7 +54,6 @@ public class TextboxManager : MonoBehaviour {
 		string lastText = "";
 		string lastAnim = "none";
 		int i = startingChar;
-		bool specialGroup = false;
 		int currIndent = 0;
 		while (i < text.Length) {
 			char lastC = text.ToCharArray () [i];
@@ -75,13 +69,7 @@ public class TextboxManager : MonoBehaviour {
 					DialogueSequence newS = parseSequence (text, i, indLevel + 1, newSeq);
 					i += newS.numChars;
 				} else if (lastC == '`') {
-					specialGroup = true;
 					lastText += lastC;
-				} else if (!specialGroup && false && lastText.Length < 18) { //&& lastC == ':' 
-					ds = new DialogueUnit ();
-					subDS.Add (ds);
-					//Debug.Log (targetCharName);
-					lastText = "";
 				} else if (lastC == '\n' || lastC == '|') {
 					if (lastText.Length > 0) {
 						if (lastAnim == "none") {
@@ -92,7 +80,6 @@ public class TextboxManager : MonoBehaviour {
 					}
 					currIndent = 0;
 					lastText = "";
-					specialGroup = false;
 				} else {
 					lastText += lastC;
 				}
@@ -111,7 +98,7 @@ public class TextboxManager : MonoBehaviour {
 	}
 
 	public static Textbox addTextbox(string text,GameObject targetObj) {
-		return m_instance.addTextbox (text, targetObj, true, 0.03f,Color.black);
+		return m_instance.addTextbox (text, targetObj, true, m_instance.textSpeed,Color.black);
 	}
 	public Textbox addTextbox(string text,GameObject targetObj,bool typeText,float textSpeed, Color tbColor) {
 		Vector2 newPos = new Vector2();
@@ -124,11 +111,11 @@ public class TextboxManager : MonoBehaviour {
 		}
 		
 		Textbox tb = newTextbox.GetComponent<Textbox> ();
-		if (!type) {
+		/*if (!type) {
 			//Debug.Log ("displaying Textbox: " + text);
 			newTextbox.GetComponent<DestroyAfterTime> ().duration = textSpeed * 1.2f * text.Length + timeAfter;
 			newTextbox.GetComponent<DestroyAfterTime> ().toDisappear = true;
-		}
+		}*/
 
 		tb.setTypeMode (typeText);			
 		tb.setText(text);
@@ -170,3 +157,11 @@ public class TextboxManager : MonoBehaviour {
 		//textboxes.Remove (go);
 	}
 }
+
+/*
+ * else if (!specialGroup && false && lastText.Length < 18) { //&& lastC == ':' 
+					ds = new DialogueUnit ();
+					subDS.Add (ds);
+					//Debug.Log (targetCharName);
+					lastText = "";
+				}*/

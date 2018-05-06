@@ -22,7 +22,6 @@ public class AtkLine : AttackInfo {
 
 	protected override void OnAttack() {
 		base.OnAttack ();
-		FactionType fac = GetComponent<Attackable> ().Faction;
 		LineHitbox lbox = GetComponent<HitboxMaker>().createLineHB(m_lineInfo.range, m_lineInfo.direction, m_lineInfo.HitboxOffset, m_lineInfo.Damage, 
 			m_lineInfo.Stun, m_lineInfo.HitboxDuration, m_lineInfo.Knockback, true,m_lineInfo.Element);
 		lbox.Stun = m_lineInfo.Stun;

@@ -10,12 +10,12 @@ public class Projectile : Hitbox {
 	public bool OrientToSpeed = true;
 	int m_numPenetrated = 0;
 
-	virtual internal void Update()
+	new virtual internal void Update()
 	{
 		Tick();
 	}
 
-	protected void Tick()
+	protected override void Tick()
 	{
 		base.Tick ();
 		Vector3 movement = new Vector3 (ProjectileSpeed * Time.deltaTime * AimPoint.normalized.x,

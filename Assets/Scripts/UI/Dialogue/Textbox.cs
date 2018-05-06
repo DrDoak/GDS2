@@ -116,16 +116,17 @@ public class Textbox : MonoBehaviour {
 							}
 							bool numFound = false;
 							string num = "";
-							string targetChar = null;
+							//string targetChar = null;
 							while (nextChar != '`') {
-								if (false) { //if (nextChar == ':') {
+								/*if (false) { //if (nextChar == ':') {
 									Debug.Log ("targeting: " + actStr);
 									targetChar = actStr;
 									actStr = "";
 									lastCharacter++;
 									nextChar = FullText.ToCharArray () [lastCharacter - 1];
 								}
-								else if ((action == "walkTowards" || action == "walkAway") && nextChar == '-') {
+								else */
+								if ((action == "walkTowards" || action == "walkAway") && nextChar == '-') {
 									numFound = true;
 								} else {
 									if (numFound == true) {

@@ -5,7 +5,6 @@ using UnityEngine;
 public class Ab_Transfer : Ability {
     private const float DISTANCE_ADDITION = 2f;
 
-    public new AbilityType AbilityClassification = AbilityType.COMBAT;
     protected static Ab_Transfer Instance;
 
     private List<Property> _mPlayerProps;
@@ -18,12 +17,13 @@ public class Ab_Transfer : Ability {
     public static int _maxTransfers = 1;
 
 
-    protected void Awake()
+	new protected void Awake()
     {
         base.Awake();
         UseAttackHitbox = true;
         InfectUpgrade = false;
         Ab_Transfer.Instance = this;
+		base.AbilityClassification = AbilityType.COMBAT;
     }
 
     public override void UseAbility()
