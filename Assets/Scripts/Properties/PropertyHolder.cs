@@ -38,7 +38,7 @@ public class PropertyHolder : MonoBehaviour {
 		//AddBodyEffect (GameManager.Instance.FXBodyTest);
 		if (m_currentPlayer) {
 			foreach (Property p in m_properties) {
-				GameManager.Instance.AddPropIcon (p);
+				GUIHandler.Instance.AddPropIcon (p);
 			}
 			//GUIHandler.CreatePropertyList(m_properties, "Test List", Vector3.zero);
 		}
@@ -88,7 +88,7 @@ public class PropertyHolder : MonoBehaviour {
 		if (SubmergedHitbox != null)
 			p.OnWaterEnter (SubmergedHitbox);
 		if (m_currentPlayer)
-			GameManager.Instance.AddPropIcon (p);
+			GUIHandler.Instance.AddPropIcon (p);
 	}
 
 	public virtual void AddProperty(string pName) {
@@ -105,7 +105,7 @@ public class PropertyHolder : MonoBehaviour {
 		if (SubmergedHitbox != null)
 			p.OnWaterEnter (SubmergedHitbox);
 		if (m_currentPlayer) {
-			GameManager.Instance.AddPropIcon (p);
+			GUIHandler.Instance.AddPropIcon (p);
 		}
 	}
 	public virtual void ClearProperties() {
@@ -120,7 +120,7 @@ public class PropertyHolder : MonoBehaviour {
 			}
 			Destroy (p);
 			if (m_currentPlayer) {
-				GameManager.Instance.RemovePropIcon (p);
+				GUIHandler.Instance.RemovePropIcon (p);
 			}
 		}
 		m_properties.Clear();
@@ -137,7 +137,7 @@ public class PropertyHolder : MonoBehaviour {
 				p.OnWaterExit (SubmergedHitbox);
 			Destroy(p);
 			if (m_currentPlayer) {
-				GameManager.Instance.RemovePropIcon (p);
+				GUIHandler.Instance.RemovePropIcon (p);
 			}
 		} else if (HasProperty(p)) {
 			Type pType = p.GetType();
@@ -149,7 +149,7 @@ public class PropertyHolder : MonoBehaviour {
 			Destroy(mp);
 
 			if (m_currentPlayer) {
-				GameManager.Instance.RemovePropIcon (p);
+				GUIHandler.Instance.RemovePropIcon (p);
 			}
 		}
 	}

@@ -16,6 +16,7 @@ public class MainMenu : MonoBehaviour {
 		m_menuUI.SetActive(true);
 		m_loadScreen.SetActive (false);
 		PauseGame.CanPause = false;
+		FindObjectOfType<GUIHandler> ().SetHUD (false);
 	}
 		
 	public void Resume()
@@ -28,7 +29,13 @@ public class MainMenu : MonoBehaviour {
 	//-------------------------------------------------
 	public void MenuNew() {
 		SaveObjManager.Instance.resetRoomData ();
+		FindObjectOfType<GUIHandler> ().SetHUD (true);
 		SceneManager.LoadScene ("LB_BottomPoint");
+	}
+	public void MenuMiniGame() {
+		SaveObjManager.Instance.resetRoomData ();
+		PauseGame.CanPause = false;
+		SceneManager.LoadScene ("minigame");
 	}
 	public void MenuLoad() {
 		m_menuUI.SetActive(false);

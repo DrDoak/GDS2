@@ -20,6 +20,18 @@ public class MGUI : MonoBehaviour {
 
 	// Use this for initialization
 	void Start () {
+		if (FindObjectOfType<GameManager> ()) {
+			Rect r = new Rect ();
+			r.height = 1.0f;
+			r.width = 0.5f;
+			GameManager.Instance.GetComponent<Camera> ().rect = r;
+			foreach (MGPlayer p in FindObjectsOfType<MGPlayer>()) {
+				if (p.PlayerName == "Player 1") {
+					GameManager.Instance.GetComponent<CameraFollow> ().target = p.GetComponent<PhysicsSS> ();
+					break;
+				}
+			}
+		}
 		p1Score = transform.Find ("P1Score").GetComponent<TextMeshProUGUI> ();
 		p2Score = transform.Find ("P2Score").GetComponent<TextMeshProUGUI> ();
 		p1deaths = transform.Find ("P1Deaths").GetComponent<TextMeshProUGUI> ();

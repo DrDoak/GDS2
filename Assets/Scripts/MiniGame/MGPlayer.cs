@@ -1,7 +1,7 @@
-﻿
-using System.Collections;
+﻿using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using UnityEngine.SceneManagement;
 
 public class MGPlayer : BasicMovement {
 	public KeyCode LeftButton;
@@ -12,6 +12,7 @@ public class MGPlayer : BasicMovement {
 	public KeyCode BlockButton;
 	public KeyCode BarrelButton;
 	public KeyCode Help;
+	public KeyCode Quit;
 
 	public int Bombs = 3;
 	public int Blocks = 6;
@@ -22,7 +23,8 @@ public class MGPlayer : BasicMovement {
 		"\n F/G/H = Throw Items." +
 		"\n Player 2: Left/Right = Move. Up = Jump" +
 		"\n Down = Attack. </>/? = Throw Items" +
-		"\n Press Enter to toggle Help";
+		"\n Press Enter to toggle Help" +
+		"\n Press Escape to Return to Menu.";
 
 	public Vector3 SpawnPoint;
 	new internal void Awake()
@@ -78,6 +80,15 @@ public class MGPlayer : BasicMovement {
 				GetComponent<Fighter> ().TryAttack ("barrel");
 				Barrels -= 1;
 			}
+		}
+		if (Input.GetKeyDown (KeyCode.Escape)) {
+			if (FindObjectOfType<GameManager> ()) {
+				Rect r = new Rect ();
+				r.height = 1.0f;
+				r.width = 1.0f;
+				GameManager.Instance.GetComponent<Camera> ().rect = r;
+			}
+			SceneManager.LoadScene ("MainMenu");
 		}
 		if (Input.GetKeyDown (Help)) {
 			FindObjectOfType<MGUI> ().SetMessage (helpmessage, 10f);

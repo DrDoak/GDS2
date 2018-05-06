@@ -13,16 +13,18 @@ public class GUIHandler : MonoBehaviour {
 	public GameObject SelectionProperty;
 	public TransferMenu MTransferMenu;
 
-	[TextArea(1,10)]
-	public string textMessage = "";
-
 	public Slider P1HealthBar;
 	public GameObject CurrentTarget;
 	public TextMeshProUGUI ExpText;
 
 	private List<GameObject> PropertyLists;
 
+	public GameObject IconPropertyPrefab;
+	public Sprite UnknownPropertyIcon;
+
     private Ability abilityToUpdate;
+
+	Dictionary<string,GameObject> m_iconList;
 
 	void Awake () {
 		if (Instance == null)
@@ -31,6 +33,7 @@ public class GUIHandler : MonoBehaviour {
 			Destroy (gameObject);
 		}
 		PropertyLists = new List<GameObject> ();
+		m_iconList = new Dictionary<string,GameObject>();
 	}
 	void Update() {
 		if (CurrentTarget != null) {
@@ -41,7 +44,17 @@ public class GUIHandler : MonoBehaviour {
 			ExpText.text = "Data: " + exp.VisualExperience;
 		}
 	}
-		
+	public void SetHUD(bool active) {
+		if (!active) {
+			P1HealthBar.gameObject.SetActive( false);
+			ExpText.gameObject.SetActive( false );
+			transform.GetChild (0).Find ("PropList").gameObject.SetActive (false);
+		} else {
+			P1HealthBar.gameObject.SetActive( true);
+			ExpText.gameObject.SetActive( true );
+			transform.GetChild (0).Find ("PropList").gameObject.SetActive (true);
+		}
+	}
 	public static void CreateTransferMenu(PropertyHolder ph1, PropertyHolder ph2) {
 		Instance.InternalTransferMenu (ph1 , ph2);
 	}
@@ -74,4 +87,40 @@ public class GUIHandler : MonoBehaviour {
 		}
     }
     
+
+	public void AddPropIcon(Property p) { 
+		if (!m_iconList.ContainsKey(p.GetType().ToString()) ){
+			System.Type sysType = p.GetType ();
+			Property mp = (Property)GetComponentInChildren (sysType);
+			GameObject go = Instantiate (IconPropertyPrefab);
+			go.transform.SetParent(transform.GetChild(0).Find ("PropList"),false);
+			if (mp != null) {
+				go.GetComponent<Image> ().sprite = mp.icon;
+			} else {
+				go.GetComponent<Image> ().sprite = mp.icon;
+			}
+			m_iconList [p.GetType().ToString()] = go;
+		}
+	}
+
+	public void ClearPropIcons() {
+		foreach ( GameObject g in m_iconList.Values) {
+			Destroy (g);
+		}
+		m_iconList.Clear ();
+	}
+	public void RemovePropIcon(Property p) {
+		if (m_iconList.ContainsKey (p.GetType().ToString())) {
+			Destroy (m_iconList [p.GetType().ToString()]);
+			m_iconList.Remove (p.GetType().ToString());
+		}
+	}
+
+	public void OnSetPlayer(BasicMovement bm) {
+		ClearPropIcons ();
+		CurrentTarget = bm.gameObject;
+		foreach (Property p in bm.GetComponents<Property>()) {
+			AddPropIcon (p);
+		}
+	}
 }
