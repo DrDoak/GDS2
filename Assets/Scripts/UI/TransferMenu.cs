@@ -5,7 +5,7 @@ using UnityEngine.UI;
 using TMPro;
 
 public class TransferMenu : MonoBehaviour {
-	
+   
 	public GameObject SelectionPrefab;
 	public GameObject GhostSelectionPrefab;
 
@@ -80,7 +80,7 @@ public class TransferMenu : MonoBehaviour {
 		}
 		pm2.slotText = pm2.MenuPrefab.transform.Find ("Remaining").GetComponent<TextMeshProUGUI> ();
 		m_propMenus.Add (pm2);
-
+        
 		init (m_transfersRemaining);
 
 		gameObject.SetActive (false);
