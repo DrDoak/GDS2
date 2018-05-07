@@ -24,7 +24,7 @@ public class BasicMovement : MonoBehaviour
 	public float MoveSpeed = 8.0f;
 	private PhysicsSS m_physics;
 	private Vector2 m_velocity;
-	private float m_accelerationTimeAirborne = .2f;
+	//private float m_accelerationTimeAirborne = .2f;
 	private float m_accelerationTimeGrounded = .1f;
 	private float m_velocityXSmoothing;
 	float gravity;
@@ -34,6 +34,8 @@ public class BasicMovement : MonoBehaviour
 
 	// Movement tracking
 	public Vector2 m_inputMove;
+	protected bool m_jumpDown;
+	protected bool m_jumpHold;
 	private Vector3 m_targetPoint;
 	private bool m_targetSet = false;
 	private bool m_targetObj = false;
@@ -47,6 +49,8 @@ public class BasicMovement : MonoBehaviour
 
 	private PhysicsSS m_followObj;
 	private bool m_autonomy = true;
+
+
 
 	internal void Awake()
 	{
@@ -68,14 +72,16 @@ public class BasicMovement : MonoBehaviour
 		MoveSmoothly();
 	}
 
-	internal void PlayerMovement() {
+	protected virtual void PlayerMovement() {
 		m_inputMove = new Vector2(Input.GetAxis("Horizontal"), Input.GetAxis("Vertical"));
+		m_jumpDown = Input.GetButtonDown ("Jump");
+		m_jumpHold = Input.GetButton ("Jump");
 		JumpMovement ();
 		SetDirectionFromInput();
 	}
 
-	internal void JumpMovement() {
-		if (Input.GetButtonDown("Jump")) {
+	protected void JumpMovement() {
+		if (m_jumpDown) {
 			if (m_inputMove.y < -0f) {
 				m_physics.setDropTime(0.2f);
 			}
@@ -84,7 +90,7 @@ public class BasicMovement : MonoBehaviour
 			}
 		}
 		float dt = (Time.timeSinceLevelLoad - m_lastJump);
-		if (VariableJumpHeight && dt > 0.1f && dt < 0.2f && Input.GetButton ("Jump") && !variableJumpApplied) {
+		if (VariableJumpHeight && dt > 0.1f && dt < 0.2f && m_jumpHold && !variableJumpApplied) {
 			variableJumpApplied = true;
 			applyJumpVector (new Vector2(1f, 0.35f));
 		}
@@ -113,9 +119,7 @@ public class BasicMovement : MonoBehaviour
 		m_physics.Move(m_velocity, m_inputMove);
 	}
 		
-
-	// Priority goes to UP and DOWN directions
-	private void SetDirectionFromInput()
+	protected void SetDirectionFromInput()
 	{
 		if ( m_inputMove.x != 0f )
 			m_physics.SetDirection ( m_inputMove.x < 0.0f );
@@ -131,7 +135,6 @@ public class BasicMovement : MonoBehaviour
 	}
 
 	private void AttemptJump() {
-		float dt = (Time.timeSinceLevelLoad - m_lastJump);
 		if ((Time.timeSinceLevelLoad - m_lastJump) < MIN_JUMP_INTERVAL)
 			return;
 
@@ -181,7 +184,6 @@ public class BasicMovement : MonoBehaviour
 				}
 			}
 		}
-		float targetVelocityX = m_inputMove.x * MoveSpeed;
 
 		if (Mathf.Abs (m_inputMove.x) >= 0.9f && (m_physics.FallDir == FallDirection.LEFT || m_physics.FallDir == FallDirection.RIGHT ) &&
 			(point.y - transform.position.y) > PIT_JUMP_VERTICAL_THREASHOLD) {

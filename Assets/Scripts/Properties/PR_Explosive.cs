@@ -41,6 +41,6 @@ public class PR_Explosive : Property {
     public override void OnDeath()
     {
 		GetComponent<HitboxMaker>().CreateHitbox(scl, off, dmg, stun, hd, kb, false,false,ElementType.FIRE);
-		Instantiate(FindObjectOfType<GameManager>().FXExplosionPrefab, transform.position, transform.rotation);
+		Instantiate(FXHit.Instance.FXExplosion, transform.position, transform.rotation);
     }
 }

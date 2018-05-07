@@ -48,7 +48,7 @@ public class WaterHitbox : MonoBehaviour {
 	internal void OnTriggerExit2D(Collider2D other)
 	{
 		if (other.GetComponent<PhysicsSS> () && m_overlappingControl.Contains(other.gameObject.GetComponent<PhysicsSS>())) {
-			PhysicsSS phys = other.GetComponent<PhysicsSS> ();
+			other.GetComponent<PhysicsSS> ();
 			//phys.GravityScale *= 1.4f;
 			if (other.GetComponent<PropertyHolder> ()) {
 				
@@ -59,7 +59,7 @@ public class WaterHitbox : MonoBehaviour {
 				other.GetComponent<BasicMovement> ().Submerged = false;
 			}
 			m_overlappingControl.Remove (other.gameObject.GetComponent<PhysicsSS> ());
-			float velY = Mathf.Abs (other.GetComponent<PhysicsSS> ().TrueVelocity.y);
+			Mathf.Abs (other.GetComponent<PhysicsSS> ().TrueVelocity.y);
 			//phys.AddToVelocity (new Vector2 (0f, -0.3f * velY/Time.deltaTime));
 			ExecuteEvents.Execute<ICustomMessageTarget> (other.gameObject, null, (x, y) => x.OnWaterExit (this));
 			CreateFX (other);

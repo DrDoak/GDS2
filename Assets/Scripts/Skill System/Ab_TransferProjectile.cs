@@ -3,8 +3,8 @@ using System.Collections.Generic;
 using UnityEngine;
 
 public class Ab_TransferProjectile : Ab_Transfer {
-
-    private void Awake()
+	
+    new private void Awake()
     {
         base.Awake();
         Ultimate = true;

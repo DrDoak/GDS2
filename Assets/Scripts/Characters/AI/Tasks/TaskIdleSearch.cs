@@ -4,15 +4,15 @@ using UnityEngine;
 
 public class TaskIdleSearch : FighterTask {
 
-	private int m_lastObservable;
-	private Observer m_observer;
+	//private int m_lastObservable;
+	//private Observer m_observer;
 	private Attackable m_attackable;
 	private AIFighter m_fighter;
 
 	public override void Init(Fighter player, AIFighter fighter, FighterRoutine routine) {
 		base.Init (player, fighter, routine);
-		m_lastObservable = 0;
-		m_observer = Fighter.gameObject.GetComponent<Observer> ();
+		//m_lastObservable = 0;
+		//m_observer = Fighter.gameObject.GetComponent<Observer> ();
 		m_attackable = Fighter.GetComponent<Attackable> ();
 	}
 

@@ -143,7 +143,10 @@ MonoBehaviour:
   MaxClimbAngle: 80
   m_inputedMove: {x: 0, y: 0}
   TerminalVelocity: -5
+  GravityScale: -1
   FacingLeft: 0
+  UseBuoyancy: 0
+  BuoyancyScale: -1
 --- !u!114 &114460414412254486
 MonoBehaviour:
   m_ObjectHideFlags: 1
@@ -214,7 +217,7 @@ MonoBehaviour:
     ProjectileAimDirection: {x: 1, y: 0}
     ProjectileSpeed: 20
     PenetrativePower: 4
-    Damage: 500
+    Damage: 1000
     Stun: 4
     HitboxDuration: 1
     Knockback: {x: 20, y: 40}
@@ -261,9 +264,11 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   m_properties: []
+  HolderName: SameAsObject
   MaxSlots: 4
   NumTransfers: 2
   m_toRemove: []
+  SubmergedHitbox: {fileID: 0}
 --- !u!114 &114989652510017016
 MonoBehaviour:
   m_ObjectHideFlags: 1

@@ -6,9 +6,6 @@ public class ChaseTarget : MonoBehaviour {
 
 	public PhysicsSS Target;
 	public Vector2 StartingVel = new Vector2();
-
-	bool Available = true;
-	bool m_targetingPoint = false;
 	float m_currentDelay = 0.0f;
 	Vector3 m_currentTarget;
 	Vector2 m_speed;
@@ -19,10 +16,10 @@ public class ChaseTarget : MonoBehaviour {
 	[SerializeField] float PURSUE_DISTANCE = 1000f;
 
 	SpriteRenderer m_sprite;
-	TrailRenderer trail;
+	//TrailRenderer trail;
 
 	float timeOut = 0f;
-	float targetTime = 0.6f;
+	//float targetTime = 0.6f;
 
 	[SerializeField]
 	bool m_isOrientToSpeed = false;
@@ -44,7 +41,7 @@ public class ChaseTarget : MonoBehaviour {
 		m_currentTarget = new Vector2 ();
 		m_speed = new Vector2 ();
 
-		trail = GetComponent<TrailRenderer> ();
+		//trail = GetComponent<TrailRenderer> ();
 	}
 
 	// Update is called once per frame
@@ -73,13 +70,8 @@ public class ChaseTarget : MonoBehaviour {
 		if (Vector3.Distance (transform.position, m_currentTarget) > CHASE_TOLERANCE) {
 			m_speed.x += ACCELERATION * Time.deltaTime * Mathf.Sign (m_currentTarget.x - transform.position.x);
 			m_speed.y += ACCELERATION * Time.deltaTime * Mathf.Sign (m_currentTarget.y - transform.position.y);
-		} else {
-			m_targetingPoint = false;
 		}
 		timeOut += Time.deltaTime;
-		if (timeOut > targetTime) {
-			m_targetingPoint = false;
-		}
 		m_speed *= 0.99f;
 		if (m_isOrientToSpeed) {
 			orientToSpeed (m_speed);

@@ -34,7 +34,6 @@ public class TextboxTrigger : Interactable {
 	protected virtual void triggerText() {
 		TriggerUsed = true;
 		currentInterval = interval;
-		Color c = new Color (0, 0, 0);
 		if (FloatingHitbox)
 			TextboxManager.StartSequence (value,gameObject);
 		else

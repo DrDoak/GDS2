@@ -4,7 +4,7 @@ using UnityEngine;
 
 [System.Serializable]
 class ProjectileInfo {
-	public GameObject Projectile;
+	public GameObject Projectile = null;
 	public Vector2 ProjectileCreatePos = new Vector2 (1.0f, 0f);
 	public Vector2 ProjectileAimDirection = new Vector2 (1.0f, 0f);
 	public float ProjectileSpeed = 10.0f;

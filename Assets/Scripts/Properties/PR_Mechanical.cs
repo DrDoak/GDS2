@@ -8,6 +8,7 @@ public class PR_Mechanical : Property {
 	private float m_activeTime = 0.0f;
 
 	protected virtual void SetActive(bool active) {
+		Debug.Log ("Setting door active");
 		if (m_isActive != active) {
 			m_isActive = active;
 			if (m_isActive) {
@@ -23,7 +24,8 @@ public class PR_Mechanical : Property {
 	}
 	public override void OnUpdate ()
 	{
-		base.OnUpdate ();
+		//base.OnUpdate ();
+		Debug.Log (GetComponent<PropertyHolder> ().HasProperty ("Electrical"));
 		if (GetComponent<PropertyHolder> ().HasProperty ("Electrical")) {
 			SetActive (true);
 		} else {

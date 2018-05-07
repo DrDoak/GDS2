@@ -2,6 +2,7 @@
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using UnityEngine.EventSystems;
 
 public class PropertyHolder : MonoBehaviour {
 
@@ -23,8 +24,10 @@ public class PropertyHolder : MonoBehaviour {
 		Property[] prList = GetComponents<Property> ();
 		foreach (Property p in prList) {
 			if (p != null) {
-				Property mp = GameManager.Instance.GetPropInfo (p);
-				p.CopyPropInfo (mp);
+				if (GameManager.Instance != null) {
+					Property mp = GameManager.Instance.GetPropInfo (p);
+					p.CopyPropInfo (mp);
+				}
 				m_properties.Add (p);
 				p.OnAddProperty ();
 				if (SubmergedHitbox != null)
@@ -35,12 +38,16 @@ public class PropertyHolder : MonoBehaviour {
 		//AddBodyEffect (GameManager.Instance.FXBodyTest);
 		if (m_currentPlayer) {
 			foreach (Property p in m_properties) {
-				GameManager.Instance.AddPropIcon (p);
+				GUIHandler.Instance.AddPropIcon (p);
 			}
 			//GUIHandler.CreatePropertyList(m_properties, "Test List", Vector3.zero);
 		}
+		ExecuteEvents.Execute<ICustomMessageTarget> (gameObject, null, (x, y) => x.OnCreation ());
 	}
 
+	void Update() {
+		ExecuteEvents.Execute<ICustomMessageTarget> (gameObject, null, (x, y) => x.OnUpdate ());
+	}
 	void LateUpdate() {
 		foreach (string s in m_toRemove ) {
 			Property toRemove = null;
@@ -81,7 +88,7 @@ public class PropertyHolder : MonoBehaviour {
 		if (SubmergedHitbox != null)
 			p.OnWaterEnter (SubmergedHitbox);
 		if (m_currentPlayer)
-			GameManager.Instance.AddPropIcon (p);
+			GUIHandler.Instance.AddPropIcon (p);
 	}
 
 	public virtual void AddProperty(string pName) {
@@ -90,14 +97,15 @@ public class PropertyHolder : MonoBehaviour {
 		//Property p = (Property)(System.Activator.CreateInstance (Type.GetType (pName)));
 		Type t = Type.GetType (pName);
 		Property p = (Property)gameObject.AddComponent (t);
-
-		p.CopyPropInfo (GameManager.Instance.GetPropInfo (p));
+		if (GameManager.Instance != null) {
+			p.CopyPropInfo (GameManager.Instance.GetPropInfo (p));
+		}
 		m_properties.Add (p);
 		p.OnAddProperty ();
 		if (SubmergedHitbox != null)
 			p.OnWaterEnter (SubmergedHitbox);
 		if (m_currentPlayer) {
-			GameManager.Instance.AddPropIcon (p);
+			GUIHandler.Instance.AddPropIcon (p);
 		}
 	}
 	public virtual void ClearProperties() {
@@ -112,7 +120,7 @@ public class PropertyHolder : MonoBehaviour {
 			}
 			Destroy (p);
 			if (m_currentPlayer) {
-				GameManager.Instance.RemovePropIcon (p);
+				GUIHandler.Instance.RemovePropIcon (p);
 			}
 		}
 		m_properties.Clear();
@@ -129,7 +137,7 @@ public class PropertyHolder : MonoBehaviour {
 				p.OnWaterExit (SubmergedHitbox);
 			Destroy(p);
 			if (m_currentPlayer) {
-				GameManager.Instance.RemovePropIcon (p);
+				GUIHandler.Instance.RemovePropIcon (p);
 			}
 		} else if (HasProperty(p)) {
 			Type pType = p.GetType();
@@ -141,7 +149,7 @@ public class PropertyHolder : MonoBehaviour {
 			Destroy(mp);
 
 			if (m_currentPlayer) {
-				GameManager.Instance.RemovePropIcon (p);
+				GUIHandler.Instance.RemovePropIcon (p);
 			}
 		}
 	}

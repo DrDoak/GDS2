@@ -117,6 +117,7 @@ public class SaveLoadMenu : MonoBehaviour {
 	}
 	public void OnLoad() {
 		string w = "Load Profile: " + m_savedProfiles [m_selectedIndex] + "?";
+
 		if (MainMenu == false) {
 			w += "\n All unsaved Progress will be lost.";
 			PauseGame.DisplayWarning (w, gameObject, m_load);
@@ -125,6 +126,7 @@ public class SaveLoadMenu : MonoBehaviour {
 		}
 	}
 	private void m_load() {
+		FindObjectOfType<GUIHandler> ().SetHUD (true);
 		bool result = SaveObjManager.Instance.LoadProfile (m_savedProfiles[m_selectedIndex]);
 		if (result == false) {
 			m_message.text = "Profile: " + m_savedProfiles[m_selectedIndex] + " could not be loaded.";

@@ -9,17 +9,15 @@ public class DialogueUnit  {
 	Textbox currentTB;
 
 	public bool finished = false;
-	bool awaitingResponse = false;
 	int currentElement = 0;
 	string unparsed;
-	List<Fighter> modifiedAnims;
-	DialogueSubunit lastOptionsBox;
+	//List<Fighter> modifiedAnims;
 	public GameObject Speaker;
 
 	// Use this for initialization
 	public DialogueUnit () {
 		//Debug.Log ("starting a ds!");
-		modifiedAnims = new List<Fighter> ();
+		//modifiedAnims = new List<Fighter> ();
 		elements = new List<DialogueSubunit> ();
 	}
 

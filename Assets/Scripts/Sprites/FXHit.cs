@@ -11,6 +11,7 @@ public class FXHit : MonoBehaviour {
 	public GameObject FXHitBiological;
 	public GameObject FXHitPsychic;
 	public GameObject FXHitBlock;
+	public GameObject FXExplosion;
 	public GameObject FXHeal;
 
 	public static FXHit Instance

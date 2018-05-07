@@ -3,8 +3,8 @@ using System.Collections.Generic;
 using UnityEngine;
 
 public class Ab_Knockdown : Ab_Transfer {
-
-    void Awake()
+	
+	new void Awake()
     {
         base.Awake();
         Ultimate = true;

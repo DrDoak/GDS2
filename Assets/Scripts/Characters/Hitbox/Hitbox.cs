@@ -74,7 +74,7 @@ public class Hitbox : MonoBehaviour {
 		Tick();
 	}
 
-	protected void Tick()
+	protected virtual void Tick()
 	{
 		//Debug.Log ("Hitbox created");
 		if (m_followObj != null)

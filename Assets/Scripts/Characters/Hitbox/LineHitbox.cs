@@ -19,7 +19,7 @@ public class LineHitbox : Hitbox {
 		line.startColor = Color.red;
 	}
 
-	void Update ()
+	new void Update ()
 	{
 		base.Tick ();
 		RaycastHit2D [] hit_list;
@@ -49,7 +49,6 @@ public class LineHitbox : Hitbox {
 	}
 
 	public void getReflected(Vector2 hitPoint) {
-		string fac = "player";
 		float offsetX = Random.Range (-15, 15) / 100f;
 		float offsetY = Random.Range (-15, 15) / 100f;
 		Vector2 realD = new Vector2 (-aimPoint.x + offsetX, -aimPoint.y + offsetY);

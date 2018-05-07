@@ -13,6 +13,7 @@ public class Turret : MonoBehaviour {
 	public float ProjDamage = 10f;
 	public float ProjStun = 0.5f;
 	public float ProjDuration = 10f;
+	public int ProjPenetration = 0;
 	public Vector2 ProjKB = new Vector2(10f,0f);
 	public ElementType ProjElement = ElementType.PHYSICAL;
 	public float TimeBetweenVolleys = 2.0f;
@@ -41,6 +42,9 @@ public class Turret : MonoBehaviour {
 			trackTarget ();
 			if (m_sinceLastVolley > TimeBetweenVolleys)
 				beginVolley ();
+		} else {
+			m_line.SetPosition (0, transform.position);
+			m_line.SetPosition (1, transform.position);
 		}
 		if (m_firing) {
 			fireVolley ();
@@ -88,7 +92,7 @@ public class Turret : MonoBehaviour {
 		Vector2 d = new Vector2 (m_target.transform.position.x - currentPos.x, m_target.transform.position.y - currentPos.y);
 		Projectile p = GetComponent<HitboxMaker> ().CreateProjectile (Projectile, Vector2.zero, d.normalized ,
 			ProjSpeed, ProjDamage, ProjStun, ProjDuration, ProjKB, false, ProjElement);
-		p.PenetrativePower = 0;
+		p.PenetrativePower = ProjPenetration;
 	}
 	void orientToDiff(Vector2 diff) {
 		TurretHead.transform.rotation = Quaternion.Euler (new Vector3(0f,0f,Mathf.Rad2Deg * Mathf.Atan2 (diff.y, diff.x)));

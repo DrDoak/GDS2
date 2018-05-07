@@ -11,7 +11,7 @@ public class Fireball : Ability {
     {
         if (!fireball)
             fireball = Manager.GetObject(0);
-        GameObject temp = GameObject.Instantiate(fireball, Player.transform.position + new Vector3(2,0), Player.transform.rotation);
+        GameObject.Instantiate(fireball, Player.transform.position + new Vector3(2,0), Player.transform.rotation);
     }
 
 }
