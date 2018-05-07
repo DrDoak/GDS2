@@ -12,6 +12,11 @@ public class FXBody : MonoBehaviour {
 	public GameObject FXBurner;
 	public GameObject FXWet;
 
+	public AudioClip SFXFootstep;
+	public AudioClip SFXJump;
+	public AudioClip SFXFlaming;
+	public AudioClip SFXFan;
+
 	public static FXBody Instance
 	{
 		get { return m_instance; }

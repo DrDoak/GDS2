@@ -170,6 +170,7 @@ MonoBehaviour:
   ShotsInVolley: 3
   TimeBetweenShots: 0.2
   m_target: {fileID: 0}
+  FireSound: {fileID: 8300000, guid: 4899e5e7003078c4eb18cdc8b06f8fa6, type: 3}
 --- !u!114 &114236078690984334
 MonoBehaviour:
   m_ObjectHideFlags: 1
@@ -185,6 +186,7 @@ MonoBehaviour:
   MaxHealth: 40
   Alive: 1
   DeathTime: 0
+  m_currDeathTime: 0
   Faction: 3
   Resistences: []
   DisplayHealth: 1

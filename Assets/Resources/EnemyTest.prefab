@@ -198,9 +198,8 @@ MonoBehaviour:
     AIPredictionHitbox: {x: 6, y: -1}
     AIPredictionOffset: {x: 3.5, y: 2}
   m_SoundInfo:
-    AttackFX: {fileID: 0}
     StartupSoundFX: {fileID: 0}
-    AttackSoundFX: {fileID: 0}
+    AttackSoundFX: {fileID: 8300000, guid: 0431e379752466f47bc8618cb914a2fc, type: 3}
   m_lineInfo:
     range: 10
     direction: {x: 1, y: 0}
@@ -267,6 +266,7 @@ MonoBehaviour:
   MaxHealth: 100
   Alive: 1
   DeathTime: 2
+  m_currDeathTime: 0
   Faction: 2
   Resistences: []
   DisplayHealth: 1
@@ -283,6 +283,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   m_properties: []
+  HolderName: SameAsObject
   MaxSlots: 4
   NumTransfers: 2
   m_toRemove: []
@@ -333,15 +334,17 @@ MonoBehaviour:
     name: 
     pos: {x: 0, y: 0, z: 0}
     health: 100
-    energy: 100
     prefabPath: 
     targetID: 
     propertyList: []
+    propertyDescriptions: []
+    propertyValues: []
     targetDir: 0
     IsCurrentCharacter: 0
     IsFacingLeft: 0
-    IsSheathed: 0
     Experience: 0
+    TriggerUsed: 0
+    triggerString: 
   recreated: 0
 --- !u!114 &114503039921728846
 MonoBehaviour:
@@ -472,6 +475,8 @@ MonoBehaviour:
   IsCurrentPlayer: 0
   JumpHeight: 3
   TimeToJumpApex: 0.4
+  VariableJumpHeight: 0
+  variableJumpApplied: 0
   MoveSpeed: 4
   jumpVector: {x: 0, y: 0}
   m_inputMove: {x: 0, y: 0}
@@ -479,6 +484,8 @@ MonoBehaviour:
   m_abandonDistance: 20
   Submerged: 0
   m_stuckTime: 0
+  playFootsteps: 1
+  footstepInterval: 0.25
 --- !u!212 &212579261813204232
 SpriteRenderer:
   m_ObjectHideFlags: 1

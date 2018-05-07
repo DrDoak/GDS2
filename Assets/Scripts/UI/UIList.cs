@@ -6,6 +6,14 @@ public class UIList : MonoBehaviour {
 	private static UIList m_instance;
 	public GameObject HealthBarPrefab;
 
+	public AudioClip SFXSelect;
+	public AudioClip SFXAccept;
+	public AudioClip SFXDeny;
+	public AudioClip SFXDialogueClick;
+	public AudioClip SFXDialogueStatic;
+	public AudioClip SFXDialogueSpeak;
+	public AudioClip SFXMenuOpen;
+
 	public static UIList Instance
 	{
 		get { return m_instance; }

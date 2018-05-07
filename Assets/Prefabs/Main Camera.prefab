@@ -122,6 +122,7 @@ GameObject:
   - component: {fileID: 114536962784456648}
   - component: {fileID: 114575582161956048}
   - component: {fileID: 114401216325681676}
+  - component: {fileID: 114492421645056924}
   m_Layer: 0
   m_Name: Main Camera
   m_TagString: MainCamera
@@ -870,6 +871,22 @@ GameObject:
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
   m_IsActive: 1
+--- !u!1 &1382203930414450
+GameObject:
+  m_ObjectHideFlags: 0
+  m_PrefabParentObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 100100000}
+  serializedVersion: 5
+  m_Component:
+  - component: {fileID: 4464796460072060}
+  - component: {fileID: 114401643451212742}
+  m_Layer: 0
+  m_Name: SoundManager
+  m_TagString: Untagged
+  m_Icon: {fileID: 0}
+  m_NavMeshLayer: 0
+  m_StaticEditorFlags: 0
+  m_IsActive: 1
 --- !u!1 &1403417656891660
 GameObject:
   m_ObjectHideFlags: 1
@@ -1259,7 +1276,6 @@ GameObject:
   - component: {fileID: 114322809825246834}
   - component: {fileID: 114457619060251532}
   - component: {fileID: 114177150010413354}
-  - component: {fileID: 114018457608868752}
   m_Layer: 0
   m_Name: PR_List
   m_TagString: Untagged
@@ -2009,6 +2025,19 @@ GameObject:
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
   m_IsActive: 1
+--- !u!4 &4464796460072060
+Transform:
+  m_ObjectHideFlags: 1
+  m_PrefabParentObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 100100000}
+  m_GameObject: {fileID: 1382203930414450}
+  m_LocalRotation: {x: -0, y: -0, z: -0, w: 1}
+  m_LocalPosition: {x: 2.7560081, y: -14.551711, z: 31.465425}
+  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_Children: []
+  m_Father: {fileID: 4634497396334164}
+  m_RootOrder: 3
+  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!4 &4634497396334164
 Transform:
   m_ObjectHideFlags: 1
@@ -2022,6 +2051,7 @@ Transform:
   - {fileID: 224866136947452724}
   - {fileID: 4928022145445092}
   - {fileID: 224469006374697170}
+  - {fileID: 4464796460072060}
   m_Father: {fileID: 0}
   m_RootOrder: 0
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
@@ -2211,24 +2241,6 @@ MonoBehaviour:
   m_InputActionsPerSecond: 10
   m_RepeatDelay: 0.5
   m_ForceModuleActive: 0
---- !u!114 &114018457608868752
-MonoBehaviour:
-  m_ObjectHideFlags: 1
-  m_PrefabParentObject: {fileID: 0}
-  m_PrefabInternal: {fileID: 100100000}
-  m_GameObject: {fileID: 1593684310463946}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: b4ab54d6cdd45974ebb084eb8a8d6bde, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  Stealable: 0
-  Viewable: 1
-  Stackable: 0
-  value: 0
-  PropertyName: ElectricDoor
-  Description: Opens when powered by Electricity
-  icon: {fileID: 21300000, guid: 5d560eae4d53c7447a82c777d39837a1, type: 3}
 --- !u!114 &114020344476695462
 MonoBehaviour:
   m_ObjectHideFlags: 1
@@ -3972,7 +3984,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: b4ab54d6cdd45974ebb084eb8a8d6bde, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  Stealable: 1
+  Stealable: 0
   Viewable: 1
   Stackable: 0
   value: 0
@@ -4259,7 +4271,7 @@ MonoBehaviour:
   m_TargetGraphic: {fileID: 114544868182871724}
   m_HandleRect: {fileID: 224739168298920636}
   m_Direction: 2
-  m_Value: 0
+  m_Value: 1
   m_Size: 0.9999998
   m_NumberOfSteps: 0
   m_OnValueChanged:
@@ -4544,6 +4556,13 @@ MonoBehaviour:
   FXExplosion: {fileID: 1720918671102054, guid: b9739a0b310aefb4d9b0f17bfa9898cc,
     type: 2}
   FXHeal: {fileID: 1325555955920052, guid: 3d76792cb465cc64b85f6fc10ce1bc0f, type: 2}
+  SFXPhysical: {fileID: 8300000, guid: a9da3f456419b7c4682cc623c2785b7a, type: 3}
+  SFXFire: {fileID: 8300000, guid: 0fb60b1f271984947a76a029a5ec01a1, type: 3}
+  SFXElectric: {fileID: 8300000, guid: defa2a45e71d5c0409c186a46e04c292, type: 3}
+  SFXGuard: {fileID: 8300000, guid: f4f6ab2edfd128846af5be5fba611007, type: 3}
+  SFXPsychic: {fileID: 8300000, guid: af05432d42c9fa74294e25e65b42bf44, type: 3}
+  SFXHeal: {fileID: 8300000, guid: fb42e10ebd897ef45822436b0b0247ed, type: 3}
+  SFXExplosive: {fileID: 8300000, guid: 5404780eda66ed54fa2e9f5d2273dcf5, type: 3}
 --- !u!114 &114237286382270734
 MonoBehaviour:
   m_ObjectHideFlags: 1
@@ -4721,7 +4740,7 @@ MonoBehaviour:
   Stackable: 0
   value: 0
   PropertyName: Wooden
-  Description: Catches Fire Easily, Very Light
+  Description: Catches Fire Easily, Floats on Water
   icon: {fileID: 21300000, guid: ccb01decd2d069c4689dbd97046079c8, type: 3}
   m_flameDamage: 0
   inWater: 0
@@ -5355,6 +5374,10 @@ MonoBehaviour:
   FXFan: {fileID: 1437993637605198, guid: b98dc82469662384b8d4c274f55cb454, type: 2}
   FXBurner: {fileID: 1102092423099954, guid: 27d4075e19b16f640b38c7cdc02ca3bd, type: 2}
   FXWet: {fileID: 1493227779673882, guid: 3dd1b24361e4b354e9fcce2fc85fddc8, type: 2}
+  SFXFootstep: {fileID: 8300000, guid: fd030c7f8e21df746a4503207d978d70, type: 3}
+  SFXJump: {fileID: 8300000, guid: 12f45644914a41e4b8b05eb771ccef29, type: 3}
+  SFXFlaming: {fileID: 8300000, guid: 41a628d27c1c15f49a53d86f2857a792, type: 3}
+  SFXFan: {fileID: 8300000, guid: 3de7a1910eaead34ebdde9a0a0b93377, type: 3}
 --- !u!114 &114341395072860636
 MonoBehaviour:
   m_ObjectHideFlags: 1
@@ -5707,6 +5730,102 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 51f67a8a3348f384a81aed9c60ce84b6, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+--- !u!114 &114401643451212742
+MonoBehaviour:
+  m_ObjectHideFlags: 1
+  m_PrefabParentObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 100100000}
+  m_GameObject: {fileID: 1382203930414450}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: b39d87db4dd2ea24187656b9623078bd, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  mixerGroup: {fileID: 0}
+  oneShotAudio: {fileID: 1611516581949666, guid: bcb13bb9d487b5746a065f3726dc9ef1,
+    type: 2}
+  sounds:
+  - name: hit_physical
+    clip: {fileID: 8300000, guid: a9da3f456419b7c4682cc623c2785b7a, type: 3}
+    volume: 0.5
+    volumeVariance: 0
+    pitch: 1
+    pitchVariance: 0
+    loop: 0
+    mixerGroup: {fileID: 0}
+    source: {fileID: 0}
+  - name: hit_electric
+    clip: {fileID: 8300000, guid: defa2a45e71d5c0409c186a46e04c292, type: 3}
+    volume: 0
+    volumeVariance: 0
+    pitch: 0
+    pitchVariance: 0
+    loop: 0
+    mixerGroup: {fileID: 0}
+    source: {fileID: 0}
+  - name: hit_fire
+    clip: {fileID: 8300000, guid: 0fb60b1f271984947a76a029a5ec01a1, type: 3}
+    volume: 0
+    volumeVariance: 0
+    pitch: 0
+    pitchVariance: 0
+    loop: 0
+    mixerGroup: {fileID: 0}
+    source: {fileID: 0}
+  - name: hit_guard
+    clip: {fileID: 8300000, guid: f4f6ab2edfd128846af5be5fba611007, type: 3}
+    volume: 0
+    volumeVariance: 0
+    pitch: 0
+    pitchVariance: 0
+    loop: 0
+    mixerGroup: {fileID: 0}
+    source: {fileID: 0}
+  - name: attack_player
+    clip: {fileID: 8300000, guid: 445a9ade187984c40b8b079494b8f8fa, type: 3}
+    volume: 0
+    volumeVariance: 0
+    pitch: 0
+    pitchVariance: 0
+    loop: 0
+    mixerGroup: {fileID: 0}
+    source: {fileID: 0}
+  - name: attack_gunshot
+    clip: {fileID: 8300000, guid: 0431e379752466f47bc8618cb914a2fc, type: 3}
+    volume: 0
+    volumeVariance: 0
+    pitch: 0
+    pitchVariance: 0
+    loop: 0
+    mixerGroup: {fileID: 0}
+    source: {fileID: 0}
+  - name: attack_explosion
+    clip: {fileID: 8300000, guid: 5404780eda66ed54fa2e9f5d2273dcf5, type: 3}
+    volume: 0
+    volumeVariance: 0
+    pitch: 0
+    pitchVariance: 0
+    loop: 0
+    mixerGroup: {fileID: 0}
+    source: {fileID: 0}
+  - name: attack_cannon
+    clip: {fileID: 8300000, guid: 32f0f1558e2b6d147a8f023625ceb829, type: 3}
+    volume: 0
+    volumeVariance: 0
+    pitch: 0
+    pitchVariance: 0
+    loop: 0
+    mixerGroup: {fileID: 0}
+    source: {fileID: 0}
+  - name: hit_heal
+    clip: {fileID: 8300000, guid: fb42e10ebd897ef45822436b0b0247ed, type: 3}
+    volume: 0
+    volumeVariance: 0
+    pitch: 0
+    pitchVariance: 0
+    loop: 0
+    mixerGroup: {fileID: 0}
+    source: {fileID: 0}
 --- !u!114 &114403010093168708
 MonoBehaviour:
   m_ObjectHideFlags: 1
@@ -5823,7 +5942,7 @@ MonoBehaviour:
   m_HandleRect: {fileID: 224409164585238760}
   m_Direction: 2
   m_Value: 0
-  m_Size: 0.9999998
+  m_Size: 0.9999999
   m_NumberOfSteps: 0
   m_OnValueChanged:
     m_PersistentCalls:
@@ -6599,6 +6718,26 @@ MonoBehaviour:
   UseCameraLimits: 0
   minVertex: {x: 2, y: -32}
   maxVertex: {x: 42, y: -1}
+--- !u!114 &114492421645056924
+MonoBehaviour:
+  m_ObjectHideFlags: 1
+  m_PrefabParentObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 100100000}
+  m_GameObject: {fileID: 1035150032497560}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 86d6ac5db799686489f7f7e9b232301a, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  HealthBarPrefab: {fileID: 1479986152861066, guid: 3ca0aed60fc75674da453e473879a943,
+    type: 2}
+  SFXSelect: {fileID: 8300000, guid: 10d2597f00488a141b85840f7dc1e03d, type: 3}
+  SFXAccept: {fileID: 8300000, guid: f58d3b413c036744586621c88a029fd3, type: 3}
+  SFXDeny: {fileID: 8300000, guid: 8209f266ef85a7a439a9beba59e5a66c, type: 3}
+  SFXDialogueClick: {fileID: 8300000, guid: 5f08ca6e75e5ea0448084c2ef8488b71, type: 3}
+  SFXDialogueStatic: {fileID: 8300000, guid: 7bf0839fedfae754697bfa7466e7f49f, type: 3}
+  SFXDialogueSpeak: {fileID: 8300000, guid: 02c2031dd7f718d4bbeb7c6817dc29f1, type: 3}
+  SFXMenuOpen: {fileID: 8300000, guid: ceb2d3f82891c2d44bc8369c5a03044a, type: 3}
 --- !u!114 &114492427968823046
 MonoBehaviour:
   m_ObjectHideFlags: 1
@@ -7360,6 +7499,7 @@ MonoBehaviour:
     type: 2}
   textboxStaticPrefab: {fileID: 1807564994350790, guid: 945d6cc25e5bd664b87cebac9927416f,
     type: 2}
+  nextSoundType: 0
 --- !u!114 &114588254237251408
 MonoBehaviour:
   m_ObjectHideFlags: 1
@@ -8394,7 +8534,7 @@ MonoBehaviour:
   m_HandleRect: {fileID: 224919683728530804}
   m_Direction: 2
   m_Value: 0
-  m_Size: 0.99999946
+  m_Size: 0.9999999
   m_NumberOfSteps: 0
   m_OnValueChanged:
     m_PersistentCalls:
@@ -11087,7 +11227,7 @@ RectTransform:
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 0, y: 1}
   m_AnchorMax: {x: 1, y: 1}
-  m_AnchoredPosition: {x: 0, y: -0.00004386902}
+  m_AnchoredPosition: {x: 0, y: 0.0000076293945}
   m_SizeDelta: {x: 0, y: 28}
   m_Pivot: {x: 0.5, y: 1}
 --- !u!224 &224250070742080598
@@ -12293,7 +12433,7 @@ RectTransform:
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 0, y: 1}
   m_AnchorMax: {x: 1, y: 1}
-  m_AnchoredPosition: {x: 0, y: -0.000017166138}
+  m_AnchoredPosition: {x: 0, y: 0.000011444092}
   m_SizeDelta: {x: 0, y: 28}
   m_Pivot: {x: 0.5, y: 1}
 --- !u!224 &224780512741333096
@@ -12463,7 +12603,7 @@ RectTransform:
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 0, y: 1}
   m_AnchorMax: {x: 1, y: 1}
-  m_AnchoredPosition: {x: 0, y: -0.000032424927}
+  m_AnchoredPosition: {x: 0, y: -0.000038146973}
   m_SizeDelta: {x: 0, y: 28}
   m_Pivot: {x: 0.5, y: 1}
 --- !u!224 &224866136947452724

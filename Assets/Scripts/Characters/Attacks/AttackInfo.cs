@@ -30,9 +30,9 @@ public class HitboxInfo {
 
 [System.Serializable]
 public class SoundInfo {
-	public GameObject AttackFX;
-	public AudioClip StartupSoundFX;
-	public AudioClip AttackSoundFX;
+	//public GameObject AttackFX;
+	public AudioClip StartupSoundFX ;
+	public AudioClip AttackSoundFX ;
 }
 
 [System.Serializable]
@@ -124,6 +124,8 @@ public class AttackInfo : MonoBehaviour
 			m_AIInfo.AIPredictionHitbox = m_HitboxInfo.HitboxScale;
 			m_AIInfo.AIPredictionOffset = m_HitboxInfo.HitboxOffset;
 		}
+		if (m_SoundInfo.StartupSoundFX != null)
+			FindObjectOfType<AudioManager> ().PlayClipAtPos (m_SoundInfo.StartupSoundFX,transform.position,0.5f,0f,0.25f);
 	}
 
 	protected virtual void OnAttack()
@@ -131,6 +133,8 @@ public class AttackInfo : MonoBehaviour
 		if (m_HitboxInfo.IsHitboxCreater) {
 			CreateHitbox ();
 		}
+		if (m_SoundInfo.AttackSoundFX != null)
+			FindObjectOfType<AudioManager> ().PlayClipAtPos (m_SoundInfo.AttackSoundFX,transform.position,0.5f,0f,0.25f);
 	}
 
 	protected virtual void OnRecovery()

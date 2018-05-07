@@ -17,7 +17,6 @@ public class Ab_Forcepush : Ability {
 
     public override void UseAbility()
     {
-        Debug.Log("Using forcepush");
         if (Creator.GetComponent<PhysicsSS>().FacingLeft)
             dir = left;
         else
@@ -25,6 +24,6 @@ public class Ab_Forcepush : Ability {
 
         Creator.GetComponent<HitboxMaker>().CreateHitbox(hitboxScale, offset * dir, damage, stun, duration, knockback);
         //Play audio
-        //
+        //Play animation
     }
 }

@@ -1,5 +1,5 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<map version="1.0" tiledversion="1.1.5" orientation="orthogonal" renderorder="right-down" width="100" height="40" tilewidth="32" tileheight="32" infinite="0" nextobjectid="45">
+<map version="1.0" tiledversion="1.1.5" orientation="orthogonal" renderorder="right-down" width="100" height="40" tilewidth="32" tileheight="32" infinite="0" nextobjectid="46">
  <properties>
   <property name="unity:scale" value="0.03125"/>
  </properties>
@@ -280,9 +280,6 @@
   <object id="42" x="832" y="672">
    <polyline points="0,0 0,-32 64,-32 64,0"/>
   </object>
-  <object id="44" x="1248" y="448">
-   <polyline points="0,0 32,0"/>
-  </object>
  </objectgroup>
  <objectgroup name="JumpThru">
   <properties>
@@ -330,6 +327,9 @@
   </object>
   <object id="41" x="2592" y="608">
    <polyline points="0,0 -64,0"/>
+  </object>
+  <object id="45" x="1248" y="448">
+   <polyline points="0,0 32,0"/>
   </object>
  </objectgroup>
 </map>

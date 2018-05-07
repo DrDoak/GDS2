@@ -54,7 +54,7 @@ Transform:
   m_PrefabInternal: {fileID: 100100000}
   m_GameObject: {fileID: 1000013670716774}
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_LocalPosition: {x: 25.15, y: -17.57, z: 0}
+  m_LocalPosition: {x: 16.1, y: -25.41, z: 0}
   m_LocalScale: {x: 1.5, y: 1.5, z: 4}
   m_Children: []
   m_Father: {fileID: 0}
@@ -188,7 +188,6 @@ MonoBehaviour:
     AIPredictionHitbox: {x: 0, y: 0}
     AIPredictionOffset: {x: 0, y: 0}
   m_SoundInfo:
-    AttackFX: {fileID: 0}
     StartupSoundFX: {fileID: 0}
     AttackSoundFX: {fileID: 0}
   m_dashInfo:
@@ -236,6 +235,7 @@ MonoBehaviour:
   MaxHealth: 100
   Alive: 1
   DeathTime: 2
+  m_currDeathTime: 0
   Faction: 3
   Resistences: []
   DisplayHealth: 1
@@ -287,6 +287,8 @@ MonoBehaviour:
   m_abandonDistance: 10
   Submerged: 0
   m_stuckTime: 0
+  playFootsteps: 1
+  footstepInterval: 0.4
 --- !u!114 &114397494433287954
 MonoBehaviour:
   m_ObjectHideFlags: 1
@@ -364,9 +366,8 @@ MonoBehaviour:
     AIPredictionHitbox: {x: 2.5, y: 1}
     AIPredictionOffset: {x: 1, y: -0.5}
   m_SoundInfo:
-    AttackFX: {fileID: 0}
     StartupSoundFX: {fileID: 0}
-    AttackSoundFX: {fileID: 0}
+    AttackSoundFX: {fileID: 8300000, guid: ce3a750d395e7cc42941ee7427b916bb, type: 3}
 --- !u!114 &114505256567422150
 MonoBehaviour:
   m_ObjectHideFlags: 1
@@ -485,9 +486,8 @@ MonoBehaviour:
     AIPredictionHitbox: {x: 2, y: 2}
     AIPredictionOffset: {x: 1.5, y: -1}
   m_SoundInfo:
-    AttackFX: {fileID: 0}
-    StartupSoundFX: {fileID: 0}
-    AttackSoundFX: {fileID: 0}
+    StartupSoundFX: {fileID: 8300000, guid: 097a9a5042e75254482061d16d75770e, type: 3}
+    AttackSoundFX: {fileID: 8300000, guid: fd93db060117afb4ba8420de349c7ce4, type: 3}
   m_dashInfo:
     StartUpDash: {x: -2.5, y: 0}
     StartUpDuration: 0.1

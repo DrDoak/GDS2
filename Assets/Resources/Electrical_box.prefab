@@ -105,6 +105,7 @@ MonoBehaviour:
   MaxHealth: 200
   Alive: 1
   DeathTime: 0
+  m_currDeathTime: 0
   Faction: 3
   Resistences:
   - Element: 4
@@ -192,6 +193,7 @@ MonoBehaviour:
   SubmergedHitbox: {fileID: 0}
   PropertyProxyTarget: Turret
   PropHolder: {fileID: 0}
+  DeactiveSprite: {fileID: 21300002, guid: eee541097dc9bfa489d379ef9201cf50, type: 3}
 --- !u!212 &212840189853975182
 SpriteRenderer:
   m_ObjectHideFlags: 1

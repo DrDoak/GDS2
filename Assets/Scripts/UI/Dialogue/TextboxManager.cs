@@ -15,6 +15,7 @@ public class TextboxManager : MonoBehaviour {
 	//public delegate void optionResponse(int r);
 	public GameObject textboxPrefab;
 	public GameObject textboxStaticPrefab;
+	public DialogueSound nextSoundType;
 
 	//Color TextboxColor;
 	float timeAfter = 2f;
@@ -97,6 +98,9 @@ public class TextboxManager : MonoBehaviour {
 		return newSeq;
 	}
 
+	public static void SetSoundType(DialogueSound ds) {
+		m_instance.nextSoundType = ds;
+	}
 	public static Textbox addTextbox(string text,GameObject targetObj) {
 		return m_instance.addTextbox (text, targetObj, true, m_instance.textSpeed,Color.black);
 	}
@@ -109,8 +113,9 @@ public class TextboxManager : MonoBehaviour {
 		} else {
 			newTextbox = Instantiate (textboxStaticPrefab);
 		}
-		
+
 		Textbox tb = newTextbox.GetComponent<Textbox> ();
+		tb.m_sound = nextSoundType;
 		/*if (!type) {
 			//Debug.Log ("displaying Textbox: " + text);
 			newTextbox.GetComponent<DestroyAfterTime> ().duration = textSpeed * 1.2f * text.Length + timeAfter;
@@ -137,7 +142,7 @@ public class TextboxManager : MonoBehaviour {
 		}
 
 		//textboxes.Add (newTextbox);
-		tb.setColor (tbColor);
+		//tb.setColor (tbColor);
 		return tb;
 	}
 

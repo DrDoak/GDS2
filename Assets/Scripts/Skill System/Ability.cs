@@ -12,6 +12,8 @@ public abstract class Ability : ScriptableObject {
     public AbilityType AbilityClassification;
     public string AnimStateName;
     public bool Ultimate = false;
+    public bool Passive = false;
+    public bool RequiresReplacement = false;
     public GameObject Creator;
 
     protected GameObject Target;
@@ -36,6 +38,11 @@ public abstract class Ability : ScriptableObject {
     public virtual void TriggerAnimation()
     {
         //TriggerAnimation using the string AnimStateName
+    }
+
+    public virtual void Upgrade()
+    {
+
     }
     
     public void SetTarget(GameObject g)

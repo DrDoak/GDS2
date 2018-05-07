@@ -16,14 +16,18 @@ public class Ab_Transfer : Ability {
     public static float _maxDistance = 2f;
     public static int _maxTransfers = 1;
 
+    public int upgradeIndex = 0;
 
-	new protected void Awake()
+
+	protected void Awake()
     {
         base.Awake();
         UseAttackHitbox = true;
         InfectUpgrade = false;
-        Ab_Transfer.Instance = this;
-		base.AbilityClassification = AbilityType.COMBAT;
+        Instance = this;
+		AbilityClassification = AbilityType.SPECIAL;
+        upgradeIndex = 0;
+        Player.GetComponent<PropertyHolder>().NumTransfers = _maxTransfers;
     }
 
     public override void UseAbility()
@@ -50,19 +54,40 @@ public class Ab_Transfer : Ability {
         }
     }
 
-    public void UpgradeToInfect()
+    public override void Upgrade()
+    {
+        switch (upgradeIndex)
+        {
+            case 0:
+                UpgradeToInfect();
+                break;
+            case 1:
+            case 3:
+                UpgradeMaxDistance();
+                break;
+            case 2:
+            case 4:
+                UpgradeNumTransfers();
+                break;
+        }
+        upgradeIndex++;
+    }
+
+    protected void UpgradeToInfect()
     {
         InfectUpgrade = true;
     }
 
-    public void UpgradeMaxDistance()
+    protected void UpgradeMaxDistance()
     {
         _maxDistance += DISTANCE_ADDITION;
     }
 
-    public void UpgradeNumTransfers()
+    protected void UpgradeNumTransfers()
     {
         _maxTransfers++;
+        //THIS DOES NOTHING BUT WHY
+        Player.GetComponent<PropertyHolder>().NumTransfers = _maxTransfers;
     }
 
     private void GetPlayerProperties()
@@ -79,8 +104,6 @@ public class Ab_Transfer : Ability {
     {
         GUIHandler.SetAbility(this);
         GUIHandler.CreateTransferMenu(Player.GetComponent<PropertyHolder>(), Target.GetComponent<PropertyHolder>());
-        //PauseGame.Pause(false);
-       // _mTriggered = true;
     }
 
     private void CheckRemovals()

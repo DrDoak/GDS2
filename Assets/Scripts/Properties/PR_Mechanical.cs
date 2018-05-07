@@ -8,11 +8,11 @@ public class PR_Mechanical : Property {
 	private float m_activeTime = 0.0f;
 
 	protected virtual void SetActive(bool active) {
-		Debug.Log ("Setting door active");
 		if (m_isActive != active) {
 			m_isActive = active;
 			if (m_isActive) {
 				GameObject.Instantiate (FXHit.Instance.FXHitLightning, transform.position, Quaternion.identity);
+				FindObjectOfType<AudioManager> ().PlayClipAtPos (FXHit.Instance.SFXElectric,transform.position,0.75f,0f,0.25f);
 				OnActive ();
 			} else
 				OnDisable ();
@@ -24,8 +24,6 @@ public class PR_Mechanical : Property {
 	}
 	public override void OnUpdate ()
 	{
-		//base.OnUpdate ();
-		Debug.Log (GetComponent<PropertyHolder> ().HasProperty ("Electrical"));
 		if (GetComponent<PropertyHolder> ().HasProperty ("Electrical")) {
 			SetActive (true);
 		} else {

@@ -14,6 +14,14 @@ public class FXHit : MonoBehaviour {
 	public GameObject FXExplosion;
 	public GameObject FXHeal;
 
+	public AudioClip SFXPhysical;
+	public AudioClip SFXFire;
+	public AudioClip SFXElectric;
+	public AudioClip SFXGuard;
+	public AudioClip SFXPsychic;
+	public AudioClip SFXHeal;
+	public AudioClip SFXExplosive;
+
 	public static FXHit Instance
 	{
 		get { return m_instance; }

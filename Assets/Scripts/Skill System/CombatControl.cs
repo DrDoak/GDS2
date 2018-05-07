@@ -28,6 +28,9 @@ public class CombatControl : MonoBehaviour
         SlotAbility(KeyCode.Return, ScriptableObject.CreateInstance<Ab_Transfer>());
 
         Ability.Player = gameObject;
+        AbilityTree.Player = gameObject;
+
+        AbilityManager.abilityTree.AddRoot(SlottedAbilities[KeyCode.Return]);
     }
 
     // Update is called once per frame

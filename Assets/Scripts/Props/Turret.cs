@@ -21,6 +21,8 @@ public class Turret : MonoBehaviour {
 	public float TimeBetweenShots = 0.2f;
 	bool m_firing;
 	public GameObject m_target;
+	public AudioClip FireSound;
+
 	int m_shotsFiredInVolley = 0;
 
 	float m_sinceLastVolley = 0f;
@@ -93,6 +95,8 @@ public class Turret : MonoBehaviour {
 		Projectile p = GetComponent<HitboxMaker> ().CreateProjectile (Projectile, Vector2.zero, d.normalized ,
 			ProjSpeed, ProjDamage, ProjStun, ProjDuration, ProjKB, false, ProjElement);
 		p.PenetrativePower = ProjPenetration;
+		if (FireSound != null)
+			FindObjectOfType<AudioManager> ().PlayClipAtPos (FireSound,transform.position,0.3f,0f,0.25f);
 	}
 	void orientToDiff(Vector2 diff) {
 		TurretHead.transform.rotation = Quaternion.Euler (new Vector3(0f,0f,Mathf.Rad2Deg * Mathf.Atan2 (diff.y, diff.x)));

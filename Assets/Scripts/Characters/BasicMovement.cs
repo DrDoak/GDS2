@@ -50,6 +50,9 @@ public class BasicMovement : MonoBehaviour
 	private PhysicsSS m_followObj;
 	private bool m_autonomy = true;
 
+	public bool playFootsteps = false;
+	public float footstepInterval = 0.75f;
+	float m_sinceStep = 0f;
 
 
 	internal void Awake()
@@ -68,10 +71,22 @@ public class BasicMovement : MonoBehaviour
 			PlayerMovement();
 		else if (m_targetSet)
 			NpcMovement();
-
+		if (playFootsteps)
+			PlayStepSounds ();
 		MoveSmoothly();
 	}
 
+	private void PlayStepSounds() {
+		if (m_inputMove.x != 0f && m_physics.OnGround) {
+			m_sinceStep += Time.deltaTime;
+			if (m_sinceStep > footstepInterval) {
+				m_sinceStep = 0f;
+				FindObjectOfType<AudioManager> ().PlayClipAtPos (FXBody.Instance.SFXFootstep,transform.position,0.2f,0f,0.25f);
+			}
+		} else {
+			m_sinceStep = footstepInterval;
+		}
+	}
 	protected virtual void PlayerMovement() {
 		m_inputMove = new Vector2(Input.GetAxis("Horizontal"), Input.GetAxis("Vertical"));
 		m_jumpDown = Input.GetButtonDown ("Jump");
@@ -148,6 +163,7 @@ public class BasicMovement : MonoBehaviour
 		else
 			applyJumpVector (new Vector2 (1f, 1f));
 
+		FindObjectOfType<AudioManager> ().PlayClipAtPos (FXBody.Instance.SFXJump,transform.position,0.3f,0f,0.25f);
 		m_lastJump = Time.timeSinceLevelLoad;
 		variableJumpApplied = false;
 	}

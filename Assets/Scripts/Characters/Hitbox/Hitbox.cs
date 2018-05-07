@@ -208,6 +208,7 @@ public class Hitbox : MonoBehaviour {
 	protected void CreateHitFX(GameObject hitObj, Vector2 knockback, HitResult hr) {
 		foreach (ElementType et in m_elementList) {
 			m_hitFX (et, hitObj, knockback, hr);
+			m_playerSound (et, hr);
 		}
 	}
 	private void m_hitFX(ElementType et, GameObject hitObj, Vector2 knockback, HitResult hr) {
@@ -242,6 +243,35 @@ public class Hitbox : MonoBehaviour {
 			fx.GetComponent<Follow> ().followObj = hitObj;
 			float angle = (Mathf.Atan2 (knockback.y, knockback.x) * 180) / Mathf.PI;
 			fx.transform.Rotate (new Vector3 (0f, 0f, angle));
+		}
+	}
+	protected void m_playerSound(ElementType et,  HitResult hr) {
+		
+		if (hr == HitResult.BLOCKED) {
+			FindObjectOfType<AudioManager> ().PlayClipAtPos (FXHit.Instance.SFXGuard,transform.position,0.5f,0f,0.25f);
+		} else if (hr == HitResult.HEAL) {
+			FindObjectOfType<AudioManager> ().PlayClipAtPos (FXHit.Instance.SFXHeal,transform.position,0.5f,0f,0.25f);
+		} else if (hr == HitResult.HIT) {
+			switch (et) {
+			case ElementType.PHYSICAL:
+				FindObjectOfType<AudioManager> ().PlayClipAtPos (FXHit.Instance.SFXPhysical,transform.position,0.5f,0f,0.25f);
+				break;
+			case ElementType.FIRE:
+				FindObjectOfType<AudioManager> ().PlayClipAtPos (FXHit.Instance.SFXFire,transform.position,0.5f,0f,0.25f);
+				break;
+			case ElementType.LIGHTNING:
+				FindObjectOfType<AudioManager> ().PlayClipAtPos (FXHit.Instance.SFXElectric,transform.position,0.75f,0f,0.25f);
+				break;
+			case ElementType.BIOLOGICAL:
+				FindObjectOfType<AudioManager> ().PlayClipAtPos (FXHit.Instance.SFXPhysical,transform.position,0.5f,0f,0.25f);
+				break;
+			case ElementType.PSYCHIC:
+				FindObjectOfType<AudioManager> ().PlayClipAtPos (FXHit.Instance.SFXPsychic,transform.position,0.5f,0f,0.25f);
+				break;
+			default:
+				Debug.Log ("Hit Effect not yet added");
+				break;
+			}
 		}
 	}
 }

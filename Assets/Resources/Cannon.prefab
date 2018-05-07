@@ -162,6 +162,7 @@ MonoBehaviour:
   MaxHealth: 100
   Alive: 1
   DeathTime: 0
+  m_currDeathTime: 0
   Faction: 3
   Resistences: []
   DisplayHealth: 1
@@ -200,9 +201,8 @@ MonoBehaviour:
     AIPredictionHitbox: {x: 0, y: 0}
     AIPredictionOffset: {x: 0, y: 0}
   m_SoundInfo:
-    AttackFX: {fileID: 0}
     StartupSoundFX: {fileID: 0}
-    AttackSoundFX: {fileID: 0}
+    AttackSoundFX: {fileID: 8300000, guid: 32f0f1558e2b6d147a8f023625ceb829, type: 3}
   m_dashInfo:
     StartUpDash: {x: -20, y: 0}
     StartUpDuration: 0.05

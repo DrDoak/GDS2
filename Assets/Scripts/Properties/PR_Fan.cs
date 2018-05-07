@@ -22,12 +22,14 @@ public class PR_Fan : PR_Mechanical {
 		dotBox = GetComponent<HitboxMaker>().CreateHitboxDoT(scl, off, dmg, stun, hd, kb,true, true, ElementType.PHYSICAL);
 		launchBox = GetComponent<HitboxMaker>().CreateHitboxMulti(scl2, off2, dmg, stun, hd, kb2,true, true, ElementType.PHYSICAL);
 		fx = GetComponent<PropertyHolder> ().AddBodyEffect (FXBody.Instance.FXFan);
+		GetComponent<PropertyHolder> ().AddAmbient (FXBody.Instance.SFXFan);
 	}
 	protected override void OnDisable() {
 		if (dotBox != null) {
 			Destroy (dotBox);
 			Destroy (launchBox);
 			GetComponent<PropertyHolder> ().RemoveBodyEffect (fx);
+			GetComponent<PropertyHolder> ().RemoveAmbient (FXBody.Instance.SFXFan);
 		}
 	}
 }

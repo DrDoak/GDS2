@@ -4,11 +4,10 @@ using UnityEngine;
 
 public class TextboxTrigger : Interactable {
 	
-
-
 	public bool typeText = true;
 	public bool autoTrigger = true;
 	public bool FloatingHitbox = true;
+	public DialogueSound soundType = DialogueSound.SPOKEN;
 	float interval = 2.0f;
 	float currentInterval = 0.0f;
 
@@ -34,6 +33,7 @@ public class TextboxTrigger : Interactable {
 	protected virtual void triggerText() {
 		TriggerUsed = true;
 		currentInterval = interval;
+		TextboxManager.SetSoundType (soundType);
 		if (FloatingHitbox)
 			TextboxManager.StartSequence (value,gameObject);
 		else
