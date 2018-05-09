@@ -1,6 +1,7 @@
 ﻿using UnityEngine;
 using System.Collections;
 using UnityEngine.UI;
+using Luminosity.IO;
 
 [RequireComponent (typeof (PhysicsSS))]
 [RequireComponent (typeof (Attackable))]
@@ -88,9 +89,17 @@ public class BasicMovement : MonoBehaviour
 		}
 	}
 	protected virtual void PlayerMovement() {
-		m_inputMove = new Vector2(Input.GetAxis("Horizontal"), Input.GetAxis("Vertical"));
-		m_jumpDown = Input.GetButtonDown ("Jump");
-		m_jumpHold = Input.GetButton ("Jump");
+		m_inputMove = new Vector2(0f, 0f);
+		if (InputManager.GetButton("Left"))
+			m_inputMove.x -= 1f;
+		if (InputManager.GetButton("Right"))
+			m_inputMove.x += 1f;
+		if (InputManager.GetButton("Up"))
+			m_inputMove.y += 1f;
+		if (InputManager.GetButton("Down"))
+			m_inputMove.y -= 1f;
+		m_jumpDown = InputManager.GetButtonDown ("Jump");
+		m_jumpHold = InputManager.GetButton ("Jump");
 		JumpMovement ();
 		SetDirectionFromInput();
 	}

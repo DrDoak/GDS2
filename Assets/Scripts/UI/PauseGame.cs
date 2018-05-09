@@ -4,6 +4,7 @@ using UnityEngine;
 using UnityEngine.SceneManagement;
 using TMPro;
 using UnityEngine.UI;
+using Luminosity.IO;
 
 public class PauseGame : MonoBehaviour
 {
@@ -17,6 +18,7 @@ public class PauseGame : MonoBehaviour
 	GameObject m_loadScreen;
 	GameObject m_deadScreen;
 	GameObject m_warningScreen;
+	GameObject m_controlMap;
 
 	float m_slowingSpeed = 0.0f;
 	float m_speedingSpeed = 0.0f;
@@ -47,16 +49,18 @@ public class PauseGame : MonoBehaviour
 		m_loadScreen = transform.GetChild (2).gameObject;
 		m_deadScreen = transform.GetChild (3).gameObject;
 		m_warningScreen = transform.GetChild (4).gameObject;
+		m_controlMap = transform.Find ("KeyboardMap").gameObject;
 
 		m_pauseMenuUI.SetActive(false);
 		m_saveScreen.SetActive (false);
 		m_loadScreen.SetActive (false);
 		m_deadScreen.SetActive (false);
 		m_warningScreen.SetActive (false);
+		m_controlMap.SetActive (false);
 	}
 		
 	void Update () {
-		if (CanPause && Input.GetButtonDown ("Pause"))
+		if (CanPause && InputManager.GetButtonDown ("Pause"))
 		{
 			if (isPaused)
 				Resume();
@@ -92,6 +96,7 @@ public class PauseGame : MonoBehaviour
 		m_saveScreen.SetActive (false);
 		m_loadScreen.SetActive (false);
 		m_deadScreen.SetActive (false);
+		m_controlMap.SetActive (false);
 		Time.timeScale = 1f;
 		PauseGame.CanPause = true;
 		isPaused = false;
@@ -138,6 +143,11 @@ public class PauseGame : MonoBehaviour
 		m_loadScreen.GetComponent<SaveLoadMenu> ().Reset ();
 		PauseGame.CanPause = false;
 	}
+	public void MenuKeyBoardMap() {
+		m_pauseMenuUI.SetActive(false);
+		m_controlMap.SetActive (true);
+		PauseGame.CanPause = false;
+	}
 	public void MenuMainMenu() {
 		Time.timeScale = 1f;
 		SceneManager.LoadScene("MainMenu"); //get rid of this hardcode
@@ -150,6 +160,7 @@ public class PauseGame : MonoBehaviour
 		m_saveScreen.SetActive (false);
 		m_loadScreen.SetActive (false);
 		m_deadScreen.SetActive (false);
+		m_controlMap.SetActive (false);
 		PauseGame.CanPause = true;
 	}
 	public static void OnPlayerDeath() {

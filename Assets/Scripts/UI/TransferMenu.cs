@@ -3,6 +3,7 @@ using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.UI;
 using TMPro;
+using Luminosity.IO;
 
 public class TransferMenu : MonoBehaviour {
    
@@ -34,6 +35,9 @@ public class TransferMenu : MonoBehaviour {
 	bool exiting = false;
 	bool starting = false;
 	bool m_active = false;
+	bool animate = false;
+
+	float exit_time = 0.5f;
 
 	const float SCROLL_SPEED = 1000f;
 	private class PropertyMenu {
@@ -114,6 +118,7 @@ public class TransferMenu : MonoBehaviour {
 		}
 		if (m_propSelected < 0) {
 			m_infoText.text = "No Properties Available";
+			exit_time = 0.5f;
 			ExitMenu ();
 			return;
 		}
@@ -163,13 +168,16 @@ public class TransferMenu : MonoBehaviour {
 	void Update () {
 		if (!starting && m_active && !exiting && (m_CurrentMenu.holder == null || m_OtherMenu.holder == null)) {
 			m_remainingText.text = "Target Is Dead";
+			exit_time = 0.5f;
 			ExitMenu ();
 		}
 		if (m_active && exiting) {
 			m_timeSinceExit += Time.unscaledDeltaTime;
-			if (m_timeSinceExit > 0.5f) {
-				GetComponent<RectTransform> ().Translate (new Vector3 (0, 1000f * Time.unscaledDeltaTime, 0f));
+			if (m_timeSinceExit > exit_time) {
+				GetComponent<RectTransform> ().Translate (new Vector3 (0, 5000f * Time.unscaledDeltaTime, 0f));
 				if (GetComponent<RectTransform> ().localPosition.y > 600) {
+					Vector3 pos = GetComponent<RectTransform> ().localPosition;
+					GetComponent<RectTransform> ().localPosition = new Vector3 (pos.x, 600f, pos.z);
 					PauseGame.Resume ();
 					exiting = false;
 					m_active = false;
@@ -178,35 +186,35 @@ public class TransferMenu : MonoBehaviour {
 		}
 		if (starting) {
 			if (GetComponent<RectTransform> ().localPosition.y > 0) {
-				GetComponent<RectTransform> ().Translate (new Vector3 (0, -1000f * Time.unscaledDeltaTime, 0f));
+				GetComponent<RectTransform> ().Translate (new Vector3 (0, -3000f * Time.unscaledDeltaTime, 0f));
 			} else {
+				Vector3 pos = GetComponent<RectTransform> ().localPosition;
+				GetComponent<RectTransform> ().localPosition = new Vector3 (pos.x, 0f, pos.z);
 				starting = false;
 			}
 		}
+		Controls ();
 	}
 
-	void OnGUI () {
-		if (m_selectedButton == null) {
+	void Controls () {
+		if (starting || m_selectedButton == null) {
 			return;
 		}
 
-		Event e = Event.current;
-		if (e.type == EventType.KeyDown)
-		{
-			if (e.keyCode == KeyCode.W) {
-				SelectProperty (0, -1);
-			} else if (e.keyCode == KeyCode.S) {
-				SelectProperty (0, 1);
-			} else if (e.keyCode == KeyCode.D) {
-				SelectProperty (1, 0);
-			} else if (e.keyCode == KeyCode.A) {
-				SelectProperty (-1, 0);
-			} else if (e.keyCode == KeyCode.Return) {
-				OnPropertySelect ();
-			} else if (e.keyCode == KeyCode.Escape) {
-				m_remainingText.text = "Ending Transfer";
-				ExitMenu ();
-			}
+		if (InputManager.GetButtonDown("Up")) {
+			SelectProperty (0, -1);
+		} else if (InputManager.GetButtonDown("Down")) {
+			SelectProperty (0, 1);
+		} else if (InputManager.GetButtonDown("Right")) {
+			SelectProperty (1, 0);
+		} else if (InputManager.GetButtonDown("Left")) {
+			SelectProperty (-1, 0);
+		} else if (InputManager.GetButtonDown( "Submit")) {
+			OnPropertySelect ();
+		} else if (InputManager.GetButtonDown( "Cancel")) {
+			m_remainingText.text = "Ending Transfer";
+			exit_time = 0f;
+			ExitMenu ();
 		}
 	}
 
@@ -230,6 +238,7 @@ public class TransferMenu : MonoBehaviour {
 		if (m_transfersRemaining > 0) {
 			init (m_transfersRemaining,false);
 		} else {
+			exit_time = 0.5f;
 			ExitMenu ();
 		}
 	}

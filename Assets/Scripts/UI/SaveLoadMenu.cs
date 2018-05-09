@@ -9,7 +9,7 @@ public class SaveLoadMenu : MonoBehaviour {
 
 	public bool MainMenu = false;
 	TMP_Dropdown DropDown;
-	TMP_InputField Input;
+	TMP_InputField MyInputField;
 	List<string> m_savedProfiles;
 	TextMeshProUGUI m_message;
 	int m_selectedIndex = 0;
@@ -19,8 +19,8 @@ public class SaveLoadMenu : MonoBehaviour {
 	void Awake () {
 		DropDown = transform.Find ("Dropdown").GetComponent<TMP_Dropdown>();
 		m_message = transform.Find ("Message").GetComponent<TextMeshProUGUI> ();
-		if (transform.Find ("ProfileInput") != null) {
-			Input = transform.Find ("ProfileInput").gameObject.GetComponent<TMP_InputField> ();
+		if (transform.Find ("Profile") != null) {
+			MyInputField = transform.Find ("ProfileInput").gameObject.GetComponent<TMP_InputField> ();
 		}
 		if (m_selectedIndex != 0 && m_selectedIndex < DropDown.options.Count) {
 			DropDown.value = m_selectedIndex;
@@ -28,7 +28,7 @@ public class SaveLoadMenu : MonoBehaviour {
 		Refresh ();
 	}
 	void Update() {
-		if (DropDown.IsExpanded || (Input != null && Input.isFocused)) {
+		if (DropDown.IsExpanded || (MyInputField != null && MyInputField.isFocused)) {
 			PauseGame.CanPause = false;
 		}
 	}
@@ -49,18 +49,18 @@ public class SaveLoadMenu : MonoBehaviour {
 		DropDown.AddOptions (m_savedProfiles);
 	}
 	public void OnProfileSelect(int index) {
-		if (Input != null) {
-			Input.text = m_savedProfiles [DropDown.value];
+		if (MyInputField != null) {
+			MyInputField.text = m_savedProfiles [DropDown.value];
 		}
 		m_selectedIndex = DropDown.value;
 	}
 	public void OnSave() {
-		if (Input.text == "") {
+		if (MyInputField.text == "") {
 			m_message.text = "Please enter a profile name";
 			return;
 		}
-		if (m_savedProfiles.Contains (Input.text)) {
-			string w = "Overwrite Profile: " + Input.text + "?";
+		if (m_savedProfiles.Contains (MyInputField.text)) {
+			string w = "Overwrite Profile: " + MyInputField.text + "?";
 			PauseGame.DisplayWarning (w,gameObject, m_save);
 		} else {
 			m_save ();
@@ -68,21 +68,21 @@ public class SaveLoadMenu : MonoBehaviour {
 	}
 	private void m_save() {
 		
-		bool result = SaveObjManager.Instance.SaveProfile (Input.text);
+		bool result = SaveObjManager.Instance.SaveProfile (MyInputField.text);
 		//PauseGame.Instance.ReturnToPause ();
 		if (result == true) {
-			m_message.text = "Current Progress saved as " + Input.text;
+			m_message.text = "Current Progress saved as " + MyInputField.text;
 		} else {
-			m_message.text = "ERROR: Could not save profile: " + Input.text;
+			m_message.text = "ERROR: Could not save profile: " + MyInputField.text;
 		}
 		Refresh ();
 		PauseGame.CanPause = true;
 	}
 	public void OnDelete () {
 		m_deleteProfile = "";
-		if (Input != null) { 
-			m_deleteProfile = Input.text;
-			Input.text = "";
+		if (MyInputField != null) { 
+			m_deleteProfile = MyInputField.text;
+			MyInputField.text = "";
 		} else {
 			m_deleteProfile = m_savedProfiles [m_selectedIndex];
 		}

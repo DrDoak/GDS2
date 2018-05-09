@@ -1001,12 +1001,12 @@ Prefab:
     - target: {fileID: 224651395152028732, guid: 86856ebb1cc73c04a86115975021a18e,
         type: 2}
       propertyPath: m_AnchorMax.x
-      value: 0
+      value: 1
       objectReference: {fileID: 0}
     - target: {fileID: 224651395152028732, guid: 86856ebb1cc73c04a86115975021a18e,
         type: 2}
       propertyPath: m_AnchorMax.y
-      value: 0
+      value: 1
       objectReference: {fileID: 0}
     - target: {fileID: 224409164585238760, guid: 86856ebb1cc73c04a86115975021a18e,
         type: 2}
@@ -1091,27 +1091,57 @@ Prefab:
     - target: {fileID: 224777399314521252, guid: 86856ebb1cc73c04a86115975021a18e,
         type: 2}
       propertyPath: m_AnchoredPosition.y
-      value: 0.0000076293945
+      value: -0.000022888184
       objectReference: {fileID: 0}
     - target: {fileID: 224858247495619676, guid: 86856ebb1cc73c04a86115975021a18e,
         type: 2}
       propertyPath: m_AnchoredPosition.y
-      value: -0.000022888184
+      value: -0.000030517578
       objectReference: {fileID: 0}
     - target: {fileID: 224209084733379808, guid: 86856ebb1cc73c04a86115975021a18e,
         type: 2}
       propertyPath: m_AnchoredPosition.y
-      value: -0.000020980835
+      value: -0.000005722046
       objectReference: {fileID: 0}
     - target: {fileID: 224919683728530804, guid: 86856ebb1cc73c04a86115975021a18e,
         type: 2}
       propertyPath: m_AnchorMin.y
-      value: 0.00000017881393
+      value: 0.00000011920929
       objectReference: {fileID: 0}
     - target: {fileID: 224409164585238760, guid: 86856ebb1cc73c04a86115975021a18e,
         type: 2}
       propertyPath: m_AnchorMin.y
+      value: 0.00000017881393
+      objectReference: {fileID: 0}
+    - target: {fileID: 114125318323836840, guid: 86856ebb1cc73c04a86115975021a18e,
+        type: 2}
+      propertyPath: m_deactiveColor.g
       value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 114125318323836840, guid: 86856ebb1cc73c04a86115975021a18e,
+        type: 2}
+      propertyPath: m_deactiveColor.b
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 114125318323836840, guid: 86856ebb1cc73c04a86115975021a18e,
+        type: 2}
+      propertyPath: m_deactiveColor.r
+      value: 0.5019608
+      objectReference: {fileID: 0}
+    - target: {fileID: 114125318323836840, guid: 86856ebb1cc73c04a86115975021a18e,
+        type: 2}
+      propertyPath: m_highlightDeactiveColor.g
+      value: 0.159
+      objectReference: {fileID: 0}
+    - target: {fileID: 114125318323836840, guid: 86856ebb1cc73c04a86115975021a18e,
+        type: 2}
+      propertyPath: m_highlightDeactiveColor.b
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 114125318323836840, guid: 86856ebb1cc73c04a86115975021a18e,
+        type: 2}
+      propertyPath: m_highlightDeactiveColor.r
+      value: 0.715
       objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_ParentPrefab: {fileID: 100100000, guid: 86856ebb1cc73c04a86115975021a18e, type: 2}
