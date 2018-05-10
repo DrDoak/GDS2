@@ -15,6 +15,7 @@ public class TextboxManager : MonoBehaviour {
 	//public delegate void optionResponse(int r);
 	public GameObject textboxPrefab;
 	public GameObject textboxStaticPrefab;
+	public GameObject textboxFullPrefab;
 	public DialogueSound nextSoundType;
 
 	//Color TextboxColor;
@@ -101,13 +102,15 @@ public class TextboxManager : MonoBehaviour {
 	public static void SetSoundType(DialogueSound ds) {
 		m_instance.nextSoundType = ds;
 	}
-	public static Textbox addTextbox(string text,GameObject targetObj) {
-		return m_instance.addTextbox (text, targetObj, true, m_instance.textSpeed,Color.black);
+	public static Textbox addTextbox(string text,GameObject targetObj,bool full = false) {
+		return m_instance.addTextbox (text, targetObj, true, m_instance.textSpeed,Color.black,full);
 	}
-	public Textbox addTextbox(string text,GameObject targetObj,bool typeText,float textSpeed, Color tbColor) {
+	public Textbox addTextbox(string text,GameObject targetObj,bool typeText,float textSpeed, Color tbColor, bool full) {
 		Vector2 newPos = new Vector2();
 		GameObject newTextbox;
-		if (targetObj != null) {
+		if (full) {
+			newTextbox = Instantiate (textboxFullPrefab);
+		} else if (targetObj != null) {
 			newPos = findPosition (targetObj.transform.position);
 			newTextbox = Instantiate (textboxPrefab, newPos, Quaternion.identity);
 		} else {

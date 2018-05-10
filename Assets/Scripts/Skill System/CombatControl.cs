@@ -3,6 +3,7 @@ using System.Collections.Generic;
 using UnityEngine;
 using System;
 using System.Linq;
+using Luminosity.IO;
 
 /// <summary>
 /// Combat Control manages the keyed abilities of the Player
@@ -10,27 +11,27 @@ using System.Linq;
 public class CombatControl : MonoBehaviour
 {
 
-    public List<KeyCode> keys;
-    public Dictionary<KeyCode, Ability> SlottedAbilities;
-    private KeyCode KeyPressed;
+    public List<string> keys;
+    public Dictionary<string, Ability> SlottedAbilities;
+    private string ButtonPressed;
 
     // Use this for initialization
     void Start()
     {
-        SlottedAbilities = new Dictionary<KeyCode, Ability>();
-        foreach (KeyCode k in keys)
+        SlottedAbilities = new Dictionary<string, Ability>();
+        foreach (string s in keys)
         {
-            SlottedAbilities.Add(k, null);
+            SlottedAbilities.Add(s, null);
         }
 
-        SlotAbility(keys[0], ScriptableObject.CreateInstance<Ab_Melee>());
+        SlotAbility("Ability1", ScriptableObject.CreateInstance<Ab_Melee>());
        // SlotAbility(keys[1], ScriptableObject.CreateInstance<Ab_Forcepush>());
-        SlotAbility(KeyCode.Return, ScriptableObject.CreateInstance<Ab_Transfer>());
+        SlotAbility("Transfer", ScriptableObject.CreateInstance<Ab_Transfer>());
 
         Ability.Player = gameObject;
         AbilityTree.Player = gameObject;
 
-        AbilityManager.abilityTree.AddRoot(SlottedAbilities[KeyCode.Return]);
+        AbilityManager.abilityTree.AddRoot(SlottedAbilities["Transfer"]);
     }
 
     // Update is called once per frame
@@ -42,11 +43,11 @@ public class CombatControl : MonoBehaviour
 
     void CheckKey()
     {
-        foreach (KeyCode k in SlottedAbilities.Keys)
+		foreach (string s in SlottedAbilities.Keys)
         {
-            if (Input.GetKeyDown(k))
+			if (InputManager.GetButtonDown(s))
             {
-                KeyPressed = k;
+				ButtonPressed = s;
                 EventManager.TriggerEvent(EventManager.USE_ABILITY);
                 break;
             }
@@ -58,10 +59,8 @@ public class CombatControl : MonoBehaviour
     /// </summary>
     public void UseAbility()
     {
-        if (KeyPressed == KeyCode.None)
-            return;
         //Debug.Log("Using ability: " + KeyPressed);
-        Ability a = SlottedAbilities[KeyPressed];
+		Ability a = SlottedAbilities[ButtonPressed];
 		if (a != null) {
 			a.UseAbility ();
 		}
@@ -72,18 +71,18 @@ public class CombatControl : MonoBehaviour
     /// </summary>
     /// <param name="k"></param>
     /// <param name="a"></param>
-    public void SlotAbility(KeyCode k, Ability a)
+	public void SlotAbility(String s, Ability a)
     {
         try
         {
-            SlottedAbilities.Add(k, a);
-            keys.Add(k);
+            SlottedAbilities.Add(s, a);
+            keys.Add(s);
         }
         catch (ArgumentException)
         {
-            SlottedAbilities[k] = a;
+            SlottedAbilities[s] = a;
         }
-        SlottedAbilities[k].Creator = gameObject;
+        SlottedAbilities[s].Creator = gameObject;
         UpdateBasicAbilityControl();
     }
 

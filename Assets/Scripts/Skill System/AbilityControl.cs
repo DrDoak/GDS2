@@ -18,11 +18,11 @@ public class AbilityControl : MonoBehaviour {
         _mCombatControl.SlotAbility(ChooseKeySlot(i), a);
     }
 
-    private KeyCode ChooseKeySlot(int i)
+    private string ChooseKeySlot(int i)
     {
-        KeyCode k = KeyCode.J;
+		string k = "Ability1";
         int j = 0;
-        foreach (KeyCode kc in _mCombatControl.keys)
+        foreach (string kc in _mCombatControl.keys)
         {
             if (j == i)
             {

@@ -42,12 +42,12 @@ public class DialogueUnit  {
 		}
 	}
 
-	public void addTextbox(string s) {
+	public void addTextbox(string s, bool full = false) {
 		DialogueSubunit ne = new DialogueSubunit ();
 		ne.text = s;
 		elements.Add (ne);
 	}
-	public void addTextbox(string s,string animation) {
+	public void addTextbox(string s,string animation, bool full = false) {
 		DialogueSubunit ne = new DialogueSubunit ();
 		ne.text = s;
 		ne.animation = animation;
