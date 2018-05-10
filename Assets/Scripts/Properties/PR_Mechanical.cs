@@ -24,7 +24,7 @@ public class PR_Mechanical : Property {
 	}
 	public override void OnUpdate ()
 	{
-		if (GetComponent<PropertyHolder> ().HasProperty ("Electrical")) {
+		if (GetComponent<PropertyHolder> ().HasProperty ("Electrical") || GetComponent<PropertyHolder> ().HasProperty ("Powered")) {
 			SetActive (true);
 		} else {
 			if (m_activeTime > 0f) {

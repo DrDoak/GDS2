@@ -14,14 +14,22 @@ public class PR_Burner : PR_Mechanical {
 	HitboxMulti launchBox;
 	GameObject fx;
 
+	List<ElementType> fireOnly;
+
 	protected override void OnActive() {
+		fireOnly = new List<ElementType> ();
+		fireOnly.Add (ElementType.FIRE);
+
 		dotBox = GetComponent<HitboxMaker>().CreateHitboxDoT(scl, off, dmg, stun, hd, kb,true, true, ElementType.FIRE);
+
 		fx = GetComponent<PropertyHolder> ().AddBodyEffect (FXBody.Instance.FXBurner);
+		GetComponent<PropertyHolder> ().AddAmbient (FXBody.Instance.SFXFlaming);
 	}
 	protected override void OnDisable() {
 		if (dotBox != null) {
 			Destroy (dotBox);
 			GetComponent<PropertyHolder> ().RemoveBodyEffect (fx);
+			GetComponent<PropertyHolder> ().RemoveAmbient (FXBody.Instance.SFXFlaming);
 		}
 	}
 }
