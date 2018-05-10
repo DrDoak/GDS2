@@ -27,7 +27,8 @@ public class Ab_Transfer : Ability {
         Instance = this;
 		AbilityClassification = AbilityType.SPECIAL;
         upgradeIndex = 0;
-        Player.GetComponent<PropertyHolder>().NumTransfers = _maxTransfers;
+        if(Player)
+            Player.GetComponent<PropertyHolder>().NumTransfers = _maxTransfers;
     }
 
     public override void UseAbility()
@@ -53,24 +54,9 @@ public class Ab_Transfer : Ability {
 			Target = null;
         }
     }
-
     public override void Upgrade()
     {
-        switch (upgradeIndex)
-        {
-            case 0:
-                UpgradeToInfect();
-                break;
-            case 1:
-            case 3:
-                UpgradeMaxDistance();
-                break;
-            case 2:
-            case 4:
-                UpgradeNumTransfers();
-                break;
-        }
-        upgradeIndex++;
+        UpgradeToInfect();
     }
 
     protected void UpgradeToInfect()
@@ -78,12 +64,12 @@ public class Ab_Transfer : Ability {
         InfectUpgrade = true;
     }
 
-    protected void UpgradeMaxDistance()
+    public void UpgradeMaxDistance()
     {
         _maxDistance += DISTANCE_ADDITION;
     }
 
-    protected void UpgradeNumTransfers()
+    public void UpgradeNumTransfers()
     {
         _maxTransfers++;
         //THIS DOES NOTHING BUT WHY
@@ -149,6 +135,8 @@ public class Ab_Transfer : Ability {
 
         _mTriggered = false;
         Target = null;
+
+        EventManager.TriggerEvent(EventManager.TRANSFER_SPECIAL);
     }
 
 }

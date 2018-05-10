@@ -19,11 +19,13 @@ public class AbilityTree{
     public AbilityTree(Ability a)
     {
         root = new AbilityTreeNode(a);
+        root.tree = this;
     }
 
     public AbilityTree(Ability a, AbilityTreeNode treeNode)
     {
         root = new AbilityTreeNode(a, treeNode);
+        root.tree = this;
     }
 
     public void ChooseAbility()
@@ -74,12 +76,124 @@ public class AbilityTree{
                 break;
         }
     }
+
+    public void Add(Ability a, Branch b, AbilityType subtree)
+    {
+        AbilityTreeNode node = root;
+        AbilityTreeNode temp = null;
+
+        switch (subtree)
+        {
+            case AbilityType.COMBAT:
+                node = LeftBranch.root;
+                break;
+            case AbilityType.SPECIAL:
+                node = MiddleBranch.root;
+                break;
+            case AbilityType.ENVRIONMENTAL:
+                node = RightBranch.root;
+                break;
+        }
+
+        while(node != null)
+        {
+
+            switch (b)
+            {
+                case Branch.LEFT:
+                    temp = LeftBranch.root;
+                    break;
+                case Branch.MIDDLE:
+                    temp = MiddleBranch.root;
+                    break;
+                case Branch.RIGHT:
+                    temp = RightBranch.root;
+                    break;
+            }
+
+            if (temp != null)
+                node = temp;
+            else
+                break;
+        }
+        if (node != null)
+            node.tree.Add(a, b);
+
+    }
+
+    public Ability GetAbility(Branch b, int depth, AbilityType subtree)
+    {
+        int d = root.TreeDepth;
+        AbilityTreeNode node = root;
+
+        switch (subtree)
+        {
+            case AbilityType.COMBAT:
+                node = LeftBranch.root;
+                break;
+            case AbilityType.SPECIAL:
+                node = MiddleBranch.root;
+                break;
+            case AbilityType.ENVRIONMENTAL:
+                node = RightBranch.root;
+                break;
+        }
+        if(node != null)
+            d = node.TreeDepth;
+
+        while (d != depth && node != null)
+        {
+            switch (b)
+            {
+                case Branch.LEFT:
+                    node = LeftBranch.root;
+                    break;
+                case Branch.MIDDLE:
+                    node = MiddleBranch.root;
+                    break;
+                case Branch.RIGHT:
+                    node = RightBranch.root;
+                    break;
+            }
+
+            d = node.TreeDepth;
+        }
+        return node.ability;
+    }
+
+    public void PrintTree()
+    {
+        AbilityTreeNode node = root;
+
+        if(node != null)
+        {
+            Debug.Log(node.ability);
+            if (LeftBranch != null) LeftBranch.PrintTree();
+            if (MiddleBranch != null) MiddleBranch.PrintTree();
+            if (RightBranch != null) RightBranch.PrintTree();
+        }
+    }
+
+    public void PassUltimate()
+    {
+        AbilityTreeNode node = root;
+        while(node != null && node.TreeDepth != 1)
+        {
+            node.tree.UltimateChosen = true;
+            node = node.parent;
+
+        }
+
+        if (node != null)
+            node.tree.UltimateChosen = true;
+    }
 	
 }
 
 public class AbilityTreeNode
 {
     public Ability ability;
+    public AbilityTree tree;
     public AbilityTreeNode parent;
     public bool unlocked = false;
     public bool Ultimate = false;
@@ -114,6 +228,12 @@ public class AbilityTreeNode
     {
         unlocked = true;
         //Apply ability upgrades
+        if (ability.Passive)
+        {
+            ability.UseAbility();
+        }
+        if (TreeDepth == 0)
+            ability.Upgrade();
         Select();
     }
 
@@ -121,6 +241,8 @@ public class AbilityTreeNode
     {
         //Modify combat control of player by replacing designated ability
         //Modify ultimate selection if applicable
+        if (Ultimate)
+            tree.PassUltimate();
     }
     public bool CheckRequisites()
     {

@@ -21,9 +21,6 @@ public abstract class Ability : ScriptableObject {
     protected List<Ability> _mSelected;
     protected List<Property> _mPropertiesToKeep;
 
-
-	//I added this for when you want to use Melee Hitboxes
-	//instead of Distance (circle) hitboxes. 
 	public bool UseAttackHitbox = false;
 
     protected int _mtier = 1;
@@ -33,6 +30,18 @@ public abstract class Ability : ScriptableObject {
     public void Awake()
     {
         ClearLists();
+        FindPlayer();
+    }
+
+    public void FindPlayer()
+    {
+        if (Player == null)
+        {
+            BasicMovement[] objects = FindObjectsOfType<BasicMovement>();
+            foreach (BasicMovement b in objects)
+                if (b.IsCurrentPlayer)
+                    Player = b.gameObject;
+        }
     }
 
     public virtual void TriggerAnimation()
@@ -45,6 +54,11 @@ public abstract class Ability : ScriptableObject {
 
     }
     
+    protected void ApplyProperty(Property p)
+    {
+        Target.GetComponent<PropertyHolder>().AddProperty(p);
+    }
+
     public void SetTarget(GameObject g)
     {
         Target = g;

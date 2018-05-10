@@ -13,6 +13,9 @@ public class CombatControl : MonoBehaviour
     public List<KeyCode> keys;
     public Dictionary<KeyCode, Ability> SlottedAbilities;
     private KeyCode KeyPressed;
+    public KeyCode TransferKey = KeyCode.Return;
+    public KeyCode CombatKey;
+    public KeyCode EnvironmentalKey;
 
     // Use this for initialization
     void Start()
@@ -22,15 +25,14 @@ public class CombatControl : MonoBehaviour
         {
             SlottedAbilities.Add(k, null);
         }
-
-        SlotAbility(keys[0], ScriptableObject.CreateInstance<Ab_Melee>());
+        CombatKey = keys[0];
+        SlotAbility(CombatKey, AbilityManager.abilityTree.GetAbility(Branch.LEFT, 1, AbilityType.COMBAT));
        // SlotAbility(keys[1], ScriptableObject.CreateInstance<Ab_Forcepush>());
-        SlotAbility(KeyCode.Return, ScriptableObject.CreateInstance<Ab_Transfer>());
+        SlotAbility(TransferKey, AbilityManager.abilityTree.root.ability);
 
         Ability.Player = gameObject;
         AbilityTree.Player = gameObject;
-
-        AbilityManager.abilityTree.AddRoot(SlottedAbilities[KeyCode.Return]);
+        
     }
 
     // Update is called once per frame
