@@ -113,7 +113,9 @@ namespace Luminosity.IO.Examples
 				Debug.LogErrorFormat("Control scheme '{0}' does not exist or input action '{1}' does not exist", m_controlSchemeName, m_inputActionName);
 			}
 		}
-
+		public void ButtonClick() {
+			StartCoroutine(StartInputScanDelayed());
+		}
 		public void OnPointerDown(PointerEventData data)
 		{
 			StartCoroutine(StartInputScanDelayed());

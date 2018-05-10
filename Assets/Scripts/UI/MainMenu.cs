@@ -2,6 +2,7 @@
 using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.SceneManagement;
+using UnityEngine.EventSystems;
 
 public class MainMenu : MonoBehaviour {
 
@@ -17,6 +18,7 @@ public class MainMenu : MonoBehaviour {
 		m_loadScreen.SetActive (false);
 		PauseGame.CanPause = false;
 		FindObjectOfType<GUIHandler> ().SetHUD (false);
+		ReturnToMenu ();
 	}
 		
 	public void Resume()
@@ -50,5 +52,6 @@ public class MainMenu : MonoBehaviour {
 	public void ReturnToMenu() {
 		m_menuUI.SetActive(true);
 		m_loadScreen.SetActive (false);
+		EventSystem.current.SetSelectedGameObject(transform.Find("MainMenu").Find("New Game").gameObject);
 	}
 }

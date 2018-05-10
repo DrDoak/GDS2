@@ -4,6 +4,7 @@ using UnityEngine;
 using TMPro;
 using System.IO;
 using UnityEngine.UI;
+using UnityEngine.EventSystems;
 
 public class SaveLoadMenu : MonoBehaviour {
 
@@ -34,6 +35,8 @@ public class SaveLoadMenu : MonoBehaviour {
 	}
 	public void Reset() {
 		m_message.SetText (DefaultMessage);
+		Debug.Log (EventSystem.current);
+		EventSystem.current.SetSelectedGameObject(transform.Find("Return").gameObject);
 	}
 	public void Refresh() {
 		m_savedProfiles = new List<string> ();

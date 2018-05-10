@@ -5,6 +5,7 @@ using UnityEngine.SceneManagement;
 using TMPro;
 using UnityEngine.UI;
 using Luminosity.IO;
+using UnityEngine.EventSystems;
 
 public class PauseGame : MonoBehaviour
 {
@@ -118,6 +119,7 @@ public class PauseGame : MonoBehaviour
 	{
 		if (drawMenu) {
 			m_pauseMenuUI.SetActive (true);
+			EventSystem.current.SetSelectedGameObject(m_pauseMenuUI.transform.Find("Resume Button").gameObject);
 		}
 		Time.timeScale = 0f;
 		isPaused = true;
@@ -147,6 +149,7 @@ public class PauseGame : MonoBehaviour
 		m_pauseMenuUI.SetActive(false);
 		m_controlMap.SetActive (true);
 		PauseGame.CanPause = false;
+		EventSystem.current.SetSelectedGameObject(m_controlMap.transform.Find ("main_panel").Find("back_button").gameObject);
 	}
 	public void MenuMainMenu() {
 		Time.timeScale = 1f;
@@ -161,6 +164,7 @@ public class PauseGame : MonoBehaviour
 		m_loadScreen.SetActive (false);
 		m_deadScreen.SetActive (false);
 		m_controlMap.SetActive (false);
+		EventSystem.current.SetSelectedGameObject(m_pauseMenuUI.transform.Find("Resume Button").gameObject);
 		PauseGame.CanPause = true;
 	}
 	public static void OnPlayerDeath() {
@@ -170,6 +174,8 @@ public class PauseGame : MonoBehaviour
 		Instance.m_saveScreen.SetActive (false);
 		Instance.m_loadScreen.SetActive (false);
 		Instance.m_deadScreen.SetActive (true);
+		Instance.m_deadScreen.GetComponent<SaveLoadMenu> ().Refresh ();
+		Instance.m_deadScreen.GetComponent<SaveLoadMenu> ().Reset ();
 	}
 
 	public static void DisplayWarning(string warningMessage, GameObject oldMenu, ButtonClickEvent func, string title="Warning") {
@@ -179,6 +185,7 @@ public class PauseGame : MonoBehaviour
 		Instance.m_warningScreen.transform.Find ("Message").GetComponent<TextMeshProUGUI> ().SetText (warningMessage);
 		Instance.m_warningScreen.transform.Find ("Title").GetComponent<TextMeshProUGUI> ().SetText (title);
 		Instance.m_buttonEvent = func;
+		EventSystem.current.SetSelectedGameObject(Instance.m_warningScreen.transform.Find ("Cancel").gameObject);
 	}
 
 	public void OnCancelWarning() {

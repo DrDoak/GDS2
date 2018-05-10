@@ -13,6 +13,7 @@ public class BasicMovement : MonoBehaviour
 	private const float NPC_STUCK_JUMP_TIME = .4f;
 	private const float NPC_X_DIFF_MOVEMENT_THREASHOLD = 0.4f;
 	private const float PIT_JUMP_VERTICAL_THREASHOLD = -0.3f;
+	private const float DOUBLE_TAP_DROP_INTERVAL = 0.2f;
 
 
 	public bool IsCurrentPlayer = false;
@@ -55,6 +56,8 @@ public class BasicMovement : MonoBehaviour
 	public float footstepInterval = 0.75f;
 	float m_sinceStep = 0f;
 
+	private float m_lastDownTime = 0f;
+
 
 	internal void Awake()
 	{
@@ -96,8 +99,15 @@ public class BasicMovement : MonoBehaviour
 			m_inputMove.x += 1f;
 		if (InputManager.GetButton("Up"))
 			m_inputMove.y += 1f;
-		if (InputManager.GetButton("Down"))
+		if (InputManager.GetButton ("Down")) {
 			m_inputMove.y -= 1f;
+			if (InputManager.GetButtonDown ("Down")) {
+				//Debug.Log (Time.timeSinceLevelLoad + " : " + m_lastDownTime);
+				if (Time.timeSinceLevelLoad - m_lastDownTime < DOUBLE_TAP_DROP_INTERVAL)
+					m_physics.setDropTime (0.2f);
+				m_lastDownTime = Time.timeSinceLevelLoad;
+			}
+		}
 		m_jumpDown = InputManager.GetButtonDown ("Jump");
 		m_jumpHold = InputManager.GetButton ("Jump");
 		JumpMovement ();
