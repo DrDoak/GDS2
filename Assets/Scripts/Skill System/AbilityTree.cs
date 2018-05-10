@@ -35,7 +35,7 @@ public class AbilityTree{
 
         if (root.Ultimate)
             UltimateChosen = true;
-        if (!root.unlocked)
+        if (!root.unlocked || (root.Tiered && root.unlocked && !root.Maxed))
             root.Unlock();
         else
             root.Select();
@@ -181,7 +181,6 @@ public class AbilityTree{
         {
             node.tree.UltimateChosen = true;
             node = node.parent;
-
         }
 
         if (node != null)
@@ -197,6 +196,8 @@ public class AbilityTreeNode
     public AbilityTreeNode parent;
     public bool unlocked = false;
     public bool Ultimate = false;
+    public bool Tiered = false;
+    public bool Maxed = true;
     public int TreeDepth;
 
     void Awake()
@@ -207,7 +208,12 @@ public class AbilityTreeNode
             TreeDepth = 0;
 
         if (ability)
+        {
             Ultimate = ability.Ultimate;
+            Tiered = ability.Tiered;
+        }
+
+        Maxed = ability.Maxed;
     }
 
     public AbilityTreeNode(Ability a)
@@ -234,12 +240,30 @@ public class AbilityTreeNode
         }
         if (TreeDepth == 0)
             ability.Upgrade();
+
+        Maxed = ability.Maxed;
         Select();
     }
 
     public void Select()
     {
         //Modify combat control of player by replacing designated ability
+        if (ability.RequiresReplacement)
+        {
+            CombatControl cc = Ability.Player.GetComponent<CombatControl>();
+
+            switch (ability.AbilityClassification)
+            {
+                case AbilityType.COMBAT:
+                    break;
+                case AbilityType.SPECIAL:
+                    break;
+                case AbilityType.ENVRIONMENTAL:
+                    break;
+            }
+        }
+
+        ability.Select();
         //Modify ultimate selection if applicable
         if (Ultimate)
             tree.PassUltimate();

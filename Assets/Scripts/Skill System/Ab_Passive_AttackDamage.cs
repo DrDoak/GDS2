@@ -11,15 +11,19 @@ public class Ab_Passive_AttackDamage : Ability
         base.Awake();
         parent = FindObjectOfType<Ab_Melee>();
         Passive = true;
+        Tiered = true;
         _mtier = 1;
+        Maxed = false;
     }
 
     public override void UseAbility()
     {
-        if (_mtier < 3)
+        if (_mtier < MAX_TIER)
         {
             _mtier++;
             parent.UpgradeDamage();
         }
+        else
+            Maxed = true;
     }
 }

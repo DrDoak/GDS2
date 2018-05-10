@@ -5,6 +5,8 @@ using UnityEngine;
 
 public abstract class Ability : ScriptableObject {
 
+    public const int MAX_TIER = 3;
+
     public static GameObject Player;
     public static AbilityManager Manager;
 
@@ -13,6 +15,8 @@ public abstract class Ability : ScriptableObject {
     public string AnimStateName;
     public bool Ultimate = false;
     public bool Passive = false;
+    public bool Tiered = false;
+    public bool Maxed = true;
     public bool RequiresReplacement = false;
     public GameObject Creator;
 
@@ -52,6 +56,11 @@ public abstract class Ability : ScriptableObject {
     public virtual void Upgrade()
     {
 
+    }
+
+    public virtual void Select()
+    {
+        Debug.Log("You selected: ", this);
     }
     
     protected void ApplyProperty(Property p)

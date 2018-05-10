@@ -2,17 +2,29 @@
 using System.Collections.Generic;
 using UnityEngine;
 
-public class Ab_Knockdown : Ab_Transfer {
+public class Ab_Knockdown : Ability {
+
+    private bool selected;
 	
 	new void Awake()
     {
         base.Awake();
         Ultimate = true;
+        selected = false;
     }
 
-    protected override void TransferProperty()
+    public override void UseAbility()
     {
-        base.TransferProperty();
-        //Trigger Energy blast
+        Debug.Log("Knockdown triggered!");
+    }
+
+    public override void Select()
+    {
+        if (!selected)
+            EventManager.TransferSpecialEvent += UseAbility;
+        else
+            EventManager.TransferSpecialEvent -= UseAbility;
+
+        selected = !selected;
     }
 }
