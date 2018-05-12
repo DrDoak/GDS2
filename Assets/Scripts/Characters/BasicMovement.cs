@@ -58,7 +58,6 @@ public class BasicMovement : MonoBehaviour
 
 	private float m_lastDownTime = 0f;
 
-
 	internal void Awake()
 	{
 		m_physics = GetComponent<PhysicsSS>();

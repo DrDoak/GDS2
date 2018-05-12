@@ -6,7 +6,7 @@ public class TextboxTrigger : Interactable {
 	
 	public bool typeText = true;
 	public bool autoTrigger = true;
-	public bool FloatingHitbox = true;
+	public bool ClearAllSequence = true;
 	public DialogueSound soundType = DialogueSound.SPOKEN;
 	float interval = 2.0f;
 	float currentInterval = 0.0f;
@@ -33,11 +33,12 @@ public class TextboxTrigger : Interactable {
 	protected virtual void triggerText() {
 		TriggerUsed = true;
 		currentInterval = interval;
+		if (ClearAllSequence)
+			TextboxManager.ClearAllSequences ();
 		TextboxManager.SetSoundType (soundType);
-		if (FloatingHitbox)
-			TextboxManager.StartSequence (value,gameObject);
-		else
-			TextboxManager.StartSequence (value);
+		if (ClearAllSequence)
+			TextboxManager.ClearAllSequences ();
+		TextboxManager.StartSequence (value);
 	}
 	/* public override void onInteract(BasicMovement interactor) {
 		if (!autoTrigger) {

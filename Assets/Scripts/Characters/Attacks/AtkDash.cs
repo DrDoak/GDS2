@@ -19,18 +19,33 @@ public class AtkDash : AttackInfo
 	{
 		base.OnStartUp();
 		m_physics = GetComponent<PhysicsSS>();
+		if (m_dashInfo.StartUpDash.y != 0f)
+			VerticalMomentumCancel (m_AttackAnimInfo.StartUpTime);
 		m_physics.AddSelfForce(m_physics.OrientVectorToDirection(m_dashInfo.StartUpDash), m_dashInfo.StartUpDuration);
 	}
 
 	protected override void OnAttack()
 	{
 		base.OnAttack();
+		if (m_dashInfo.AttackDash.y != 0f)
+			VerticalMomentumCancel (m_AttackAnimInfo.RecoveryTime);
 		m_physics.AddSelfForce(m_physics.OrientVectorToDirection(m_dashInfo.AttackDash), m_dashInfo.AttackDashDuration);
 	}
 
 	protected override void OnConclude()
 	{
 		base.OnConclude();
+		if (m_dashInfo.ConclusionDash.y != 0f)
+			VerticalMomentumCancel (m_dashInfo.ConclusionDuration);
 		m_physics.AddSelfForce(m_physics.OrientVectorToDirection(m_dashInfo.ConclusionDash), m_dashInfo.ConclusionDuration);
+	}
+
+	public virtual void OnInterrupt(float stunTime, bool successfulHit, Hitbox hb)
+	{
+		m_physics.DisableGravity (0f);
+	}
+	private void VerticalMomentumCancel(float time) {
+		m_physics.CancelVerticalMomentum ();
+		m_physics.DisableGravity (m_AttackAnimInfo.StartUpTime);
 	}
 }

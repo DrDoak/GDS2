@@ -50,6 +50,8 @@ public class PhysicsSS : MonoBehaviour
 	public bool UseBuoyancy = false;
 	public float BuoyancyScale = -1.0f;
 
+	private float m_verticalCancelTime = 0f;
+
 
 	// Tracking m_sprite orientation (flipping if left)...
 	SpriteRenderer m_sprite;
@@ -95,7 +97,6 @@ public class PhysicsSS : MonoBehaviour
 	{
 		if (m_canMove)
 			return;
-		//m_inputedMove = Vector2.zero;
 		m_inputedForce.Force = new Vector2(0, 0);
 	}
 
@@ -113,12 +114,13 @@ public class PhysicsSS : MonoBehaviour
 				forcesToRemove.Add(force);
 		}
 
+		m_verticalCancelTime -= Time.deltaTime;
 		foreach (ForceSS force in forcesToRemove)
 			m_forces.Remove(force);
 		if (UseBuoyancy) {
 			m_velocity.y += BuoyancyScale * Time.fixedDeltaTime;
 		} else if (m_velocity.y > TerminalVelocity){
-			if (!m_collisions.below) {
+			if (!m_collisions.below && m_verticalCancelTime <= 0f) {
 				m_velocity.y += GravityScale * Time.fixedDeltaTime;
 			} else if (m_collisions.below) { //force player to stick to slopes
 				m_velocity.y += GravityScale * Time.fixedDeltaTime * 6f;
@@ -152,6 +154,16 @@ public class PhysicsSS : MonoBehaviour
 		m_forces.Add(new ForceSS(force, duration));
 	}
 
+	public void CancelVerticalMomentum() {
+		foreach (ForceSS force in m_forces)
+		{
+			force.Force.y = 0f;
+		}
+		m_velocity.y = 0f;
+	}
+	public void DisableGravity(float time) {
+		m_verticalCancelTime = time;
+	}
 	public bool IsAttemptingMovement()
 	{
 		return m_inputedMove.x != 0.0f;
