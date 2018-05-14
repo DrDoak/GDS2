@@ -5,6 +5,7 @@ using UnityEditor;
 
 public class AbilityTree{
     public static GameObject Player;
+    public static int PointsToSpend = 0;
     public AbilityTreeNode root;
     public AbilityTree LeftBranch;
     public AbilityTree MiddleBranch;
@@ -19,11 +20,13 @@ public class AbilityTree{
     public AbilityTree(Ability a)
     {
         root = new AbilityTreeNode(a);
+        root.tree = this;
     }
 
     public AbilityTree(Ability a, AbilityTreeNode treeNode)
     {
         root = new AbilityTreeNode(a, treeNode);
+        root.tree = this;
     }
 
     public void ChooseAbility()
@@ -33,8 +36,11 @@ public class AbilityTree{
 
         if (root.Ultimate)
             UltimateChosen = true;
-        if (!root.unlocked)
+        if (PointsToSpend > 0 && (!root.unlocked || (root.Tiered && root.unlocked && !root.Maxed)))
+        {
             root.Unlock();
+            PointsToSpend--;
+        }
         else
             root.Select();
     }
@@ -46,17 +52,26 @@ public class AbilityTree{
 
     private void AddLeft(Ability a)
     {
-        LeftBranch = new AbilityTree(a, root);
+        if (LeftBranch == null)
+            LeftBranch = new AbilityTree(a, root);
+        else
+            LeftBranch.Add(a, Branch.LEFT);
     }
 
     private void AddRight(Ability a)
     {
-        RightBranch = new AbilityTree(a, root);
+        if (RightBranch == null)
+            RightBranch = new AbilityTree(a, root);
+        else
+            RightBranch.Add(a, Branch.RIGHT);
     }
 
     private void AddMiddle(Ability a)
     {
-        MiddleBranch = new AbilityTree(a, root);
+        if (MiddleBranch == null)
+            MiddleBranch = new AbilityTree(a, root);
+        else
+            MiddleBranch.Add(a, Branch.MIDDLE);
     }
 
     public void Add(Ability a, Branch b)
@@ -74,15 +89,106 @@ public class AbilityTree{
                 break;
         }
     }
+
+    public void Add(Ability a, Branch b, AbilityType subtree)
+    {
+        AbilityTreeNode node = root;
+
+        switch (subtree)
+        {
+            case AbilityType.COMBAT:
+                node = LeftBranch.root;
+                break;
+            case AbilityType.SPECIAL:
+                node = MiddleBranch.root;
+                break;
+            case AbilityType.ENVRIONMENTAL:
+                node = RightBranch.root;
+                break;
+        }
+
+        if (node != null)
+            node.tree.Add(a, b);
+    }
+
+    public Ability GetAbility(Branch b, int depth, AbilityType subtree)
+    {
+        int d = root.TreeDepth;
+        AbilityTreeNode node = root;
+
+        switch (subtree)
+        {
+            case AbilityType.COMBAT:
+                node = LeftBranch.root;
+                break;
+            case AbilityType.SPECIAL:
+                node = MiddleBranch.root;
+                break;
+            case AbilityType.ENVRIONMENTAL:
+                node = RightBranch.root;
+                break;
+        }
+        if(node != null)
+            d = node.TreeDepth;
+
+        while (d != depth && node != null)
+        {
+            switch (b)
+            {
+                case Branch.LEFT:
+                    node = LeftBranch.root;
+                    break;
+                case Branch.MIDDLE:
+                    node = MiddleBranch.root;
+                    break;
+                case Branch.RIGHT:
+                    node = RightBranch.root;
+                    break;
+            }
+
+            d = node.TreeDepth;
+        }
+        return node.ability;
+    }
+
+    public void PrintTree()
+    {
+        AbilityTreeNode node = root;
+
+        if(node != null)
+        {
+            Debug.Log(node.ability);
+            Debug.Log(node.TreeDepth);
+            if (LeftBranch != null) LeftBranch.PrintTree();
+            if (MiddleBranch != null) MiddleBranch.PrintTree();
+            if (RightBranch != null) RightBranch.PrintTree();
+        }
+    }
+
+    public void PassUltimate()
+    {
+        AbilityTreeNode node = root;
+        while(node != null && node.TreeDepth != 1)
+        {
+            node.tree.UltimateChosen = true;
+            node = node.parent;
+        }
+
+        if (node != null)
+            node.tree.UltimateChosen = true;
+    }
 	
 }
 
 public class AbilityTreeNode
 {
     public Ability ability;
+    public AbilityTree tree;
     public AbilityTreeNode parent;
     public bool unlocked = false;
     public bool Ultimate = false;
+    public bool Tiered = false;
+    public bool Maxed = true;
     public int TreeDepth;
 
     void Awake()
@@ -93,7 +199,12 @@ public class AbilityTreeNode
             TreeDepth = 0;
 
         if (ability)
+        {
             Ultimate = ability.Ultimate;
+            Tiered = ability.Tiered;
+            Maxed = ability.Maxed;
+        }
+        Select();
     }
 
     public AbilityTreeNode(Ability a)
@@ -114,13 +225,39 @@ public class AbilityTreeNode
     {
         unlocked = true;
         //Apply ability upgrades
+        if (ability.Passive)
+        {
+            ability.UseAbility();
+        }
+        if (TreeDepth == 0)
+            ability.Upgrade();
+
+        Maxed = ability.Maxed;
         Select();
     }
 
     public void Select()
     {
         //Modify combat control of player by replacing designated ability
+        if (ability.RequiresReplacement)
+        {
+            CombatControl cc = Ability.Player.GetComponent<CombatControl>();
+
+            switch (ability.AbilityClassification)
+            {
+                case AbilityType.COMBAT:
+                    break;
+                case AbilityType.SPECIAL:
+                    break;
+                case AbilityType.ENVRIONMENTAL:
+                    break;
+            }
+        }
+
+        ability.Select();
         //Modify ultimate selection if applicable
+        if (Ultimate && tree != null)
+            tree.PassUltimate();
     }
     public bool CheckRequisites()
     {

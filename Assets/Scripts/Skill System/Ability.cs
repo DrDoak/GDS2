@@ -5,6 +5,8 @@ using UnityEngine;
 
 public abstract class Ability : ScriptableObject {
 
+    public const int MAX_TIER = 3;
+
     public static GameObject Player;
     public static AbilityManager Manager;
 
@@ -13,6 +15,8 @@ public abstract class Ability : ScriptableObject {
     public string AnimStateName;
     public bool Ultimate = false;
     public bool Passive = false;
+    public bool Tiered = false;
+    public bool Maxed = true;
     public bool RequiresReplacement = false;
     public GameObject Creator;
 
@@ -21,18 +25,27 @@ public abstract class Ability : ScriptableObject {
     protected List<Ability> _mSelected;
     protected List<Property> _mPropertiesToKeep;
 
-
-	//I added this for when you want to use Melee Hitboxes
-	//instead of Distance (circle) hitboxes. 
 	public bool UseAttackHitbox = false;
 
     protected int _mtier = 1;
 
     public abstract void UseAbility();
 
-    public void Awake()
+    public virtual void Awake()
     {
         ClearLists();
+        FindPlayer();
+    }
+
+    public void FindPlayer()
+    {
+        if (Player == null)
+        {
+            BasicMovement[] objects = FindObjectsOfType<BasicMovement>();
+            foreach (BasicMovement b in objects)
+                if (b.IsCurrentPlayer)
+                    Player = b.gameObject;
+        }
     }
 
     public virtual void TriggerAnimation()
@@ -44,7 +57,17 @@ public abstract class Ability : ScriptableObject {
     {
 
     }
+
+    public virtual void Select()
+    {
+        Debug.Log("You selected: ability");
+    }
     
+    protected void ApplyProperty(Property p)
+    {
+        Target.GetComponent<PropertyHolder>().AddProperty(p);
+    }
+
     public void SetTarget(GameObject g)
     {
         Target = g;

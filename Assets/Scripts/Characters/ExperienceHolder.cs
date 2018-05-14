@@ -9,6 +9,7 @@ public class ExperienceHolder : MonoBehaviour {
 	public const float MONEY_ADD_SPEED = 0.5f;
 	public void AddExperience(int value) {
 		Experience += value;
+        Leveller.UpdateExperience(this);
 	}
 	void Update() {
 		if (VisualExperience < Experience) {
