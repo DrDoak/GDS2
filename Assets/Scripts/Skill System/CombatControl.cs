@@ -10,7 +10,12 @@ using Luminosity.IO;
 /// </summary>
 public class CombatControl : MonoBehaviour
 {
-
+    //public List<KeyCode> keys;
+    //public Dictionary<KeyCode, Ability> SlottedAbilities;
+    private KeyCode KeyPressed;
+    public KeyCode TransferKey = KeyCode.Return;
+    public KeyCode CombatKey;
+    public KeyCode EnvironmentalKey;
     public List<string> keys;
     public Dictionary<string, Ability> SlottedAbilities;
     private string ButtonPressed;
@@ -24,14 +29,15 @@ public class CombatControl : MonoBehaviour
             SlottedAbilities.Add(s, null);
         }
 
-        SlotAbility("Ability1", ScriptableObject.CreateInstance<Ab_Melee>());
-       // SlotAbility(keys[1], ScriptableObject.CreateInstance<Ab_Forcepush>());
-        SlotAbility("Transfer", ScriptableObject.CreateInstance<Ab_Transfer>());
-
         Ability.Player = gameObject;
         AbilityTree.Player = gameObject;
+        
 
-        AbilityManager.abilityTree.AddRoot(SlottedAbilities["Transfer"]);
+        SlotAbility("Ability1", AbilityManager.abilityTree.GetAbility(Branch.LEFT, 1, AbilityType.COMBAT));
+       // SlotAbility(keys[1], ScriptableObject.CreateInstance<Ab_Forcepush>());
+        SlotAbility("Transfer", AbilityManager.abilityTree.root.ability);
+
+        //AbilityManager.abilityTree.AddRoot(SlottedAbilities["Transfer"]);
     }
 
     // Update is called once per frame
@@ -69,7 +75,7 @@ public class CombatControl : MonoBehaviour
     /// <summary>
     /// Slots the passed ability into the Player's designated keyslot
     /// </summary>
-    /// <param name="k"></param>
+    /// <param name="s"></param>
     /// <param name="a"></param>
 	public void SlotAbility(String s, Ability a)
     {

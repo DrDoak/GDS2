@@ -2,28 +2,28 @@
 using System.Collections.Generic;
 using UnityEngine;
 
-public class Ab_Knockdown : Ability {
+public class Ab_CriticalStrike : Ability
+{
 
     private bool selected;
-	
-	new void Awake()
+
+    new void Awake()
     {
         base.Awake();
-        Ultimate = true;
         selected = false;
     }
 
     public override void UseAbility()
     {
-        Debug.Log("Knockdown triggered!");
+        Debug.Log("Critical Strike triggered!");
     }
 
     public override void Select()
     {
         if (!selected)
-            EventManager.TransferSpecialEvent += UseAbility;
+            EventManager.MeleeSpecialEvent += UseAbility;
         else
-            EventManager.TransferSpecialEvent -= UseAbility;
+            EventManager.MeleeSpecialEvent -= UseAbility;
 
         selected = !selected;
     }

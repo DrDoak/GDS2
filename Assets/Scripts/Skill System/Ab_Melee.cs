@@ -3,47 +3,42 @@ using System.Collections.Generic;
 using UnityEngine;
 
 public class Ab_Melee : Ability {
-
-    private int upgradeIndex;
+    
     public float Damage { get; protected set; }
     public float Speed { get; protected set; }
 
     private float damageUpgrade = 15f;
     private float speedUpgrade = 1f;
 
-	new public void Awake()
+	public override void Awake()
 	{
-		ClearLists();
+        base.Awake();
 		AbilityClassification = AbilityType.COMBAT;
-        upgradeIndex = 0;
-        Damage = Player.GetComponent<AttackInfo>().m_HitboxInfo.Damage;
-        Speed = Player.GetComponent<AttackInfo>().m_AttackAnimInfo.AnimSpeed;
+        if (Player)
+        {
+            Damage = Player.GetComponent<AttackInfo>().m_HitboxInfo.Damage;
+            Speed = Player.GetComponent<AttackInfo>().m_AttackAnimInfo.AnimSpeed;
+        }
 	}
 
 	public override void UseAbility()
 	{
 		Player.GetComponent<Fighter> ().TryAttack ("melee");
+        EventManager.TriggerEvent(EventManager.MELEE_SPECIAL);
 	}
 
-    public override void Upgrade()
+    public void UpgradeDamage()
     {
-        switch (upgradeIndex)
-        {
-            case 0:
-            case 2:
-            case 4:
-                Damage += damageUpgrade;
-                UpdateFighter();
-                break;
-            case 1:
-            case 3:
-            case 5:
-                Speed += speedUpgrade;
-                UpdateFighter();
-                break;
-        }
-        upgradeIndex++;
+        Damage += damageUpgrade;
+        UpdateFighter();
     }
+
+    public void UpgradeAttackRate()
+    {
+        Speed += speedUpgrade;
+        UpdateFighter();
+    }
+
 
     private void UpdateFighter()
     {

@@ -12,7 +12,13 @@ public class AbilityControl : MonoBehaviour {
         _mCombatControl = GetComponent<CombatControl>();
         _mBasicControl = GetComponent<BasicAbilityControl>();
 	}
-    
+
+    void Update()
+    {
+        if (Ability.Player == null)
+            Ability.Player = gameObject;
+    }
+
     public void AbsorbAbility(Ability a, int i)
     {
         _mCombatControl.SlotAbility(ChooseKeySlot(i), a);
