@@ -16,7 +16,6 @@ public class DialogueUnit  {
 
 	// Use this for initialization
 	public DialogueUnit () {
-		//Debug.Log ("starting a ds!");
 		//modifiedAnims = new List<Fighter> ();
 		elements = new List<DialogueSubunit> ();
 	}
@@ -44,14 +43,12 @@ public class DialogueUnit  {
 	public void addTextbox(string s, bool full = false) {
 		DialogueSubunit ne = new DialogueSubunit ();
 		ne.text = s;
-		Debug.Log (full);
 		ne.isFullScreen = full;
 		elements.Add (ne);
 	}
 	public void addTextbox(string s,string animation, bool full = false) {
 		DialogueSubunit ne = new DialogueSubunit ();
 		ne.text = s;
-		Debug.Log (full);
 		ne.animation = animation;
 		ne.isFullScreen = full;
 		elements.Add (ne);

@@ -26,7 +26,7 @@ public class PersistentItem : MonoBehaviour {
 			data.regID = "Not Assigned";
 		}
 		if (SaveObjManager.CheckRegistered(gameObject)) {
-			Debug.Log (gameObject + " Already registered, deleting duplicate");
+			//Debug.Log (gameObject + " Already registered, deleting duplicate");
 			Destroy(gameObject);
 		}
 	}
@@ -48,8 +48,9 @@ public class PersistentItem : MonoBehaviour {
 			data.health = GetComponent<Attackable>().Health;
 		if (GetComponent<BasicMovement>())
 			data.IsCurrentCharacter = GetComponent<BasicMovement> ().IsCurrentPlayer;
-		if (GetComponent<PhysicsSS>())
+		if (GetComponent<PhysicsSS> ()) {
 			data.IsFacingLeft = GetComponent<PhysicsSS> ().FacingLeft;
+		}
 		if (GetComponent<PropertyHolder> ()) {
 			Property[] pL = GetComponents<Property> ();
 			string[] allPs = new string[pL.Length];
@@ -64,26 +65,19 @@ public class PersistentItem : MonoBehaviour {
 			data.propertyDescriptions = allDs;
 			data.propertyValues = allVs;
 		}
-		string properName = "";
-		foreach (char c in gameObject.name) {
-			if (!c.Equals ('(') && !c.Equals(' ')) {
-				properName += c;
-			} else {
-				break;
-			}
-		}
+
 		if (GetComponent<ExperienceHolder> ())
 			data.Experience = GetComponent<ExperienceHolder> ().Experience;
-		//Debug.Log("ID: " + properName);
-		data.prefabPath = properName; //gameObject.name;*/
+		data.prefabPath = getProperName(); //gameObject.name;*/
 	}
 
 	public void LoadData() {
-		Debug.Log ("Loading data");
+		//Debug.Log ("Loading data");
 		if (GetComponent<Attackable>())
 			GetComponent<Attackable>().SetHealth( data.health);
-		if (GetComponent<PhysicsSS>())
+		if (GetComponent<PhysicsSS> ()) {
 			GetComponent<PhysicsSS> ().SetDirection (data.IsFacingLeft);
+		}
 		if (GetComponent<PropertyHolder> ()) {
 			GetComponent<PropertyHolder> ().ClearProperties ();
 			for (int i = 0; i < data.propertyList.Length; i++) {
@@ -100,13 +94,19 @@ public class PersistentItem : MonoBehaviour {
 			GetComponent<Interactable> ().TriggerUsed = data.TriggerUsed;
 			GetComponent<Interactable> ().value = data.triggerString;
 		}
+		gameObject.name = getProperName ();
 	}
-
-	/*public void ApplyData() {
-		Debug.Log ("applying data");
-		SaveObjManager.AddCharData(data);
-	}*/
-
+	private string getProperName() {
+		string properName = "";
+		foreach (char c in gameObject.name) {
+			if (!c.Equals ('(') && !c.Equals(' ')) {
+				properName += c;
+			} else {
+				break;
+			}
+		}
+		return properName;
+	}
 	void OnEnable() {
 		SaveObjManager.OnLoaded += LoadData;
 		SaveObjManager.OnBeforeSave += StoreData;

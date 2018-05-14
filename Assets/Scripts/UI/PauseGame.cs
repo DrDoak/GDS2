@@ -26,6 +26,7 @@ public class PauseGame : MonoBehaviour
 
 	public delegate void ButtonClickEvent();
 	ButtonClickEvent m_buttonEvent;
+	ButtonClickEvent m_cancelEvent;
 	GameObject WarningPrevious;
 
 	[SerializeField] public Scene startMenu;
@@ -119,7 +120,7 @@ public class PauseGame : MonoBehaviour
 	{
 		if (drawMenu) {
 			m_pauseMenuUI.SetActive (true);
-			EventSystem.current.SetSelectedGameObject(m_pauseMenuUI.transform.Find("Resume Button").gameObject);
+			SetFirstOption ();
 		}
 		Time.timeScale = 0f;
 		isPaused = true;
@@ -131,6 +132,7 @@ public class PauseGame : MonoBehaviour
 	public void MenuNew() {
 		SaveObjManager.Instance.resetRoomData ();
 		SceneManager.LoadScene ("LB_BottomPoint");
+		Resume ();
 	}
 	public void MenuSave() {
 		m_pauseMenuUI.SetActive(false);
@@ -178,7 +180,7 @@ public class PauseGame : MonoBehaviour
 		Instance.m_deadScreen.GetComponent<SaveLoadMenu> ().Reset ();
 	}
 
-	public static void DisplayWarning(string warningMessage, GameObject oldMenu, ButtonClickEvent func, string title="Warning") {
+	public static void DisplayWarning(string warningMessage, GameObject oldMenu, ButtonClickEvent func, string title="Warning", ButtonClickEvent cancelFunc = null) {
 		Instance.m_warningScreen.SetActive (true);
 		oldMenu.SetActive (false);
 		Instance.WarningPrevious = oldMenu;
@@ -186,15 +188,38 @@ public class PauseGame : MonoBehaviour
 		Instance.m_warningScreen.transform.Find ("Title").GetComponent<TextMeshProUGUI> ().SetText (title);
 		Instance.m_buttonEvent = func;
 		EventSystem.current.SetSelectedGameObject(Instance.m_warningScreen.transform.Find ("Cancel").gameObject);
+		if (cancelFunc == null) {
+			Instance.m_cancelEvent = Instance.genericCancel;
+		} else {
+			Instance.m_cancelEvent = cancelFunc;
+		}
 	}
+	void genericCancel() {}
 
 	public void OnCancelWarning() {
 		m_warningScreen.SetActive (false);
 		WarningPrevious.SetActive (true);
+		m_cancelEvent ();
 	}
 	public void OnConfirmWarning() {
 		m_warningScreen.SetActive (false);
 		WarningPrevious.SetActive (true);
 		m_buttonEvent ();
+	}
+	public static void QuickLoad() {
+		PauseGame.Pause (false);
+		string w = "Load Last QuickSave? ";
+		w += "\n All unsaved Progress will be lost.";
+		PauseGame.DisplayWarning (w, Instance.m_pauseMenuUI, Instance.quickLoad,"Warning",Instance.SetFirstOption);
+	}
+	private void SetFirstOption() {
+		EventSystem.current.SetSelectedGameObject(m_pauseMenuUI.transform.Find("Resume Button").gameObject);
+	}
+	private void quickLoad() {
+		bool result = SaveObjManager.Instance.LoadProfile ("QuickSave");
+		if (result == false) {
+			SaveObjManager.Instance.LoadProfile ("AutoSave");
+		}
+		PauseGame.Resume ();
 	}
 }
