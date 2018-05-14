@@ -20,7 +20,7 @@ public class SaveLoadMenu : MonoBehaviour {
 	void Awake () {
 		DropDown = transform.Find ("Dropdown").GetComponent<TMP_Dropdown>();
 		m_message = transform.Find ("Message").GetComponent<TextMeshProUGUI> ();
-		if (transform.Find ("Profile") != null) {
+		if (transform.Find ("ProfileInput") != null) {
 			MyInputField = transform.Find ("ProfileInput").gameObject.GetComponent<TMP_InputField> ();
 		}
 		if (m_selectedIndex != 0 && m_selectedIndex < DropDown.options.Count) {

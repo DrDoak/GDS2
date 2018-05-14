@@ -11,12 +11,12 @@ public class PR_Explosive : Property {
     float hd = 0.5f;
     Vector2 kb = new Vector2(20.0f, 10.0f);
 	float oldDeathTime = 0.0f;
-	Resistence fireVulnerability;
+	//Resistence fireVulnerability;
 		
 	public override void OnAddProperty()
 	{
 		oldDeathTime = GetComponent<Attackable> ().DeathTime;
-		fireVulnerability = GetComponent<Attackable>().AddResistence(ElementType.FIRE, -100.0f, false, false);
+		//fireVulnerability = GetComponent<Attackable>().AddResistence(ElementType.FIRE, -100.0f, false, false);
 
 		GetComponent<Attackable>().DeathTime = 0.0f;
 	}
@@ -24,7 +24,7 @@ public class PR_Explosive : Property {
 	public override void OnRemoveProperty()
 	{
 		GetComponent<Attackable>().DeathTime = oldDeathTime;
-		GetComponent<Attackable>().RemoveResistence(fireVulnerability);
+		//	GetComponent<Attackable>().RemoveResistence(fireVulnerability);
 	}
     public override void OnDeath()
     {

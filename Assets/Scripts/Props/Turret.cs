@@ -28,14 +28,20 @@ public class Turret : MonoBehaviour {
 	float m_sinceLastVolley = 0f;
 	float m_sinceLastShot = 0f;
 	LineRenderer m_line;
-
+	bool oldDir;
 	public void SetTarget(GameObject target) {
 		m_target = target;
-		GetComponent<PhysicsSS> ().SetDirection (false);
+		if (target != null) {
+			Debug.Log ("Setting turret target to: " + target);
+			GetComponent<PhysicsSS> ().SetDirection (false);
+		} else {
+			//GetComponent<PhysicsSS> ().SetDirection (oldDir);
+		}
 	}
 	// Use this for initialization
 	void Start () {
 		m_line = GetComponent<LineRenderer> ();
+		//oldDir = GetComponent<PhysicsSS> ().FacingLeft;
 	}
 	
 	// Update is called once per frame

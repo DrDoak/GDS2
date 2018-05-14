@@ -70,7 +70,7 @@ public class BasicMovement : MonoBehaviour
 		if (!m_physics.CanMove)
 			return;
 		
-		if (IsCurrentPlayer && m_autonomy)
+		if (IsCurrentPlayer && m_autonomy && Time.deltaTime > 0f)
 			PlayerMovement();
 		else if (m_targetSet)
 			NpcMovement();
@@ -111,6 +111,12 @@ public class BasicMovement : MonoBehaviour
 		m_jumpHold = InputManager.GetButton ("Jump");
 		JumpMovement ();
 		SetDirectionFromInput();
+		if (InputManager.GetButtonDown ("Quicksave")) {
+			SaveObjManager.Instance.SaveProfile ("QuickSave");
+			TextboxManager.StartSequence ("~QuickSave Successful");
+		} else if (InputManager.GetButtonDown ("Quickload")) {
+			PauseGame.QuickLoad ();
+		}
 	}
 
 	protected void JumpMovement() {

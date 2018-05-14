@@ -76,7 +76,6 @@ public class TextboxManager : MonoBehaviour {
 					i += newS.numChars;
 				} else if (lastC == '~') {
 					full = true;
-					Debug.Log ("Full now?");
 				} else if (lastC == '\n' || lastC == '|') {
 					if (lastText.Length > 0) {
 						if (lastAnim == "none") {
@@ -84,7 +83,6 @@ public class TextboxManager : MonoBehaviour {
 						} else {
 							du.addTextbox (lastText, lastAnim,full);
 						}
-						Debug.Log ("Before set to false: " + full);
 						full = false;
 					}
 					currIndent = 0;
@@ -115,7 +113,6 @@ public class TextboxManager : MonoBehaviour {
 	public Textbox addTextbox(string text,GameObject targetObj,bool typeText,float textSpeed, Color tbColor, bool full) {
 		Vector2 newPos = new Vector2();
 		GameObject newTextbox;
-		Debug.Log ("FULUFFUFULFULF: " + full);
 		if (full) {
 			newTextbox = Instantiate (textboxFullPrefab);
 		} else if (targetObj != null) {
