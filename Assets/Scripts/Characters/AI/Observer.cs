@@ -44,12 +44,12 @@ public class Observer : MonoBehaviour {
 					float minDist = float.MaxValue;
 					foreach (RaycastHit2D h in hits) {
 						GameObject oObj = h.collider.gameObject;
-						if (oObj != gameObject ) {
+						if (oObj != gameObject && !h.collider.isTrigger && !JumpThruTag(oObj)) {
 							minDist = Mathf.Min(minDist,Vector3.Distance (transform.position,h.point));
 						}
 					}
 					float diff = Mathf.Abs (cDist - minDist);
-					if (diff < 1.0f) {
+					if (cDist < minDist) {
 						if (!VisibleObjs.Contains (o)) {
 							OnSight (o);
 						}
@@ -91,5 +91,10 @@ public class Observer : MonoBehaviour {
 		foreach (Observable o in VisibleObjs) {
 			o.removeObserver (this);	
 		}
+	}
+
+	private bool JumpThruTag( GameObject obj ) {
+		return (obj.CompareTag ("JumpThru") || (obj.transform.parent != null &&
+			obj.transform.parent.CompareTag ("JumpThru")));
 	}
 }

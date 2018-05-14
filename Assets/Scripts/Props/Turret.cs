@@ -31,6 +31,7 @@ public class Turret : MonoBehaviour {
 
 	public void SetTarget(GameObject target) {
 		m_target = target;
+		GetComponent<PhysicsSS> ().SetDirection (false);
 	}
 	// Use this for initialization
 	void Start () {
@@ -42,6 +43,7 @@ public class Turret : MonoBehaviour {
 		m_sinceLastVolley += Time.deltaTime;
 		if (m_target != null) {
 			trackTarget ();
+			updateLine ();
 			if (m_sinceLastVolley > TimeBetweenVolleys)
 				beginVolley ();
 		} else {
@@ -65,16 +67,38 @@ public class Turret : MonoBehaviour {
 	void trackTarget() {
 		Vector3 pos = m_target.transform.position;
 		orientTurretToPoint (pos);
-		if (DrawLOS) {
-			Vector3 currentPos = transform.position;
-			Vector3 targetPos = m_target.transform.position;
-			float ang = Mathf.Atan2 (targetPos.y - currentPos.y, targetPos.x - currentPos.x);
-			m_line.SetPosition (0, transform.position);
-			float range = ProjSpeed * ProjDuration;
-			m_line.SetPosition (1, new Vector3 (currentPos.x + Mathf.Cos (ang) * range, currentPos.y + Mathf.Sin (ang) * range,0f));
-		}
 	}
 
+	void updateLine() {
+		Vector3 currentPos = transform.position;
+		Vector3 targetPos = m_target.transform.position;
+		float ang = Mathf.Atan2 (targetPos.y - currentPos.y, targetPos.x - currentPos.x);
+		float range = ProjSpeed * ProjDuration;
+
+		m_line.SetPosition (0, transform.position);
+		m_line.SetPosition (1, new Vector3 (currentPos.x + Mathf.Cos (ang) * range, currentPos.y + Mathf.Sin (ang) * range, 0f));
+		Vector2 aimPoint = new Vector2 (Mathf.Cos (ang), Mathf.Sin (ang));
+		RaycastHit2D [] hit_list = Physics2D.RaycastAll (transform.position, aimPoint, range);
+		float dist = 0f;
+		foreach (RaycastHit2D hit in hit_list) {
+			if (hit.collider.gameObject != gameObject &&( (!hit.collider.isTrigger &&  !JumpThruTag (hit.collider.gameObject)) ||
+				hit.collider.gameObject.GetComponent<Attackable> () != null)) {
+				Collider2D collider = hit.collider;
+				m_line.SetPosition (0, transform.position);
+				m_line.SetPosition (1, hit.point);
+				dist = Vector3.Distance (hit.point, transform.position);
+				break;
+			}
+		}
+		if (dist - Vector3.Distance (currentPos, targetPos) > -0.5f) {
+			m_line.startColor = Color.red;
+			m_line.endColor = Color.red;
+		} else {
+			m_line.startColor = Color.blue;
+			m_line.endColor = Color.blue;
+		}
+
+	}
 	void orientTurretToPoint(Vector3 targetPoint) {
 		Vector3 currentPos = transform.position;
 		orientToDiff (new Vector2 (targetPoint.x - currentPos.x, targetPoint.y - currentPos.y));
@@ -100,5 +124,10 @@ public class Turret : MonoBehaviour {
 	}
 	void orientToDiff(Vector2 diff) {
 		TurretHead.transform.rotation = Quaternion.Euler (new Vector3(0f,0f,Mathf.Rad2Deg * Mathf.Atan2 (diff.y, diff.x)));
+	}
+
+	private bool JumpThruTag( GameObject obj ) {
+		return (obj.CompareTag ("JumpThru") || (obj.transform.parent != null &&
+			obj.transform.parent.CompareTag ("JumpThru")));
 	}
 }

@@ -48,6 +48,7 @@ GameObject:
   - component: {fileID: 114015100558484896}
   - component: {fileID: 50224766380123830}
   - component: {fileID: 114927404956554590}
+  - component: {fileID: 114169280593251016}
   m_Layer: 0
   m_Name: Turret
   m_TagString: Untagged
@@ -171,6 +172,19 @@ MonoBehaviour:
   TimeBetweenShots: 0.2
   m_target: {fileID: 0}
   FireSound: {fileID: 8300000, guid: 4899e5e7003078c4eb18cdc8b06f8fa6, type: 3}
+--- !u!114 &114169280593251016
+MonoBehaviour:
+  m_ObjectHideFlags: 1
+  m_PrefabParentObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 100100000}
+  m_GameObject: {fileID: 1987836765408362}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 6b8f763d8a94c8f48bc3407cf514507a, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  detectionRange: 15
+  VisibleObjs: []
 --- !u!114 &114236078690984334
 MonoBehaviour:
   m_ObjectHideFlags: 1

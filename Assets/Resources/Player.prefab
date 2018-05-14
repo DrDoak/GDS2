@@ -54,7 +54,7 @@ Transform:
   m_PrefabInternal: {fileID: 100100000}
   m_GameObject: {fileID: 1000013670716774}
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_LocalPosition: {x: 16.1, y: -25.41, z: 0}
+  m_LocalPosition: {x: 9.4268055, y: -15.78753, z: 0}
   m_LocalScale: {x: 1.5, y: 1.5, z: 4}
   m_Children: []
   m_Father: {fileID: 0}
@@ -219,7 +219,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 9252997a19d5c324eb51c01becd4ca04, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  keys: 6a0000006b0000006c0000003b0000000d000000
+  keys: []
 --- !u!114 &114183775052015364
 MonoBehaviour:
   m_ObjectHideFlags: 1
@@ -236,7 +236,7 @@ MonoBehaviour:
   Alive: 1
   DeathTime: 2
   m_currDeathTime: 0
-  Faction: 3
+  Faction: 1
   Resistences: []
   DisplayHealth: 1
   Killer: {fileID: 0}

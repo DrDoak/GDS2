@@ -2056,8 +2056,7 @@ GameObject:
   - component: {fileID: 114322809825246834}
   - component: {fileID: 114457619060251532}
   - component: {fileID: 114177150010413354}
-  - component: {fileID: 114636269464089676}
-  - component: {fileID: 114119463540050814}
+  - component: {fileID: 114239255603305570}
   m_Layer: 0
   m_Name: PR_List
   m_TagString: Untagged
@@ -3227,7 +3226,7 @@ Transform:
   m_PrefabInternal: {fileID: 100100000}
   m_GameObject: {fileID: 1035150032497560}
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_LocalPosition: {x: 0, y: 0, z: -10}
+  m_LocalPosition: {x: 13.154483, y: -4.2416162, z: -10}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_Children:
   - {fileID: 224866136947452724}
@@ -5399,24 +5398,6 @@ MonoBehaviour:
   m_FillAmount: 1
   m_FillClockwise: 1
   m_FillOrigin: 0
---- !u!114 &114119463540050814
-MonoBehaviour:
-  m_ObjectHideFlags: 1
-  m_PrefabParentObject: {fileID: 0}
-  m_PrefabInternal: {fileID: 100100000}
-  m_GameObject: {fileID: 1593684310463946}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 5872508e5149c1548ba20a44545532e4, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  Stealable: 0
-  Viewable: 1
-  Stackable: 0
-  value: 0
-  PropertyName: NanoLock
-  Description: Cannot Steal Properties from this Item.
-  icon: {fileID: 21300000, guid: d0505eff9bb0bb94b98fe007559d148a, type: 3}
 --- !u!114 &114119961682952636
 MonoBehaviour:
   m_ObjectHideFlags: 1
@@ -5508,9 +5489,9 @@ MonoBehaviour:
   m_selectedButton: {fileID: 0}
   m_timeSinceExit: 0
   m_highLightedColor: {r: 0.6911765, g: 0.5577079, b: 0, a: 1}
-  m_deactiveColor: {r: 0.097, g: 0.091, b: 0.066, a: 1}
+  m_deactiveColor: {r: 0.5019608, g: 0, b: 0, a: 1}
   m_normalColor: {r: 0, g: 0.0031425671, b: 0.36764705, a: 1}
-  m_highlightDeactiveColor: {r: 0.403, g: 0.403, b: 0.403, a: 1}
+  m_highlightDeactiveColor: {r: 0.715, g: 0.159, b: 0, a: 1}
 --- !u!114 &114129357489247250
 MonoBehaviour:
   m_ObjectHideFlags: 1
@@ -6415,7 +6396,7 @@ MonoBehaviour:
   m_TargetGraphic: {fileID: 114544868182871724}
   m_HandleRect: {fileID: 224739168298920636}
   m_Direction: 2
-  m_Value: 0
+  m_Value: 1
   m_Size: 0.9999999
   m_NumberOfSteps: 0
   m_OnValueChanged:
@@ -6767,6 +6748,24 @@ MonoBehaviour:
   PropertyName: Cannon
   Description: Activated by Fire
   icon: {fileID: 21300000, guid: c257864eee4086b4e94000d1f49f50cb, type: 3}
+--- !u!114 &114239255603305570
+MonoBehaviour:
+  m_ObjectHideFlags: 1
+  m_PrefabParentObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 100100000}
+  m_GameObject: {fileID: 1593684310463946}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: d2d2448f075bb0c4f891c3a04a7efdf1, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  Stealable: 1
+  Viewable: 1
+  Stackable: 0
+  value: 0
+  PropertyName: Powered
+  Description: Powers Machines. No Other Use
+  icon: {fileID: 21300000, guid: f2d1f907122843844a9a6e915e69f0de, type: 3}
 --- !u!114 &114244994615757418
 MonoBehaviour:
   m_ObjectHideFlags: 1
@@ -8802,8 +8801,8 @@ MonoBehaviour:
   m_TargetGraphic: {fileID: 114047140302814550}
   m_HandleRect: {fileID: 224409164585238760}
   m_Direction: 2
-  m_Value: 1
-  m_Size: 0.9999999
+  m_Value: 0
+  m_Size: 1
   m_NumberOfSteps: 0
   m_OnValueChanged:
     m_PersistentCalls:
@@ -10733,8 +10732,8 @@ MonoBehaviour:
   m_TargetGraphic: {fileID: 114818224412240834}
   m_HandleRect: {fileID: 224159792454195676}
   m_Direction: 2
-  m_Value: 1
-  m_Size: 0.22093023
+  m_Value: 0.9999999
+  m_Size: 0.44186047
   m_NumberOfSteps: 0
   m_OnValueChanged:
     m_PersistentCalls:
@@ -11022,6 +11021,8 @@ MonoBehaviour:
   textboxPrefab: {fileID: 1616444891034824, guid: bb84bfd68d96ce2499f5adcfb98267aa,
     type: 2}
   textboxStaticPrefab: {fileID: 1807564994350790, guid: 945d6cc25e5bd664b87cebac9927416f,
+    type: 2}
+  textboxFullPrefab: {fileID: 1981833560641534, guid: 1b3d5089df2aa4946af3c7b707f2ff58,
     type: 2}
   nextSoundType: 0
 --- !u!114 &114588254237251408
@@ -11663,24 +11664,6 @@ MonoBehaviour:
   - {fileID: 0}
   m_baseMaterial: {fileID: 0}
   m_maskOffset: {x: 0, y: 0, z: 0, w: 0}
---- !u!114 &114636269464089676
-MonoBehaviour:
-  m_ObjectHideFlags: 1
-  m_PrefabParentObject: {fileID: 0}
-  m_PrefabInternal: {fileID: 100100000}
-  m_GameObject: {fileID: 1593684310463946}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 114ef05edec1b4048812a74ecf02c2c8, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  Stealable: 0
-  Viewable: 1
-  Stackable: 0
-  value: 0
-  PropertyName: NanoShield
-  Description: Cannot Transfer Properties to this Item
-  icon: {fileID: 21300000, guid: 186da3c3549f6354bb26775acc5b4bdb, type: 3}
 --- !u!114 &114638899574404464
 MonoBehaviour:
   m_ObjectHideFlags: 1
@@ -12481,8 +12464,8 @@ MonoBehaviour:
   m_TargetGraphic: {fileID: 114627092590536324}
   m_HandleRect: {fileID: 224919683728530804}
   m_Direction: 2
-  m_Value: 1
-  m_Size: 0.9999999
+  m_Value: 0
+  m_Size: 1
   m_NumberOfSteps: 0
   m_OnValueChanged:
     m_PersistentCalls:
@@ -15679,7 +15662,7 @@ Canvas:
   m_SortingBucketNormalizedSize: 0
   m_AdditionalShaderChannelsFlag: 25
   m_SortingLayerID: 0
-  m_SortingOrder: 0
+  m_SortingOrder: 1
   m_TargetDisplay: 0
 --- !u!223 &223710151497862506
 Canvas:
@@ -15699,7 +15682,7 @@ Canvas:
   m_SortingBucketNormalizedSize: 0
   m_AdditionalShaderChannelsFlag: 25
   m_SortingLayerID: 0
-  m_SortingOrder: 0
+  m_SortingOrder: 2
   m_TargetDisplay: 0
 --- !u!224 &224001167202508348
 RectTransform:
@@ -16089,7 +16072,7 @@ RectTransform:
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 0, y: 0.5}
   m_AnchorMax: {x: 1, y: 0.5}
-  m_AnchoredPosition: {x: -0.000028338967, y: 189.99998}
+  m_AnchoredPosition: {x: -0.000028338967, y: 190.00014}
   m_SizeDelta: {x: -0.000096607626, y: 860}
   m_Pivot: {x: 0, y: 1}
 --- !u!224 &224133447288463874
@@ -16392,7 +16375,7 @@ RectTransform:
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 0, y: 1}
   m_AnchorMax: {x: 1, y: 1}
-  m_AnchoredPosition: {x: 0, y: -0.00001335144}
+  m_AnchoredPosition: {x: 0, y: 0.000009536743}
   m_SizeDelta: {x: 0, y: 28}
   m_Pivot: {x: 0.5, y: 1}
 --- !u!224 &224227661333808466
@@ -18369,7 +18352,7 @@ RectTransform:
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 0, y: 1}
   m_AnchorMax: {x: 1, y: 1}
-  m_AnchoredPosition: {x: 0, y: -0.00001335144}
+  m_AnchoredPosition: {x: 0, y: 0.0000076293945}
   m_SizeDelta: {x: 0, y: 28}
   m_Pivot: {x: 0.5, y: 1}
 --- !u!224 &224780512741333096
@@ -18632,7 +18615,7 @@ RectTransform:
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 0, y: 1}
   m_AnchorMax: {x: 1, y: 1}
-  m_AnchoredPosition: {x: 0, y: 0.000015258789}
+  m_AnchoredPosition: {x: 0, y: -0.000022888184}
   m_SizeDelta: {x: 0, y: 28}
   m_Pivot: {x: 0.5, y: 1}
 --- !u!224 &224866136947452724
