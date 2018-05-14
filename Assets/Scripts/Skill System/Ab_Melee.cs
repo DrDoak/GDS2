@@ -3,19 +3,17 @@ using System.Collections.Generic;
 using UnityEngine;
 
 public class Ab_Melee : Ability {
-
-    private int upgradeIndex;
+    
     public float Damage { get; protected set; }
     public float Speed { get; protected set; }
 
     private float damageUpgrade = 15f;
     private float speedUpgrade = 1f;
 
-	new public void Awake()
+	public override void Awake()
 	{
         base.Awake();
 		AbilityClassification = AbilityType.COMBAT;
-        upgradeIndex = 0;
         if (Player)
         {
             Damage = Player.GetComponent<AttackInfo>().m_HitboxInfo.Damage;

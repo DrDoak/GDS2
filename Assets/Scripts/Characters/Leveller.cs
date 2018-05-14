@@ -49,7 +49,9 @@ public class Leveller : MonoBehaviour {
 
     void AddTransferSlots()
     {
-        Debug.Log("Adding transfer slots");
+        //Add slots at levels 3, 6, 9
+        if(Level % 3 == 0)
+            exp.gameObject.GetComponent<PropertyHolder>().MaxSlots += 1;
     }
 
     void OnEnable()

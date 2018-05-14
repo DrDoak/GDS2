@@ -238,7 +238,6 @@ public class AbilityTreeNode
 
     public void Select()
     {
-        Debug.Log("Selected!");
         //Modify combat control of player by replacing designated ability
         if (ability.RequiresReplacement)
         {

@@ -15,18 +15,14 @@ public class Ab_Transfer : Ability {
     public static bool InfectUpgrade;
     public static float _maxDistance = 2f;
     public static int _maxTransfers = 1;
-
-    public int upgradeIndex = 0;
-
-
-	protected void Awake()
+    
+	public override void Awake()
     {
         base.Awake();
         UseAttackHitbox = true;
         InfectUpgrade = false;
         Instance = this;
 		AbilityClassification = AbilityType.SPECIAL;
-        upgradeIndex = 0;
         if(Player)
             Player.GetComponent<PropertyHolder>().NumTransfers = _maxTransfers;
     }

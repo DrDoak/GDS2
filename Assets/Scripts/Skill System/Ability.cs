@@ -31,7 +31,7 @@ public abstract class Ability : ScriptableObject {
 
     public abstract void UseAbility();
 
-    public void Awake()
+    public virtual void Awake()
     {
         ClearLists();
         FindPlayer();
@@ -60,7 +60,7 @@ public abstract class Ability : ScriptableObject {
 
     public virtual void Select()
     {
-        Debug.Log("You selected: ", this);
+        Debug.Log("You selected: ability");
     }
     
     protected void ApplyProperty(Property p)

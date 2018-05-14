@@ -6,7 +6,7 @@ public class Ab_TimeBomb : Ability {
 
     public GameObject Bomb;
 
-    void Awake()
+    public override void Awake()
     {
         base.Awake();
         if (!Bomb)
