@@ -8,11 +8,14 @@ public class CharData {
 	public string name;
 	public Vector3 pos;
 	public float health = 100f;
+	public float maxHealth = 100f;
 	public string prefabPath;
 	public string targetID;
 	public string [] propertyList;
 	public string [] propertyDescriptions;
 	public float[] propertyValues;
+	public int transfers;
+	public int slots;
 	public RoomDirection targetDir;
 	public bool IsCurrentCharacter;
 	public bool IsFacingLeft;

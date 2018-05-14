@@ -4,7 +4,7 @@ using UnityEngine;
 
 public class Leveller : MonoBehaviour {
 
-    public static Leveller instance;
+    public static Leveller Instance;
 
     public int Level;
     public int Scaler = 2;
@@ -14,22 +14,36 @@ public class Leveller : MonoBehaviour {
     
     private ExperienceHolder exp;
 
-	// Use this for initialization
-	void Start () {
-        Level = 1;
-        instance = this;
+	void Start()
+	{
+
+		if (Instance == null)
+		{
+			Instance = this;
+		}
+		else if (Instance != this)
+		{
+			Destroy(gameObject);
+			return;
+		}
+
+		Level = 1;
 	}
+
     /// <summary>
     /// Takes in an Experience Holder for correct exp updates, levels up if required
     /// </summary>
     /// <param name="obj"></param>
     public static void UpdateExperience(ExperienceHolder obj)
     {
-        if (instance.exp == null || instance.exp != obj)
-            instance.exp = obj;
-
-        if (instance.exp.Experience >= instance.DataRequirement * instance.Scaler* instance.Level)
-            EventManager.TriggerEvent();
+		if (Instance.exp == null || Instance.exp != obj)
+			Instance.exp = obj;
+		Debug.Log ("Requirement: " + Instance.DataRequirement * Instance.Scaler * Instance.Level);
+		Debug.Log ("Current: " + Instance.exp.Experience);
+		if (Instance.exp.Experience >= Instance.DataRequirement * Instance.Scaler * Instance.Level) {
+			EventManager.TriggerEvent (3);
+			Debug.Log ("Event Triggered");
+		}
     }
 
     void IncreaseHealth()
@@ -39,7 +53,8 @@ public class Leveller : MonoBehaviour {
 
     void DisplayLevelUp()
     {
-        Debug.Log("congrats");
+		TextboxManager.StartSequence ("~RANK UP! LEVEL " + (Instance.Level + 1));
+		Instance.Level++;
     }
 
     void AddAbilityPoints()
@@ -54,19 +69,30 @@ public class Leveller : MonoBehaviour {
             exp.gameObject.GetComponent<PropertyHolder>().MaxSlots += 1;
     }
 
+	void AddTransfers()
+	{
+		//Add slots at levels 2,3, 6, 9 TEMPORARY
+		if(Level == 2 || Level % 3 == 0)
+			exp.gameObject.GetComponent<PropertyHolder>().NumTransfers += 1;
+	}
+
     void OnEnable()
     {
+		Debug.Log ("on enable");
         EventManager.LevelUpEvent += IncreaseHealth;
         EventManager.LevelUpEvent += AddAbilityPoints;
         EventManager.LevelUpEvent += DisplayLevelUp;
         EventManager.LevelUpEvent += AddTransferSlots;
+		EventManager.LevelUpEvent += AddTransfers;
     }
 
     void OnDisable()
     {
+		Debug.Log ("on disable");
         EventManager.LevelUpEvent -= IncreaseHealth;
         EventManager.LevelUpEvent -= AddAbilityPoints;
         EventManager.LevelUpEvent -= DisplayLevelUp;
         EventManager.LevelUpEvent -= AddTransferSlots;
+		EventManager.LevelUpEvent -= AddTransfers;
     }
 }

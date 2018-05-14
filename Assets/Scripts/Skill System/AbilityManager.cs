@@ -13,7 +13,7 @@ public class AbilityManager : MonoBehaviour {
     public const int INFECT = 1;
 
 	// Use this for initialization
-	void Start () {
+	void Awake () {
         Ability.Manager = this;
         abilityTree = new AbilityTree();
         PopulateTree();

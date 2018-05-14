@@ -44,8 +44,10 @@ public class PersistentItem : MonoBehaviour {
 			data.TriggerUsed = GetComponent<Interactable> ().TriggerUsed;
 			data.triggerString = GetComponent<Interactable> ().value;
 		}
-		if (GetComponent<Attackable>())
-			data.health = GetComponent<Attackable>().Health;
+		if (GetComponent<Attackable> ()) {
+			data.health = GetComponent<Attackable> ().Health;
+			data.maxHealth = GetComponent<Attackable> ().MaxHealth;
+		}
 		if (GetComponent<BasicMovement>())
 			data.IsCurrentCharacter = GetComponent<BasicMovement> ().IsCurrentPlayer;
 		if (GetComponent<PhysicsSS> ()) {
@@ -64,6 +66,8 @@ public class PersistentItem : MonoBehaviour {
 			data.propertyList = allPs;
 			data.propertyDescriptions = allDs;
 			data.propertyValues = allVs;
+			data.transfers = GetComponent<PropertyHolder> ().NumTransfers;
+			data.slots = GetComponent<PropertyHolder> ().MaxSlots;
 		}
 
 		if (GetComponent<ExperienceHolder> ())
@@ -73,12 +77,16 @@ public class PersistentItem : MonoBehaviour {
 
 	public void LoadData() {
 		//Debug.Log ("Loading data");
-		if (GetComponent<Attackable>())
-			GetComponent<Attackable>().SetHealth( data.health);
+		if (GetComponent<Attackable> ()) {
+			GetComponent<Attackable> ().MaxHealth = data.maxHealth;
+			GetComponent<Attackable> ().SetHealth (data.health);
+		}
 		if (GetComponent<PhysicsSS> ()) {
 			GetComponent<PhysicsSS> ().SetDirection (data.IsFacingLeft);
 		}
 		if (GetComponent<PropertyHolder> ()) {
+			GetComponent<PropertyHolder> ().NumTransfers = data.transfers;
+			GetComponent<PropertyHolder> ().MaxSlots = data.slots;
 			GetComponent<PropertyHolder> ().ClearProperties ();
 			for (int i = 0; i < data.propertyList.Length; i++) {
 				Type t = Type.GetType (data.propertyList [i]);

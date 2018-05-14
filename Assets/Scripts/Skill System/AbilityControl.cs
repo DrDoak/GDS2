@@ -47,7 +47,7 @@ public class AbilityControl : MonoBehaviour {
         if(collision.gameObject.GetComponent<PropertyHolder>())
         {
 			foreach (Ability a in _mBasicControl.Abilities) {
-				if (!a.UseAttackHitbox) {
+				if (a != null && !a.UseAttackHitbox) { // I added a null check here.
 					a.SetTarget (collision.gameObject);
 				}
 			}

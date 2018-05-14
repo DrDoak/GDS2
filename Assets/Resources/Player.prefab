@@ -54,7 +54,7 @@ Transform:
   m_PrefabInternal: {fileID: 100100000}
   m_GameObject: {fileID: 1000013670716774}
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_LocalPosition: {x: 9.4268055, y: -15.78753, z: 0}
+  m_LocalPosition: {x: 9.918017, y: -19.935137, z: 0}
   m_LocalScale: {x: 1.5, y: 1.5, z: 4}
   m_Children: []
   m_Father: {fileID: 0}
@@ -219,6 +219,9 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 9252997a19d5c324eb51c01becd4ca04, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  TransferKey: 13
+  CombatKey: 0
+  EnvironmentalKey: 0
   keys: []
 --- !u!114 &114183775052015364
 MonoBehaviour:
@@ -489,7 +492,7 @@ MonoBehaviour:
     StartupSoundFX: {fileID: 8300000, guid: 097a9a5042e75254482061d16d75770e, type: 3}
     AttackSoundFX: {fileID: 8300000, guid: fd93db060117afb4ba8420de349c7ce4, type: 3}
   m_dashInfo:
-    StartUpDash: {x: -2.5, y: 0}
+    StartUpDash: {x: -2.5, y: 0.01}
     StartUpDuration: 0.1
     AttackDash: {x: 7, y: 0}
     AttackDashDuration: 0.1

@@ -26,7 +26,7 @@ public class TaskPursueToRange : FighterTask {
 		if (Random.value < (AttackAggression * 0.1f)) {
 			List<string> mf = m_fighter.AvailableAttacks (m_fighter.CurrentTarget.GetComponent<BasicMovement>());
 			if (mf.Count > 0) {
-				Debug.Log ("Trying attack: " + mf [Random.Range (0, mf.Count)]);
+				//Debug.Log ("Trying attack: " + mf [Random.Range (0, mf.Count)]);
 				Fighter.Fighter.TryAttack (mf [Random.Range (0, mf.Count)]);
 				NextTask ();
 				return;
