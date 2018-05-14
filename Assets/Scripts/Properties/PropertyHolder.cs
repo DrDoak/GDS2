@@ -173,8 +173,8 @@ public class PropertyHolder : MonoBehaviour {
 	public virtual void TransferProperty( Property p, PropertyHolder other) {
 		RemoveProperty (p);
 		other.AddProperty (p);
-		GameObject go = Instantiate (GameManager.Instance.FXPropertyPrefab,transform.position,Quaternion.identity);
-		go.GetComponent<ChaseTarget> ().Target = other.GetComponent<PhysicsSS> ();
+		//GameObject go = Instantiate (GameManager.Instance.FXPropertyPrefab,transform.position,Quaternion.identity);
+		//go.GetComponent<ChaseTarget> ().Target = other.GetComponent<PhysicsSS> ();
 	}
 
 	public virtual GameObject AddBodyEffect(GameObject go) {
