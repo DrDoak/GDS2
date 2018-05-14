@@ -15,6 +15,9 @@ public class TextboxManager : MonoBehaviour {
 	//public delegate void optionResponse(int r);
 	public GameObject textboxPrefab;
 	public GameObject textboxStaticPrefab;
+	public GameObject textboxFullPrefab;
+	public DialogueSound nextSoundType;
+	List<DialogueSequence> m_currentSequences;
 
 	//Color TextboxColor;
 	float timeAfter = 2f;
@@ -31,6 +34,7 @@ public class TextboxManager : MonoBehaviour {
 			Destroy(gameObject);
 			return;
 		}
+		m_currentSequences = new List<DialogueSequence> ();
 	}
 
 	// Use this for initialization
@@ -41,7 +45,8 @@ public class TextboxManager : MonoBehaviour {
 	public static void StartSequence(string text,GameObject speaker = null) {
 		DialogueSequence ds = Instance.parseSequence (text);
 		ds.Speaker = speaker;
-		ds.advanceSequence ();
+		ds.AdvanceSequence ();
+		Instance.m_currentSequences.Add (ds);
 	}
 
 	public DialogueSequence parseSequence(string text,int startingChar = 0,int indLevel = 0,DialogueSequence parentSeq = null) {
@@ -49,12 +54,13 @@ public class TextboxManager : MonoBehaviour {
 		newSeq.parentSequence = parentSeq;
 		List<DialogueUnit> subDS = new List<DialogueUnit> ();
 
-		DialogueUnit ds = new DialogueUnit {};
-		subDS.Add (ds);
+		DialogueUnit du = new DialogueUnit {};
+		subDS.Add (du);
 		string lastText = "";
 		string lastAnim = "none";
 		int i = startingChar;
 		int currIndent = 0;
+		bool full = false;
 		while (i < text.Length) {
 			char lastC = text.ToCharArray () [i];
 			newSeq.rawText += lastC;
@@ -68,15 +74,18 @@ public class TextboxManager : MonoBehaviour {
 				} else if (lastText.Length == 0 && lastC == '-') {
 					DialogueSequence newS = parseSequence (text, i, indLevel + 1, newSeq);
 					i += newS.numChars;
-				} else if (lastC == '`') {
-					lastText += lastC;
+				} else if (lastC == '~') {
+					full = true;
+					Debug.Log ("Full now?");
 				} else if (lastC == '\n' || lastC == '|') {
 					if (lastText.Length > 0) {
 						if (lastAnim == "none") {
-							ds.addTextbox (lastText);
+							du.addTextbox (lastText,full);
 						} else {
-							ds.addTextbox (lastText, lastAnim);
+							du.addTextbox (lastText, lastAnim,full);
 						}
+						Debug.Log ("Before set to false: " + full);
+						full = false;
 					}
 					currIndent = 0;
 					lastText = "";
@@ -88,29 +97,36 @@ public class TextboxManager : MonoBehaviour {
 			i += 1;
 		}
 		if (lastAnim == "none") {
-			ds.addTextbox (lastText);
+			du.addTextbox (lastText,full);
 		} else {
-			ds.addTextbox (lastText,lastAnim);
+			du.addTextbox (lastText,lastAnim,full);
 		}
-		subDS.Add (ds);
+		subDS.Add (du);
 		newSeq.allDUnits = subDS;
 		return newSeq;
 	}
 
-	public static Textbox addTextbox(string text,GameObject targetObj) {
-		return m_instance.addTextbox (text, targetObj, true, m_instance.textSpeed,Color.black);
+	public static void SetSoundType(DialogueSound ds) {
+		m_instance.nextSoundType = ds;
 	}
-	public Textbox addTextbox(string text,GameObject targetObj,bool typeText,float textSpeed, Color tbColor) {
+	public static Textbox addTextbox(string text,GameObject targetObj,bool full = false) {
+		return m_instance.addTextbox (text, targetObj, true, m_instance.textSpeed,Color.black,full);
+	}
+	public Textbox addTextbox(string text,GameObject targetObj,bool typeText,float textSpeed, Color tbColor, bool full) {
 		Vector2 newPos = new Vector2();
 		GameObject newTextbox;
-		if (targetObj != null) {
+		Debug.Log ("FULUFFUFULFULF: " + full);
+		if (full) {
+			newTextbox = Instantiate (textboxFullPrefab);
+		} else if (targetObj != null) {
 			newPos = findPosition (targetObj.transform.position);
 			newTextbox = Instantiate (textboxPrefab, newPos, Quaternion.identity);
 		} else {
 			newTextbox = Instantiate (textboxStaticPrefab);
 		}
-		
+
 		Textbox tb = newTextbox.GetComponent<Textbox> ();
+		tb.m_sound = nextSoundType;
 		/*if (!type) {
 			//Debug.Log ("displaying Textbox: " + text);
 			newTextbox.GetComponent<DestroyAfterTime> ().duration = textSpeed * 1.2f * text.Length + timeAfter;
@@ -137,7 +153,7 @@ public class TextboxManager : MonoBehaviour {
 		}
 
 		//textboxes.Add (newTextbox);
-		tb.setColor (tbColor);
+		//tb.setColor (tbColor);
 		return tb;
 	}
 
@@ -155,6 +171,13 @@ public class TextboxManager : MonoBehaviour {
 	}
 	public void removeTextbox(GameObject go) {
 		//textboxes.Remove (go);
+	}
+	public static void ClearAllSequences() {
+		foreach (DialogueSequence ds in Instance.m_currentSequences) {
+			if (ds != null) {
+				ds.CloseSequence ();
+			}
+		}
 	}
 }
 

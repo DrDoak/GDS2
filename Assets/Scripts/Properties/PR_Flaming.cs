@@ -6,7 +6,7 @@ public class PR_Flaming : Property
 {
 
     Vector2 off = new Vector2(0f, 0f);
-    float dmg = 10.0f;
+    float dmg = 5.0f;
     float stun = 0.5f;
     float hd = -0.5f;
     Vector2 kb = new Vector2(0.0f, 0.0f);
@@ -30,6 +30,7 @@ public class PR_Flaming : Property
 		fx = GetComponent<PropertyHolder> ().AddBodyEffect (FXBody.Instance.FXFlame);
 		fireOnly = new List<ElementType> ();
 		fireOnly.Add (ElementType.FIRE);
+		GetComponent<PropertyHolder> ().AddAmbient (FXBody.Instance.SFXFlaming);
     }
 
     public override void OnRemoveProperty()
@@ -37,6 +38,7 @@ public class PR_Flaming : Property
        // GetComponent<HitboxMaker>().ClearHitboxes();
 		Destroy(fireSurround);
 		GetComponent<PropertyHolder> ().RemoveBodyEffect (fx);
+		GetComponent<PropertyHolder> ().RemoveAmbient (FXBody.Instance.SFXFlaming);
     }
 
     public override void OnUpdate()

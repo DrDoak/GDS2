@@ -39,9 +39,11 @@ public class Projectile : Hitbox {
 	protected override void OnHitObject(Collider2D other) {
 		if (TravelThroughWalls)
 			return;
-		if (other.gameObject != Creator && !other.isTrigger && !JumpThruTag(other.gameObject)
-			&& other.GetComponent<Attackable> () == null)
+		if (other.gameObject != Creator && !other.isTrigger && !JumpThruTag (other.gameObject)
+		    && other.GetComponent<Attackable> () == null) {
+			FindObjectOfType<AudioManager> ().PlayClipAtPos (FXHit.Instance.SFXGuard,transform.position,0.05f,0f,0.25f);
 			Duration = 0f;
+		}
 	}
 	void orientToSpeed(Vector2 speed) {
 		transform.rotation = Quaternion.Euler (new Vector3(0f,0f,Mathf.Rad2Deg * Mathf.Atan2 (speed.y, speed.x)));

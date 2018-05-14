@@ -246,6 +246,8 @@ MonoBehaviour:
   FXFan: {fileID: 0}
   FXBurner: {fileID: 0}
   FXWet: {fileID: 0}
+  SFXFootstep: {fileID: 0}
+  SFXJump: {fileID: 0}
 --- !u!114 &22286819
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -270,6 +272,13 @@ MonoBehaviour:
   FXExplosion: {fileID: 1720918671102054, guid: b9739a0b310aefb4d9b0f17bfa9898cc,
     type: 2}
   FXHeal: {fileID: 1325555955920052, guid: 3d76792cb465cc64b85f6fc10ce1bc0f, type: 2}
+  SFXPhysical: {fileID: 0}
+  SFXFire: {fileID: 0}
+  SFXElectric: {fileID: 0}
+  SFXGuard: {fileID: 0}
+  SFXPsychic: {fileID: 0}
+  SFXHeal: {fileID: 0}
+  SFXExplosive: {fileID: 0}
 --- !u!114 &22286820
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -283,6 +292,13 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   HealthBarPrefab: {fileID: 1479986152861066, guid: 3ca0aed60fc75674da453e473879a943,
     type: 2}
+  SFXSelect: {fileID: 0}
+  SFXAccept: {fileID: 0}
+  SFXDeny: {fileID: 0}
+  SFXDialogueClick: {fileID: 0}
+  SFXDialogueStatic: {fileID: 0}
+  SFXDialogueSpeak: {fileID: 0}
+  SFXMenuOpen: {fileID: 0}
 --- !u!1001 &148717174
 Prefab:
   m_ObjectHideFlags: 0
@@ -1137,7 +1153,6 @@ GameObject:
   - component: {fileID: 1255512738}
   - component: {fileID: 1255512737}
   - component: {fileID: 1255512736}
-  - component: {fileID: 1255512735}
   - component: {fileID: 1255512734}
   m_Layer: 0
   m_Name: Player2Camera
@@ -1166,13 +1181,6 @@ MonoBehaviour:
   UseCameraLimits: 0
   minVertex: {x: 0, y: 0}
   maxVertex: {x: 0, y: 0}
---- !u!81 &1255512735
-AudioListener:
-  m_ObjectHideFlags: 0
-  m_PrefabParentObject: {fileID: 0}
-  m_PrefabInternal: {fileID: 0}
-  m_GameObject: {fileID: 1255512733}
-  m_Enabled: 1
 --- !u!124 &1255512736
 Behaviour:
   m_ObjectHideFlags: 0

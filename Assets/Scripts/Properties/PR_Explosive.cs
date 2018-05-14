@@ -26,20 +26,9 @@ public class PR_Explosive : Property {
 		GetComponent<Attackable>().DeathTime = oldDeathTime;
 		GetComponent<Attackable>().RemoveResistence(fireVulnerability);
 	}
-
-
-/*	public override void OnHit(Hitbox hb, GameObject attacker) { 
-		if (hb.HasElement(ElementType.FIRE)) {
-			HitboxDoT hd = hb as HitboxDoT;
-			if (hd != null) {
-				GetComponent<Attackable> ().DamageObj (hb.Damage * Time.deltaTime);
-			} else {
-				GetComponent<Attackable> ().DamageObj (hb.Damage);
-			}
-		}
-	}*/
     public override void OnDeath()
     {
+		AudioSource.PlayClipAtPoint(FXHit.Instance.SFXExplosive, transform.position);
 		GetComponent<HitboxMaker>().CreateHitbox(scl, off, dmg, stun, hd, kb, false,false,ElementType.FIRE);
 		Instantiate(FXHit.Instance.FXExplosion, transform.position, transform.rotation);
     }

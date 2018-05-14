@@ -4,6 +4,8 @@ using UnityEngine;
 using UnityEngine.SceneManagement;
 using TMPro;
 using UnityEngine.UI;
+using Luminosity.IO;
+using UnityEngine.EventSystems;
 
 public class PauseGame : MonoBehaviour
 {
@@ -17,6 +19,7 @@ public class PauseGame : MonoBehaviour
 	GameObject m_loadScreen;
 	GameObject m_deadScreen;
 	GameObject m_warningScreen;
+	GameObject m_controlMap;
 
 	float m_slowingSpeed = 0.0f;
 	float m_speedingSpeed = 0.0f;
@@ -47,16 +50,18 @@ public class PauseGame : MonoBehaviour
 		m_loadScreen = transform.GetChild (2).gameObject;
 		m_deadScreen = transform.GetChild (3).gameObject;
 		m_warningScreen = transform.GetChild (4).gameObject;
+		m_controlMap = transform.Find ("KeyboardMap").gameObject;
 
 		m_pauseMenuUI.SetActive(false);
 		m_saveScreen.SetActive (false);
 		m_loadScreen.SetActive (false);
 		m_deadScreen.SetActive (false);
 		m_warningScreen.SetActive (false);
+		m_controlMap.SetActive (false);
 	}
 		
 	void Update () {
-		if (CanPause && Input.GetButtonDown ("Pause"))
+		if (CanPause && InputManager.GetButtonDown ("Pause"))
 		{
 			if (isPaused)
 				Resume();
@@ -92,6 +97,7 @@ public class PauseGame : MonoBehaviour
 		m_saveScreen.SetActive (false);
 		m_loadScreen.SetActive (false);
 		m_deadScreen.SetActive (false);
+		m_controlMap.SetActive (false);
 		Time.timeScale = 1f;
 		PauseGame.CanPause = true;
 		isPaused = false;
@@ -113,6 +119,7 @@ public class PauseGame : MonoBehaviour
 	{
 		if (drawMenu) {
 			m_pauseMenuUI.SetActive (true);
+			EventSystem.current.SetSelectedGameObject(m_pauseMenuUI.transform.Find("Resume Button").gameObject);
 		}
 		Time.timeScale = 0f;
 		isPaused = true;
@@ -138,6 +145,12 @@ public class PauseGame : MonoBehaviour
 		m_loadScreen.GetComponent<SaveLoadMenu> ().Reset ();
 		PauseGame.CanPause = false;
 	}
+	public void MenuKeyBoardMap() {
+		m_pauseMenuUI.SetActive(false);
+		m_controlMap.SetActive (true);
+		PauseGame.CanPause = false;
+		EventSystem.current.SetSelectedGameObject(m_controlMap.transform.Find ("main_panel").Find("back_button").gameObject);
+	}
 	public void MenuMainMenu() {
 		Time.timeScale = 1f;
 		SceneManager.LoadScene("MainMenu"); //get rid of this hardcode
@@ -150,6 +163,8 @@ public class PauseGame : MonoBehaviour
 		m_saveScreen.SetActive (false);
 		m_loadScreen.SetActive (false);
 		m_deadScreen.SetActive (false);
+		m_controlMap.SetActive (false);
+		EventSystem.current.SetSelectedGameObject(m_pauseMenuUI.transform.Find("Resume Button").gameObject);
 		PauseGame.CanPause = true;
 	}
 	public static void OnPlayerDeath() {
@@ -159,6 +174,8 @@ public class PauseGame : MonoBehaviour
 		Instance.m_saveScreen.SetActive (false);
 		Instance.m_loadScreen.SetActive (false);
 		Instance.m_deadScreen.SetActive (true);
+		Instance.m_deadScreen.GetComponent<SaveLoadMenu> ().Refresh ();
+		Instance.m_deadScreen.GetComponent<SaveLoadMenu> ().Reset ();
 	}
 
 	public static void DisplayWarning(string warningMessage, GameObject oldMenu, ButtonClickEvent func, string title="Warning") {
@@ -168,6 +185,7 @@ public class PauseGame : MonoBehaviour
 		Instance.m_warningScreen.transform.Find ("Message").GetComponent<TextMeshProUGUI> ().SetText (warningMessage);
 		Instance.m_warningScreen.transform.Find ("Title").GetComponent<TextMeshProUGUI> ().SetText (title);
 		Instance.m_buttonEvent = func;
+		EventSystem.current.SetSelectedGameObject(Instance.m_warningScreen.transform.Find ("Cancel").gameObject);
 	}
 
 	public void OnCancelWarning() {

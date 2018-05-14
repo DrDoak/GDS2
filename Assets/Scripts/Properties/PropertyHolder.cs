@@ -199,4 +199,17 @@ public class PropertyHolder : MonoBehaviour {
 		Vector2 v2 =  GetComponent<BoxCollider2D> ().size;
 		return new Vector3(sc.x * v2.x,sc.y *v2.y,1f);
 	}
+
+	public void AddAmbient(AudioClip ac) {
+		AmbientNoise am = GetComponent<AmbientNoise> ();
+		if (am == null)
+			am = gameObject.AddComponent<AmbientNoise> ();
+		am.AddSound (ac);
+	}
+	public void RemoveAmbient(AudioClip ac) {
+		AmbientNoise am = GetComponent<AmbientNoise> ();
+		if (am == null)
+			return;
+		am.RemoveSound (ac);
+	}
 }

@@ -35,9 +35,9 @@ public class PR_Data : Property {
 			go.GetComponent<ChaseTarget> ().StartingVel = new Vector2 (Random.Range (-10f, 10f), 10f);
 			expDropped += 50;
 		}
-		Debug.Log ("Dropping experience " + value);
 		if (eh != null)
 			eh.AddExperience ((int)value);
+		FindObjectOfType<AudioManager> ().PlayClipAtPos (FXHit.Instance.SFXHeal,transform.position,0.25f,0f,0.25f);
 		GetComponent<PropertyHolder> ().RequestRemoveProperty ("Data");
 	}
 }

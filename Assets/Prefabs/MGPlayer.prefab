@@ -150,9 +150,8 @@ MonoBehaviour:
     AIPredictionHitbox: {x: 0, y: 0}
     AIPredictionOffset: {x: 0, y: 0}
   m_SoundInfo:
-    AttackFX: {fileID: 0}
     StartupSoundFX: {fileID: 0}
-    AttackSoundFX: {fileID: 0}
+    AttackSoundFX: {fileID: 8300000, guid: 0431e379752466f47bc8618cb914a2fc, type: 3}
   m_lineInfo:
     range: 15
     direction: {x: 1, y: 0}
@@ -248,7 +247,6 @@ MonoBehaviour:
     AIPredictionHitbox: {x: 0, y: 0}
     AIPredictionOffset: {x: 0, y: 0}
   m_SoundInfo:
-    AttackFX: {fileID: 0}
     StartupSoundFX: {fileID: 0}
     AttackSoundFX: {fileID: 0}
   m_dashInfo:
@@ -332,7 +330,6 @@ MonoBehaviour:
     AIPredictionHitbox: {x: 0, y: 0}
     AIPredictionOffset: {x: 0, y: 0}
   m_SoundInfo:
-    AttackFX: {fileID: 0}
     StartupSoundFX: {fileID: 0}
     AttackSoundFX: {fileID: 0}
   m_dashInfo:
@@ -381,7 +378,6 @@ MonoBehaviour:
     AIPredictionHitbox: {x: 0, y: 0}
     AIPredictionOffset: {x: 0, y: 0}
   m_SoundInfo:
-    AttackFX: {fileID: 0}
     StartupSoundFX: {fileID: 0}
     AttackSoundFX: {fileID: 0}
   m_dashInfo:
@@ -443,6 +439,8 @@ MonoBehaviour:
   m_abandonDistance: 10
   Submerged: 0
   m_stuckTime: 0
+  playFootsteps: 1
+  footstepInterval: 0.25
   LeftButton: 97
   RightButton: 100
   JumpButton: 119
@@ -450,9 +448,12 @@ MonoBehaviour:
   BombButton: 114
   BlockButton: 102
   BarrelButton: 118
+  Help: 0
+  Quit: 0
   Bombs: 3
   Blocks: 3
   Barrels: 3
+  PlayerName: Player 1
   SpawnPoint: {x: 0, y: 0, z: 0}
 --- !u!212 &212945691307595466
 SpriteRenderer:

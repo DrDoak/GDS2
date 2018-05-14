@@ -35,22 +35,25 @@ public class DialogueUnit  {
 			if (currentTB)
 				GameObject.Destroy (currentTB.gameObject);
 			DialogueSubunit ne = elements [currentElement];
-				
-			currentTB = TextboxManager.addTextbox(ne.text,Speaker);
+			currentTB = TextboxManager.addTextbox (ne.text, Speaker,ne.isFullScreen);
 			currentTB.masterSequence = this;
 			currentElement += 1;
 		}
 	}
 
-	public void addTextbox(string s) {
+	public void addTextbox(string s, bool full = false) {
 		DialogueSubunit ne = new DialogueSubunit ();
 		ne.text = s;
+		Debug.Log (full);
+		ne.isFullScreen = full;
 		elements.Add (ne);
 	}
-	public void addTextbox(string s,string animation) {
+	public void addTextbox(string s,string animation, bool full = false) {
 		DialogueSubunit ne = new DialogueSubunit ();
 		ne.text = s;
+		Debug.Log (full);
 		ne.animation = animation;
+		ne.isFullScreen = full;
 		elements.Add (ne);
 	}
 

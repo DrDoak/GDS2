@@ -107,14 +107,8 @@ public class Fighter : MonoBehaviour
 
 	private void OnAttackStart()
 	{
-		if (m_currentAttack.m_SoundInfo.StartupSoundFX != null)
-			AudioSource.PlayClipAtPoint (m_currentAttack.m_SoundInfo.StartupSoundFX, transform.position);
-		if (m_currentAttack.m_SoundInfo.AttackSoundFX != null)
-			AudioSource.PlayClipAtPoint(m_currentAttack.m_SoundInfo.AttackSoundFX, transform.position);
-		if (AttackSound != null)
-			AudioSource.PlayClipAtPoint(AttackSound, gameObject.transform.position);
-		if (m_currentAttack.m_SoundInfo.AttackFX)
-			AddEffect(m_currentAttack.m_SoundInfo.AttackFX, m_currentAttack.m_AttackAnimInfo.RecoveryTime + 0.2f);
+				/*if (m_currentAttack.m_SoundInfo.AttackFX)
+			AddEffect(m_currentAttack.m_SoundInfo.AttackFX, m_currentAttack.m_AttackAnimInfo.RecoveryTime + 0.2f);*/
 
 		m_anim.Play(m_currentAttack.m_AttackAnimInfo.StartUpAnimation, true);
 		m_anim.SetSpeed(m_currentAttack.m_AttackAnimInfo.AnimSpeed * m_animationSpeed);

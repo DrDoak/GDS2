@@ -1,6 +1,7 @@
 ﻿using UnityEngine;
 using System.Collections;
 using UnityEngine.UI;
+using Luminosity.IO;
 
 [RequireComponent (typeof (PhysicsSS))]
 [RequireComponent (typeof (Attackable))]
@@ -12,6 +13,7 @@ public class BasicMovement : MonoBehaviour
 	private const float NPC_STUCK_JUMP_TIME = .4f;
 	private const float NPC_X_DIFF_MOVEMENT_THREASHOLD = 0.4f;
 	private const float PIT_JUMP_VERTICAL_THREASHOLD = -0.3f;
+	private const float DOUBLE_TAP_DROP_INTERVAL = 0.2f;
 
 
 	public bool IsCurrentPlayer = false;
@@ -50,7 +52,11 @@ public class BasicMovement : MonoBehaviour
 	private PhysicsSS m_followObj;
 	private bool m_autonomy = true;
 
+	public bool playFootsteps = false;
+	public float footstepInterval = 0.75f;
+	float m_sinceStep = 0f;
 
+	private float m_lastDownTime = 0f;
 
 	internal void Awake()
 	{
@@ -68,14 +74,41 @@ public class BasicMovement : MonoBehaviour
 			PlayerMovement();
 		else if (m_targetSet)
 			NpcMovement();
-
+		if (playFootsteps)
+			PlayStepSounds ();
 		MoveSmoothly();
 	}
 
+	private void PlayStepSounds() {
+		if (m_inputMove.x != 0f && m_physics.OnGround) {
+			m_sinceStep += Time.deltaTime;
+			if (m_sinceStep > footstepInterval) {
+				m_sinceStep = 0f;
+				FindObjectOfType<AudioManager> ().PlayClipAtPos (FXBody.Instance.SFXFootstep,transform.position,0.2f,0f,0.25f);
+			}
+		} else {
+			m_sinceStep = footstepInterval;
+		}
+	}
 	protected virtual void PlayerMovement() {
-		m_inputMove = new Vector2(Input.GetAxis("Horizontal"), Input.GetAxis("Vertical"));
-		m_jumpDown = Input.GetButtonDown ("Jump");
-		m_jumpHold = Input.GetButton ("Jump");
+		m_inputMove = new Vector2(0f, 0f);
+		if (InputManager.GetButton("Left"))
+			m_inputMove.x -= 1f;
+		if (InputManager.GetButton("Right"))
+			m_inputMove.x += 1f;
+		if (InputManager.GetButton("Up"))
+			m_inputMove.y += 1f;
+		if (InputManager.GetButton ("Down")) {
+			m_inputMove.y -= 1f;
+			if (InputManager.GetButtonDown ("Down")) {
+				//Debug.Log (Time.timeSinceLevelLoad + " : " + m_lastDownTime);
+				if (Time.timeSinceLevelLoad - m_lastDownTime < DOUBLE_TAP_DROP_INTERVAL)
+					m_physics.setDropTime (0.2f);
+				m_lastDownTime = Time.timeSinceLevelLoad;
+			}
+		}
+		m_jumpDown = InputManager.GetButtonDown ("Jump");
+		m_jumpHold = InputManager.GetButton ("Jump");
 		JumpMovement ();
 		SetDirectionFromInput();
 	}
@@ -148,6 +181,7 @@ public class BasicMovement : MonoBehaviour
 		else
 			applyJumpVector (new Vector2 (1f, 1f));
 
+		FindObjectOfType<AudioManager> ().PlayClipAtPos (FXBody.Instance.SFXJump,transform.position,0.3f,0f,0.25f);
 		m_lastJump = Time.timeSinceLevelLoad;
 		variableJumpApplied = false;
 	}

@@ -4,16 +4,20 @@ using UnityEngine;
 using UnityEngine.UI;
 using TMPro;
 
+public enum DialogueSound { TYPED, SPOKEN, RECORDED};
+
 public class Textbox : MonoBehaviour {
 
 	public DialogueUnit masterSequence;
 	GameObject targetedObj;
 	public bool typing;
+	public DialogueSound m_sound;
 	Vector3 lastPos;
 	public string FullText;
 	public string CurrentText;
 	public float timeBetweenChar = 0.01f;
 	float sinceLastChar = 0f;
+	float sinceLastSound = 0f;
 	float pauseTime = 0f;
 	float timeSinceStop = 0f;
 	int lastCharacter;
@@ -28,7 +32,7 @@ public class Textbox : MonoBehaviour {
 		if (!typing) {
 			mText.text = FullText;
 		}
-		initColor ();
+		//initColor ();
 	}
 	void OnDestroy() {
 		conclude = true;
@@ -77,6 +81,7 @@ public class Textbox : MonoBehaviour {
 		if (typing ) {
 			if (lastCharacter < FullText.Length) { 
 				sinceLastChar += Time.deltaTime;
+				sinceLastSound += Time.deltaTime;
 				if (sinceLastChar > timeBetweenChar) {
 					if (pauseTime > 0f) {
 						pauseTime -= Time.deltaTime;
@@ -162,6 +167,10 @@ public class Textbox : MonoBehaviour {
 								pauseTime = float.Parse (actStr);
 							}
 						} else {
+							if (sinceLastSound > 0.15f) {
+								sinceLastSound = 0f;
+								playSound ();
+							}
 							CurrentText += nextChar;
 							mText.text = CurrentText;
 							sinceLastChar = 0f;
@@ -177,7 +186,21 @@ public class Textbox : MonoBehaviour {
 
 		}
 	}
-
+	private void playSound() {
+		switch (m_sound) {
+		case DialogueSound.RECORDED:
+			FindObjectOfType<AudioManager> ().PlayClipAtPos (UIList.Instance.SFXDialogueStatic, FindObjectOfType<CameraFollow> ().transform.position, 0.15f, 0f, 0.1f);
+			break;
+		case DialogueSound.TYPED:
+			FindObjectOfType<AudioManager> ().PlayClipAtPos (UIList.Instance.SFXDialogueClick, FindObjectOfType<CameraFollow> ().transform.position, 0.2f, 0f, 0.25f);
+			break;
+		case DialogueSound.SPOKEN:
+			FindObjectOfType<AudioManager> ().PlayClipAtPos (UIList.Instance.SFXDialogueSpeak, FindObjectOfType<CameraFollow> ().transform.position, 0.2f, 0f, 0.25f);
+			break;
+		default:
+			break;
+		}
+	}
 	public void setTargetObj(GameObject gameObj) {
 		targetedObj = gameObj;
 		if (targetedObj != null)

@@ -9,11 +9,14 @@ public class DialogueSequence  {
 	public DialogueSequence parentSequence = null;
 	public GameObject Speaker;
 
-	public void advanceSequence() {
+	public void AdvanceSequence() {
 		DialogueUnit currDialogueUnit = allDUnits [0];
 		currDialogueUnit.Speaker = Speaker;
 		currDialogueUnit.startSequence ();
 		allDUnits.Remove (currDialogueUnit);
 	}
-
+	public void CloseSequence() {
+		if (allDUnits.Count > 0)
+			allDUnits [0].closeSequence ();
+	}
 }

@@ -40,8 +40,10 @@ public class GUIHandler : MonoBehaviour {
 			var P1Controller = CurrentTarget.GetComponent<Attackable> ();
 
 			P1HealthBar.value = P1Controller.Health;
-			var exp = CurrentTarget.GetComponent<ExperienceHolder> ();
-			ExpText.text = "Data: " + exp.VisualExperience;
+			if (CurrentTarget.GetComponent<ExperienceHolder> () != null) {
+				var exp = CurrentTarget.GetComponent<ExperienceHolder> ();
+				ExpText.text = "Data: " + exp.VisualExperience;
+			}
 		}
 	}
 	public void SetHUD(bool active) {

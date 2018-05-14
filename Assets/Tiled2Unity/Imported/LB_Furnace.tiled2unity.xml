@@ -1,7 +1,7 @@
 ﻿<?xml version="1.0" encoding="utf-8" standalone="yes"?>
 <!--Tiled2Unity generated xml data-->
 <!--Do not modify by hand-->
-<!--Last exported: 5/5/2018 6:09:36 PM-->
+<!--Last exported: 5/7/2018 3:14:49 PM-->
 <Tiled2Unity version="1.0.13.2">
   <AssignMaterial mesh="LB_Furnace_mesh_0001" material="lab" />
   <AssignMaterial mesh="LB_Furnace_mesh_0002" material="lab" />
@@ -53,12 +53,6 @@
         <PolylineObjectComponent tmx-object-id="33" tmx-object-name="" tmx-object-type="" tmx-object-x="1568" tmx-object-y="416" tmx-object-width="0" tmx-object-height="0" tmx-object-rotation="0" />
         <EdgeCollider2D>
           <Points>0,0 0,-32 32,-32 32,-64 128,-64 128,-96 160,-96 160,-128 256,-128 416,-128 416,-96 384,-96 384,-64 288,-64 288,0 0,0</Points>
-        </EdgeCollider2D>
-      </GameObject>
-      <GameObject name="PolylineObject" x="1248" y="-448" rotation="0">
-        <PolylineObjectComponent tmx-object-id="44" tmx-object-name="" tmx-object-type="" tmx-object-x="1248" tmx-object-y="448" tmx-object-width="0" tmx-object-height="0" tmx-object-rotation="0" />
-        <EdgeCollider2D>
-          <Points>0,0 16,0 32,0</Points>
         </EdgeCollider2D>
       </GameObject>
       <GameObject name="PolylineObject" x="0" y="-608" rotation="0">
@@ -116,6 +110,12 @@
         <PolylineObjectComponent tmx-object-id="34" tmx-object-name="" tmx-object-type="" tmx-object-x="1408" tmx-object-y="416" tmx-object-width="0" tmx-object-height="0" tmx-object-rotation="0" />
         <EdgeCollider2D>
           <Points>-32,0 32,0 96,0</Points>
+        </EdgeCollider2D>
+      </GameObject>
+      <GameObject name="PolylineObject" x="1248" y="-448" rotation="0">
+        <PolylineObjectComponent tmx-object-id="45" tmx-object-name="" tmx-object-type="" tmx-object-x="1248" tmx-object-y="448" tmx-object-width="0" tmx-object-height="0" tmx-object-rotation="0" />
+        <EdgeCollider2D>
+          <Points>0,0 16,0 32,0</Points>
         </EdgeCollider2D>
       </GameObject>
       <GameObject name="PolylineObject" x="1024" y="-480" rotation="0">

@@ -4,14 +4,27 @@ using UnityEngine;
 
 public class PR_ElecTurret : PR_Mechanical {
 
+	private bool m_targeting = false;
+	private bool TargetFound = false;
 	protected override void OnActive() {
 		if (GetComponent<Turret> () != null) {
-			GetComponent<Turret> ().SetTarget (GameManager.Instance.CurrentPlayer);
+			m_targeting = true;
+			//GetComponent<Turret> ().SetTarget (GameManager.Instance.CurrentPlayer);
 		}
 	}
 	protected override void OnDisable() {
 		if (GetComponent<Turret> () != null) {
 			GetComponent<Turret> ().SetTarget (null);
+			TargetFound = false;
+			m_targeting = false;
+		}
+	} 
+
+	public override void OnSight(Observable observedObj) {
+		if (!TargetFound && m_targeting && observedObj.GetComponent<Attackable> () &&
+			GetComponent<Attackable> ().Faction != observedObj.GetComponent<Attackable> ().Faction) {
+			GetComponent<Turret> ().SetTarget (observedObj.gameObject);
+			TargetFound = true;
 		}
 	}
 }
