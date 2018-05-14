@@ -30,10 +30,22 @@ public class AbilityManager : MonoBehaviour {
 
     private void PopulateTree()
     {
+        //Transfer Root
         abilityTree.AddRoot(ScriptableObject.CreateInstance<Ab_Transfer>());
+
+        //Melee Abilities
         abilityTree.Add(ScriptableObject.CreateInstance<Ab_Melee>(), Branch.LEFT);
-        abilityTree.Add(ScriptableObject.CreateInstance<Ab_Passive_AttackDamage>(), Branch.LEFT, AbilityType.COMBAT);
+        abilityTree.Add(ScriptableObject.CreateInstance<Ab_NanoSword>(), Branch.LEFT, AbilityType.COMBAT);
         abilityTree.Add(ScriptableObject.CreateInstance<Ab_Passive_AttackRate>(), Branch.LEFT, AbilityType.COMBAT);
+
+        abilityTree.Add(ScriptableObject.CreateInstance<Ab_CriticalStrike>(), Branch.RIGHT, AbilityType.COMBAT);
+        abilityTree.Add(ScriptableObject.CreateInstance<Ab_Passive_AttackDamage>(), Branch.RIGHT, AbilityType.COMBAT);
+
+
+        //Transfer Abilities
+
+
+        //Environmental Abilities
         abilityTree.PrintTree();
 
     }
