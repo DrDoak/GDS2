@@ -28,6 +28,9 @@ public class Leveller : MonoBehaviour {
 		}
 
 		Level = 1;
+		for (int i = 1; i < 10; i++) { 
+			Debug.Log (Instance.DataRequirement * Instance.Scaler * i);
+		}
 	}
 
     /// <summary>
@@ -38,8 +41,8 @@ public class Leveller : MonoBehaviour {
     {
 		if (Instance.exp == null || Instance.exp != obj)
 			Instance.exp = obj;
-		Debug.Log ("Requirement: " + Instance.DataRequirement * Instance.Scaler * Instance.Level);
-		Debug.Log ("Current: " + Instance.exp.Experience);
+		//Debug.Log ("Requirement: " + Instance.DataRequirement * Instance.Scaler * Instance.Level);
+		//Debug.Log ("Current: " + Instance.exp.Experience);
 		if (Instance.exp.Experience >= Instance.DataRequirement * Instance.Scaler * Instance.Level) {
 			EventManager.TriggerEvent (3);
 			Debug.Log ("Event Triggered");
