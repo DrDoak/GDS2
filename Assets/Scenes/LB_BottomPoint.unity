@@ -1599,7 +1599,7 @@ Prefab:
     - target: {fileID: 114139836958767136, guid: 86856ebb1cc73c04a86115975021a18e,
         type: 2}
       propertyPath: m_isInputParsingRequired
-      value: 0
+      value: 1
       objectReference: {fileID: 0}
     - target: {fileID: 114477034781744566, guid: 86856ebb1cc73c04a86115975021a18e,
         type: 2}
@@ -1843,12 +1843,12 @@ Prefab:
     - target: {fileID: 224651395152028732, guid: 86856ebb1cc73c04a86115975021a18e,
         type: 2}
       propertyPath: m_AnchorMax.x
-      value: 1
+      value: 0
       objectReference: {fileID: 0}
     - target: {fileID: 224651395152028732, guid: 86856ebb1cc73c04a86115975021a18e,
         type: 2}
       propertyPath: m_AnchorMax.y
-      value: 1
+      value: 0
       objectReference: {fileID: 0}
     - target: {fileID: 224919683728530804, guid: 86856ebb1cc73c04a86115975021a18e,
         type: 2}
@@ -1873,7 +1873,7 @@ Prefab:
     - target: {fileID: 224159792454195676, guid: 86856ebb1cc73c04a86115975021a18e,
         type: 2}
       propertyPath: m_AnchorMin.y
-      value: 0.5581395
+      value: 0.55813956
       objectReference: {fileID: 0}
     - target: {fileID: 224159792454195676, guid: 86856ebb1cc73c04a86115975021a18e,
         type: 2}
@@ -2338,64 +2338,22 @@ Prefab:
     - target: {fileID: 224858247495619676, guid: 86856ebb1cc73c04a86115975021a18e,
         type: 2}
       propertyPath: m_AnchoredPosition.y
-      value: 0
-      objectReference: {fileID: 0}
-    - target: {fileID: 224209084733379808, guid: 86856ebb1cc73c04a86115975021a18e,
-        type: 2}
-      propertyPath: m_AnchoredPosition.y
-      value: -0.000024795532
-      objectReference: {fileID: 0}
-    - target: {fileID: 224128653232866352, guid: 86856ebb1cc73c04a86115975021a18e,
-        type: 2}
-      propertyPath: m_AnchoredPosition.y
-      value: 190.00002
+      value: 0.0000038146973
       objectReference: {fileID: 0}
     - target: {fileID: 224777399314521252, guid: 86856ebb1cc73c04a86115975021a18e,
         type: 2}
       propertyPath: m_AnchoredPosition.y
       value: -0.0000038146973
       objectReference: {fileID: 0}
+    - target: {fileID: 224209084733379808, guid: 86856ebb1cc73c04a86115975021a18e,
+        type: 2}
+      propertyPath: m_AnchoredPosition.y
+      value: -0.000019073486
+      objectReference: {fileID: 0}
     - target: {fileID: 224919683728530804, guid: 86856ebb1cc73c04a86115975021a18e,
         type: 2}
       propertyPath: m_AnchorMin.y
       value: 0.00000011920929
-      objectReference: {fileID: 0}
-    - target: {fileID: 114127589150096664, guid: 86856ebb1cc73c04a86115975021a18e,
-        type: 2}
-      propertyPath: DataRequirement
-      value: 200
-      objectReference: {fileID: 0}
-    - target: {fileID: 114139836958767136, guid: 86856ebb1cc73c04a86115975021a18e,
-        type: 2}
-      propertyPath: m_text
-      value: 'Use Movement keys to select
-
-        Press Quit to End Transfer (Default Q)'
-      objectReference: {fileID: 0}
-    - target: {fileID: 114139836958767136, guid: 86856ebb1cc73c04a86115975021a18e,
-        type: 2}
-      propertyPath: m_textInfo.characterCount
-      value: 66
-      objectReference: {fileID: 0}
-    - target: {fileID: 114139836958767136, guid: 86856ebb1cc73c04a86115975021a18e,
-        type: 2}
-      propertyPath: m_textInfo.wordCount
-      value: 12
-      objectReference: {fileID: 0}
-    - target: {fileID: 114139836958767136, guid: 86856ebb1cc73c04a86115975021a18e,
-        type: 2}
-      propertyPath: m_textInfo.spaceCount
-      value: 11
-      objectReference: {fileID: 0}
-    - target: {fileID: 114139836958767136, guid: 86856ebb1cc73c04a86115975021a18e,
-        type: 2}
-      propertyPath: m_textInfo.lineCount
-      value: 2
-      objectReference: {fileID: 0}
-    - target: {fileID: 114139836958767136, guid: 86856ebb1cc73c04a86115975021a18e,
-        type: 2}
-      propertyPath: m_margin.z
-      value: -41.15911
       objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_ParentPrefab: {fileID: 100100000, guid: 86856ebb1cc73c04a86115975021a18e, type: 2}
