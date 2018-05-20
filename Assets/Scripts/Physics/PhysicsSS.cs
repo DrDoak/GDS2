@@ -121,7 +121,7 @@ public class PhysicsSS : MonoBehaviour
 		m_verticalCancelTime -= Time.deltaTime;
 		foreach (ForceSS force in forcesToRemove)
 			m_forces.Remove(force);
-		if (ReactToWater && UseBuoyancy) {
+		if (ReactToWater && UseBuoyancy && m_verticalCancelTime <= 0f) {
 			m_velocity.y += BuoyancyScale * Time.fixedDeltaTime;
 		} else if (m_velocity.y > TerminalVelocity){
 			if (!m_collisions.below && m_verticalCancelTime <= 0f) {

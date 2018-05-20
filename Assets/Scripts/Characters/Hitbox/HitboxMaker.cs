@@ -125,6 +125,7 @@ public class HitboxMaker : MonoBehaviour
 		newBox.AddElement(element);
 		newBox.Creator = gameObject;
 		newBox.Faction = Faction;
+		newBox.refreshTime = refreshTime;
 
 		ExecuteEvents.Execute<ICustomMessageTarget> (gameObject, null, (x, y) => x.OnHitboxCreate(newBox));
 		newBox.Init();

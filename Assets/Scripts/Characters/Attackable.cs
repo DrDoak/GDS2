@@ -51,9 +51,6 @@ public class Attackable : MonoBehaviour
 
 	internal void InitResistences() {
 		m_fullResistences.Clear ();
-//		ElementType[] eList = new ElementType[ElementType.PHYSICAL, ElementType.FIRE,
-//			ElementType.BIOLOGICAL, ElementType.LIGHTNING, ElementType.PSYCHIC];
-		//RangeInt l = new RangeInt(1,4);
 		for (int i=0; i < 5; i++) {
 			Resistence r = new Resistence ();
 			r.Element = (ElementType)i;
@@ -62,6 +59,7 @@ public class Attackable : MonoBehaviour
 		foreach (Resistence r in Resistences) {
 			AddResistence (r);
 		}
+		AddResistence (ElementType.BIOLOGICAL, 100f, false, false);
 	}
 	internal void Start() {
 		
@@ -258,12 +256,13 @@ public class Attackable : MonoBehaviour
 	{
 		ExecuteEvents.Execute<ICustomMessageTarget> (gameObject, null, (x, y) => x.OnAttack ());
 	}
-
 	public void SetHealth (float newHealth) {
 		DamageObj (Health - newHealth);
 	}
 	public float DamageObj(float damage)
 	{
+		if (!Alive)
+			return 0f;
 		float healthBefore = m_health;
 		m_health = Mathf.Max(Mathf.Min(MaxHealth, m_health - damage), 0);
 		Alive = (m_health > 0);

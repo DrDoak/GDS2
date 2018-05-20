@@ -13,6 +13,7 @@ public class PropertyHolder : MonoBehaviour {
 	public int NumTransfers = 2;
 	public List<string> m_toRemove;
 	public WaterHitbox SubmergedHitbox = null;
+	public Color EffectColor = Color.white;
 
 	// Use this for initialization
 	void Awake () {
