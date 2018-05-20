@@ -25,6 +25,7 @@ public class PhysicsSS : MonoBehaviour
 	private float m_verticalRaySpacing;
 	private float dropThruTime = 0.0f;
 	public bool OnGround = true;
+	public bool Floating = false;
 	public float MaxClimbAngle = 80;
 
 	// Tracking movement
@@ -47,6 +48,7 @@ public class PhysicsSS : MonoBehaviour
 	public float GravityScale = -1.0f;
 
 	public bool FacingLeft = false;
+	public bool ReactToWater = true;
 	public bool UseBuoyancy = false;
 	public float BuoyancyScale = -1.0f;
 
@@ -104,6 +106,8 @@ public class PhysicsSS : MonoBehaviour
 	{
 		m_inputedForce.Force *= Time.fixedDeltaTime;
 		m_velocity.x = m_inputedForce.Force.x;
+		if (Floating)
+			m_velocity.y = m_inputedForce.Force.y;
 
 		List<ForceSS> forcesToRemove = new List<ForceSS>();
 		foreach (ForceSS force in m_forces)
@@ -117,12 +121,12 @@ public class PhysicsSS : MonoBehaviour
 		m_verticalCancelTime -= Time.deltaTime;
 		foreach (ForceSS force in forcesToRemove)
 			m_forces.Remove(force);
-		if (UseBuoyancy) {
+		if (ReactToWater && UseBuoyancy) {
 			m_velocity.y += BuoyancyScale * Time.fixedDeltaTime;
 		} else if (m_velocity.y > TerminalVelocity){
 			if (!m_collisions.below && m_verticalCancelTime <= 0f) {
 				m_velocity.y += GravityScale * Time.fixedDeltaTime;
-			} else if (m_collisions.below) { //force player to stick to slopes
+			} else if (m_collisions.below) {
 				m_velocity.y += GravityScale * Time.fixedDeltaTime * 6f;
 			}
 		}
@@ -166,7 +170,7 @@ public class PhysicsSS : MonoBehaviour
 	}
 	public bool IsAttemptingMovement()
 	{
-		return m_inputedMove.x != 0.0f;
+		return m_inputedMove.x != 0.0f || m_inputedMove.y !=  0.0f;
 	}
 
 	public void Move(Vector2 veloc, Vector2 input)
