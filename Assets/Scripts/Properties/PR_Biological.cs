@@ -40,6 +40,7 @@ public class PR_Biological : Property
 		
 	public override void OnHit(Hitbox hb, GameObject attacker) { 
 		if (!GetComponent<PropertyHolder> ().HasProperty ("Parasite")) {
+			Debug.Log(hb.HasElement(ElementType.BIOLOGICAL));
 			if (hb.HasElement(ElementType.BIOLOGICAL)) {
 				HitboxDoT hd = hb as HitboxDoT;
 				if (hd != null) {

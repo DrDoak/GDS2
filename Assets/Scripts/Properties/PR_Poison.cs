@@ -25,6 +25,10 @@ public class PR_Poison : Property {
 		bioOnly = new List<ElementType> ();
 		bioOnly.Add (ElementType.BIOLOGICAL);
 	}
+	public override void OnRemoveProperty() {
+		if (bioSurround != null) 
+			Destroy (bioSurround);
+	}
 
 	public override void OnUpdate()
 	{

@@ -62,11 +62,9 @@ public class PR_Wooden : Property {
 		}
 	}
 	public override void OnWaterEnter(WaterHitbox waterCollided)  {
-		Debug.Log ("Water enter");
 		GetComponent<PhysicsSS> ().UseBuoyancy = true;
 	}
 	public override void OnWaterExit(WaterHitbox waterCollided) {
-		Debug.Log ("Water exit");
 		GetComponent<PhysicsSS> ().UseBuoyancy = false;
 	}
 }
