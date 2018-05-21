@@ -5,6 +5,8 @@ using UnityEngine;
 public class Fish : MonoBehaviour {
 	public float GravityInWater = 0.0f;
 	public float GravityOutWater = -0.5f;
+	public float MoveSpeedOutWater = 0.0f;
+	public float MoveSpeedInWater = 3.0f;
 
 	BasicMovement m_movt;
 	PhysicsSS m_physics;
@@ -19,9 +21,11 @@ public class Fish : MonoBehaviour {
 		if (m_movt.Submerged) {
 			m_physics.SetGravityScale (GravityInWater);
 			m_physics.Floating = true;
+			m_movt.MoveSpeed = MoveSpeedInWater;
 		} else {
 			m_physics.SetGravityScale (GravityOutWater);
 			m_physics.Floating = false;
+			m_movt.MoveSpeed = MoveSpeedOutWater;
 		}
 	}
 }

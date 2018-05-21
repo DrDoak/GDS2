@@ -12,6 +12,7 @@ public class PersistentItem : MonoBehaviour {
 	public float healthVal = 0;
 	public CharData data = new CharData();
 	public bool recreated = false;
+	public string PrefabPath = "";
 
 	protected bool m_registryChecked = false;
 	void Awake() {
@@ -72,7 +73,10 @@ public class PersistentItem : MonoBehaviour {
 
 		if (GetComponent<ExperienceHolder> ())
 			data.Experience = GetComponent<ExperienceHolder> ().Experience;
-		data.prefabPath = getProperName(); //gameObject.name;*/
+		if (PrefabPath == "")
+			data.prefabPath = getProperName ();
+		else
+			data.prefabPath = PrefabPath;
 	}
 
 	public void LoadData() {
@@ -102,6 +106,7 @@ public class PersistentItem : MonoBehaviour {
 			GetComponent<Interactable> ().TriggerUsed = data.TriggerUsed;
 			GetComponent<Interactable> ().value = data.triggerString;
 		}
+		gameObject.name = data.name;
 		gameObject.name = getProperName ();
 	}
 	private string getProperName() {
