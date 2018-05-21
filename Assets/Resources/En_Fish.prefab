@@ -205,7 +205,7 @@ MonoBehaviour:
   MoveSpeed: 4
   jumpVector: {x: 0, y: 0}
   m_inputMove: {x: 0, y: 0}
-  m_minDistance: 1
+  m_minDistance: 0.2
   m_abandonDistance: 15
   Submerged: 0
   CanJump: 0
@@ -444,15 +444,15 @@ MonoBehaviour:
     RecoveryAnimation: attack_r
   m_AIInfo:
     UniqueAIPrediction: 1
-    AIPredictionHitbox: {x: 2, y: 1}
-    AIPredictionOffset: {x: 1, y: 0}
+    AIPredictionHitbox: {x: 3, y: 1}
+    AIPredictionOffset: {x: 1.5, y: 0}
   m_SoundInfo:
     StartupSoundFX: {fileID: 0}
     AttackSoundFX: {fileID: 0}
   m_dashInfo:
     StartUpDash: {x: 0, y: 0}
     StartUpDuration: 0
-    AttackDash: {x: 8, y: 0}
+    AttackDash: {x: 15, y: 0}
     AttackDashDuration: 0.2
     ConclusionDash: {x: 0, y: 0}
     ConclusionDuration: 0
@@ -515,7 +515,7 @@ MonoBehaviour:
   Stackable: 0
   value: 20
   PropertyName: Data
-  Description: Combat knowledge and experience.
+  Description: Fascinating Biological Specimen
   icon: {fileID: 0}
 --- !u!114 &114998524127708846
 MonoBehaviour:

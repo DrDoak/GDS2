@@ -5,7 +5,7 @@ using UnityEngine;
 public class PR_Electrical : Property {
 
 	Vector2 off = new Vector2(0f, 0f);
-	float dmg = 24.0f;
+	float dmg = 30.0f;
 	float stun = 1.0f;
 	float hd = -0.5f;
 	Vector2 kb = new Vector2(0.0f, 0.0f);

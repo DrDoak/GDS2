@@ -14,7 +14,7 @@ public class PR_Spike : Property {
 
 	public override void OnAddProperty()
 	{
-		launchBox = GetComponent<HitboxMaker>().CreateHitboxMulti(scl, off2, dmg, stun, hd, kb,true, true, ElementType.PHYSICAL,0.5f);
+		launchBox = GetComponent<HitboxMaker>().CreateHitboxMulti(scl, off2, dmg, stun, hd, kb,true, true, ElementType.PHYSICAL,0.75f);
 	}
 
 	public override void OnRemoveProperty()
