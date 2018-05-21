@@ -8,6 +8,8 @@ public class Fish : MonoBehaviour {
 	public float MoveSpeedOutWater = 0.0f;
 	public float MoveSpeedInWater = 3.0f;
 
+	private bool JustOutWater = false;
+
 	BasicMovement m_movt;
 	PhysicsSS m_physics;
 	// Use this for initialization
@@ -22,10 +24,15 @@ public class Fish : MonoBehaviour {
 			m_physics.SetGravityScale (GravityInWater);
 			m_physics.Floating = true;
 			m_movt.MoveSpeed = MoveSpeedInWater;
+			JustOutWater = true;
 		} else {
 			m_physics.SetGravityScale (GravityOutWater);
 			m_physics.Floating = false;
 			m_movt.MoveSpeed = MoveSpeedOutWater;
+			if (JustOutWater) {
+				m_physics.AddSelfForce (new Vector2 (0, -5f), 0.25f);
+				JustOutWater = false;
+			}
 		}
 	}
 }

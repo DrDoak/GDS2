@@ -10,7 +10,7 @@ public class PR_Spike : Property {
 	float dmg = 20.0f;
 	float stun = 0.25f;
 	float hd = -0.5f;
-	Vector2 kb = new Vector2(20.0f, 0.0f);
+	Vector2 kb = new Vector2(10.0f, 0.0f);
 
 	public override void OnAddProperty()
 	{

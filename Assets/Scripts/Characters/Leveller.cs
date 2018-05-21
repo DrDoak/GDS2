@@ -75,7 +75,7 @@ public class Leveller : MonoBehaviour {
     void AddTransferSlots()
     {
         //Add slots at levels 2, 5, 8
-		if ((Level + 1) % 3 == 0) {
+		if ((Level + 2) % 3 == 0) {
 			int oldMax = exp.gameObject.GetComponent<PropertyHolder> ().MaxSlots;
 			exp.gameObject.GetComponent<PropertyHolder> ().MaxSlots += 1;
 			levelUpStr += "\n~Property Slots: " + oldMax + " => " + exp.gameObject.GetComponent<PropertyHolder> ().MaxSlots;
