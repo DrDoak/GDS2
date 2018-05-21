@@ -124,7 +124,7 @@ public class TransferMenu : MonoBehaviour {
 		}
 		m_timeSinceExit = 0.0f;
 		m_transfersRemaining = transfers;
-		m_remainingText.text = "Transfers Remaining: \n" + transfers.ToString ();
+		//m_remainingText.text = "Transfers Remaining: \n" + transfers.ToString ();
 		m_selectedButton = m_CurrentMenu.propertyButtons [m_propSelected];
 		HighlightKey (m_selectedButton);
 		PauseGame.SlowToPause ();

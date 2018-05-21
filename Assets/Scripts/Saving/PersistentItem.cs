@@ -80,7 +80,6 @@ public class PersistentItem : MonoBehaviour {
 	}
 
 	public void LoadData() {
-		//Debug.Log ("Loading data");
 		if (GetComponent<Attackable> ()) {
 			GetComponent<Attackable> ().MaxHealth = data.maxHealth;
 			GetComponent<Attackable> ().SetHealth (data.health);

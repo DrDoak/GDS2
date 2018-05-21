@@ -29,7 +29,7 @@ public class Leveller : MonoBehaviour {
 
 		Level = 1;
 		for (int i = 1; i < 10; i++) { 
-			Debug.Log (Instance.DataRequirement * Instance.Scaler * i);
+			//Debug.Log (Instance.DataRequirement * Instance.Scaler * i);
 		}
 	}
 
@@ -45,7 +45,7 @@ public class Leveller : MonoBehaviour {
 		//Debug.Log ("Current: " + Instance.exp.Experience);
 		if (Instance.exp.Experience >= Instance.DataRequirement * Instance.Scaler * Instance.Level) {
 			EventManager.TriggerEvent (3);
-			Debug.Log ("Event Triggered");
+			//Debug.Log ("Event Triggered");
 		}
     }
 
@@ -81,7 +81,7 @@ public class Leveller : MonoBehaviour {
 
     void OnEnable()
     {
-		Debug.Log ("on enable");
+		//Debug.Log ("on enable");
         EventManager.LevelUpEvent += IncreaseHealth;
         EventManager.LevelUpEvent += AddAbilityPoints;
         EventManager.LevelUpEvent += DisplayLevelUp;
@@ -91,7 +91,7 @@ public class Leveller : MonoBehaviour {
 
     void OnDisable()
     {
-		Debug.Log ("on disable");
+		//Debug.Log ("on disable");
         EventManager.LevelUpEvent -= IncreaseHealth;
         EventManager.LevelUpEvent -= AddAbilityPoints;
         EventManager.LevelUpEvent -= DisplayLevelUp;

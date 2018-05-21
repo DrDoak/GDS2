@@ -10,7 +10,7 @@ public class PropertyHolder : MonoBehaviour {
 	public string HolderName = "SameAsObject";
 	bool m_currentPlayer;
 	public int MaxSlots = 4;
-	public int NumTransfers = 2;
+	public int NumTransfers = 99;
 	public List<string> m_toRemove;
 	public WaterHitbox SubmergedHitbox = null;
 	public Color EffectColor = Color.white;

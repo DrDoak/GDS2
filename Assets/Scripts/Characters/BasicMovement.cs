@@ -183,12 +183,14 @@ public class BasicMovement : MonoBehaviour
 		if (!Submerged && !m_physics.OnGround)
 			return;
 
-		if (Submerged)
-			applyJumpVector (new Vector2 (1f, 0.6f));
-		else if (VariableJumpHeight)
+		if (Submerged) {
+			if (m_physics.TrueVelocity.y < 0.05f) 
+				applyJumpVector (new Vector2 (1f, 0.6f));
+		} else if (VariableJumpHeight) {
 			applyJumpVector (new Vector2 (1f, 0.8f));
-		else
+		} else {
 			applyJumpVector (new Vector2 (1f, 1f));
+		}
 
 		FindObjectOfType<AudioManager> ().PlayClipAtPos (FXBody.Instance.SFXJump,transform.position,0.3f,0f,0.25f);
 		m_lastJump = Time.timeSinceLevelLoad;

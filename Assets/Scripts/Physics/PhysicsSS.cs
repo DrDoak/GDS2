@@ -36,8 +36,7 @@ public class PhysicsSS : MonoBehaviour
 	private Vector2 m_velocity;
 	public Vector2 Velocity { get { return m_velocity; } }
 
-	private Vector3 m_trueVelocity;
-	public Vector3 TrueVelocity { get { return m_trueVelocity; } }
+	public Vector3 TrueVelocity;
 	private Vector3 m_lastPosition;
 
 	// Tracking inputed movement
@@ -84,7 +83,7 @@ public class PhysicsSS : MonoBehaviour
 	}
 
 	private void UpdateTrueVelocity() {
-		m_trueVelocity = transform.position - m_lastPosition;
+		TrueVelocity = transform.position - m_lastPosition;
 		m_lastPosition = transform.position;
 	}
 	private void DecelerateAutomatically(float threshold)
