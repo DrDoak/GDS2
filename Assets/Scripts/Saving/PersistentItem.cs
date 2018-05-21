@@ -27,7 +27,7 @@ public class PersistentItem : MonoBehaviour {
 			data.regID = "Not Assigned";
 		}
 		if (SaveObjManager.CheckRegistered(gameObject)) {
-			//Debug.Log (gameObject + " Already registered, deleting duplicate");
+			//Debug.Log (gameObject + " Already registered, deleting duplicate ID: " + data.regID);
 			Destroy(gameObject);
 		}
 	}

@@ -169,7 +169,7 @@ public class PhysicsSS : MonoBehaviour
 	}
 	public bool IsAttemptingMovement()
 	{
-		return m_inputedMove.x != 0.0f || m_inputedMove.y !=  0.0f;
+		return m_inputedMove.x != 0.0f;
 	}
 
 	public void Move(Vector2 veloc, Vector2 input)

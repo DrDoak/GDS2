@@ -63,7 +63,7 @@ public class SaveObjManager : MonoBehaviour{
 		string json = File.ReadAllText(savePath+ "base.txt");
 		CurrentSaveInfo = JsonUtility.FromJson<SaveProfileContainer> (json);
 		registeredPermItems.Clear ();
-		registeredPermItems = CurrentSaveInfo.RegisteredIDs;
+		registeredPermItems = CurrentSaveInfo.RegisteredIDs;			
 		Leveller.Instance.Level = CurrentSaveInfo.Level;
 		SceneManager.LoadScene (CurrentSaveInfo.LastRoomName, LoadSceneMode.Single);
 		return true;
@@ -246,7 +246,10 @@ public class SaveObjManager : MonoBehaviour{
 		if (File.Exists (savePath + "base.txt"))
 			File.Delete (savePath + "base.txt");
 		CurrentSaveInfo.LastRoomName = curRoom;
-		CurrentSaveInfo.Level = Leveller.Instance.Level;
+		if (Leveller.Instance == null)
+			CurrentSaveInfo.Level = 1;
+		else
+			CurrentSaveInfo.Level = Leveller.Instance.Level;
 		CurrentSaveInfo.RegisteredIDs = registeredPermItems;
 		string json = JsonUtility.ToJson(CurrentSaveInfo);
 		StreamWriter sw = File.CreateText(savePath + "base.txt");

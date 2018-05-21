@@ -154,6 +154,7 @@ MonoBehaviour:
   NumTransfers: 2
   m_toRemove: []
   SubmergedHitbox: {fileID: 0}
+  EffectColor: {r: 1, g: 1, b: 1, a: 1}
 --- !u!114 &114009254110021204
 MonoBehaviour:
   m_ObjectHideFlags: 1
@@ -234,8 +235,8 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 6cecf518dba7e8f429d2dc6df9ba9177, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  m_health: 100
-  MaxHealth: 100
+  m_health: 80
+  MaxHealth: 80
   Alive: 1
   DeathTime: 2
   m_currDeathTime: 0
@@ -260,11 +261,14 @@ MonoBehaviour:
     m_Bits: 256
   DecelerationRatio: 1
   OnGround: 1
+  Floating: 0
   MaxClimbAngle: 60
+  TrueVelocity: {x: 0, y: 0, z: 0}
   m_inputedMove: {x: 0, y: 0}
   TerminalVelocity: -5
   GravityScale: -1
   FacingLeft: 1
+  ReactToWater: 1
   UseBuoyancy: 0
   BuoyancyScale: -1
 --- !u!114 &114319908791872480
@@ -289,8 +293,9 @@ MonoBehaviour:
   m_minDistance: 1
   m_abandonDistance: 10
   Submerged: 0
+  CanJump: 1
   m_stuckTime: 0
-  playFootsteps: 1
+  PlayFootsteps: 0
   footstepInterval: 0.4
 --- !u!114 &114397494433287954
 MonoBehaviour:
@@ -431,11 +436,14 @@ MonoBehaviour:
     name: 
     pos: {x: 0, y: 0, z: 0}
     health: 100
+    maxHealth: 100
     prefabPath: 
     targetID: 
     propertyList: []
     propertyDescriptions: []
     propertyValues: []
+    transfers: 0
+    slots: 0
     targetDir: 0
     IsCurrentCharacter: 0
     IsFacingLeft: 0
@@ -443,6 +451,7 @@ MonoBehaviour:
     TriggerUsed: 0
     triggerString: 
   recreated: 0
+  PrefabPath: 
 --- !u!114 &114845752184036596
 MonoBehaviour:
   m_ObjectHideFlags: 1
