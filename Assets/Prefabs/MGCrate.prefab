@@ -26,6 +26,7 @@ GameObject:
   - component: {fileID: 114761005274207226}
   - component: {fileID: 114253777728691126}
   - component: {fileID: 114201248519149266}
+  - component: {fileID: 114187505477097086}
   m_Layer: 8
   m_Name: MGCrate
   m_TagString: Player
@@ -91,6 +92,26 @@ BoxCollider2D:
   serializedVersion: 2
   m_Size: {x: 1, y: 1}
   m_EdgeRadius: 0
+--- !u!114 &114187505477097086
+MonoBehaviour:
+  m_ObjectHideFlags: 1
+  m_PrefabParentObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 100100000}
+  m_GameObject: {fileID: 1136902454478534}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 956b3ceaf744d5042a732c7a743b2220, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  Stealable: 1
+  Viewable: 1
+  Stackable: 0
+  value: 0
+  PropertyName: None
+  Description: No description provided.
+  icon: {fileID: 0}
+  m_flameDamage: 0
+  inWater: 0
 --- !u!114 &114201248519149266
 MonoBehaviour:
   m_ObjectHideFlags: 1
@@ -108,6 +129,7 @@ MonoBehaviour:
   NumTransfers: 2
   m_toRemove: []
   SubmergedHitbox: {fileID: 0}
+  EffectColor: {r: 1, g: 1, b: 1, a: 1}
 --- !u!114 &114253777728691126
 MonoBehaviour:
   m_ObjectHideFlags: 1
@@ -143,7 +165,7 @@ MonoBehaviour:
     Percentage: 0
     Timed: 0
     StunResist: 0
-    KnockbackResist: 50
+    KnockbackResist: 25
     AvoidOverflow: 0
     OverflowAmount: 0
   DisplayHealth: 1
@@ -165,11 +187,14 @@ MonoBehaviour:
     m_Bits: 256
   DecelerationRatio: 1
   OnGround: 1
+  Floating: 0
   MaxClimbAngle: 80
+  TrueVelocity: {x: 0, y: 0, z: 0}
   m_inputedMove: {x: 0, y: 0}
   TerminalVelocity: -5
   GravityScale: -1
   FacingLeft: 0
+  ReactToWater: 1
   UseBuoyancy: 0
   BuoyancyScale: -1
 --- !u!212 &212283553955018200
@@ -185,6 +210,7 @@ SpriteRenderer:
   m_MotionVectors: 1
   m_LightProbeUsage: 0
   m_ReflectionProbeUsage: 0
+  m_RenderingLayerMask: 4294967295
   m_Materials:
   - {fileID: 10754, guid: 0000000000000000f000000000000000, type: 0}
   m_StaticBatchInfo:

@@ -7,10 +7,10 @@ public class PR_Spike : Property {
 	HitboxMulti launchBox;
 	Vector2 scl = new Vector2(1.0f, 2.0f);
 	Vector2 off2 = new Vector2(0f, 0f);
-	float dmg = 20.0f;
-	float stun = 1.0f;
+	float dmg = 5.0f;
+	float stun = 0.0f;
 	float hd = -0.5f;
-	Vector2 kb = new Vector2(20.0f, 0.0f);
+	Vector2 kb = new Vector2(0.0f, 0.0f);
 
 	public override void OnAddProperty()
 	{

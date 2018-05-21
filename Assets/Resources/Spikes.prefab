@@ -130,6 +130,7 @@ MonoBehaviour:
   NumTransfers: 2
   m_toRemove: []
   SubmergedHitbox: {fileID: 0}
+  EffectColor: {r: 1, g: 1, b: 1, a: 1}
 --- !u!114 &114421516581254838
 MonoBehaviour:
   m_ObjectHideFlags: 1
@@ -167,6 +168,7 @@ MonoBehaviour:
     TriggerUsed: 0
     triggerString: 
   recreated: 0
+  PrefabPath: 
 --- !u!114 &114625354972684636
 MonoBehaviour:
   m_ObjectHideFlags: 1
@@ -184,11 +186,14 @@ MonoBehaviour:
     m_Bits: 256
   DecelerationRatio: 1
   OnGround: 1
+  Floating: 0
   MaxClimbAngle: 80
+  TrueVelocity: {x: 0, y: 0, z: 0}
   m_inputedMove: {x: 0, y: 0}
   TerminalVelocity: 0
   GravityScale: -1
   FacingLeft: 0
+  ReactToWater: 1
   UseBuoyancy: 0
   BuoyancyScale: -1
 --- !u!114 &114725620302115408
@@ -220,7 +225,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: b2f176fa900675a449256a92aa0193c7, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  Faction: 0
+  Faction: 3
 --- !u!114 &114751662501166692
 MonoBehaviour:
   m_ObjectHideFlags: 1
@@ -272,6 +277,7 @@ SpriteRenderer:
   m_MotionVectors: 1
   m_LightProbeUsage: 0
   m_ReflectionProbeUsage: 0
+  m_RenderingLayerMask: 4294967295
   m_Materials:
   - {fileID: 10754, guid: 0000000000000000f000000000000000, type: 0}
   m_StaticBatchInfo:
