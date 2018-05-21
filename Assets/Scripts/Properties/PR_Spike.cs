@@ -8,13 +8,13 @@ public class PR_Spike : Property {
 	Vector2 scl = new Vector2(1.0f, 2.0f);
 	Vector2 off2 = new Vector2(0f, 0f);
 	float dmg = 20.0f;
-	float stun = 1.0f;
+	float stun = 0.25f;
 	float hd = -0.5f;
 	Vector2 kb = new Vector2(20.0f, 0.0f);
 
 	public override void OnAddProperty()
 	{
-		launchBox = GetComponent<HitboxMaker>().CreateHitboxMulti(scl, off2, dmg, stun, hd, kb,true, true, ElementType.PHYSICAL);
+		launchBox = GetComponent<HitboxMaker>().CreateHitboxMulti(scl, off2, dmg, stun, hd, kb,true, true, ElementType.PHYSICAL,0.5f);
 	}
 
 	public override void OnRemoveProperty()
