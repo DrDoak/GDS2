@@ -42,7 +42,7 @@ public class GUIHandler : MonoBehaviour {
 			P1HealthBar.value = P1Controller.Health;
 			if (CurrentTarget.GetComponent<ExperienceHolder> () != null) {
 				var exp = CurrentTarget.GetComponent<ExperienceHolder> ();
-				ExpText.text = "Data: " + exp.VisualExperience;
+				ExpText.text = "Data: " + exp.VisualExperience + "\nNext: " + Leveller.Instance.NextLevel;
 			}
 		}
 	}

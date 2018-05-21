@@ -201,8 +201,8 @@ Prefab:
     - target: {fileID: 114662688524436068, guid: e19dbd7becd744240b186d32ec54d074,
         type: 2}
       propertyPath: value
-      value: ~`$0.01`You can customize Controls and Create save files in the pause
-        menu. (Open with Escape).
+      value: ~`$0.01`Press ESCAPE to Pause. You can customize controls and create
+        save files in the pause menu.
       objectReference: {fileID: 0}
     - target: {fileID: 114662688524436068, guid: e19dbd7becd744240b186d32ec54d074,
         type: 2}
@@ -536,7 +536,7 @@ Prefab:
     - target: {fileID: 114662688524436068, guid: e19dbd7becd744240b186d32ec54d074,
         type: 2}
       propertyPath: value
-      value: ~`$0.01`Press the JUMP Key to jump over obstacles (Default SPACE) `90`.
+      value: ~`$0.01`Press the `&Jump` Key to jump over obstacles  `90`.
       objectReference: {fileID: 0}
     - target: {fileID: 114662688524436068, guid: e19dbd7becd744240b186d32ec54d074,
         type: 2}
@@ -836,7 +836,7 @@ Prefab:
     - target: {fileID: 114662688524436068, guid: e19dbd7becd744240b186d32ec54d074,
         type: 2}
       propertyPath: value
-      value: ~`$0.01`Use control keys to walk around (Default A and D) `90`.
+      value: ~`$0.01`Use `&Left` and `&Right` to walk around  `90`.
       objectReference: {fileID: 0}
     - target: {fileID: 114662688524436068, guid: e19dbd7becd744240b186d32ec54d074,
         type: 2}
@@ -1360,8 +1360,8 @@ Prefab:
     - target: {fileID: 114662688524436068, guid: e19dbd7becd744240b186d32ec54d074,
         type: 2}
       propertyPath: value
-      value: '~`$0.01`You can "Transfer" properties to and from you. (Default: Enter)
-        `1`  Steal "IRON" from a Barrel for FIRE immunity `90`.'
+      value: ~`$0.01`Press `&Ability1` to Transfer properties to and from you.  `1`  Steal
+        "IRON" from a Barrel for FIRE immunity `90`.
       objectReference: {fileID: 0}
     - target: {fileID: 1323947830420396, guid: e19dbd7becd744240b186d32ec54d074, type: 2}
       propertyPath: m_Name
@@ -2338,22 +2338,27 @@ Prefab:
     - target: {fileID: 224858247495619676, guid: 86856ebb1cc73c04a86115975021a18e,
         type: 2}
       propertyPath: m_AnchoredPosition.y
-      value: 0.0000038146973
+      value: -0.00004196167
       objectReference: {fileID: 0}
     - target: {fileID: 224777399314521252, guid: 86856ebb1cc73c04a86115975021a18e,
         type: 2}
       propertyPath: m_AnchoredPosition.y
-      value: -0.0000038146973
+      value: -0.000049591064
       objectReference: {fileID: 0}
     - target: {fileID: 224209084733379808, guid: 86856ebb1cc73c04a86115975021a18e,
         type: 2}
       propertyPath: m_AnchoredPosition.y
-      value: -0.000019073486
+      value: -0.00006484985
       objectReference: {fileID: 0}
     - target: {fileID: 224919683728530804, guid: 86856ebb1cc73c04a86115975021a18e,
         type: 2}
       propertyPath: m_AnchorMin.y
-      value: 0.00000011920929
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 224739168298920636, guid: 86856ebb1cc73c04a86115975021a18e,
+        type: 2}
+      propertyPath: m_AnchorMin.y
+      value: 0
       objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_ParentPrefab: {fileID: 100100000, guid: 86856ebb1cc73c04a86115975021a18e, type: 2}
@@ -2469,7 +2474,7 @@ Prefab:
     - target: {fileID: 114662688524436068, guid: e19dbd7becd744240b186d32ec54d074,
         type: 2}
       propertyPath: value
-      value: '~`$0.01`Attack the Barrels to clear the path (Default: "J")'
+      value: ~`$0.01`Press `&Ability1` to attack the Crates to clear the path.
       objectReference: {fileID: 0}
     - target: {fileID: 1323947830420396, guid: e19dbd7becd744240b186d32ec54d074, type: 2}
       propertyPath: m_Name
