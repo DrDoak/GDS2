@@ -5,7 +5,7 @@ using UnityEngine;
 public class PR_Poison : Property {
 
 	Vector2 off = new Vector2(0f, 0f);
-	float dmg = 2.0f;
+	float dmg = 1.0f;
 	float stun = 0.0f;
 	float hd = -0.5f;
 	Vector2 kb = new Vector2(0.0f, 0.0f);
@@ -13,6 +13,9 @@ public class PR_Poison : Property {
 	HitboxMulti bioSurround;
 	private float time_tracker = 0f;
 	private float bio_period = 2f;
+
+	float eliminatedHealth = 0f;
+	float squashedHealth = 0f;
 
 	public override void OnAddProperty()
 	{
@@ -24,10 +27,15 @@ public class PR_Poison : Property {
 		//fx = GetComponent<PropertyHolder> ().AddBodyEffect (FXBody.Instance.FXFlame);
 		bioOnly = new List<ElementType> ();
 		bioOnly.Add (ElementType.BIOLOGICAL);
+		eliminatedHealth = GetComponent<Attackable> ().MaxHealth / 2f;
+		squashedHealth = Mathf.Max (0f, GetComponent<Attackable> ().Health - eliminatedHealth);
+		GetComponent<Attackable> ().MaxHealth -= eliminatedHealth;
 	}
 	public override void OnRemoveProperty() {
 		if (bioSurround != null) 
 			Destroy (bioSurround);
+		GetComponent<Attackable> ().MaxHealth += eliminatedHealth;
+		GetComponent<Attackable> ().DamageObj (-squashedHealth);
 	}
 
 	public override void OnUpdate()

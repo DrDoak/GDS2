@@ -126,7 +126,7 @@ BoxCollider2D:
   m_SpriteTilingProperty:
     border: {x: 0, y: 0, z: 0, w: 0}
     pivot: {x: 0.5, y: 0.5}
-    oldSize: {x: 2, y: 2}
+    oldSize: {x: 1.28, y: 1.28}
     newSize: {x: 1, y: 1}
     adaptiveTilingThreshold: 0.5
     drawMode: 0
@@ -152,7 +152,6 @@ Animator:
   m_WarningMessage: 
   m_HasTransformHierarchy: 1
   m_AllowConstantClipSamplingOptimization: 1
-  m_KeepAnimatorControllerStateOnDisable: 0
 --- !u!114 &114004460467083604
 MonoBehaviour:
   m_ObjectHideFlags: 1
@@ -232,7 +231,7 @@ MonoBehaviour:
     IsHitboxCreater: 1
     HitboxScale: {x: 1.5, y: 1}
     HitboxOffset: {x: 0.5, y: 0}
-    Damage: 10
+    Damage: 24
     Stun: 0.5
     HitboxDuration: 0.2
     Knockback: {x: 15, y: 10}
@@ -508,7 +507,6 @@ SpriteRenderer:
   m_MotionVectors: 1
   m_LightProbeUsage: 0
   m_ReflectionProbeUsage: 0
-  m_RenderingLayerMask: 4294967295
   m_Materials:
   - {fileID: 10754, guid: 0000000000000000f000000000000000, type: 0}
   m_StaticBatchInfo:
