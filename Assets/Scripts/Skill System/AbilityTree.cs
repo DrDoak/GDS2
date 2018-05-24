@@ -177,6 +177,21 @@ public class AbilityTree{
         if (node != null)
             node.tree.UltimateChosen = true;
     }
+
+    public AbilityTreeNode GetRoot()
+    {
+        return root;
+    }
+
+    public List<AbilityTreeNode> GetChildren()
+    {
+        List<AbilityTreeNode> children = new List<AbilityTreeNode>();
+        if (LeftBranch != null) children.Add(LeftBranch.GetRoot());
+        if (MiddleBranch != null) children.Add(MiddleBranch.GetRoot());
+        if (RightBranch != null) children.Add(RightBranch.GetRoot());
+
+        return children;
+    }
 	
 }
 
@@ -204,7 +219,7 @@ public class AbilityTreeNode
             Tiered = ability.Tiered;
             Maxed = ability.Maxed;
         }
-        Select();
+        //Select();
     }
 
     public AbilityTreeNode(Ability a)

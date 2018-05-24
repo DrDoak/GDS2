@@ -15,8 +15,12 @@ public class AbilityManager : MonoBehaviour {
 	// Use this for initialization
 	void Awake () {
         Ability.Manager = this;
-        abilityTree = new AbilityTree();
-        PopulateTree();
+        if (abilityTree == null)
+        {
+            abilityTree = new AbilityTree();
+            PopulateTree();
+            AbilityTreeUI.tree = abilityTree;
+        }
 	}
 	
     public GameObject GetObject(int i)
@@ -46,6 +50,9 @@ public class AbilityManager : MonoBehaviour {
 
 
         //Environmental Abilities
+
+
+        //Sanity Check
         abilityTree.PrintTree();
 
     }

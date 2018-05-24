@@ -28,14 +28,17 @@ TextureImporter:
     21300046: blue_assets_23
     21300048: blue_assets_24
     21300050: blue_assets_25
-  serializedVersion: 2
+  externalObjects: {}
+  serializedVersion: 5
   mipmaps:
     mipMapMode: 0
     enableMipMap: 0
+    sRGBTexture: 1
     linearTexture: 0
-    correctGamma: 0
     fadeOut: 0
     borderMipMap: 0
+    mipMapsPreserveCoverage: 0
+    alphaTestReferenceValue: 0.5
     mipMapFadeDistanceStart: 1
     mipMapFadeDistanceEnd: 3
   bumpmap:
@@ -45,36 +48,56 @@ TextureImporter:
     normalMapFilter: 0
   isReadable: 0
   grayScaleToAlpha: 0
-  generateCubemap: 0
+  generateCubemap: 6
   cubemapConvolution: 0
-  cubemapConvolutionSteps: 7
-  cubemapConvolutionExponent: 1.5
   seamlessCubemap: 0
   textureFormat: -1
   maxTextureSize: 1024
   textureSettings:
-    filterMode: -1
+    serializedVersion: 2
+    filterMode: 0
     aniso: 16
     mipBias: -1
-    wrapMode: 1
+    wrapU: 1
+    wrapV: 1
+    wrapW: 1
   nPOTScale: 0
   lightmap: 0
-  rGBM: 0
   compressionQuality: 50
-  allowsAlphaSplitting: 0
   spriteMode: 2
   spriteExtrude: 1
   spriteMeshType: 1
   alignment: 0
   spritePivot: {x: 0.5, y: 0.5}
+  spritePixelsToUnits: 32
   spriteBorder: {x: 0, y: 0, z: 0, w: 0}
-  spritePixelsToUnits: 100
+  spriteGenerateFallbackPhysicsShape: 1
+  alphaUsage: 1
   alphaIsTransparency: 1
+  spriteTessellationDetail: -1
   textureType: 8
-  buildTargetSettings: []
+  textureShape: 1
+  singleChannelComponent: 0
+  maxTextureSizeSet: 0
+  compressionQualitySet: 0
+  textureFormatSet: 0
+  platformSettings:
+  - serializedVersion: 2
+    buildTarget: DefaultTexturePlatform
+    maxTextureSize: 1024
+    resizeAlgorithm: 0
+    textureFormat: -1
+    textureCompression: 1
+    compressionQuality: 50
+    crunchedCompression: 0
+    allowsAlphaSplitting: 0
+    overridden: 0
+    androidETC2FallbackOverride: 0
   spriteSheet:
+    serializedVersion: 2
     sprites:
-    - name: blue_assets_0
+    - serializedVersion: 2
+      name: blue_assets_0
       rect:
         serializedVersion: 2
         x: 5
@@ -84,12 +107,17 @@ TextureImporter:
       alignment: 0
       pivot: {x: 0.5, y: 0.5}
       border: {x: 0, y: 0, z: 0, w: 0}
-      outline:
-      - - {x: -19, y: 18}
-        - {x: -19, y: -18}
-        - {x: 19, y: -18}
-        - {x: 19, y: 18}
-    - name: blue_assets_1
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: ec8258253784ff84ba8f81a14449401e
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: blue_assets_1
       rect:
         serializedVersion: 2
         x: 48
@@ -99,12 +127,17 @@ TextureImporter:
       alignment: 0
       pivot: {x: 0.5, y: 0.5}
       border: {x: 0, y: 0, z: 0, w: 0}
-      outline:
-      - - {x: -19, y: 18}
-        - {x: -19, y: -18}
-        - {x: 19, y: -18}
-        - {x: 19, y: 18}
-    - name: blue_assets_2
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: cf09285b5174aa841b3ccb29b1969d1f
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: blue_assets_2
       rect:
         serializedVersion: 2
         x: 91
@@ -114,16 +147,17 @@ TextureImporter:
       alignment: 0
       pivot: {x: 0.5, y: 0.5}
       border: {x: 0, y: 0, z: 0, w: 0}
-      outline:
-      - - {x: -14, y: 18}
-        - {x: -18, y: 17}
-        - {x: -18, y: -17}
-        - {x: -15, y: -18}
-        - {x: 17, y: -18}
-        - {x: 18, y: -17}
-        - {x: 18, y: 17}
-        - {x: 16, y: 18}
-    - name: blue_assets_3
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: abac8b70136489840ba74a90a2b81d6a
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: blue_assets_3
       rect:
         serializedVersion: 2
         x: 132
@@ -133,12 +167,17 @@ TextureImporter:
       alignment: 0
       pivot: {x: 0.5, y: 0.5}
       border: {x: 0, y: 0, z: 0, w: 0}
-      outline:
-      - - {x: -95, y: 24.5}
-        - {x: -95, y: -24.5}
-        - {x: 95, y: -24.5}
-        - {x: 95, y: 24.5}
-    - name: blue_assets_4
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: b722859ee8dee2a43a7cc482fa4316e9
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: blue_assets_4
       rect:
         serializedVersion: 2
         x: 5
@@ -148,12 +187,17 @@ TextureImporter:
       alignment: 0
       pivot: {x: 0.5, y: 0.5}
       border: {x: 0, y: 0, z: 0, w: 0}
-      outline:
-      - - {x: -95, y: 22.5}
-        - {x: -95, y: -22.5}
-        - {x: 95, y: -22.5}
-        - {x: 95, y: 22.5}
-    - name: blue_assets_5
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: a9b355ab0facdbf43bec2ca82468438d
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: blue_assets_5
       rect:
         serializedVersion: 2
         x: 200
@@ -163,12 +207,17 @@ TextureImporter:
       alignment: 0
       pivot: {x: 0.5, y: 0.5}
       border: {x: 0, y: 0, z: 0, w: 0}
-      outline:
-      - - {x: -95, y: 24.5}
-        - {x: -95, y: -24.5}
-        - {x: 95, y: -24.5}
-        - {x: 95, y: 24.5}
-    - name: blue_assets_6
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: 3396b53b59d3ba44c973a5687915038a
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: blue_assets_6
       rect:
         serializedVersion: 2
         x: 5
@@ -178,12 +227,17 @@ TextureImporter:
       alignment: 0
       pivot: {x: 0.5, y: 0.5}
       border: {x: 0, y: 0, z: 0, w: 0}
-      outline:
-      - - {x: -95, y: 22.5}
-        - {x: -95, y: -22.5}
-        - {x: 95, y: -22.5}
-        - {x: 95, y: 22.5}
-    - name: blue_assets_7
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: f6ffbf8791adc6c4dbbf58bc09bac94a
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: blue_assets_7
       rect:
         serializedVersion: 2
         x: 200
@@ -193,12 +247,17 @@ TextureImporter:
       alignment: 0
       pivot: {x: 0.5, y: 0.5}
       border: {x: 0, y: 0, z: 0, w: 0}
-      outline:
-      - - {x: -95, y: 24.5}
-        - {x: -95, y: -24.5}
-        - {x: 95, y: -24.5}
-        - {x: 95, y: 24.5}
-    - name: blue_assets_8
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: c41252b0f52252f4b9ee38f06f0a2a3d
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: blue_assets_8
       rect:
         serializedVersion: 2
         x: 5
@@ -208,12 +267,17 @@ TextureImporter:
       alignment: 0
       pivot: {x: 0.5, y: 0.5}
       border: {x: 0, y: 0, z: 0, w: 0}
-      outline:
-      - - {x: -95, y: 22.5}
-        - {x: -95, y: -22.5}
-        - {x: 95, y: -22.5}
-        - {x: 95, y: 22.5}
-    - name: blue_assets_9
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: a2d3a1d8f2989c14e9d2b3fe7a8e5605
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: blue_assets_9
       rect:
         serializedVersion: 2
         x: 200
@@ -223,12 +287,17 @@ TextureImporter:
       alignment: 0
       pivot: {x: 0.5, y: 0.5}
       border: {x: 0, y: 0, z: 0, w: 0}
-      outline:
-      - - {x: -24.5, y: 24.5}
-        - {x: -24.5, y: -24.5}
-        - {x: 24.5, y: -24.5}
-        - {x: 24.5, y: 24.5}
-    - name: blue_assets_10
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: 19fef024d57a889479546891d74f1de7
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: blue_assets_10
       rect:
         serializedVersion: 2
         x: 254
@@ -238,12 +307,17 @@ TextureImporter:
       alignment: 0
       pivot: {x: 0.5, y: 0.5}
       border: {x: 0, y: 0, z: 0, w: 0}
-      outline:
-      - - {x: -24.5, y: 24.5}
-        - {x: -24.5, y: -24.5}
-        - {x: 24.5, y: -24.5}
-        - {x: 24.5, y: 24.5}
-    - name: blue_assets_11
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: 92938d04a219ecb42ace2aba225e9094
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: blue_assets_11
       rect:
         serializedVersion: 2
         x: 308
@@ -253,12 +327,17 @@ TextureImporter:
       alignment: 0
       pivot: {x: 0.5, y: 0.5}
       border: {x: 0, y: 0, z: 0, w: 0}
-      outline:
-      - - {x: -24.5, y: 22.5}
-        - {x: -24.5, y: -22.5}
-        - {x: 24.5, y: -22.5}
-        - {x: 24.5, y: 22.5}
-    - name: blue_button_up_01
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: 216e067bb0c84f24d9e6cc94ced66f30
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: blue_button_up_01
       rect:
         serializedVersion: 2
         x: 362
@@ -268,12 +347,17 @@ TextureImporter:
       alignment: 0
       pivot: {x: 0.5, y: 0.5}
       border: {x: 10, y: 12, z: 10, w: 10}
-      outline:
-      - - {x: -24.5, y: 24.5}
-        - {x: -24.5, y: -24.5}
-        - {x: 24.5, y: -24.5}
-        - {x: 24.5, y: 24.5}
-    - name: blue_button_down_01
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: f7223fa3e7fddf548b118de3982f4a5c
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: blue_button_down_01
       rect:
         serializedVersion: 2
         x: 416
@@ -283,12 +367,17 @@ TextureImporter:
       alignment: 0
       pivot: {x: 0.5, y: 0.5}
       border: {x: 10, y: 10, z: 10, w: 10}
-      outline:
-      - - {x: -24.5, y: 22.5}
-        - {x: -24.5, y: -22.5}
-        - {x: 24.5, y: -22.5}
-        - {x: 24.5, y: 22.5}
-    - name: blue_assets_14
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: ebbebcdc9981d82428743bbff2df53a4
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: blue_assets_14
       rect:
         serializedVersion: 2
         x: 5
@@ -298,12 +387,17 @@ TextureImporter:
       alignment: 0
       pivot: {x: 0.5, y: 0.5}
       border: {x: 0, y: 0, z: 0, w: 0}
-      outline:
-      - - {x: -24.5, y: 24.5}
-        - {x: -24.5, y: -24.5}
-        - {x: 24.5, y: -24.5}
-        - {x: 24.5, y: 24.5}
-    - name: blue_assets_15
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: 9bc5a13dc3e68ff48981867d3adf7fad
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: blue_assets_15
       rect:
         serializedVersion: 2
         x: 59
@@ -313,12 +407,17 @@ TextureImporter:
       alignment: 0
       pivot: {x: 0.5, y: 0.5}
       border: {x: 0, y: 0, z: 0, w: 0}
-      outline:
-      - - {x: -24.5, y: 22.5}
-        - {x: -24.5, y: -22.5}
-        - {x: 24.5, y: -22.5}
-        - {x: 24.5, y: 22.5}
-    - name: blue_assets_16
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: 92079d91173846a4d8bf82dcea22170e
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: blue_assets_16
       rect:
         serializedVersion: 2
         x: 113
@@ -328,12 +427,17 @@ TextureImporter:
       alignment: 0
       pivot: {x: 0.5, y: 0.5}
       border: {x: 0, y: 0, z: 0, w: 0}
-      outline:
-      - - {x: -95, y: 24.5}
-        - {x: -95, y: -24.5}
-        - {x: 95, y: -24.5}
-        - {x: 95, y: 24.5}
-    - name: blue_assets_17
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: 9194f460c317f25448affab7e894a5d4
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: blue_assets_17
       rect:
         serializedVersion: 2
         x: 308
@@ -344,7 +448,16 @@ TextureImporter:
       pivot: {x: 0.5, y: 0.5}
       border: {x: 0, y: 0, z: 0, w: 0}
       outline: []
-    - name: blue_assets_18
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: 02ac910b154b9144dba95e605aee0eb3
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: blue_assets_18
       rect:
         serializedVersion: 2
         x: 334
@@ -354,16 +467,17 @@ TextureImporter:
       alignment: 0
       pivot: {x: 0.5, y: 0.5}
       border: {x: 0, y: 0, z: 0, w: 0}
-      outline:
-      - - {x: -14, y: 18}
-        - {x: -18, y: 17}
-        - {x: -18, y: -17}
-        - {x: -15, y: -18}
-        - {x: 17, y: -18}
-        - {x: 18, y: -17}
-        - {x: 18, y: 17}
-        - {x: 16, y: 18}
-    - name: blue_assets_19
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: e12b4312a30b8d74f9f1fd2ace3708aa
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: blue_assets_19
       rect:
         serializedVersion: 2
         x: 375
@@ -374,7 +488,16 @@ TextureImporter:
       pivot: {x: 0.5, y: 0.5}
       border: {x: 0, y: 0, z: 0, w: 0}
       outline: []
-    - name: blue_panel
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: 03b2255654feaca478f2382b4852c093
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: blue_panel
       rect:
         serializedVersion: 2
         x: 398
@@ -384,12 +507,17 @@ TextureImporter:
       alignment: 0
       pivot: {x: 0.5, y: 0.5}
       border: {x: 12, y: 12, z: 12, w: 12}
-      outline:
-      - - {x: -50, y: 50}
-        - {x: -50, y: -50}
-        - {x: 50, y: -50}
-        - {x: 50, y: 50}
-    - name: blue_assets_21
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: 5cce7b0cf6dd2f946bd8d1af1b07a437
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: blue_assets_21
       rect:
         serializedVersion: 2
         x: 5
@@ -400,7 +528,16 @@ TextureImporter:
       pivot: {x: 0.5, y: 0.5}
       border: {x: 0, y: 0, z: 0, w: 0}
       outline: []
-    - name: blue_assets_22
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: c8d4bca024561904daf53c89f3db28a5
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: blue_assets_22
       rect:
         serializedVersion: 2
         x: 38
@@ -411,7 +548,16 @@ TextureImporter:
       pivot: {x: 0.5, y: 0.5}
       border: {x: 0, y: 0, z: 0, w: 0}
       outline: []
-    - name: blue_assets_23
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: 73c16a7c0ed46cc43a65e3ba84dab285
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: blue_assets_23
       rect:
         serializedVersion: 2
         x: 82
@@ -422,7 +568,16 @@ TextureImporter:
       pivot: {x: 0.5, y: 0.5}
       border: {x: 0, y: 0, z: 0, w: 0}
       outline: []
-    - name: blue_assets_24
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: a504db77962f6884a81a5c6b6d947fdd
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: blue_assets_24
       rect:
         serializedVersion: 2
         x: 126
@@ -433,7 +588,16 @@ TextureImporter:
       pivot: {x: 0.5, y: 0.5}
       border: {x: 0, y: 0, z: 0, w: 0}
       outline: []
-    - name: blue_assets_25
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: 42a790c693842204a8f8a5064248c03a
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: blue_assets_25
       rect:
         serializedVersion: 2
         x: 159
@@ -444,7 +608,22 @@ TextureImporter:
       pivot: {x: 0.5, y: 0.5}
       border: {x: 0, y: 0, z: 0, w: 0}
       outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: d69228fbd9a548f46871bb0b177571ed
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
     outline: []
+    physicsShape: []
+    bones: []
+    spriteID: 
+    vertices: []
+    indices: 
+    edges: []
+    weights: []
   spritePackingTag: 
   userData: 
   assetBundleName: 

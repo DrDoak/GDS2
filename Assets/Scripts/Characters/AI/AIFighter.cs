@@ -28,7 +28,6 @@ public class AIFighter : MonoBehaviour {
 			fr.Init (Fighter, this);
 		}
 		allAttacks = new List<AttackInfo>();
-		//Debug.Log ("initializing routine");
 
 		foreach (AttackInfo ai in GetComponents<AttackInfo> ()) {
 			if (ai.name != "sheath" && ai.name != "unsheath") {
