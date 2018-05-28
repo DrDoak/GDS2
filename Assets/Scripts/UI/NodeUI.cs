@@ -16,8 +16,15 @@ public class NodeUI : MonoBehaviour
     void Start()
     {
         if (treeNode == null) return;
-        GrayOut();
-        button = gameObject.GetComponent<Button>();
+        if(!button) button = gameObject.GetComponentInChildren<Button>();
+        FillData();
+        //GrayOut();
+    }
+
+    void Update()
+    {
+
+        button.gameObject.GetComponentInChildren<Text>().text = treeNode.ability.AbilityName;
     }
 
     void GrayOut()
@@ -30,8 +37,15 @@ public class NodeUI : MonoBehaviour
 
     void FillData()
     {
-        button.image = image;
-        //Display the description of the ability
+        //button.image = image;
+        button.gameObject.GetComponentInChildren<Text>().text = treeNode.ability.AbilityName;
+        //Fill the description of the ability
+        //Add icons if applicable
+    }
+
+    public void Hover()
+    {
+        //Create Halo effect to illustrate selection
     }
     
     /// <summary>

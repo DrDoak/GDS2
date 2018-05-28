@@ -4,14 +4,17 @@ using UnityEngine;
 
 public class AbilityTreeUI : MonoBehaviour {
 
+    public static GameObject Canvas;
     public static AbilityTree tree;
-    public static GameObject NodePrefab;
+    public GameObject NodePrefab;
 
     public GameObject CurrentSelection;
     public bool created = false;
 
 	// Use this for initialization
 	void Start () {
+        if (Canvas == null)
+            Canvas = GameObject.Find("Canvas");
         if (tree == null)
             return;
         CreateTreeNodes();
@@ -42,19 +45,29 @@ public class AbilityTreeUI : MonoBehaviour {
         {
             //Create UI Things
             g = Instantiate(NodePrefab);
+            g.transform.parent = Canvas.transform;
             g.GetComponent<NodeUI>().treeNode = node;
 
             //Attach new UI Thing to this script
 
             foreach (AbilityTreeNode n in node.tree.GetChildren())
                 queue.Enqueue(n);
-            node = queue.Dequeue();
+            if (queue.Count > 0)
+                node = queue.Dequeue();
+            else
+                node = null;
         }
 
         //Attach visually to the parent
 
         created = true;
 
+    }
+
+    void CalculateTransformPosition(GameObject g)
+    {
+        NodeUI nodeUI = g.GetComponent<NodeUI>();
+        AbilityTreeNode abilityTreeNode = nodeUI.treeNode;
     }
     
 }

@@ -15,6 +15,8 @@ public class Ab_Transfer : Ability {
     public static bool InfectUpgrade;
     public static float _maxDistance = 2f;
     public static int _maxTransfers = 1;
+
+    
     
 	public override void Awake()
     {
@@ -25,6 +27,9 @@ public class Ab_Transfer : Ability {
 		AbilityClassification = AbilityType.SPECIAL;
         if(Player)
             Player.GetComponent<PropertyHolder>().NumTransfers = _maxTransfers;
+
+        AbilityName = "Transfer";
+        AbilityDescription = "Take the properties of objects and enemies in the environment.";
     }
 
     public override void UseAbility()

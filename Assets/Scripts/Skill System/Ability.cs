@@ -13,6 +13,8 @@ public abstract class Ability : ScriptableObject {
     public string AbilityName;
     public AbilityType AbilityClassification;
     public string AnimStateName;
+    public string AbilityDescription;
+
     public bool Ultimate = false;
     public bool Passive = false;
     public bool Tiered = false;
@@ -35,6 +37,7 @@ public abstract class Ability : ScriptableObject {
     {
         ClearLists();
         FindPlayer();
+        AbilityName = AbilityDescription = " ";
     }
 
     public void FindPlayer()
@@ -60,7 +63,7 @@ public abstract class Ability : ScriptableObject {
 
     public virtual void Select()
     {
-        Debug.Log("You selected: ability");
+        Debug.Log("You selected: " + AbilityName);
     }
     
     protected void ApplyProperty(Property p)
@@ -91,6 +94,12 @@ public abstract class Ability : ScriptableObject {
         _mPropertiesToKeep = forPlayerProps;
         _mPropertyToTransfer = forTargetProps;
         _mSelected = forPlayerAbs;
+    }
+
+    public void SetDescriptionInfo(int index)
+    {
+        AbilityDescription = Manager.description.AbilityDescriptions[index];
+        AbilityName = Manager.description.AbilityNames[index];
     }
 
 }
