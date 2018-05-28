@@ -45,7 +45,7 @@ public class AbilityTreeUI : MonoBehaviour {
         {
             //Create UI Things
             g = Instantiate(NodePrefab);
-            g.transform.parent = Canvas.transform;
+            g.transform.SetParent(Canvas.transform);
             g.GetComponent<NodeUI>().treeNode = node;
 
             //Attach new UI Thing to this script
