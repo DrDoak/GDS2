@@ -56,6 +56,8 @@ GameObject:
   - component: {fileID: 114864750090073376}
   - component: {fileID: 114652870938684730}
   - component: {fileID: 114804922220218324}
+  - component: {fileID: 114006178482012032}
+  - component: {fileID: 114981358024905392}
   m_Layer: 8
   m_Name: Altered
   m_TagString: Player
@@ -152,6 +154,50 @@ Animator:
   m_WarningMessage: 
   m_HasTransformHierarchy: 1
   m_AllowConstantClipSamplingOptimization: 1
+--- !u!114 &114006178482012032
+MonoBehaviour:
+  m_ObjectHideFlags: 1
+  m_PrefabParentObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 100100000}
+  m_GameObject: {fileID: 1161331917680390}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: abb3562db1f413448958ab2ab02ef953, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  AttackName: lunge
+  m_HitboxInfo:
+    IsHitboxCreater: 1
+    HitboxScale: {x: 3, y: 1}
+    HitboxOffset: {x: 0, y: 0}
+    Damage: 10
+    Stun: 0.3
+    HitboxDuration: 0.4
+    Knockback: {x: 15, y: 0}
+    Element: 0
+    ApplyProps: 1
+  m_AttackAnimInfo:
+    AnimSpeed: 1
+    StartUpTime: 1
+    AttackTime: 0
+    RecoveryTime: 1
+    StartUpAnimation: lunge_s
+    RecoveryAnimation: lunge_r
+  m_AIInfo:
+    Frequency: 0.5
+    UniqueAIPrediction: 1
+    AIPredictionHitbox: {x: 2, y: 1}
+    AIPredictionOffset: {x: 1.5, y: 0}
+  m_SoundInfo:
+    StartupSoundFX: {fileID: 0}
+    AttackSoundFX: {fileID: 0}
+  m_dashInfo:
+    StartUpDash: {x: 0, y: 0}
+    StartUpDuration: 0
+    AttackDash: {x: 15, y: 0}
+    AttackDashDuration: 0.2
+    ConclusionDash: {x: 0, y: 0}
+    ConclusionDuration: 0
 --- !u!114 &114007451394174408
 MonoBehaviour:
   m_ObjectHideFlags: 1
@@ -247,9 +293,10 @@ MonoBehaviour:
     StartUpAnimation: shoot_s
     RecoveryAnimation: shoot_r
   m_AIInfo:
+    Frequency: 0.5
     UniqueAIPrediction: 1
-    AIPredictionHitbox: {x: 6, y: -1}
-    AIPredictionOffset: {x: 3.5, y: 2}
+    AIPredictionHitbox: {x: 3, y: 0.5}
+    AIPredictionOffset: {x: 2, y: 0}
   m_SoundInfo:
     StartupSoundFX: {fileID: 0}
     AttackSoundFX: {fileID: 8300000, guid: 0431e379752466f47bc8618cb914a2fc, type: 3}
@@ -496,6 +543,50 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   Player: {fileID: 0}
   Fighter: {fileID: 0}
+--- !u!114 &114981358024905392
+MonoBehaviour:
+  m_ObjectHideFlags: 1
+  m_PrefabParentObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 100100000}
+  m_GameObject: {fileID: 1161331917680390}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: abb3562db1f413448958ab2ab02ef953, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  AttackName: slash
+  m_HitboxInfo:
+    IsHitboxCreater: 1
+    HitboxScale: {x: 2, y: 1}
+    HitboxOffset: {x: 1, y: 0}
+    Damage: 10
+    Stun: 0.3
+    HitboxDuration: 0.5
+    Knockback: {x: 10, y: 0}
+    Element: 0
+    ApplyProps: 1
+  m_AttackAnimInfo:
+    AnimSpeed: 1
+    StartUpTime: 0.4
+    AttackTime: 0
+    RecoveryTime: 0.5
+    StartUpAnimation: attack_s
+    RecoveryAnimation: attack_r
+  m_AIInfo:
+    Frequency: 0.5
+    UniqueAIPrediction: 1
+    AIPredictionHitbox: {x: 1.5, y: 1}
+    AIPredictionOffset: {x: 0.5, y: 0}
+  m_SoundInfo:
+    StartupSoundFX: {fileID: 0}
+    AttackSoundFX: {fileID: 0}
+  m_dashInfo:
+    StartUpDash: {x: 0, y: 0}
+    StartUpDuration: 0
+    AttackDash: {x: 5, y: 0}
+    AttackDashDuration: 0.1
+    ConclusionDash: {x: 0, y: 0}
+    ConclusionDuration: 0
 --- !u!212 &212562942346403324
 SpriteRenderer:
   m_ObjectHideFlags: 1
