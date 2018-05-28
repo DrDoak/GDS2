@@ -156,6 +156,10 @@ Prefab:
       propertyPath: m_Name
       value: Player (1)
       objectReference: {fileID: 0}
+    - target: {fileID: 1000013670716774, guid: b15804536ba015e47a5885912f930b08, type: 2}
+      propertyPath: m_IsActive
+      value: 0
+      objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_ParentPrefab: {fileID: 100100000, guid: b15804536ba015e47a5885912f930b08, type: 2}
   m_IsPrefabParent: 0
@@ -710,12 +714,12 @@ Prefab:
     - target: {fileID: 224777399314521252, guid: 86856ebb1cc73c04a86115975021a18e,
         type: 2}
       propertyPath: m_AnchoredPosition.y
-      value: 0.000011444092
+      value: 0.000019073486
       objectReference: {fileID: 0}
     - target: {fileID: 224209084733379808, guid: 86856ebb1cc73c04a86115975021a18e,
         type: 2}
       propertyPath: m_AnchoredPosition.y
-      value: 0.000011444092
+      value: 0.000019073486
       objectReference: {fileID: 0}
     - target: {fileID: 224919683728530804, guid: 86856ebb1cc73c04a86115975021a18e,
         type: 2}
@@ -922,6 +926,26 @@ Prefab:
       propertyPath: m_RootOrder
       value: 2
       objectReference: {fileID: 0}
+    - target: {fileID: 114434604033497732, guid: 3df2f0545a91e1244ac614f9d305a065,
+        type: 2}
+      propertyPath: IsCurrentPlayer
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 114271669005072476, guid: 3df2f0545a91e1244ac614f9d305a065,
+        type: 2}
+      propertyPath: m_AIInfo.AIPredictionOffset.x
+      value: 5
+      objectReference: {fileID: 0}
+    - target: {fileID: 114271669005072476, guid: 3df2f0545a91e1244ac614f9d305a065,
+        type: 2}
+      propertyPath: m_AIInfo.AIPredictionHitbox.x
+      value: 3
+      objectReference: {fileID: 0}
+    - target: {fileID: 114271669005072476, guid: 3df2f0545a91e1244ac614f9d305a065,
+        type: 2}
+      propertyPath: m_AIInfo.AIPredictionHitbox.y
+      value: 0.5
+      objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_ParentPrefab: {fileID: 100100000, guid: 3df2f0545a91e1244ac614f9d305a065, type: 2}
   m_IsPrefabParent: 0
@@ -1009,6 +1033,97 @@ Prefab:
     m_RemovedComponents: []
   m_ParentPrefab: {fileID: 100100000, guid: e257e003c31bc9c45992adf9b725ae31, type: 2}
   m_IsPrefabParent: 0
+--- !u!1 &1423281633 stripped
+GameObject:
+  m_PrefabParentObject: {fileID: 1161331917680390, guid: 3df2f0545a91e1244ac614f9d305a065,
+    type: 2}
+  m_PrefabInternal: {fileID: 939218593}
+--- !u!114 &1423281653
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_PrefabParentObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 0}
+  m_GameObject: {fileID: 1423281633}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: abb3562db1f413448958ab2ab02ef953, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  AttackName: lunge
+  m_HitboxInfo:
+    IsHitboxCreater: 1
+    HitboxScale: {x: 3, y: 1}
+    HitboxOffset: {x: 0, y: 0}
+    Damage: 10
+    Stun: 0.3
+    HitboxDuration: 0.4
+    Knockback: {x: 15, y: 0}
+    Element: 0
+    ApplyProps: 1
+  m_AttackAnimInfo:
+    AnimSpeed: 1
+    StartUpTime: 1
+    AttackTime: 0
+    RecoveryTime: 1
+    StartUpAnimation: lunge_s
+    RecoveryAnimation: lunge_r
+  m_AIInfo:
+    UniqueAIPrediction: 1
+    AIPredictionHitbox: {x: 4, y: 1}
+    AIPredictionOffset: {x: 3, y: 0}
+  m_SoundInfo:
+    StartupSoundFX: {fileID: 0}
+    AttackSoundFX: {fileID: 0}
+  m_dashInfo:
+    StartUpDash: {x: 0, y: 0}
+    StartUpDuration: 0
+    AttackDash: {x: 15, y: 0}
+    AttackDashDuration: 0.2
+    ConclusionDash: {x: 0, y: 0}
+    ConclusionDuration: 0
+--- !u!114 &1423281654
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_PrefabParentObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 0}
+  m_GameObject: {fileID: 1423281633}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: abb3562db1f413448958ab2ab02ef953, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  AttackName: slash
+  m_HitboxInfo:
+    IsHitboxCreater: 1
+    HitboxScale: {x: 2, y: 1}
+    HitboxOffset: {x: 1, y: 0}
+    Damage: 10
+    Stun: 0.3
+    HitboxDuration: 0.5
+    Knockback: {x: 10, y: 0}
+    Element: 0
+    ApplyProps: 1
+  m_AttackAnimInfo:
+    AnimSpeed: 1
+    StartUpTime: 0.4
+    AttackTime: 0
+    RecoveryTime: 0.5
+    StartUpAnimation: attack_s
+    RecoveryAnimation: attack_r
+  m_AIInfo:
+    UniqueAIPrediction: 1
+    AIPredictionHitbox: {x: 3, y: 2}
+    AIPredictionOffset: {x: 1.5, y: 0}
+  m_SoundInfo:
+    StartupSoundFX: {fileID: 0}
+    AttackSoundFX: {fileID: 0}
+  m_dashInfo:
+    StartUpDash: {x: 0, y: 0}
+    StartUpDuration: 0
+    AttackDash: {x: 5, y: 0}
+    AttackDashDuration: 0.1
+    ConclusionDash: {x: 0, y: 0}
+    ConclusionDuration: 0
 --- !u!1001 &1594611549
 Prefab:
   m_ObjectHideFlags: 0

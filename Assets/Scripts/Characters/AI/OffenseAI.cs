@@ -56,14 +56,18 @@ public class OffenseAI : MonoBehaviour {
 
 	public void decideNextAction() {
 		Vector3 otherPos = CurrentTarget.transform.position;
-		float xDiff = Mathf.Abs(transform.position.x - otherPos.x);
-		float yDiff = Mathf.Abs(transform.position.y - otherPos.y);
+		float dir = (GetComponent<PhysicsSS> ().FacingLeft) ? -1f : 1f;
+
+
 		if (Random.value < (aggression * 0.1f)) {
 			foreach (AttackInfo ainfo in allAttacks) {
-				if ((ainfo.m_AIInfo.AIPredictionHitbox.x + ainfo.m_AIInfo.AIPredictionOffset.x) +
-					(ainfo.m_AIInfo.AIPredictionHitbox.x + ainfo.m_AIInfo.AIPredictionOffset.x) * Random.Range (0f, 1f - spacing) > xDiff &&
-					(ainfo.m_AIInfo.AIPredictionHitbox.y + ainfo.m_AIInfo.AIPredictionOffset.y) +
-					(ainfo.m_AIInfo.AIPredictionHitbox.y + ainfo.m_AIInfo.AIPredictionOffset.y) * Random.Range (0f, 1f - spacing) > yDiff && Random.value > 0.5f) {
+				float xDiff = Mathf.Abs(transform.position.x  + (dir * ainfo.m_AIInfo.AIPredictionOffset.x) - otherPos.x);
+				Debug.Log (xDiff);
+				float yDiff = Mathf.Abs(transform.position.y + ainfo.m_AIInfo.AIPredictionOffset.y - otherPos.y);
+				if ((ainfo.m_AIInfo.AIPredictionHitbox.x) +
+					(ainfo.m_AIInfo.AIPredictionHitbox.x) * Random.Range (0f, 1f - spacing) > xDiff &&
+					(ainfo.m_AIInfo.AIPredictionHitbox.y) +
+					(ainfo.m_AIInfo.AIPredictionHitbox.y) * Random.Range (0f, 1f - spacing) > yDiff && Random.value > ainfo.m_AIInfo.Frequency) {
 					m_fighter.TryAttack (ainfo.AttackName);
 					currentAction = "attack";
 					allAttacks.Reverse ();
