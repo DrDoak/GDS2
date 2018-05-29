@@ -2,13 +2,11 @@
 using System.Collections.Generic;
 using UnityEngine;
 
-public class CTPrisonDoorLock : MonoBehaviour {
+public class PLPlatformFan : MonoBehaviour {
 
 	bool HasElec = false;
 
-	// Update is called once per frame
 	void Update () {
-		//Debug.Log (HasElec + " : " + GetComponent<PropertyHolder> ().HasProperty ("Electrical"));
 		if (!HasElec && GetComponent<PropertyHolder> ().HasProperty ("Electrical")) {
 			UpdateStatus ();
 		} else if (HasElec && !GetComponent<PropertyHolder> ().HasProperty ("Electrical")) {
@@ -22,14 +20,14 @@ public class CTPrisonDoorLock : MonoBehaviour {
 		PropertyHolder[] pList = FindObjectsOfType<PropertyHolder> ();
 		if (hasPower) {
 			foreach (PropertyHolder h in pList) {
-				if (h.HasProperty ("Electric_Door") && !h.HasProperty("Electrical")) {
+				if (h.HasProperty ("Fan") && !h.HasProperty("Electrical")) {
 					h.AddProperty ("PR_Electrical");
 					Debug.Log ("Adding a property" + h.HasProperty("Electrical") );
 				}
 			}
 		} else {
 			foreach (PropertyHolder h in pList) {
-				if (h.HasProperty ("Electric_Door")) {
+				if (h.HasProperty ("Fan")) {
 					Debug.Log ("Requesting remove property");
 					h.RequestRemoveProperty ("Electrical");
 				}

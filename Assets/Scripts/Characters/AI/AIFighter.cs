@@ -66,8 +66,9 @@ public class AIFighter : MonoBehaviour {
 		float dir = (GetComponent<PhysicsSS> ().FacingLeft) ? -1f : 1f;
 		List<string> atks = new List<string> ();
 		foreach (AttackInfo ainfo in allAttacks) {
-			float xDiff = Mathf.Abs(transform.position.x  + (dir * ainfo.m_AIInfo.AIPredictionOffset.x) - otherPos.x);
-			float yDiff = Mathf.Abs(transform.position.y + ainfo.m_AIInfo.AIPredictionOffset.y - otherPos.y);
+			Vector3 offPos = otherPos + (target.GetComponent<PhysicsSS>().TrueVelocity/Time.deltaTime) * ainfo.m_AttackAnimInfo.StartUpTime * 0.5f;
+			float xDiff = Mathf.Abs(transform.position.x  + (dir * ainfo.m_AIInfo.AIPredictionOffset.x) - offPos.x);
+			float yDiff = Mathf.Abs(transform.position.y + ainfo.m_AIInfo.AIPredictionOffset.y - offPos.y);
 			if ((ainfo.m_AIInfo.AIPredictionHitbox.x) +
 				(ainfo.m_AIInfo.AIPredictionHitbox.x) * Random.Range (0f, 1f - spacing) > xDiff &&
 				(ainfo.m_AIInfo.AIPredictionHitbox.y) +

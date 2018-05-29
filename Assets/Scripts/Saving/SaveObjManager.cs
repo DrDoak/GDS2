@@ -194,7 +194,7 @@ public class SaveObjManager : MonoBehaviour{
 	}
 
 	public string GenerateID (GameObject go) {
-		string xID = (Mathf.CeilToInt(go.transform.position.x/2f)*2).ToString ();
+		string xID = (Mathf.CeilToInt(go.transform.position.x).ToString ());
 		string yID = (Mathf.CeilToInt(go.transform.position.y/3f)*3).ToString ();
 		string id = "";
 		foreach (char c in go.name) {
