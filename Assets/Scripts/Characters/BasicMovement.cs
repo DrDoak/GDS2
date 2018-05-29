@@ -49,6 +49,7 @@ public class BasicMovement : MonoBehaviour
 	public bool CanJump = true;
 	private float m_lastJump = 0.0f;
 	public float m_stuckTime = 0.0f;
+	private float m_jumpThruStuckTime = 0.0f;
 	private float m_verticalStuckTime = 0.0f; 
 
 	private PhysicsSS m_followObj;
@@ -235,7 +236,7 @@ public class BasicMovement : MonoBehaviour
 				}
 			}
 		}
-		if (CanJump) {
+		if (CanJump && m_physics.CanMove) {
 			if (Mathf.Abs (m_inputMove.x) >= 0.9f && (m_physics.FallDir == FallDirection.LEFT || m_physics.FallDir == FallDirection.RIGHT ) &&
 				(point.y - transform.position.y) > PIT_JUMP_VERTICAL_THREASHOLD) {
 				AttemptJump ();
@@ -258,15 +259,18 @@ public class BasicMovement : MonoBehaviour
 		}
 	}
 	private void JumpVerticalObstacles(Vector2 point) {
-		if ( Mathf.Abs (transform.position.x - point.x) < NPC_X_DIFF_MOVEMENT_THREASHOLD && 
-			(point.y - transform.position.y) > -PIT_JUMP_VERTICAL_THREASHOLD && 
-			(point.y - transform.position.y) < JumpHeight * 1.5f) {
-			m_stuckTime += Time.deltaTime;
-			if (m_verticalStuckTime > NPC_STUCK_JUMP_TIME) {
-				m_verticalStuckTime = 0f;
+		if (m_physics.TrueVelocity.x < 0.01f &&
+		    (point.y - transform.position.y) > -PIT_JUMP_VERTICAL_THREASHOLD &&
+		    (point.y - transform.position.y) < JumpHeight * 1.5f) {
+			m_jumpThruStuckTime += Time.deltaTime;
+			if (m_jumpThruStuckTime > NPC_STUCK_JUMP_TIME) {
+				m_jumpThruStuckTime = 0f;
 				AttemptJump ();
 			}
-		} else if ((point.y - transform.position.y) < PIT_JUMP_VERTICAL_THREASHOLD) {
+		} else {
+			m_jumpThruStuckTime = 0f;
+		}
+		if ((point.y - transform.position.y) < PIT_JUMP_VERTICAL_THREASHOLD) {
 			m_verticalStuckTime += Time.deltaTime;
 			if (m_verticalStuckTime > NPC_STUCK_JUMP_TIME) {
 				m_verticalStuckTime = 0f;
