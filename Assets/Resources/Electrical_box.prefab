@@ -101,7 +101,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 6cecf518dba7e8f429d2dc6df9ba9177, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  m_health: 100
+  m_health: 200
   MaxHealth: 200
   Alive: 1
   DeathTime: 0
@@ -167,11 +167,14 @@ MonoBehaviour:
     m_Bits: 256
   DecelerationRatio: 1
   OnGround: 1
+  Floating: 0
   MaxClimbAngle: 80
+  TrueVelocity: {x: 0, y: 0, z: 0}
   m_inputedMove: {x: 0, y: 0}
   TerminalVelocity: 0
   GravityScale: -1
   FacingLeft: 0
+  ReactToWater: 1
   UseBuoyancy: 0
   BuoyancyScale: -1
 --- !u!114 &114897545965794246
@@ -191,6 +194,7 @@ MonoBehaviour:
   NumTransfers: 2
   m_toRemove: []
   SubmergedHitbox: {fileID: 0}
+  EffectColor: {r: 1, g: 1, b: 1, a: 1}
   PropertyProxyTarget: Turret
   PropHolder: {fileID: 0}
   DeactiveSprite: {fileID: 21300002, guid: eee541097dc9bfa489d379ef9201cf50, type: 3}

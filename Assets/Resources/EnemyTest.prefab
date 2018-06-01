@@ -194,9 +194,10 @@ MonoBehaviour:
     StartUpAnimation: attack_s
     RecoveryAnimation: attack_r
   m_AIInfo:
+    Frequency: 0.5
     UniqueAIPrediction: 1
     AIPredictionHitbox: {x: 6, y: 0.5}
-    AIPredictionOffset: {x: 3.5, y: 1}
+    AIPredictionOffset: {x: 3.5, y: 0}
   m_SoundInfo:
     StartupSoundFX: {fileID: 0}
     AttackSoundFX: {fileID: 8300000, guid: 0431e379752466f47bc8618cb914a2fc, type: 3}

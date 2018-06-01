@@ -110,11 +110,14 @@ MonoBehaviour:
     m_Bits: 256
   DecelerationRatio: 1
   OnGround: 1
+  Floating: 0
   MaxClimbAngle: 80
+  TrueVelocity: {x: 0, y: 0, z: 0}
   m_inputedMove: {x: 0, y: 0}
   TerminalVelocity: -5
   GravityScale: -1
   FacingLeft: 0
+  ReactToWater: 1
   UseBuoyancy: 0
   BuoyancyScale: -1
 --- !u!114 &114092560283486858
@@ -176,10 +179,11 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 6cecf518dba7e8f429d2dc6df9ba9177, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  m_health: 100
+  m_health: 200
   MaxHealth: 200
   Alive: 1
   DeathTime: 0
+  m_currDeathTime: 0
   Faction: 0
   Resistences: []
   DisplayHealth: 1
@@ -201,6 +205,7 @@ MonoBehaviour:
   NumTransfers: 2
   m_toRemove: []
   SubmergedHitbox: {fileID: 0}
+  EffectColor: {r: 1, g: 1, b: 1, a: 1}
 --- !u!212 &212838904389226020
 SpriteRenderer:
   m_ObjectHideFlags: 1

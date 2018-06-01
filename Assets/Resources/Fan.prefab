@@ -28,7 +28,6 @@ GameObject:
   - component: {fileID: 114645649323406658}
   - component: {fileID: 114723094382380386}
   - component: {fileID: 114598132704360774}
-  - component: {fileID: 114516191810794198}
   m_Layer: 8
   m_Name: Fan
   m_TagString: Player
@@ -106,44 +105,6 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   Faction: 0
---- !u!114 &114516191810794198
-MonoBehaviour:
-  m_ObjectHideFlags: 1
-  m_PrefabParentObject: {fileID: 0}
-  m_PrefabInternal: {fileID: 100100000}
-  m_GameObject: {fileID: 1582996670517962}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 92acc23af4626be4fa32c868acac10d0, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  saveID: autoID
-  prefabName: none
-  pos: {x: 0, y: 0, z: 0}
-  targetID: none
-  targetDir: 4
-  healthVal: 0
-  data:
-    regID: Not Assigned
-    name: 
-    pos: {x: 0, y: 0, z: 0}
-    health: 100
-    maxHealth: 100
-    prefabPath: Fan
-    targetID: 
-    propertyList: []
-    propertyDescriptions: []
-    propertyValues: []
-    transfers: 0
-    slots: 0
-    targetDir: 0
-    IsCurrentCharacter: 0
-    IsFacingLeft: 0
-    Experience: 0
-    TriggerUsed: 0
-    triggerString: 
-  recreated: 0
-  PrefabPath: 
 --- !u!114 &114572847199414292
 MonoBehaviour:
   m_ObjectHideFlags: 1
@@ -155,7 +116,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 6cecf518dba7e8f429d2dc6df9ba9177, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  m_health: 100
+  m_health: 200
   MaxHealth: 200
   Alive: 1
   DeathTime: 0
@@ -219,6 +180,7 @@ MonoBehaviour:
   OnGround: 1
   Floating: 0
   MaxClimbAngle: 80
+  TrueVelocity: {x: 0, y: 0, z: 0}
   m_inputedMove: {x: 0, y: 0}
   TerminalVelocity: -5
   GravityScale: -1

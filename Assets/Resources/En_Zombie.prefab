@@ -229,7 +229,7 @@ MonoBehaviour:
   AttackName: default
   m_HitboxInfo:
     IsHitboxCreater: 1
-    HitboxScale: {x: 1.5, y: 1}
+    HitboxScale: {x: 1, y: 1}
     HitboxOffset: {x: 0.5, y: 0}
     Damage: 24
     Stun: 0.5
@@ -241,7 +241,7 @@ MonoBehaviour:
     AnimSpeed: 1
     StartUpTime: 0.5
     AttackTime: 0
-    RecoveryTime: 0.5
+    RecoveryTime: 1
     StartUpAnimation: attack_s
     RecoveryAnimation: attack_r
   m_AIInfo:
@@ -256,7 +256,7 @@ MonoBehaviour:
     StartUpDash: {x: 0, y: 0}
     StartUpDuration: 0
     AttackDash: {x: 5, y: 0}
-    AttackDashDuration: 0.2
+    AttackDashDuration: 0.25
     ConclusionDash: {x: 0, y: 0}
     ConclusionDuration: 0
 --- !u!114 &114300664666837890
