@@ -233,7 +233,7 @@ MonoBehaviour:
     HitboxOffset: {x: 0.5, y: 0}
     Damage: 24
     Stun: 0.5
-    HitboxDuration: 0.2
+    HitboxDuration: 0.25
     Knockback: {x: 15, y: 10}
     Element: 0
     ApplyProps: 1
@@ -255,7 +255,7 @@ MonoBehaviour:
   m_dashInfo:
     StartUpDash: {x: 0, y: 0}
     StartUpDuration: 0
-    AttackDash: {x: 5, y: 0}
+    AttackDash: {x: 6, y: 0}
     AttackDashDuration: 0.25
     ConclusionDash: {x: 0, y: 0}
     ConclusionDuration: 0

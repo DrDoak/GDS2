@@ -2038,14 +2038,11 @@ GameObject:
   - component: {fileID: 4928022145445092}
   - component: {fileID: 114755828500083012}
   - component: {fileID: 114316474330563078}
-  - component: {fileID: 114329135445152956}
-  - component: {fileID: 114008892602659624}
   - component: {fileID: 114353998176784946}
   - component: {fileID: 114943849274451914}
   - component: {fileID: 114388255198215346}
   - component: {fileID: 114624203721454350}
   - component: {fileID: 114261705902492600}
-  - component: {fileID: 114104474023580432}
   - component: {fileID: 114903073656809836}
   - component: {fileID: 114478940930311460}
   - component: {fileID: 114219010189781118}
@@ -2060,6 +2057,7 @@ GameObject:
   - component: {fileID: 114239255603305570}
   - component: {fileID: 114946747481757914}
   - component: {fileID: 114745923426299784}
+  - component: {fileID: 114971110222422946}
   m_Layer: 0
   m_Name: PR_List
   m_TagString: Untagged
@@ -3376,24 +3374,6 @@ MonoBehaviour:
   m_FillAmount: 1
   m_FillClockwise: 1
   m_FillOrigin: 0
---- !u!114 &114008892602659624
-MonoBehaviour:
-  m_ObjectHideFlags: 1
-  m_PrefabParentObject: {fileID: 0}
-  m_PrefabInternal: {fileID: 100100000}
-  m_GameObject: {fileID: 1593684310463946}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: cc089a764853caf499f94192abcfee4f, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  Stealable: 1
-  Viewable: 1
-  Stackable: 0
-  value: 0
-  PropertyName: Phantom
-  Description: Cannot hurt or be hurt
-  icon: {fileID: 21300000, guid: 01072e332ce100f41851d90285200017, type: 3}
 --- !u!114 &114009256710246868
 MonoBehaviour:
   m_ObjectHideFlags: 1
@@ -5190,24 +5170,6 @@ MonoBehaviour:
   - {fileID: 0}
   m_baseMaterial: {fileID: 0}
   m_maskOffset: {x: 0, y: 0, z: 0, w: 0}
---- !u!114 &114104474023580432
-MonoBehaviour:
-  m_ObjectHideFlags: 1
-  m_PrefabParentObject: {fileID: 0}
-  m_PrefabInternal: {fileID: 100100000}
-  m_GameObject: {fileID: 1593684310463946}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 6d31cb5121dfdc842a45785c03e7bb21, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  Stealable: 1
-  Viewable: 1
-  Stackable: 0
-  value: 0
-  PropertyName: Wet
-  Description: 'Cannot Deal Fire Damage. DEFENSES: Fire +25%, Lightning -25%'
-  icon: {fileID: 21300000, guid: e95d2bbdb8a2677459ff8f0087ffcf06, type: 3}
 --- !u!114 &114112354861673870
 MonoBehaviour:
   m_ObjectHideFlags: 1
@@ -7753,24 +7715,6 @@ MonoBehaviour:
   PropertyName: NanoLock
   Description: Cannot Steal Properties from this object
   icon: {fileID: 21300000, guid: d0505eff9bb0bb94b98fe007559d148a, type: 3}
---- !u!114 &114329135445152956
-MonoBehaviour:
-  m_ObjectHideFlags: 1
-  m_PrefabParentObject: {fileID: 0}
-  m_PrefabInternal: {fileID: 100100000}
-  m_GameObject: {fileID: 1593684310463946}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 93fd9abf4e983e6429e5fcb68a5ef2e9, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  Stealable: 1
-  Viewable: 1
-  Stackable: 0
-  value: 0
-  PropertyName: Decay
-  Description: Steady health drain
-  icon: {fileID: 21300000, guid: d70ef8b226510c441af3eda5373a1ec9, type: 3}
 --- !u!114 &114329362564518772
 MonoBehaviour:
   m_ObjectHideFlags: 1
@@ -8821,8 +8765,8 @@ MonoBehaviour:
   m_TargetGraphic: {fileID: 114047140302814550}
   m_HandleRect: {fileID: 224409164585238760}
   m_Direction: 2
-  m_Value: 0
-  m_Size: 1
+  m_Value: 1
+  m_Size: 0.9999999
   m_NumberOfSteps: 0
   m_OnValueChanged:
     m_PersistentCalls:
@@ -10753,7 +10697,7 @@ MonoBehaviour:
   m_HandleRect: {fileID: 224159792454195676}
   m_Direction: 2
   m_Value: 1
-  m_Size: 0.4418605
+  m_Size: 0.44186047
   m_NumberOfSteps: 0
   m_OnValueChanged:
     m_PersistentCalls:
@@ -12485,7 +12429,7 @@ MonoBehaviour:
   m_HandleRect: {fileID: 224919683728530804}
   m_Direction: 2
   m_Value: 0
-  m_Size: 1
+  m_Size: 0.9999999
   m_NumberOfSteps: 0
   m_OnValueChanged:
     m_PersistentCalls:
@@ -14619,6 +14563,24 @@ MonoBehaviour:
     m_VerticalOverflow: 0
     m_LineSpacing: 1
   m_Text: Menu Submit
+--- !u!114 &114971110222422946
+MonoBehaviour:
+  m_ObjectHideFlags: 1
+  m_PrefabParentObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 100100000}
+  m_GameObject: {fileID: 1593684310463946}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 1c3ae8051ccc115428b144284e412091, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  Stealable: 0
+  Viewable: 1
+  Stackable: 0
+  value: 0
+  PropertyName: Generator
+  Description: Periodically Generates Electricity
+  icon: {fileID: 21300000, guid: f2d1f907122843844a9a6e915e69f0de, type: 3}
 --- !u!114 &114976506402366632
 MonoBehaviour:
   m_ObjectHideFlags: 1
@@ -16432,7 +16394,7 @@ RectTransform:
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 0, y: 1}
   m_AnchorMax: {x: 1, y: 1}
-  m_AnchoredPosition: {x: 0, y: 0.000019073486}
+  m_AnchoredPosition: {x: 0, y: -0.0000076293945}
   m_SizeDelta: {x: 0, y: 28}
   m_Pivot: {x: 0.5, y: 1}
 --- !u!224 &224227661333808466
@@ -18409,7 +18371,7 @@ RectTransform:
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 0, y: 1}
   m_AnchorMax: {x: 1, y: 1}
-  m_AnchoredPosition: {x: 0, y: 0.000011444092}
+  m_AnchoredPosition: {x: 0, y: -0.000015258789}
   m_SizeDelta: {x: 0, y: 28}
   m_Pivot: {x: 0.5, y: 1}
 --- !u!224 &224780512741333096
@@ -18672,7 +18634,7 @@ RectTransform:
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 0, y: 1}
   m_AnchorMax: {x: 1, y: 1}
-  m_AnchoredPosition: {x: 0, y: 0.0000076293945}
+  m_AnchoredPosition: {x: 0, y: 0.000011444092}
   m_SizeDelta: {x: 0, y: 28}
   m_Pivot: {x: 0.5, y: 1}
 --- !u!224 &224866136947452724
