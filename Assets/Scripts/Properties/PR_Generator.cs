@@ -8,7 +8,7 @@ public class PR_Generator : Property {
 	float INTERVAL_CHECK = 3.0f;
 
 	// Update is called once per frame
-	void Update () {
+	public override void OnUpdate () {
 		if (SinceLastCheck > INTERVAL_CHECK) {
 			RefreshElectricity ();
 		}

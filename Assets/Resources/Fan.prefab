@@ -28,6 +28,7 @@ GameObject:
   - component: {fileID: 114645649323406658}
   - component: {fileID: 114723094382380386}
   - component: {fileID: 114598132704360774}
+  - component: {fileID: 114527680634354326}
   m_Layer: 8
   m_Name: Fan
   m_TagString: Player
@@ -105,6 +106,43 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   Faction: 0
+--- !u!114 &114527680634354326
+MonoBehaviour:
+  m_ObjectHideFlags: 1
+  m_PrefabParentObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 100100000}
+  m_GameObject: {fileID: 1582996670517962}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 92acc23af4626be4fa32c868acac10d0, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  saveID: autoID
+  pos: {x: 0, y: 0, z: 0}
+  targetID: none
+  targetDir: 4
+  healthVal: 0
+  data:
+    regID: Not Assigned
+    name: 
+    pos: {x: 0, y: 0, z: 0}
+    health: 100
+    maxHealth: 100
+    prefabPath: 
+    targetID: 
+    propertyList: []
+    propertyDescriptions: []
+    propertyValues: []
+    transfers: 0
+    slots: 0
+    targetDir: 0
+    IsCurrentCharacter: 0
+    IsFacingLeft: 0
+    Experience: 0
+    TriggerUsed: 0
+    triggerString: 
+  recreated: 0
+  PrefabPath: Fan
 --- !u!114 &114572847199414292
 MonoBehaviour:
   m_ObjectHideFlags: 1

@@ -7,6 +7,7 @@ public class CharData {
 	public string regID = "Not Assigned";
 	public string name;
 	public Vector3 pos;
+	public float zRot;
 	public float health = 100f;
 	public float maxHealth = 100f;
 	public string prefabPath;

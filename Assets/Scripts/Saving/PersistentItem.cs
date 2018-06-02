@@ -5,8 +5,8 @@ using System;
 
 public class PersistentItem : MonoBehaviour {
 	public string saveID = "autoID";
-	public string prefabName = "none";
 	public Vector3 pos = Vector3.zero;
+	public float zRot = 0f;
 	public string targetID = "none";
 	public RoomDirection targetDir = RoomDirection.NEUTRAL;
 	public float healthVal = 0;
@@ -40,6 +40,7 @@ public class PersistentItem : MonoBehaviour {
 	public void StoreData() {
 		data.name = gameObject.name;
 		data.pos = transform.position;
+		data.zRot = transform.rotation.eulerAngles.z;
 		data.targetID = "";
 		if (GetComponent<Interactable>()) {
 			data.TriggerUsed = GetComponent<Interactable> ().TriggerUsed;
@@ -84,6 +85,8 @@ public class PersistentItem : MonoBehaviour {
 			GetComponent<Attackable> ().MaxHealth = data.maxHealth;
 			GetComponent<Attackable> ().SetHealth (data.health);
 		}
+		Quaternion q = Quaternion.Euler(new Vector3 (0f, 0f, data.zRot));
+		transform.localRotation = q;
 		if (GetComponent<PhysicsSS> ()) {
 			GetComponent<PhysicsSS> ().SetDirection (data.IsFacingLeft);
 		}
