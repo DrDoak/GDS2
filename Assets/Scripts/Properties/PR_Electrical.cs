@@ -46,10 +46,12 @@ public class PR_Electrical : Property {
 		{
 			List<ElementType> oldEle = elecBox.Element;
 			elecBox.Element = elecOnly;
+			elecBox.Damage *= 1.5f;
 			time_tracker = Time.timeSinceLevelLoad + bio_period;
 			GetComponent<Attackable>().TakeHit(elecBox);
 			GameObject.Instantiate (FXHit.Instance.FXHitLightning, transform.position, Quaternion.identity);
 			FindObjectOfType<AudioManager> ().PlayClipAtPos (FXHit.Instance.SFXElectric,transform.position,0.75f,0f,0.25f);
+			elecBox.Damage /= 0.5f;
 			elecBox.Element = oldEle;
 		}
 	}

@@ -70,7 +70,7 @@ Transform:
   m_PrefabInternal: {fileID: 100100000}
   m_GameObject: {fileID: 1567607263995494}
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_LocalPosition: {x: 36.249805, y: -18.73616, z: 0}
+  m_LocalPosition: {x: 13.33, y: -41.87, z: 0}
   m_LocalScale: {x: 1.5, y: 1.5, z: 4}
   m_Children:
   - {fileID: 4872822752761770}
@@ -164,8 +164,8 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   saveID: autoID
-  prefabName: none
   pos: {x: 0, y: 0, z: 0}
+  zRot: 0
   targetID: none
   targetDir: 4
   healthVal: 0
@@ -173,6 +173,7 @@ MonoBehaviour:
     regID: Not Assigned
     name: 
     pos: {x: 0, y: 0, z: 0}
+    zRot: 0
     health: 100
     maxHealth: 100
     prefabPath: 
@@ -251,7 +252,7 @@ MonoBehaviour:
     AIPredictionOffset: {x: 1, y: 0}
   m_SoundInfo:
     StartupSoundFX: {fileID: 0}
-    AttackSoundFX: {fileID: 0}
+    AttackSoundFX: {fileID: 8300000, guid: 445a9ade187984c40b8b079494b8f8fa, type: 3}
   m_dashInfo:
     StartUpDash: {x: 0, y: 0}
     StartUpDuration: 0
@@ -369,7 +370,7 @@ MonoBehaviour:
   m_inputedMove: {x: 0, y: 0}
   TerminalVelocity: -5
   GravityScale: -1
-  FacingLeft: 0
+  FacingLeft: 1
   ReactToWater: 1
   UseBuoyancy: 0
   BuoyancyScale: -1
