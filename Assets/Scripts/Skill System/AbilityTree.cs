@@ -6,7 +6,7 @@ using UnityEditor;
 public class AbilityTree
 {
     public static GameObject Player;
-    public static int PointsToSpend = 10;
+    public static int PointsToSpend = 2;
     public AbilityTreeNode root;
     public AbilityTree LeftBranch;
     public AbilityTree MiddleBranch;
@@ -214,9 +214,16 @@ public class AbilityTreeNode
     void Awake()
     {
         if (parent != null)
+        {
             TreeDepth = parent.TreeDepth + 1;
+        }
         else
+        {
             TreeDepth = 0;
+            Unlock();
+        }
+
+        if (TreeDepth == 1) Unlock();
 
         if (ability)
         {

@@ -11,6 +11,7 @@ public class Ab_Ultimate_Siphon : Ability {
         base.Awake();
         Ultimate = true;
         selected = false;
+        AbilityClassification = AbilityType.COMBAT;
     }
 
     public override void UseAbility()

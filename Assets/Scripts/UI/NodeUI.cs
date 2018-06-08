@@ -18,21 +18,14 @@ public class NodeUI : MonoBehaviour
         if (treeNode == null) return;
         if(!button) button = gameObject.GetComponentInChildren<Button>();
         FillData();
-        //GrayOut();
+
+        Debug.Log(treeNode.unlocked);
     }
 
     void Update()
     {
-
         button.gameObject.GetComponentInChildren<Text>().text = treeNode.ability.AbilityName;
-    }
-
-    void GrayOut()
-    {
-        if (!treeNode.unlocked)
-            image.color = Color.gray;
-        else
-            image.color = Color.white;
+        button.interactable = treeNode.unlocked || (treeNode.CheckRequisites() && AbilityTree.PointsToSpend > 0);
     }
 
     void FillData()

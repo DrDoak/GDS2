@@ -10,6 +10,7 @@ public class Ab_Passive_AttackDamage : Ability
     {
         base.Awake();
         parent = FindObjectOfType<Ab_Melee>();
+        AbilityClassification = AbilityType.COMBAT;
         Passive = true;
         Tiered = true;
         _mtier = 1;

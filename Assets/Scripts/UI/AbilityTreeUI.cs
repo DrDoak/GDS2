@@ -1,6 +1,7 @@
 ﻿using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using UnityEngine.UI;
 
 public class AbilityTreeUI : MonoBehaviour {
 
@@ -47,7 +48,7 @@ public class AbilityTreeUI : MonoBehaviour {
             g = Instantiate(NodePrefab);
             g.transform.SetParent(Canvas.transform);
             g.GetComponent<NodeUI>().treeNode = node;
-
+            g.GetComponent<RectTransform>().anchoredPosition = RuntimeTransforms.GetVector(node.TreeDepth, RuntimeTransforms.GetBranchDirection(node.ability.AbilityClassification));
             //Attach new UI Thing to this script
 
             foreach (AbilityTreeNode n in node.tree.GetChildren())

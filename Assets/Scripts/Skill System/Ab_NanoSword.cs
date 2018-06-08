@@ -9,6 +9,7 @@ public class Ab_NanoSword : Ability {
     new void Awake()
     {
         base.Awake();
+        AbilityClassification = AbilityType.COMBAT;
         selected = false;
     }
 

@@ -6,7 +6,11 @@ public class Ab_Passive_Heal : Ability {
 
     private bool selected = false;
     private int percentage = 10;
-    
+
+    new void Awake()
+    {
+        AbilityClassification = AbilityType.COMBAT;
+    }
 
     public override void UseAbility()
     {

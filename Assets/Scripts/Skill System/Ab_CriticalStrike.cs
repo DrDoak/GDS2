@@ -11,6 +11,7 @@ public class Ab_CriticalStrike : Ability
     {
         base.Awake();
         selected = false;
+        AbilityClassification = AbilityType.COMBAT;
     }
 
     public override void UseAbility()

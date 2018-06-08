@@ -11,6 +11,7 @@ public class Ab_Ultimate_Carbon_Copy : Ability
         base.Awake();
         Ultimate = true;
         selected = false;
+        AbilityClassification = AbilityType.COMBAT;
     }
 
     public override void UseAbility()
