@@ -330,8 +330,8 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   saveID: autoID
-  prefabName: none
   pos: {x: 0, y: 0, z: 0}
+  zRot: 0
   targetID: none
   targetDir: 4
   healthVal: 0
@@ -339,6 +339,7 @@ MonoBehaviour:
     regID: Not Assigned
     name: 
     pos: {x: 0, y: 0, z: 0}
+    zRot: 0
     health: 100
     maxHealth: 100
     prefabPath: 
@@ -355,7 +356,7 @@ MonoBehaviour:
     TriggerUsed: 0
     triggerString: 
   recreated: 0
-  PrefabPath: 
+  PrefabPath: EnemyTest
 --- !u!114 &114503039921728846
 MonoBehaviour:
   m_ObjectHideFlags: 1

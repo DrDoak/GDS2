@@ -17,7 +17,7 @@ public class PersistentItem : MonoBehaviour {
 	protected bool m_registryChecked = false;
 	void Awake() {
 		if (data.regID == "") {
-			data.regID = SaveObjManager.Instance.GenerateID (gameObject);
+			data.regID = SaveObjManager.Instance.GenerateID (gameObject,PrefabPath);
 		}
 		saveID = data.regID;
 	}
@@ -27,7 +27,7 @@ public class PersistentItem : MonoBehaviour {
 			data.regID = "Not Assigned";
 		}
 		if (SaveObjManager.CheckRegistered(gameObject)) {
-			//Debug.Log (gameObject + " Already registered, deleting duplicate ID: " + data.regID);
+			Debug.Log (gameObject + " Already registered, deleting duplicate ID: " + data.regID);
 			Destroy(gameObject);
 		}
 	}
@@ -49,12 +49,15 @@ public class PersistentItem : MonoBehaviour {
 		if (GetComponent<Attackable> ()) {
 			data.health = GetComponent<Attackable> ().Health;
 			data.maxHealth = GetComponent<Attackable> ().MaxHealth;
+			data.faction = GetComponent<Attackable> ().Faction;
 		}
 		if (GetComponent<BasicMovement>())
 			data.IsCurrentCharacter = GetComponent<BasicMovement> ().IsCurrentPlayer;
 		if (GetComponent<PhysicsSS> ()) {
 			data.IsFacingLeft = GetComponent<PhysicsSS> ().FacingLeft;
 		}
+		if (GetComponent<Turret> ())
+			data.TurretDefaultFace = GetComponent<Turret> ().DefaultFaceLeft;
 		if (GetComponent<PropertyHolder> ()) {
 			Property[] pL = GetComponents<Property> ();
 			string[] allPs = new string[pL.Length];
@@ -84,12 +87,15 @@ public class PersistentItem : MonoBehaviour {
 		if (GetComponent<Attackable> ()) {
 			GetComponent<Attackable> ().MaxHealth = data.maxHealth;
 			GetComponent<Attackable> ().SetHealth (data.health);
+			GetComponent<Attackable> ().Faction = data.faction;
 		}
 		Quaternion q = Quaternion.Euler(new Vector3 (0f, 0f, data.zRot));
 		transform.localRotation = q;
 		if (GetComponent<PhysicsSS> ()) {
 			GetComponent<PhysicsSS> ().SetDirection (data.IsFacingLeft);
 		}
+		if (GetComponent<Turret> ())
+			GetComponent<Turret> ().DefaultFaceLeft = data.TurretDefaultFace;
 		if (GetComponent<PropertyHolder> ()) {
 			GetComponent<PropertyHolder> ().NumTransfers = data.transfers;
 			GetComponent<PropertyHolder> ().MaxSlots = data.slots;

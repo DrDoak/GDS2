@@ -62,23 +62,26 @@ public class MGPlayer : BasicMovement {
 		if (Input.GetKey(AttackButton)) {
 			GetComponent<Fighter>().TryAttack("default");
 		}
-		if (Input.GetKeyDown (BombButton)) {
-			if (Bombs > 0) {
-				GetComponent<Fighter> ().TryAttack ("bomb");
-				Bombs -= 1;
+		int numItems = FindObjectsOfType<BasicMovement> ().Length;
+		if (numItems < 30) {
+			if (Input.GetKeyDown (BombButton)) {
+				if (Bombs > 0) {
+					GetComponent<Fighter> ().TryAttack ("bomb");
+					Bombs -= 1;
+				}
 			}
-		}
 
-		if (Input.GetKeyDown (BlockButton)) {
-			if (Blocks > 0) {
-				GetComponent<Fighter> ().TryAttack ("block");
-				Blocks -= 1;
+			if (Input.GetKeyDown (BlockButton)) {
+				if (Blocks > 0) {
+					GetComponent<Fighter> ().TryAttack ("block");
+					Blocks -= 1;
+				}
 			}
-		}
-		if (Input.GetKeyDown (BarrelButton)) {
-			if (Barrels > 0) {
-				GetComponent<Fighter> ().TryAttack ("barrel");
-				Barrels -= 1;
+			if (Input.GetKeyDown (BarrelButton)) {
+				if (Barrels > 0) {
+					GetComponent<Fighter> ().TryAttack ("barrel");
+					Barrels -= 1;
+				}
 			}
 		}
 		if (Input.GetKeyDown (KeyCode.Escape)) {

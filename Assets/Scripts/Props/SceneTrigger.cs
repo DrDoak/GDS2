@@ -33,6 +33,8 @@ public class SceneTrigger : Interactable {
 	}
 	protected virtual void changeRoom(GameObject go) {
 		if (go.GetComponent<BasicMovement> ()) {
+			if (go.GetComponent<Attackable> ().Alive == false)
+				return;
 			TriggerUsed = true;
 			if (TriggerID != "none") {
 				RoomDirection realDir = dir;

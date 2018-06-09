@@ -154,7 +154,7 @@ Prefab:
       objectReference: {fileID: 0}
     - target: {fileID: 1614439459565114, guid: 8b2eaa62f53d99048bd82ea2f6b808db, type: 2}
       propertyPath: m_Name
-      value: EnemyTest (4)
+      value: Bridge_Guard_2
       objectReference: {fileID: 0}
     - target: {fileID: 114482614744153130, guid: 8b2eaa62f53d99048bd82ea2f6b808db,
         type: 2}
@@ -588,17 +588,17 @@ Prefab:
     - target: {fileID: 224777399314521252, guid: 86856ebb1cc73c04a86115975021a18e,
         type: 2}
       propertyPath: m_AnchoredPosition.y
-      value: -0.0000019073486
+      value: -0.000017166138
       objectReference: {fileID: 0}
     - target: {fileID: 224858247495619676, guid: 86856ebb1cc73c04a86115975021a18e,
         type: 2}
       propertyPath: m_AnchoredPosition.y
-      value: -0.000032424927
+      value: -0.000017166138
       objectReference: {fileID: 0}
     - target: {fileID: 224209084733379808, guid: 86856ebb1cc73c04a86115975021a18e,
         type: 2}
       propertyPath: m_AnchoredPosition.y
-      value: -0.000009536743
+      value: -0.000024795532
       objectReference: {fileID: 0}
     - target: {fileID: 224919683728530804, guid: 86856ebb1cc73c04a86115975021a18e,
         type: 2}
@@ -1563,6 +1563,10 @@ Prefab:
       propertyPath: m_LocalScale.z
       value: 1
       objectReference: {fileID: 0}
+    - target: {fileID: 1614439459565114, guid: 8b2eaa62f53d99048bd82ea2f6b808db, type: 2}
+      propertyPath: m_Name
+      value: Oblivious_Otto
+      objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_ParentPrefab: {fileID: 100100000, guid: 8b2eaa62f53d99048bd82ea2f6b808db, type: 2}
   m_IsPrefabParent: 0
@@ -1699,7 +1703,7 @@ Prefab:
       objectReference: {fileID: 0}
     - target: {fileID: 1614439459565114, guid: 8b2eaa62f53d99048bd82ea2f6b808db, type: 2}
       propertyPath: m_Name
-      value: EnemyTest (1)
+      value: Dumb_Daniel
       objectReference: {fileID: 0}
     - target: {fileID: 114482614744153130, guid: 8b2eaa62f53d99048bd82ea2f6b808db,
         type: 2}
@@ -1978,7 +1982,7 @@ Prefab:
       objectReference: {fileID: 0}
     - target: {fileID: 1614439459565114, guid: 8b2eaa62f53d99048bd82ea2f6b808db, type: 2}
       propertyPath: m_Name
-      value: EnemyTest (6)
+      value: Fiery_Fred
       objectReference: {fileID: 0}
     - target: {fileID: 4255489128164628, guid: 8b2eaa62f53d99048bd82ea2f6b808db, type: 2}
       propertyPath: m_LocalScale.z
@@ -2139,7 +2143,7 @@ Prefab:
       objectReference: {fileID: 0}
     - target: {fileID: 1614439459565114, guid: 8b2eaa62f53d99048bd82ea2f6b808db, type: 2}
       propertyPath: m_Name
-      value: EnemyTest (2)
+      value: Unobservant_Ulysses
       objectReference: {fileID: 0}
     - target: {fileID: 114482614744153130, guid: 8b2eaa62f53d99048bd82ea2f6b808db,
         type: 2}
@@ -2721,7 +2725,7 @@ Prefab:
       objectReference: {fileID: 0}
     - target: {fileID: 1614439459565114, guid: 8b2eaa62f53d99048bd82ea2f6b808db, type: 2}
       propertyPath: m_Name
-      value: EnemyTest (5)
+      value: Bridge_Guard_1
       objectReference: {fileID: 0}
     - target: {fileID: 1614439459565114, guid: 8b2eaa62f53d99048bd82ea2f6b808db, type: 2}
       propertyPath: m_IsActive
@@ -3395,6 +3399,11 @@ Prefab:
       propertyPath: Description
       value: Furnaces
       objectReference: {fileID: 0}
+    - target: {fileID: 114761445520299506, guid: 72b2c0064f224644588f96a8ae090e6c,
+        type: 2}
+      propertyPath: RoomMusic
+      value: 
+      objectReference: {fileID: 8300000, guid: 3b980a6c35f4c86499405c96f811d6ba, type: 3}
     m_RemovedComponents: []
   m_ParentPrefab: {fileID: 100100000, guid: 72b2c0064f224644588f96a8ae090e6c, type: 2}
   m_IsPrefabParent: 0

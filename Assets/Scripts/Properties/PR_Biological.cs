@@ -22,7 +22,7 @@ public class PR_Biological : Property
 
     public override void OnUpdate()
     {
-        if(Time.time > time_tracker)
+       /* if(Time.time > time_tracker)
         {
             time_tracker += heal_period;
             if(Time.time > damagetime_tracker + damagetime_period)
@@ -30,7 +30,7 @@ public class PR_Biological : Property
 				GetComponent<Attackable>().DamageObj(heal_amount * -1.0f * Time.deltaTime);
             }
             
-        }
+        }*/
     }
 
 	public override void OnRemoveProperty()

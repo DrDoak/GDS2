@@ -284,8 +284,8 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   saveID: autoID
-  prefabName: none
   pos: {x: 0, y: 0, z: 0}
+  zRot: 0
   targetID: none
   targetDir: 4
   healthVal: 0
@@ -293,6 +293,7 @@ MonoBehaviour:
     regID: Not Assigned
     name: 
     pos: {x: 0, y: 0, z: 0}
+    zRot: 0
     health: 100
     maxHealth: 100
     prefabPath: 
@@ -376,7 +377,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   m_properties: []
-  HolderName: SameAsObject
+  HolderName: Man_Eater_Fish
   MaxSlots: 4
   NumTransfers: 2
   m_toRemove: []
@@ -443,6 +444,7 @@ MonoBehaviour:
     StartUpAnimation: attack_s
     RecoveryAnimation: attack_r
   m_AIInfo:
+    Frequency: 0.5
     UniqueAIPrediction: 1
     AIPredictionHitbox: {x: 3, y: 1}
     AIPredictionOffset: {x: 1.5, y: 0}

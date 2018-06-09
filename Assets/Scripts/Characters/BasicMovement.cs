@@ -71,10 +71,9 @@ public class BasicMovement : MonoBehaviour
 		
 	internal void Update()
 	{
-		if (!m_physics.CanMove)
-			return;
-		
-		if (IsCurrentPlayer && m_autonomy && Time.deltaTime > 0f)
+		if (!m_physics.CanMove) {
+			m_inputMove = new Vector2(0f, 0f);
+		}else if (IsCurrentPlayer && m_autonomy && Time.deltaTime > 0f)
 			PlayerMovement();
 		else if (m_targetSet)
 			NpcMovement();

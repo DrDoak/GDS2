@@ -23,13 +23,16 @@ public class PR_Iron : Property {
     }
 
 	public override void OnUpdate() {
-		GetComponent<PhysicsSS> ().UseBuoyancy = false;
+		if (GetComponent<PhysicsSS> () != null) {
+				GetComponent<PhysicsSS> ().UseBuoyancy = false;
+			if (GetComponent<PropertyHolder> ().SubmergedHitbox != null) {
+				GetComponent<PhysicsSS> ().AddToVelocity (new Vector2 (0f, -20f * Time.deltaTime));
+			}
+		}
 		if (GetComponent<BasicMovement> () != null) {
 			GetComponent<BasicMovement> ().Submerged = false;
 		}
-		if (GetComponent<PropertyHolder> ().SubmergedHitbox != null) {
-			GetComponent<PhysicsSS> ().AddToVelocity (new Vector2 (0f, -20f * Time.deltaTime));
-		}
+
 	}
 
     public override void OnRemoveProperty()
@@ -45,12 +48,12 @@ public class PR_Iron : Property {
         //GetComponent<PhysicsSS>().SetGravityScale(-1.0f);
     }
 	public override void OnWaterEnter(WaterHitbox waterCollided)  {
-		Debug.Log ("Water enter");
+		//Debug.Log ("Water enter");
 		if (GetComponent<BasicMovement>() != null)
 			GetComponent<BasicMovement> ().SetMoveSpeed (GetComponent<BasicMovement> ().MoveSpeed * 2f);
 	}
 	public override void OnWaterExit(WaterHitbox waterCollided) {
-		Debug.Log ("Water exit");
+		//Debug.Log ("Water exit");
 		if (GetComponent<BasicMovement>() != null)
 			GetComponent<BasicMovement> ().SetMoveSpeed (GetComponent<BasicMovement> ().MoveSpeed / 2f);
 	}

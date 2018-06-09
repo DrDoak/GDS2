@@ -46,7 +46,8 @@ public class Projectile : Hitbox {
 		}
 	}
 	void orientToSpeed(Vector2 speed) {
-		transform.rotation = Quaternion.Euler (new Vector3(0f,0f,Mathf.Rad2Deg * Mathf.Atan2 (speed.y, speed.x)));
+		if (ProjectileSpeed != 0f)
+			transform.rotation = Quaternion.Euler (new Vector3(0f,0f,Mathf.Rad2Deg * Mathf.Atan2 (speed.y, speed.x)));
 	}
 
 	private bool JumpThruTag( GameObject obj ) {

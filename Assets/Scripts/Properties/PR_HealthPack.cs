@@ -13,7 +13,11 @@ public class PR_HealthPack : Property {
 		
 
 	void m_giveHealth() {
-		GetComponent<Attackable> ().DamageObj (-value);
+		if (GetComponent<PropertyHolder> ().HasProperty ("Biological")) {
+			GetComponent<Attackable> ().DamageObj (-value * 2f);
+		} else {
+			GetComponent<Attackable> ().DamageObj (-value);
+		}
 		GetComponent<PropertyHolder> ().RequestRemoveProperty ("HealthPack");
 	}
 }

@@ -14,7 +14,7 @@ public class Ab_NanoSword : Ability {
 
     public override void UseAbility()
     {
-        Debug.Log("Nano Sword triggered!");
+        //Debug.Log("Nano Sword triggered!");
         
     }
 

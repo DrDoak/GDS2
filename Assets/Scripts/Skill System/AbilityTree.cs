@@ -157,8 +157,8 @@ public class AbilityTree{
 
         if(node != null)
         {
-            Debug.Log(node.ability);
-            Debug.Log(node.TreeDepth);
+            //Debug.Log(node.ability);
+            //Debug.Log(node.TreeDepth);
             if (LeftBranch != null) LeftBranch.PrintTree();
             if (MiddleBranch != null) MiddleBranch.PrintTree();
             if (RightBranch != null) RightBranch.PrintTree();

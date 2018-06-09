@@ -2058,6 +2058,7 @@ GameObject:
   - component: {fileID: 114946747481757914}
   - component: {fileID: 114745923426299784}
   - component: {fileID: 114971110222422946}
+  - component: {fileID: 114426713682798250}
   m_Layer: 0
   m_Name: PR_List
   m_TagString: Untagged
@@ -5454,9 +5455,9 @@ MonoBehaviour:
   m_selectedButton: {fileID: 0}
   m_timeSinceExit: 0
   m_highLightedColor: {r: 0.6911765, g: 0.5577079, b: 0, a: 1}
-  m_deactiveColor: {r: 0.5019608, g: 0, b: 0, a: 1}
+  m_deactiveColor: {r: 0.28676468, g: 0, b: 0, a: 1}
   m_normalColor: {r: 0, g: 0.0031425671, b: 0.36764705, a: 1}
-  m_highlightDeactiveColor: {r: 0.715, g: 0.159, b: 0, a: 1}
+  m_highlightDeactiveColor: {r: 0.88235295, g: 0.38336712, b: 0, a: 1}
 --- !u!114 &114127589150096664
 MonoBehaviour:
   m_ObjectHideFlags: 1
@@ -5522,6 +5523,7 @@ MonoBehaviour:
   Stealable: 1
   Viewable: 0
   Stackable: 0
+  InstantUse: 0
   value: 0
   PropertyName: Invincible
   Description: You dirty cheater!
@@ -5848,6 +5850,7 @@ MonoBehaviour:
   Stealable: 1
   Viewable: 1
   Stackable: 0
+  InstantUse: 0
   value: 0
   PropertyName: NanoShield
   Description: Cannot Transfer Properties into this object
@@ -5936,6 +5939,7 @@ MonoBehaviour:
   Stealable: 0
   Viewable: 1
   Stackable: 0
+  InstantUse: 0
   value: 0
   PropertyName: Electric_Door
   Description: Open when powered by electricity
@@ -6629,6 +6633,7 @@ MonoBehaviour:
   Stealable: 0
   Viewable: 1
   Stackable: 0
+  InstantUse: 0
   value: 0
   PropertyName: Fan
   Description: Active when powered by Electricity
@@ -6727,6 +6732,7 @@ MonoBehaviour:
   Stealable: 0
   Viewable: 1
   Stackable: 0
+  InstantUse: 0
   value: 0
   PropertyName: Cannon
   Description: Activated by Fire
@@ -6745,6 +6751,7 @@ MonoBehaviour:
   Stealable: 1
   Viewable: 1
   Stackable: 0
+  InstantUse: 0
   value: 0
   PropertyName: Powered
   Description: Powers Machines. No Other Use
@@ -6933,6 +6940,7 @@ MonoBehaviour:
   Stealable: 1
   Viewable: 1
   Stackable: 0
+  InstantUse: 0
   value: 0
   PropertyName: Wooden
   Description: Catches Fire Easily, Floats on Water
@@ -7449,9 +7457,10 @@ MonoBehaviour:
   Stealable: 1
   Viewable: 1
   Stackable: 0
+  InstantUse: 0
   value: 0
   PropertyName: Explosive
-  Description: 'Fiery Explosion on Death. DEFENSES: Fire -100%'
+  Description: 'Fiery Explosion on Death. '
   icon: {fileID: 21300000, guid: ad3796c22f155d14a92cda7356fbc7a1, type: 3}
 --- !u!114 &114322809825246834
 MonoBehaviour:
@@ -7467,6 +7476,7 @@ MonoBehaviour:
   Stealable: 0
   Viewable: 0
   Stackable: 0
+  InstantUse: 0
   value: 0
   PropertyName: KnockbackResist
   Description: Cannot be knocked back
@@ -7711,6 +7721,7 @@ MonoBehaviour:
   Stealable: 1
   Viewable: 1
   Stackable: 0
+  InstantUse: 0
   value: 0
   PropertyName: NanoLock
   Description: Cannot Steal Properties from this object
@@ -8042,9 +8053,10 @@ MonoBehaviour:
   Stealable: 1
   Viewable: 1
   Stackable: 0
+  InstantUse: 0
   value: 0
   PropertyName: Biological
-  Description: Very slowly heals when damaged
+  Description: All Healing Items 2x Effective.
   icon: {fileID: 21300000, guid: 465cf2a099ee6b94787a3adbda53273d, type: 3}
   m_bioDamage: 0
 --- !u!114 &114357949007620310
@@ -8299,6 +8311,7 @@ MonoBehaviour:
   Stealable: 1
   Viewable: 1
   Stackable: 0
+  InstantUse: 1
   value: 25
   PropertyName: HealthPack
   Description: Transfer to instantly heal 25 health
@@ -8400,6 +8413,7 @@ MonoBehaviour:
   Stealable: 1
   Viewable: 1
   Stackable: 0
+  InstantUse: 0
   value: 0
   PropertyName: Iron
   Description: 'Become very heavy. DEFENSES: Fire +100%, Physical +25%, Lightning
@@ -8586,6 +8600,7 @@ MonoBehaviour:
   mixerGroup: {fileID: 0}
   oneShotAudio: {fileID: 1611516581949666, guid: bcb13bb9d487b5746a065f3726dc9ef1,
     type: 2}
+  Paused: 0
   sounds:
   - name: hit_physical
     clip: {fileID: 8300000, guid: a9da3f456419b7c4682cc623c2785b7a, type: 3}
@@ -8766,7 +8781,7 @@ MonoBehaviour:
   m_HandleRect: {fileID: 224409164585238760}
   m_Direction: 2
   m_Value: 0
-  m_Size: 0.9999999
+  m_Size: 0.9999998
   m_NumberOfSteps: 0
   m_OnValueChanged:
     m_PersistentCalls:
@@ -9121,6 +9136,26 @@ MonoBehaviour:
     m_VerticalOverflow: 0
     m_LineSpacing: 1
   m_Text: Back
+--- !u!114 &114426713682798250
+MonoBehaviour:
+  m_ObjectHideFlags: 1
+  m_PrefabParentObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 100100000}
+  m_GameObject: {fileID: 1593684310463946}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 2cae389dde4e4674d853d1af30045589, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  Stealable: 0
+  Viewable: 1
+  Stackable: 0
+  InstantUse: 0
+  value: 0
+  PropertyName: Augmented
+  Description: You are a fusion of Man and Science. Gives you the ability to steal
+    and transfer the properties of matter.
+  icon: {fileID: 21300000, guid: 2438a2ae24e4fa542a4f0326dd0e0dd2, type: 3}
 --- !u!114 &114429277146337426
 MonoBehaviour:
   m_ObjectHideFlags: 1
@@ -9232,6 +9267,7 @@ MonoBehaviour:
   Stealable: 0
   Viewable: 1
   Stackable: 0
+  InstantUse: 0
   value: 0
   PropertyName: Turret
   Description: Turned on when powered by Electricity
@@ -9536,6 +9572,7 @@ MonoBehaviour:
   Stealable: 0
   Viewable: 1
   Stackable: 0
+  InstantUse: 0
   value: 0
   PropertyName: Burner
   Description: Active when powered by Electricity
@@ -11446,9 +11483,10 @@ MonoBehaviour:
   Stealable: 1
   Viewable: 1
   Stackable: 0
+  InstantUse: 0
   value: 0
   PropertyName: Flaming
-  Description: Constant self-damaging hitbox. Adds Fire Element.
+  Description: Constant self-damaging hitbox. Adds Fire Element to all Attacks.
   icon: {fileID: 21300000, guid: 3ce279433fa810641908000de8ced2af, type: 3}
 --- !u!114 &114627092590536324
 MonoBehaviour:
@@ -12429,7 +12467,7 @@ MonoBehaviour:
   m_HandleRect: {fileID: 224919683728530804}
   m_Direction: 2
   m_Value: 1
-  m_Size: 0.9999999
+  m_Size: 0.9999998
   m_NumberOfSteps: 0
   m_OnValueChanged:
     m_PersistentCalls:
@@ -12529,6 +12567,7 @@ MonoBehaviour:
   Stealable: 1
   Viewable: 1
   Stackable: 0
+  InstantUse: 0
   value: 0
   PropertyName: Parasite
   Description: Greatly Increases Attack. Damages Biological objects. Can spread to
@@ -12672,6 +12711,7 @@ MonoBehaviour:
   Stealable: 1
   Viewable: 1
   Stackable: 1
+  InstantUse: 1
   value: 200
   PropertyName: Data
   Description: 'Provides 200 data. '
@@ -13908,6 +13948,7 @@ MonoBehaviour:
   Stealable: 0
   Viewable: 1
   Stackable: 0
+  InstantUse: 0
   value: 0
   PropertyName: Mechanical
   Description: Active when powered by Electricity
@@ -14281,9 +14322,11 @@ MonoBehaviour:
   Stealable: 1
   Viewable: 1
   Stackable: 0
+  InstantUse: 0
   value: 0
   PropertyName: Electrical
-  Description: Changes attacks to Electric. Can power Machines
+  Description: Can Power Machines. Adds Electricity To All Attacks. Watch Out For
+    Water!
   icon: {fileID: 21300000, guid: f2d1f907122843844a9a6e915e69f0de, type: 3}
 --- !u!114 &114946747481757914
 MonoBehaviour:
@@ -14299,6 +14342,7 @@ MonoBehaviour:
   Stealable: 0
   Viewable: 1
   Stackable: 0
+  InstantUse: 0
   value: 0
   PropertyName: Spikey
   Description: Very Deadly! Do not touch
@@ -14577,6 +14621,7 @@ MonoBehaviour:
   Stealable: 0
   Viewable: 1
   Stackable: 0
+  InstantUse: 0
   value: 0
   PropertyName: Generator
   Description: Periodically Generates Electricity
@@ -16394,7 +16439,7 @@ RectTransform:
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 0, y: 1}
   m_AnchorMax: {x: 1, y: 1}
-  m_AnchoredPosition: {x: 0, y: 0.000019073486}
+  m_AnchoredPosition: {x: 0, y: -0.000036239624}
   m_SizeDelta: {x: 0, y: 28}
   m_Pivot: {x: 0.5, y: 1}
 --- !u!224 &224227661333808466
@@ -18371,7 +18416,7 @@ RectTransform:
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 0, y: 1}
   m_AnchorMax: {x: 1, y: 1}
-  m_AnchoredPosition: {x: 0, y: 0.000036239624}
+  m_AnchoredPosition: {x: 0, y: -0.00001335144}
   m_SizeDelta: {x: 0, y: 28}
   m_Pivot: {x: 0.5, y: 1}
 --- !u!224 &224780512741333096
@@ -18634,7 +18679,7 @@ RectTransform:
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 0, y: 1}
   m_AnchorMax: {x: 1, y: 1}
-  m_AnchoredPosition: {x: 0, y: -0.000011444092}
+  m_AnchoredPosition: {x: 0, y: -0.0000019073486}
   m_SizeDelta: {x: 0, y: 28}
   m_Pivot: {x: 0.5, y: 1}
 --- !u!224 &224866136947452724

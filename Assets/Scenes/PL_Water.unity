@@ -132,6 +132,7 @@ MonoBehaviour:
   Stealable: 1
   Viewable: 1
   Stackable: 0
+  InstantUse: 0
   value: 0
   PropertyName: None
   Description: No description provided.
@@ -489,6 +490,7 @@ MonoBehaviour:
   Stealable: 1
   Viewable: 1
   Stackable: 0
+  InstantUse: 0
   value: 0
   PropertyName: None
   Description: No description provided.
@@ -1076,7 +1078,7 @@ Prefab:
     - target: {fileID: 224777399314521252, guid: 86856ebb1cc73c04a86115975021a18e,
         type: 2}
       propertyPath: m_AnchoredPosition.y
-      value: 0.000011444092
+      value: -0.000049591064
       objectReference: {fileID: 0}
     - target: {fileID: 224858247495619676, guid: 86856ebb1cc73c04a86115975021a18e,
         type: 2}
@@ -1086,7 +1088,7 @@ Prefab:
     - target: {fileID: 224209084733379808, guid: 86856ebb1cc73c04a86115975021a18e,
         type: 2}
       propertyPath: m_AnchoredPosition.y
-      value: -0.0000038146973
+      value: -0.000011444092
       objectReference: {fileID: 0}
     - target: {fileID: 224128653232866352, guid: 86856ebb1cc73c04a86115975021a18e,
         type: 2}
@@ -1115,12 +1117,12 @@ Prefab:
     - target: {fileID: 224919683728530804, guid: 86856ebb1cc73c04a86115975021a18e,
         type: 2}
       propertyPath: m_AnchorMin.y
-      value: 0.00000017881393
+      value: 0
       objectReference: {fileID: 0}
     - target: {fileID: 224409164585238760, guid: 86856ebb1cc73c04a86115975021a18e,
         type: 2}
       propertyPath: m_AnchorMin.y
-      value: 0.00000011920929
+      value: 0.00000017881393
       objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_ParentPrefab: {fileID: 100100000, guid: 86856ebb1cc73c04a86115975021a18e, type: 2}
@@ -1206,6 +1208,7 @@ MonoBehaviour:
   Stealable: 1
   Viewable: 1
   Stackable: 0
+  InstantUse: 0
   value: 0
   PropertyName: None
   Description: No description provided.
@@ -1377,7 +1380,7 @@ Prefab:
       objectReference: {fileID: 0}
     - target: {fileID: 4145568715944680, guid: e7e804d0697ff774684f435f54afc78c, type: 2}
       propertyPath: m_LocalPosition.y
-      value: -42.007717
+      value: -41.96
       objectReference: {fileID: 0}
     - target: {fileID: 4145568715944680, guid: e7e804d0697ff774684f435f54afc78c, type: 2}
       propertyPath: m_LocalPosition.z
@@ -1407,52 +1410,10 @@ Prefab:
       propertyPath: m_Name
       value: water_gate
       objectReference: {fileID: 0}
-    m_RemovedComponents: []
+    m_RemovedComponents:
+    - {fileID: 95622583091840974, guid: e7e804d0697ff774684f435f54afc78c, type: 2}
   m_ParentPrefab: {fileID: 100100000, guid: e7e804d0697ff774684f435f54afc78c, type: 2}
   m_IsPrefabParent: 0
---- !u!1 &996952806 stripped
-GameObject:
-  m_PrefabParentObject: {fileID: 1425970486325360, guid: e7e804d0697ff774684f435f54afc78c,
-    type: 2}
-  m_PrefabInternal: {fileID: 996952805}
---- !u!114 &996952807
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_PrefabParentObject: {fileID: 0}
-  m_PrefabInternal: {fileID: 0}
-  m_GameObject: {fileID: 996952806}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 5cb91baab9f732641a0bab1dc8e7a9fc, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  Stealable: 1
-  Viewable: 1
-  Stackable: 0
-  value: 0
-  PropertyName: None
-  Description: No description provided.
-  icon: {fileID: 0}
---- !u!114 &996952808
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_PrefabParentObject: {fileID: 0}
-  m_PrefabInternal: {fileID: 0}
-  m_GameObject: {fileID: 996952806}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 6cecf518dba7e8f429d2dc6df9ba9177, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  m_health: 100
-  MaxHealth: 100
-  Alive: 1
-  DeathTime: -1.92
-  m_currDeathTime: 0
-  Faction: 3
-  Resistences: []
-  DisplayHealth: 1
-  Killer: {fileID: 0}
 --- !u!1001 &1057842615
 Prefab:
   m_ObjectHideFlags: 0
@@ -1510,6 +1471,11 @@ Prefab:
       propertyPath: Description
       value: Pools
       objectReference: {fileID: 0}
+    - target: {fileID: 114761445520299506, guid: 72b2c0064f224644588f96a8ae090e6c,
+        type: 2}
+      propertyPath: RoomMusic
+      value: 
+      objectReference: {fileID: 8300000, guid: 39f0ccd934ab7594e96d2040c00bcbc9, type: 3}
     m_RemovedComponents: []
   m_ParentPrefab: {fileID: 100100000, guid: 72b2c0064f224644588f96a8ae090e6c, type: 2}
   m_IsPrefabParent: 0
@@ -1788,6 +1754,7 @@ MonoBehaviour:
   Stealable: 1
   Viewable: 1
   Stackable: 0
+  InstantUse: 0
   value: 0
   PropertyName: None
   Description: No description provided.
@@ -2071,54 +2038,17 @@ Prefab:
       objectReference: {fileID: 0}
     - target: {fileID: 1425970486325360, guid: e7e804d0697ff774684f435f54afc78c, type: 2}
       propertyPath: m_Name
-      value: door_electric (1)
+      value: door_upper
       objectReference: {fileID: 0}
-    m_RemovedComponents: []
+    - target: {fileID: 95622583091840974, guid: e7e804d0697ff774684f435f54afc78c,
+        type: 2}
+      propertyPath: m_Controller
+      value: 
+      objectReference: {fileID: 9100000, guid: 70b88e1982e4eb847b219f441a6e9c44, type: 2}
+    m_RemovedComponents:
+    - {fileID: 95622583091840974, guid: e7e804d0697ff774684f435f54afc78c, type: 2}
   m_ParentPrefab: {fileID: 100100000, guid: e7e804d0697ff774684f435f54afc78c, type: 2}
   m_IsPrefabParent: 0
---- !u!1 &1945719214 stripped
-GameObject:
-  m_PrefabParentObject: {fileID: 1425970486325360, guid: e7e804d0697ff774684f435f54afc78c,
-    type: 2}
-  m_PrefabInternal: {fileID: 1945719213}
---- !u!114 &1945719215
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_PrefabParentObject: {fileID: 0}
-  m_PrefabInternal: {fileID: 0}
-  m_GameObject: {fileID: 1945719214}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 5cb91baab9f732641a0bab1dc8e7a9fc, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  Stealable: 1
-  Viewable: 1
-  Stackable: 0
-  value: 0
-  PropertyName: None
-  Description: No description provided.
-  icon: {fileID: 0}
---- !u!114 &1945719216
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_PrefabParentObject: {fileID: 0}
-  m_PrefabInternal: {fileID: 0}
-  m_GameObject: {fileID: 1945719214}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 6cecf518dba7e8f429d2dc6df9ba9177, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  m_health: 100
-  MaxHealth: 100
-  Alive: 1
-  DeathTime: 0
-  m_currDeathTime: 0
-  Faction: 3
-  Resistences: []
-  DisplayHealth: 1
-  Killer: {fileID: 0}
 --- !u!1 &1957835367
 GameObject:
   m_ObjectHideFlags: 0
@@ -2410,6 +2340,7 @@ MonoBehaviour:
   Stealable: 1
   Viewable: 1
   Stackable: 0
+  InstantUse: 0
   value: 0
   PropertyName: None
   Description: No description provided.
@@ -2433,6 +2364,7 @@ MonoBehaviour:
   Stealable: 1
   Viewable: 1
   Stackable: 0
+  InstantUse: 0
   value: 0
   PropertyName: None
   Description: No description provided.

@@ -102,6 +102,7 @@ public class PauseGame : MonoBehaviour
 		Time.timeScale = 1f;
 		PauseGame.CanPause = true;
 		isPaused = false;
+		AudioManager.instance.ResumeMusic ();
 	}
 
 	public static void Pause(bool drawMenu = true) {
@@ -124,6 +125,7 @@ public class PauseGame : MonoBehaviour
 		}
 		Time.timeScale = 0f;
 		isPaused = true;
+		AudioManager.instance.PauseMusic ();
 	}
 //-------------------------------------------------
 	public void MenuResume() {
@@ -178,6 +180,7 @@ public class PauseGame : MonoBehaviour
 		Instance.m_deadScreen.SetActive (true);
 		Instance.m_deadScreen.GetComponent<SaveLoadMenu> ().Refresh ();
 		Instance.m_deadScreen.GetComponent<SaveLoadMenu> ().Reset ();
+		AudioManager.instance.StopMusic ();
 	}
 
 	public static void DisplayWarning(string warningMessage, GameObject oldMenu, ButtonClickEvent func, string title="Warning", ButtonClickEvent cancelFunc = null) {

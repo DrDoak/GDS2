@@ -27,6 +27,7 @@ public class Property : MonoBehaviour, ICustomMessageTarget
 	public bool Stealable = true;
 	public bool Viewable = true;
 	public bool Stackable = false;
+	public bool InstantUse = false;
 	public float value = 0f;
 
 	public string PropertyName = "None";
@@ -38,6 +39,7 @@ public class Property : MonoBehaviour, ICustomMessageTarget
 		Stealable = p.Stealable;
 		Viewable = p.Viewable;
 		Stackable = p.Stackable;
+		InstantUse = p.InstantUse;
 		if (PropertyName == "None")
 			PropertyName = p.PropertyName;
 		if (Description == "No description provided.")
