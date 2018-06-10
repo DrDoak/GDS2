@@ -3,7 +3,8 @@ using System.Collections.Generic;
 using UnityEngine;
 using UnityEditor;
 
-public class AbilityTree{
+public class AbilityTree
+{
     public static GameObject Player;
     public static int PointsToSpend = 0;
     public AbilityTreeNode root;
@@ -17,17 +18,49 @@ public class AbilityTree{
         root = null;
     }
 
-    public AbilityTree(Ability a)
+    public AbilityTree(Ability a, int description = -1)
     {
         root = new AbilityTreeNode(a);
         root.tree = this;
+        if (description != -1) root.SetDescription(description);
     }
 
-    public AbilityTree(Ability a, AbilityTreeNode treeNode)
+    public AbilityTree(Ability a, AbilityTreeNode treeNode, int description = -1)
     {
         root = new AbilityTreeNode(a, treeNode);
         root.tree = this;
+        if (description != -1) root.SetDescription(description);
     }
+
+    public AbilityTreeNode UnlockAbilitiesAutomatic()
+    {
+        if (PointsToSpend > 0)
+        {
+            AbilityTreeNode node;
+            Queue<AbilityTreeNode> q = new Queue<AbilityTreeNode>();
+            q.Enqueue(root);
+            while (q.Count > 0 && PointsToSpend > 0)
+            {
+                node = q.Dequeue();
+                if (!node.unlocked)
+                {
+                    node.tree.ChooseAbility();
+                    return node;
+                }
+                else
+                    foreach (AbilityTreeNode n in node.tree.GetChildren())
+                        q.Enqueue(n);
+
+            }
+        }
+        return null;
+    }
+
+    public string DisplayAbility()
+    {
+        return root.ability.AbilityDescription;
+    }
+       
 
     public void ChooseAbility()
     {
@@ -45,52 +78,54 @@ public class AbilityTree{
             root.Select();
     }
 
-    public void AddRoot(Ability a)
+    public void AddRoot(Ability a, int description = -1)
     {
         root = new AbilityTreeNode(a);
+        root.tree = this;
+        if (description != -1) root.SetDescription(description);
     }
 
-    private void AddLeft(Ability a)
+    private void AddLeft(Ability a, int description = -1)
     {
         if (LeftBranch == null)
-            LeftBranch = new AbilityTree(a, root);
+            LeftBranch = new AbilityTree(a, root, description);
         else
-            LeftBranch.Add(a, Branch.LEFT);
+            LeftBranch.Add(a, Branch.LEFT, description);
     }
 
-    private void AddRight(Ability a)
+    private void AddRight(Ability a, int description = -1)
     {
         if (RightBranch == null)
-            RightBranch = new AbilityTree(a, root);
+            RightBranch = new AbilityTree(a, root, description);
         else
-            RightBranch.Add(a, Branch.RIGHT);
+            RightBranch.Add(a, Branch.RIGHT, description);
     }
 
-    private void AddMiddle(Ability a)
+    private void AddMiddle(Ability a, int description = -1)
     {
         if (MiddleBranch == null)
-            MiddleBranch = new AbilityTree(a, root);
+            MiddleBranch = new AbilityTree(a, root, description);
         else
-            MiddleBranch.Add(a, Branch.MIDDLE);
+            MiddleBranch.Add(a, Branch.MIDDLE, description);
     }
 
-    public void Add(Ability a, Branch b)
+    public void Add(Ability a, Branch b, int description = -1)
     {
         switch (b)
         {
             case Branch.LEFT:
-                AddLeft(a);
+                AddLeft(a, description);
                 break;
             case Branch.MIDDLE:
-                AddMiddle(a);
+                AddMiddle(a, description);
                 break;
             case Branch.RIGHT:
-                AddRight(a);
+                AddRight(a, description);
                 break;
         }
     }
 
-    public void Add(Ability a, Branch b, AbilityType subtree)
+    public void Add(Ability a, Branch b, AbilityType subtree, int description = -1)
     {
         AbilityTreeNode node = root;
 
@@ -108,7 +143,7 @@ public class AbilityTree{
         }
 
         if (node != null)
-            node.tree.Add(a, b);
+            node.tree.Add(a, b, description);
     }
 
     public Ability GetAbility(Branch b, int depth, AbilityType subtree)
@@ -128,7 +163,7 @@ public class AbilityTree{
                 node = RightBranch.root;
                 break;
         }
-        if(node != null)
+        if (node != null)
             d = node.TreeDepth;
 
         while (d != depth && node != null)
@@ -155,7 +190,7 @@ public class AbilityTree{
     {
         AbilityTreeNode node = root;
 
-        if(node != null)
+        if (node != null)
         {
             //Debug.Log(node.ability);
             //Debug.Log(node.TreeDepth);
@@ -168,7 +203,7 @@ public class AbilityTree{
     public void PassUltimate()
     {
         AbilityTreeNode node = root;
-        while(node != null && node.TreeDepth != 1)
+        while (node != null && node.TreeDepth != 1)
         {
             node.tree.UltimateChosen = true;
             node = node.parent;
@@ -177,7 +212,22 @@ public class AbilityTree{
         if (node != null)
             node.tree.UltimateChosen = true;
     }
-	
+
+    public AbilityTreeNode GetRoot()
+    {
+        return root;
+    }
+
+    public List<AbilityTreeNode> GetChildren()
+    {
+        List<AbilityTreeNode> children = new List<AbilityTreeNode>();
+        if (LeftBranch != null) children.Add(LeftBranch.GetRoot());
+        if (MiddleBranch != null) children.Add(MiddleBranch.GetRoot());
+        if (RightBranch != null) children.Add(RightBranch.GetRoot());
+
+        return children;
+    }
+
 }
 
 public class AbilityTreeNode
@@ -194,9 +244,16 @@ public class AbilityTreeNode
     void Awake()
     {
         if (parent != null)
+        {
             TreeDepth = parent.TreeDepth + 1;
+        }
         else
+        {
             TreeDepth = 0;
+            Unlock();
+        }
+
+        if (TreeDepth == 1) Unlock();
 
         if (ability)
         {
@@ -204,7 +261,7 @@ public class AbilityTreeNode
             Tiered = ability.Tiered;
             Maxed = ability.Maxed;
         }
-        Select();
+        //Select();
     }
 
     public AbilityTreeNode(Ability a)
@@ -233,6 +290,7 @@ public class AbilityTreeNode
             ability.Upgrade();
 
         Maxed = ability.Maxed;
+        //Debug.Log("You unlocked: " + ability.AbilityName);
         Select();
     }
 
@@ -261,7 +319,13 @@ public class AbilityTreeNode
     }
     public bool CheckRequisites()
     {
+        if (parent == null) return true;
         return parent.unlocked;
+    }
+
+    public void SetDescription(int index)
+    {
+        ability.SetDescriptionInfo(index);
     }
 }
 

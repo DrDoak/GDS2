@@ -9,7 +9,7 @@ public class Leveller : MonoBehaviour {
     public int Level;
     public float Scaler = 1.5f;
     public int DataRequirement = 800;
-    public int PointAdditions = 2;
+    public int PointAdditions = 1;
     public float HealthAddition = 50f;
 	public string levelUpStr;
 	public int NextLevel = 200;
@@ -45,6 +45,7 @@ public class Leveller : MonoBehaviour {
 			Instance.exp = obj;
 		//Debug.Log ("Requirement: " + Instance.DataRequirement * Instance.Scaler * Instance.Level);
 		//Debug.Log ("Current: " + Instance.exp.Experience);
+
 		if (Instance.exp.Experience >= Instance.DataRequirement * (Mathf.Pow(Instance.Level,Instance.Scaler))) {
 			EventManager.TriggerEvent (3);
 			Instance.NextLevel = (int)(((float)Instance.DataRequirement * (Mathf.Pow ((float)Instance.Level, Instance.Scaler))));
@@ -66,10 +67,17 @@ public class Leveller : MonoBehaviour {
 		levelUpStr = "";
 		Instance.Level++;
     }
+   
 
     void AddAbilityPoints()
     {
+
         AbilityTree.PointsToSpend += PointAdditions;
+        AbilityTreeNode n = AbilityManager.abilityTree.UnlockAbilitiesAutomatic();
+        if(n!=null)
+        {
+            levelUpStr += "\n~ABILITY UPGRADED! " + n.tree.DisplayAbility();
+        }
     }
 
     void AddTransferSlots()
@@ -91,6 +99,7 @@ public class Leveller : MonoBehaviour {
 
     void OnEnable()
     {
+
 		//Debug.Log ("on enable");
         EventManager.LevelUpEvent += IncreaseHealth;
         EventManager.LevelUpEvent += AddAbilityPoints;
