@@ -28,6 +28,7 @@ public class BasicMovement : MonoBehaviour
 	private Vector2 m_velocity;
 	//private float m_accelerationTimeAirborne = .2f;
 	private float m_accelerationTimeGrounded = .1f;
+	private float m_accelerationFloatingY = .1f;
 	private float m_velocityXSmoothing;
 	float gravity;
 	float jumpVelocity;
@@ -45,14 +46,16 @@ public class BasicMovement : MonoBehaviour
 	public float m_minDistance = 1.0f;
 	public float m_abandonDistance = 10.0f;
 	public bool Submerged = false;
+	public bool CanJump = true;
 	private float m_lastJump = 0.0f;
 	public float m_stuckTime = 0.0f;
+	private float m_jumpThruStuckTime = 0.0f;
 	private float m_verticalStuckTime = 0.0f; 
 
 	private PhysicsSS m_followObj;
 	private bool m_autonomy = true;
 
-	public bool playFootsteps = false;
+	public bool PlayFootsteps = false;
 	public float footstepInterval = 0.75f;
 	float m_sinceStep = 0f;
 
@@ -61,20 +64,20 @@ public class BasicMovement : MonoBehaviour
 	internal void Awake()
 	{
 		m_physics = GetComponent<PhysicsSS>();
-		SetJumpData (JumpHeight,TimeToJumpApex);
+		if (CanJump)
+			SetJumpData (JumpHeight,TimeToJumpApex);
 	}
 		
 		
 	internal void Update()
 	{
-		if (!m_physics.CanMove)
-			return;
-		
-		if (IsCurrentPlayer && m_autonomy && Time.deltaTime > 0f)
+		if (!m_physics.CanMove) {
+			m_inputMove = new Vector2(0f, 0f);
+		}else if (IsCurrentPlayer && m_autonomy && Time.deltaTime > 0f)
 			PlayerMovement();
 		else if (m_targetSet)
 			NpcMovement();
-		if (playFootsteps)
+		if (PlayFootsteps)
 			PlayStepSounds ();
 		MoveSmoothly();
 	}
@@ -109,7 +112,8 @@ public class BasicMovement : MonoBehaviour
 		}
 		m_jumpDown = InputManager.GetButtonDown ("Jump");
 		m_jumpHold = InputManager.GetButton ("Jump");
-		JumpMovement ();
+		if (CanJump)
+			JumpMovement ();
 		SetDirectionFromInput();
 		if (InputManager.GetButtonDown ("Quicksave")) {
 			SaveObjManager.Instance.SaveProfile ("QuickSave");
@@ -149,12 +153,11 @@ public class BasicMovement : MonoBehaviour
 	}
 
 
-	private void MoveSmoothly()
-	{
+	private void MoveSmoothly() {
 		Vector2 targetVel = new Vector2(m_inputMove.x * MoveSpeed, m_inputMove.y * MoveSpeed);
 		m_velocity.x = Mathf.SmoothDamp(m_velocity.x, targetVel.x, ref m_accelerationTimeGrounded, SMOOTH_TIME);
-		//velocity.x = Mathf.SmoothDamp (velocity.x, targetVel.x, ref (m_physics.OnGround)?m_accelerationTimeGrounded:m_accelerationTimeAirborne,SMOOTH_TIME);
-		//m_velocity.y = Mathf.SmoothDamp(m_velocity.y, targetVel.y, ref m_accelerationY, SMOOTH_TIME);
+		if (m_physics.Floating)
+			m_velocity.y = Mathf.SmoothDamp(m_velocity.y, targetVel.y, ref m_accelerationFloatingY, SMOOTH_TIME);
 		m_physics.Move(m_velocity, m_inputMove);
 	}
 		
@@ -180,12 +183,14 @@ public class BasicMovement : MonoBehaviour
 		if (!Submerged && !m_physics.OnGround)
 			return;
 
-		if (Submerged)
-			applyJumpVector (new Vector2 (1f, 0.6f));
-		else if (VariableJumpHeight)
+		if (Submerged) {
+			if (m_physics.TrueVelocity.y < 0.05f) 
+				applyJumpVector (new Vector2 (1f, 0.6f));
+		} else if (VariableJumpHeight) {
 			applyJumpVector (new Vector2 (1f, 0.8f));
-		else
+		} else {
 			applyJumpVector (new Vector2 (1f, 1f));
+		}
 
 		FindObjectOfType<AudioManager> ().PlayClipAtPos (FXBody.Instance.SFXJump,transform.position,0.3f,0f,0.25f);
 		m_lastJump = Time.timeSinceLevelLoad;
@@ -200,8 +205,8 @@ public class BasicMovement : MonoBehaviour
 		m_physics.AddSelfForce (jv, 0f);
 	}
 
-	public void MoveToPoint(Vector3 point)
-	{
+
+	public void MoveToPoint(Vector3 point) {
 		m_inputMove = new Vector2(0,0);
 
 		float dist = Vector3.Distance (transform.position, point);
@@ -222,15 +227,23 @@ public class BasicMovement : MonoBehaviour
 						m_physics.SetDirection (true);
 					}
 				}
+				if (Mathf.Abs (point.y - transform.position.y) > m_minDistance) {
+					if (point.y > transform.position.y)
+						m_inputMove.y = 1.0f;
+					else
+						m_inputMove.y = -1.0f;
+				}
 			}
 		}
+		if (CanJump && m_physics.CanMove) {
+			if (Mathf.Abs (m_inputMove.x) >= 0.9f && (m_physics.FallDir == FallDirection.LEFT || m_physics.FallDir == FallDirection.RIGHT ) &&
+				(point.y - transform.position.y) > PIT_JUMP_VERTICAL_THREASHOLD) {
+				AttemptJump ();
+			}
 
-		if (Mathf.Abs (m_inputMove.x) >= 0.9f && (m_physics.FallDir == FallDirection.LEFT || m_physics.FallDir == FallDirection.RIGHT ) &&
-			(point.y - transform.position.y) > PIT_JUMP_VERTICAL_THREASHOLD) {
-			AttemptJump ();
+			JumpOverObstacle (point);
+			JumpVerticalObstacles (point);
 		}
-		JumpOverObstacle (point);
-		JumpVerticalObstacles (point);
 	}
 
 	private void JumpOverObstacle(Vector2 point) {
@@ -245,15 +258,18 @@ public class BasicMovement : MonoBehaviour
 		}
 	}
 	private void JumpVerticalObstacles(Vector2 point) {
-		if ( Mathf.Abs (transform.position.x - point.x) < NPC_X_DIFF_MOVEMENT_THREASHOLD && 
-			(point.y - transform.position.y) > -PIT_JUMP_VERTICAL_THREASHOLD && 
-			(point.y - transform.position.y) < JumpHeight * 1.5f) {
-			m_stuckTime += Time.deltaTime;
-			if (m_verticalStuckTime > NPC_STUCK_JUMP_TIME) {
-				m_verticalStuckTime = 0f;
+		if (m_physics.TrueVelocity.x < 0.01f &&
+		    (point.y - transform.position.y) > -PIT_JUMP_VERTICAL_THREASHOLD &&
+		    (point.y - transform.position.y) < JumpHeight * 1.5f) {
+			m_jumpThruStuckTime += Time.deltaTime;
+			if (m_jumpThruStuckTime > NPC_STUCK_JUMP_TIME) {
+				m_jumpThruStuckTime = 0f;
 				AttemptJump ();
 			}
-		} else if ((point.y - transform.position.y) < PIT_JUMP_VERTICAL_THREASHOLD) {
+		} else {
+			m_jumpThruStuckTime = 0f;
+		}
+		if ((point.y - transform.position.y) < PIT_JUMP_VERTICAL_THREASHOLD) {
 			m_verticalStuckTime += Time.deltaTime;
 			if (m_verticalStuckTime > NPC_STUCK_JUMP_TIME) {
 				m_verticalStuckTime = 0f;

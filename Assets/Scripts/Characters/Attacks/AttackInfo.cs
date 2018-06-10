@@ -37,6 +37,7 @@ public class SoundInfo {
 
 [System.Serializable]
 public class AIInfo {
+	public float Frequency = 0.5f;
 	public bool UniqueAIPrediction = false;
 	public Vector2 AIPredictionHitbox = Vector2.zero;
 	public Vector2 AIPredictionOffset = Vector2.zero;

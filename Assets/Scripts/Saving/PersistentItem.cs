@@ -5,18 +5,19 @@ using System;
 
 public class PersistentItem : MonoBehaviour {
 	public string saveID = "autoID";
-	public string prefabName = "none";
 	public Vector3 pos = Vector3.zero;
+	public float zRot = 0f;
 	public string targetID = "none";
 	public RoomDirection targetDir = RoomDirection.NEUTRAL;
 	public float healthVal = 0;
 	public CharData data = new CharData();
 	public bool recreated = false;
+	public string PrefabPath = "";
 
 	protected bool m_registryChecked = false;
 	void Awake() {
 		if (data.regID == "") {
-			data.regID = SaveObjManager.Instance.GenerateID (gameObject);
+			data.regID = SaveObjManager.Instance.GenerateID (gameObject,PrefabPath);
 		}
 		saveID = data.regID;
 	}
@@ -26,7 +27,7 @@ public class PersistentItem : MonoBehaviour {
 			data.regID = "Not Assigned";
 		}
 		if (SaveObjManager.CheckRegistered(gameObject)) {
-			//Debug.Log (gameObject + " Already registered, deleting duplicate");
+			Debug.Log (gameObject + " Already registered, deleting duplicate ID: " + data.regID);
 			Destroy(gameObject);
 		}
 	}
@@ -39,6 +40,7 @@ public class PersistentItem : MonoBehaviour {
 	public void StoreData() {
 		data.name = gameObject.name;
 		data.pos = transform.position;
+		data.zRot = transform.rotation.eulerAngles.z;
 		data.targetID = "";
 		if (GetComponent<Interactable>()) {
 			data.TriggerUsed = GetComponent<Interactable> ().TriggerUsed;
@@ -47,12 +49,15 @@ public class PersistentItem : MonoBehaviour {
 		if (GetComponent<Attackable> ()) {
 			data.health = GetComponent<Attackable> ().Health;
 			data.maxHealth = GetComponent<Attackable> ().MaxHealth;
+			data.faction = GetComponent<Attackable> ().Faction;
 		}
 		if (GetComponent<BasicMovement>())
 			data.IsCurrentCharacter = GetComponent<BasicMovement> ().IsCurrentPlayer;
 		if (GetComponent<PhysicsSS> ()) {
 			data.IsFacingLeft = GetComponent<PhysicsSS> ().FacingLeft;
 		}
+		if (GetComponent<Turret> ())
+			data.TurretDefaultFace = GetComponent<Turret> ().DefaultFaceLeft;
 		if (GetComponent<PropertyHolder> ()) {
 			Property[] pL = GetComponents<Property> ();
 			string[] allPs = new string[pL.Length];
@@ -72,18 +77,25 @@ public class PersistentItem : MonoBehaviour {
 
 		if (GetComponent<ExperienceHolder> ())
 			data.Experience = GetComponent<ExperienceHolder> ().Experience;
-		data.prefabPath = getProperName(); //gameObject.name;*/
+		if (PrefabPath == "")
+			data.prefabPath = getProperName ();
+		else
+			data.prefabPath = PrefabPath;
 	}
 
 	public void LoadData() {
-		//Debug.Log ("Loading data");
 		if (GetComponent<Attackable> ()) {
 			GetComponent<Attackable> ().MaxHealth = data.maxHealth;
 			GetComponent<Attackable> ().SetHealth (data.health);
+			GetComponent<Attackable> ().Faction = data.faction;
 		}
+		Quaternion q = Quaternion.Euler(new Vector3 (0f, 0f, data.zRot));
+		transform.localRotation = q;
 		if (GetComponent<PhysicsSS> ()) {
 			GetComponent<PhysicsSS> ().SetDirection (data.IsFacingLeft);
 		}
+		if (GetComponent<Turret> ())
+			GetComponent<Turret> ().DefaultFaceLeft = data.TurretDefaultFace;
 		if (GetComponent<PropertyHolder> ()) {
 			GetComponent<PropertyHolder> ().NumTransfers = data.transfers;
 			GetComponent<PropertyHolder> ().MaxSlots = data.slots;
@@ -102,6 +114,7 @@ public class PersistentItem : MonoBehaviour {
 			GetComponent<Interactable> ().TriggerUsed = data.TriggerUsed;
 			GetComponent<Interactable> ().value = data.triggerString;
 		}
+		gameObject.name = data.name;
 		gameObject.name = getProperName ();
 	}
 	private string getProperName() {

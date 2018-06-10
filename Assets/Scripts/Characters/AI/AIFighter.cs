@@ -62,15 +62,16 @@ public class AIFighter : MonoBehaviour {
 
 	public List<string> AvailableAttacks(BasicMovement target) {
 		Vector3 otherPos = target.transform.position;
-		float xDiff = Mathf.Abs(transform.position.x - otherPos.x);
-		float yDiff = Mathf.Abs(transform.position.y - otherPos.y);
+		float dir = (GetComponent<PhysicsSS> ().FacingLeft) ? -1f : 1f;
 		List<string> atks = new List<string> ();
 		foreach (AttackInfo ainfo in allAttacks) {
-			Vector2 offset = GetComponent<PhysicsSS> ().OrientVectorToDirection (ainfo.m_AIInfo.AIPredictionOffset);
-			if ((ainfo.m_AIInfo.AIPredictionHitbox.x + offset.x) +
-				(ainfo.m_AIInfo.AIPredictionHitbox.x + offset.x) * Random.Range (0f, 1f - spacing) > xDiff &&
-				(ainfo.m_AIInfo.AIPredictionHitbox.y + offset.y) +
-				(ainfo.m_AIInfo.AIPredictionHitbox.y + offset.y) * Random.Range (0f, 1f - spacing) > yDiff && Random.value > 0.5f) {
+			Vector3 offPos = otherPos + (target.GetComponent<PhysicsSS>().TrueVelocity/Time.deltaTime) * ainfo.m_AttackAnimInfo.StartUpTime * 0.5f;
+			float xDiff = Mathf.Abs(transform.position.x  + (dir * ainfo.m_AIInfo.AIPredictionOffset.x) - offPos.x);
+			float yDiff = Mathf.Abs(transform.position.y + ainfo.m_AIInfo.AIPredictionOffset.y - offPos.y);
+			if ((ainfo.m_AIInfo.AIPredictionHitbox.x) +
+				(ainfo.m_AIInfo.AIPredictionHitbox.x) * Random.Range (0f, 1f - spacing) > xDiff &&
+				(ainfo.m_AIInfo.AIPredictionHitbox.y) +
+				(ainfo.m_AIInfo.AIPredictionHitbox.y) * Random.Range (0f, 1f - spacing) > yDiff && Random.value > ainfo.m_AIInfo.Frequency) {
 				atks.Add (ainfo.AttackName);
 			}
 		}

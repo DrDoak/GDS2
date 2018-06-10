@@ -28,6 +28,8 @@ public class PR_Wooden : Property {
 		floatPhysics ();
 	}
 	void floatPhysics() {
+		if (GetComponent<PhysicsSS> () == null)
+			return;
 		if (GetComponent<PropertyHolder> ().SubmergedHitbox != null) {
 			float surfaceLevel = GetComponent<PropertyHolder> ().SubmergedHitbox.SurfaceLevel;
 			float diff = surfaceLevel - 0.2f - transform.position.y;
@@ -62,11 +64,9 @@ public class PR_Wooden : Property {
 		}
 	}
 	public override void OnWaterEnter(WaterHitbox waterCollided)  {
-		Debug.Log ("Water enter");
 		GetComponent<PhysicsSS> ().UseBuoyancy = true;
 	}
 	public override void OnWaterExit(WaterHitbox waterCollided) {
-		Debug.Log ("Water exit");
 		GetComponent<PhysicsSS> ().UseBuoyancy = false;
 	}
 }

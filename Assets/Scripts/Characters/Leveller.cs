@@ -7,11 +7,13 @@ public class Leveller : MonoBehaviour {
     public static Leveller Instance;
 
     public int Level;
-    public int Scaler = 2;
+    public float Scaler = 1.5f;
     public int DataRequirement = 800;
     public int PointAdditions = 1;
     public float HealthAddition = 50f;
-    
+	public string levelUpStr;
+	public int NextLevel = 200;
+
     private ExperienceHolder exp;
 
 	void Start()
@@ -29,7 +31,7 @@ public class Leveller : MonoBehaviour {
 
 		Level = 1;
 		for (int i = 1; i < 10; i++) { 
-			Debug.Log (Instance.DataRequirement * Instance.Scaler * i);
+			//Debug.Log (Instance.DataRequirement * Instance.Scaler * i);
 		}
 	}
 
@@ -43,20 +45,26 @@ public class Leveller : MonoBehaviour {
 			Instance.exp = obj;
 		//Debug.Log ("Requirement: " + Instance.DataRequirement * Instance.Scaler * Instance.Level);
 		//Debug.Log ("Current: " + Instance.exp.Experience);
-		if (Instance.exp.Experience >= Instance.DataRequirement * Instance.Scaler * Instance.Level) {
-			EventManager.TriggerEvent (EventManager.LEVEL_UP);
-			Debug.Log ("Event Triggered");
+
+		if (Instance.exp.Experience >= Instance.DataRequirement * (Mathf.Pow(Instance.Level,Instance.Scaler))) {
+			EventManager.TriggerEvent (3);
+			Instance.NextLevel = (int)(((float)Instance.DataRequirement * (Mathf.Pow ((float)Instance.Level, Instance.Scaler))));
+			//Debug.Log ("Event Triggered");
 		}
     }
 
     void IncreaseHealth()
     {
-        exp.gameObject.GetComponent<Attackable>().MaxHealth += HealthAddition * Level;
+		float oldH = exp.gameObject.GetComponent<Attackable> ().MaxHealth;
+        exp.gameObject.GetComponent<Attackable>().MaxHealth += HealthAddition;
+		exp.gameObject.GetComponent<Attackable> ().DamageObj (-1000f);
+		levelUpStr += "\n~HP: " + oldH + " => " + exp.gameObject.GetComponent<Attackable> ().MaxHealth;
     }
 
     void DisplayLevelUp()
     {
-		TextboxManager.StartSequence ("~RANK UP! LEVEL " + (Instance.Level + 1));
+		TextboxManager.StartSequence ("~RANK UP! LEVEL " + (Instance.Level + 1) + levelUpStr);
+		levelUpStr = "";
 		Instance.Level++;
     }
 
@@ -78,9 +86,12 @@ public class Leveller : MonoBehaviour {
 
     void AddTransferSlots()
     {
-        //Add slots at levels 3, 6, 9
-        if(Level % 3 == 0)
-            exp.gameObject.GetComponent<PropertyHolder>().MaxSlots += 1;
+        //Add slots at levels 2, 4, 6, 7
+		if (Level == 1 || Level == 3 || Level == 5 || Level == 6 ) {
+			int oldMax = exp.gameObject.GetComponent<PropertyHolder> ().MaxSlots;
+			exp.gameObject.GetComponent<PropertyHolder> ().MaxSlots += 1;
+			levelUpStr += "\n~Property Slots: " + oldMax + " => " + exp.gameObject.GetComponent<PropertyHolder> ().MaxSlots;
+		}
     }
 
 	void AddTransfers()
@@ -92,22 +103,22 @@ public class Leveller : MonoBehaviour {
 
     void OnEnable()
     {
-		Debug.Log ("on enable");
 
-        EventManager.LevelUpEvent += DisplayLevelUp;
+		//Debug.Log ("on enable");
         EventManager.LevelUpEvent += IncreaseHealth;
+        EventManager.LevelUpEvent += AddAbilityPoints;
         EventManager.LevelUpEvent += AddTransferSlots;
 		EventManager.LevelUpEvent += AddTransfers;
-        EventManager.LevelUpEvent += AddAbilityPoints;
+		EventManager.LevelUpEvent += DisplayLevelUp;
     }
 
     void OnDisable()
     {
-		Debug.Log ("on disable");
+		//Debug.Log ("on disable");
         EventManager.LevelUpEvent -= IncreaseHealth;
         EventManager.LevelUpEvent -= AddAbilityPoints;
-        EventManager.LevelUpEvent -= DisplayLevelUp;
         EventManager.LevelUpEvent -= AddTransferSlots;
 		EventManager.LevelUpEvent -= AddTransfers;
+		EventManager.LevelUpEvent -= DisplayLevelUp;
     }
 }

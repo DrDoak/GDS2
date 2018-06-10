@@ -27,7 +27,7 @@ GameObject:
   - component: {fileID: 114287812958643092}
   - component: {fileID: 114956636068374680}
   - component: {fileID: 114075146464476376}
-  - component: {fileID: 114602981617129310}
+  - component: {fileID: 114490758018603438}
   m_Layer: 8
   m_Name: Desk
   m_TagString: Player
@@ -42,7 +42,7 @@ Transform:
   m_PrefabInternal: {fileID: 100100000}
   m_GameObject: {fileID: 1786320237212698}
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_LocalPosition: {x: 30.92, y: -15.28, z: 0}
+  m_LocalPosition: {x: 18.639076, y: -7.6312428, z: 0}
   m_LocalScale: {x: 1, y: 1, z: 4}
   m_Children: []
   m_Father: {fileID: 0}
@@ -80,7 +80,7 @@ BoxCollider2D:
   m_IsTrigger: 0
   m_UsedByEffector: 0
   m_UsedByComposite: 0
-  m_Offset: {x: 0, y: 0}
+  m_Offset: {x: 0, y: 0.02}
   m_SpriteTilingProperty:
     border: {x: 0, y: 0, z: 0, w: 0}
     pivot: {x: 0.5, y: 0.5}
@@ -105,11 +105,28 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   m_health: 100
-  MaxHealth: 200
+  MaxHealth: 100
   Alive: 1
   DeathTime: 0
+  m_currDeathTime: 0
   Faction: 3
-  Resistences: []
+  Resistences:
+  - Element: 2
+    Duration: 0
+    Percentage: 100
+    Timed: 0
+    StunResist: 0
+    KnockbackResist: 0
+    AvoidOverflow: 0
+    OverflowAmount: 0
+  - Element: 2
+    Duration: 0
+    Percentage: 100
+    Timed: 0
+    StunResist: 0
+    KnockbackResist: 0
+    AvoidOverflow: 0
+    OverflowAmount: 0
   DisplayHealth: 1
   Killer: {fileID: 0}
 --- !u!114 &114075146464476376
@@ -123,22 +140,25 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 92acc23af4626be4fa32c868acac10d0, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  saveID: autoID
+  saveID: 
   prefabName: none
   pos: {x: 0, y: 0, z: 0}
   targetID: none
   targetDir: 4
   healthVal: 0
   data:
-    regID: Not Assigned
+    regID: 
     name: 
     pos: {x: 0, y: 0, z: 0}
     health: 100
+    maxHealth: 100
     prefabPath: 
     targetID: 
     propertyList: []
     propertyDescriptions: []
     propertyValues: []
+    transfers: 0
+    slots: 0
     targetDir: 0
     IsCurrentCharacter: 0
     IsFacingLeft: 0
@@ -146,6 +166,7 @@ MonoBehaviour:
     TriggerUsed: 0
     triggerString: 
   recreated: 0
+  PrefabPath: 
 --- !u!114 &114287812958643092
 MonoBehaviour:
   m_ObjectHideFlags: 1
@@ -157,8 +178,8 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: b2f176fa900675a449256a92aa0193c7, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  Faction: 0
---- !u!114 &114602981617129310
+  Faction: 3
+--- !u!114 &114490758018603438
 MonoBehaviour:
   m_ObjectHideFlags: 1
   m_PrefabParentObject: {fileID: 0}
@@ -171,11 +192,11 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   Stealable: 1
   Viewable: 1
-  Stackable: 0
-  value: 0
-  PropertyName: None
-  Description: No description provided.
-  icon: {fileID: 0}
+  Stackable: 1
+  value: 200
+  PropertyName: Data
+  Description: 'Provides 200 data. '
+  icon: {fileID: 21300000, guid: 24e831a00c3030a40856dc292804e175, type: 3}
 --- !u!114 &114956636068374680
 MonoBehaviour:
   m_ObjectHideFlags: 1
@@ -187,11 +208,14 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 7209baf354a64e1408f7faeb13592322, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  m_properties: []
+  m_properties:
+  - {fileID: 114490758018603438}
+  HolderName: SameAsObject
   MaxSlots: 4
   NumTransfers: 2
   m_toRemove: []
   SubmergedHitbox: {fileID: 0}
+  EffectColor: {r: 1, g: 1, b: 1, a: 1}
 --- !u!114 &114980697645145086
 MonoBehaviour:
   m_ObjectHideFlags: 1
@@ -209,11 +233,14 @@ MonoBehaviour:
     m_Bits: 256
   DecelerationRatio: 1
   OnGround: 1
+  Floating: 0
   MaxClimbAngle: 80
+  TrueVelocity: {x: 0, y: 0, z: 0}
   m_inputedMove: {x: 0, y: 0}
   TerminalVelocity: -5
   GravityScale: -1
   FacingLeft: 0
+  ReactToWater: 1
   UseBuoyancy: 0
   BuoyancyScale: -1
 --- !u!212 &212660280171966492

@@ -28,6 +28,9 @@ GameObject:
   - component: {fileID: 114913616072734332}
   - component: {fileID: 114092560283486858}
   - component: {fileID: 114338519875061186}
+  - component: {fileID: 95242030961908258}
+  - component: {fileID: 114690044459225812}
+  - component: {fileID: 114628528173222888}
   m_Layer: 8
   m_Name: Burner
   m_TagString: Player
@@ -93,6 +96,23 @@ BoxCollider2D:
   serializedVersion: 2
   m_Size: {x: 1.9, y: 1}
   m_EdgeRadius: 0
+--- !u!95 &95242030961908258
+Animator:
+  serializedVersion: 3
+  m_ObjectHideFlags: 1
+  m_PrefabParentObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 100100000}
+  m_GameObject: {fileID: 1095465991512596}
+  m_Enabled: 1
+  m_Avatar: {fileID: 0}
+  m_Controller: {fileID: 9100000, guid: 70b88e1982e4eb847b219f441a6e9c44, type: 2}
+  m_CullingMode: 0
+  m_UpdateMode: 0
+  m_ApplyRootMotion: 0
+  m_LinearVelocityBlending: 0
+  m_WarningMessage: 
+  m_HasTransformHierarchy: 1
+  m_AllowConstantClipSamplingOptimization: 1
 --- !u!114 &114025102353009136
 MonoBehaviour:
   m_ObjectHideFlags: 1
@@ -110,11 +130,14 @@ MonoBehaviour:
     m_Bits: 256
   DecelerationRatio: 1
   OnGround: 1
+  Floating: 0
   MaxClimbAngle: 80
+  TrueVelocity: {x: 0, y: 0, z: 0}
   m_inputedMove: {x: 0, y: 0}
   TerminalVelocity: -5
   GravityScale: -1
   FacingLeft: 0
+  ReactToWater: 1
   UseBuoyancy: 0
   BuoyancyScale: -1
 --- !u!114 &114092560283486858
@@ -131,6 +154,7 @@ MonoBehaviour:
   Stealable: 1
   Viewable: 1
   Stackable: 0
+  InstantUse: 0
   value: 0
   PropertyName: None
   Description: No description provided.
@@ -149,10 +173,41 @@ MonoBehaviour:
   Stealable: 1
   Viewable: 1
   Stackable: 0
+  InstantUse: 0
   value: 0
   PropertyName: None
   Description: No description provided.
   icon: {fileID: 0}
+--- !u!114 &114628528173222888
+MonoBehaviour:
+  m_ObjectHideFlags: 1
+  m_PrefabParentObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 100100000}
+  m_GameObject: {fileID: 1095465991512596}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 1994e71cbe2edd849aab659e7d7bd75e, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  AutoOrientSprite: 1
+  IdleAnimation: none
+  WalkAnimation: none
+  HurtAnimation: none
+  AirAnimation: none
+  AttackSound: {fileID: 0}
+  StunTime: 0
+--- !u!114 &114690044459225812
+MonoBehaviour:
+  m_ObjectHideFlags: 1
+  m_PrefabParentObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 100100000}
+  m_GameObject: {fileID: 1095465991512596}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 7bc35a6c28df4004bb8322b02cfc574c, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  m_currentAnim: 
 --- !u!114 &114784661200462446
 MonoBehaviour:
   m_ObjectHideFlags: 1
@@ -176,10 +231,11 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 6cecf518dba7e8f429d2dc6df9ba9177, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  m_health: 100
+  m_health: 200
   MaxHealth: 200
   Alive: 1
   DeathTime: 0
+  m_currDeathTime: 0
   Faction: 0
   Resistences: []
   DisplayHealth: 1
@@ -201,6 +257,7 @@ MonoBehaviour:
   NumTransfers: 2
   m_toRemove: []
   SubmergedHitbox: {fileID: 0}
+  EffectColor: {r: 1, g: 1, b: 1, a: 1}
 --- !u!212 &212838904389226020
 SpriteRenderer:
   m_ObjectHideFlags: 1

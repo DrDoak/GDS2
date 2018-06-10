@@ -40,9 +40,12 @@ public class GUIHandler : MonoBehaviour {
 			var P1Controller = CurrentTarget.GetComponent<Attackable> ();
 
 			P1HealthBar.value = P1Controller.Health;
+			P1HealthBar.maxValue = P1Controller.MaxHealth;
+			Vector3 oS = P1HealthBar.GetComponent<RectTransform> ().localScale;
+			P1HealthBar.GetComponent<RectTransform> ().localScale =new Vector3((P1Controller.MaxHealth / 100f),oS.y,oS.z);
 			if (CurrentTarget.GetComponent<ExperienceHolder> () != null) {
 				var exp = CurrentTarget.GetComponent<ExperienceHolder> ();
-				ExpText.text = "Data: " + exp.VisualExperience;
+				ExpText.text = "Data: " + exp.VisualExperience + "\nNext: " + Leveller.Instance.NextLevel;
 			}
 		}
 	}

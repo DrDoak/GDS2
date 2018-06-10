@@ -28,6 +28,7 @@ GameObject:
   - component: {fileID: 114656531058040164}
   - component: {fileID: 114680918981295426}
   - component: {fileID: 114311107530560480}
+  - component: {fileID: 114510106772886932}
   m_Layer: 8
   m_Name: Barrel_Bomb
   m_TagString: Player
@@ -107,6 +108,7 @@ MonoBehaviour:
   Stealable: 1
   Viewable: 1
   Stackable: 0
+  value: 0
   PropertyName: None
   Description: No description provided.
   icon: {fileID: 0}
@@ -139,10 +141,55 @@ MonoBehaviour:
     m_Bits: 256
   DecelerationRatio: 1
   OnGround: 1
+  Floating: 0
   MaxClimbAngle: 80
+  TrueVelocity: {x: 0, y: 0, z: 0}
   m_inputedMove: {x: 0, y: 0}
   TerminalVelocity: -5
+  GravityScale: -1
   FacingLeft: 0
+  ReactToWater: 1
+  UseBuoyancy: 0
+  BuoyancyScale: -1
+--- !u!114 &114510106772886932
+MonoBehaviour:
+  m_ObjectHideFlags: 1
+  m_PrefabParentObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 100100000}
+  m_GameObject: {fileID: 1320337457959410}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 92acc23af4626be4fa32c868acac10d0, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  saveID: autoID
+  pos: {x: 0, y: 0, z: 0}
+  zRot: 0
+  targetID: none
+  targetDir: 4
+  healthVal: 0
+  data:
+    regID: Not Assigned
+    name: 
+    pos: {x: 0, y: 0, z: 0}
+    zRot: 0
+    health: 100
+    maxHealth: 100
+    prefabPath: 
+    targetID: 
+    propertyList: []
+    propertyDescriptions: []
+    propertyValues: []
+    transfers: 0
+    slots: 0
+    targetDir: 0
+    IsCurrentCharacter: 0
+    IsFacingLeft: 0
+    Experience: 0
+    TriggerUsed: 0
+    triggerString: 
+  recreated: 0
+  PrefabPath: Barrel_Bomb
 --- !u!114 &114656531058040164
 MonoBehaviour:
   m_ObjectHideFlags: 1
@@ -155,9 +202,12 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   m_properties: []
+  HolderName: SameAsObject
   MaxSlots: 4
   NumTransfers: 2
   m_toRemove: []
+  SubmergedHitbox: {fileID: 0}
+  EffectColor: {r: 1, g: 1, b: 1, a: 1}
 --- !u!114 &114680918981295426
 MonoBehaviour:
   m_ObjectHideFlags: 1
@@ -172,10 +222,12 @@ MonoBehaviour:
   Stealable: 1
   Viewable: 1
   Stackable: 0
+  value: 0
   PropertyName: None
   Description: No description provided.
   icon: {fileID: 0}
   m_flameDamage: 0
+  inWater: 0
 --- !u!114 &114744018110682224
 MonoBehaviour:
   m_ObjectHideFlags: 1
@@ -191,6 +243,7 @@ MonoBehaviour:
   MaxHealth: 20
   Alive: 1
   DeathTime: 0
+  m_currDeathTime: 0
   Faction: 3
   Resistences: []
   DisplayHealth: 1

@@ -19,6 +19,7 @@ public class Resistence {
 
 public class Attackable : MonoBehaviour
 {
+	private const float BOTTOM_OF_WORLD = -1000f;
 	public float m_health = 100.0f;
 	public float Health { get { return m_health; } private set { m_health = value; } }
 	public float MaxHealth = 100.0f;
@@ -51,9 +52,6 @@ public class Attackable : MonoBehaviour
 
 	internal void InitResistences() {
 		m_fullResistences.Clear ();
-//		ElementType[] eList = new ElementType[ElementType.PHYSICAL, ElementType.FIRE,
-//			ElementType.BIOLOGICAL, ElementType.LIGHTNING, ElementType.PSYCHIC];
-		//RangeInt l = new RangeInt(1,4);
 		for (int i=0; i < 5; i++) {
 			Resistence r = new Resistence ();
 			r.Element = (ElementType)i;
@@ -62,6 +60,7 @@ public class Attackable : MonoBehaviour
 		foreach (Resistence r in Resistences) {
 			AddResistence (r);
 		}
+		AddResistence (ElementType.BIOLOGICAL, 100f, false, false);
 	}
 	internal void Start() {
 		
@@ -100,6 +99,8 @@ public class Attackable : MonoBehaviour
 	}
 
 	internal void Update() {
+		if (transform.position.y < BOTTOM_OF_WORLD)
+			SetHealth (-1000.0f);
 		CheckDeath();
 		CheckResistanceValidities ();
 	}
@@ -208,7 +209,8 @@ public class Attackable : MonoBehaviour
 		}
 		if (hbdot.IsFixedKnockback) {
 			Vector2 kb = hbdot.Knockback  - (hbdot.Knockback * Mathf.Min(1f,(r.KnockbackResist/100f)));
-			GetComponent<PhysicsSS>().AddToVelocity (kb * Time.deltaTime);
+			if (GetComponent<PhysicsSS>() != null)
+				GetComponent<PhysicsSS>().AddToVelocity (kb * Time.deltaTime);
 		} else {
 			Vector3 otherPos = gameObject.transform.position;
 			float angle = Mathf.Atan2 (transform.position.y - otherPos.y, transform.position.x - otherPos.x); //*180.0f / Mathf.PI;
@@ -216,7 +218,8 @@ public class Attackable : MonoBehaviour
 			float forceX = Mathf.Cos (angle) * magnitude;
 			float forceY = Mathf.Sin (angle) * magnitude;
 			Vector2 force = new Vector2 (-forceX, -forceY);
-			GetComponent<PhysicsSS>().AddToVelocity (force*Time.deltaTime);
+			if (GetComponent<PhysicsSS>() != null)
+				GetComponent<PhysicsSS>().AddToVelocity (force*Time.deltaTime);
 		}
 	}
 	public HitResult TakeHit(Hitbox hb)
@@ -258,12 +261,13 @@ public class Attackable : MonoBehaviour
 	{
 		ExecuteEvents.Execute<ICustomMessageTarget> (gameObject, null, (x, y) => x.OnAttack ());
 	}
-
 	public void SetHealth (float newHealth) {
 		DamageObj (Health - newHealth);
 	}
 	public float DamageObj(float damage)
 	{
+		if (!Alive)
+			return 0f;
 		float healthBefore = m_health;
 		m_health = Mathf.Max(Mathf.Min(MaxHealth, m_health - damage), 0);
 		Alive = (m_health > 0);

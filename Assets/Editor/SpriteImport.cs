@@ -9,7 +9,7 @@ public class CustomImportSettings : AssetPostprocessor {
 
 	void OnPostprocessTexture(Texture2D texture) {
 		TextureImporter ti = (assetImporter as TextureImporter);
-		ti.spritePixelsPerUnit = pixelsPerUnit;
+		//ti.spritePixelsPerUnit = pixelsPerUnit;
 		ti.filterMode = filterMode;
 
 		ti.mipmapEnabled = mipMapEnabled;

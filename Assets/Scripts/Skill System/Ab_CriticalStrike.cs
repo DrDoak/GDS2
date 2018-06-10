@@ -16,7 +16,7 @@ public class Ab_CriticalStrike : Ability
 
     public override void UseAbility()
     {
-        Debug.Log("Critical Strike triggered!");
+        //Debug.Log("Critical Strike triggered!");
     }
 
     public override void Select()

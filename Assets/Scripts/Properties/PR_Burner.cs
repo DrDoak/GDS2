@@ -11,7 +11,6 @@ public class PR_Burner : PR_Mechanical {
 	float hd = -0.5f;
 	Vector2 kb = new Vector2(25.0f, 0.0f);
 	HitboxDoT dotBox;
-	HitboxMulti launchBox;
 	GameObject fx;
 
 	List<ElementType> fireOnly;

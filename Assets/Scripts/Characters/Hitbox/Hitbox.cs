@@ -263,7 +263,7 @@ public class Hitbox : MonoBehaviour {
 				FindObjectOfType<AudioManager> ().PlayClipAtPos (FXHit.Instance.SFXElectric,transform.position,0.75f,0f,0.25f);
 				break;
 			case ElementType.BIOLOGICAL:
-				FindObjectOfType<AudioManager> ().PlayClipAtPos (FXHit.Instance.SFXPhysical,transform.position,0.5f,0f,0.25f);
+				//FindObjectOfType<AudioManager> ().PlayClipAtPos (FXHit.Instance.SFXPhysical,transform.position,0.5f,0f,0.25f);
 				break;
 			case ElementType.PSYCHIC:
 				FindObjectOfType<AudioManager> ().PlayClipAtPos (FXHit.Instance.SFXPsychic,transform.position,0.5f,0f,0.25f);

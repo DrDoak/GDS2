@@ -12,6 +12,7 @@ public class TransferMenu : MonoBehaviour {
 
 	TextMeshProUGUI m_remainingText;
 	TextMeshProUGUI m_infoText;
+	TextMeshProUGUI m_reminderText;
 
 	Image m_centerImage;
 	public Sprite ArrowLeft;
@@ -64,7 +65,7 @@ public class TransferMenu : MonoBehaviour {
 		m_infoText = transform.Find ("Info").GetComponent<TextMeshProUGUI>();
 		m_remainingText = transform.Find ("Remaining").GetComponent<TextMeshProUGUI>();
 		m_centerImage = transform.Find ("CenterImage").GetComponent<Image> ();
-
+		m_reminderText = transform.Find ("Reminder").GetComponent<TextMeshProUGUI>();
 		m_propMenus = new List<PropertyMenu> ();
 
 		PropertyMenu pm = new PropertyMenu ();
@@ -89,6 +90,7 @@ public class TransferMenu : MonoBehaviour {
 
 		gameObject.SetActive (false);
 		exiting = (m_transfersRemaining <= 0);
+		m_remainingText.text = "";
 	}
 
 	public void init(int transfers, bool resetPos = true) {
@@ -118,19 +120,21 @@ public class TransferMenu : MonoBehaviour {
 		}
 		if (m_propSelected < 0) {
 			m_infoText.text = "No Properties Available";
-			exit_time = 0.5f;
+			exit_time = 1.0f;
 			ExitMenu ();
 			return;
 		}
 		m_timeSinceExit = 0.0f;
 		m_transfersRemaining = transfers;
-		m_remainingText.text = "Transfers Remaining: \n" + transfers.ToString ();
+		//m_remainingText.text = "Transfers Remaining: \n" + transfers.ToString ();
 		m_selectedButton = m_CurrentMenu.propertyButtons [m_propSelected];
 		HighlightKey (m_selectedButton);
 		PauseGame.SlowToPause ();
 		PauseGame.CanPause = false;
 		starting = true;
 		m_active = true;
+		m_remainingText.text = "";
+		m_reminderText.text = "Use Movement Keys to Highlight \n" + "Press " + TextboxManager.GetKeyString("Cancel") + " to Exit Menu";
 	}
 
 	public void Clear() {

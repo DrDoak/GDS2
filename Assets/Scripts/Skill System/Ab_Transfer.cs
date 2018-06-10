@@ -14,9 +14,8 @@ public class Ab_Transfer : Ability {
     //Upgrade data
     public static bool InfectUpgrade;
     public static float _maxDistance = 2f;
-    public static int _maxTransfers = 1;
 
-    
+    public static int _maxTransfers = 999;
     
 	public override void Awake()
     {

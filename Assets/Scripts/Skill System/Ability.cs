@@ -63,7 +63,7 @@ public abstract class Ability : ScriptableObject {
 
     public virtual void Select()
     {
-        Debug.Log("You selected: " + AbilityName);
+        //Debug.Log("You selected: ability");
     }
     
     protected void ApplyProperty(Property p)

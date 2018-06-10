@@ -59,8 +59,9 @@ public class WaterHitbox : MonoBehaviour {
 				other.GetComponent<BasicMovement> ().Submerged = false;
 			}
 			m_overlappingControl.Remove (other.gameObject.GetComponent<PhysicsSS> ());
-			Mathf.Abs (other.GetComponent<PhysicsSS> ().TrueVelocity.y);
-			//phys.AddToVelocity (new Vector2 (0f, -0.3f * velY/Time.deltaTime));
+			float velY = Mathf.Abs (other.GetComponent<PhysicsSS> ().TrueVelocity.y);
+			if (velY > 0.2f)
+				other.GetComponent<PhysicsSS>().AddToVelocity (new Vector2 (0f, -0.5f * velY/Time.deltaTime));
 			ExecuteEvents.Execute<ICustomMessageTarget> (other.gameObject, null, (x, y) => x.OnWaterExit (this));
 			CreateFX (other);
 		}

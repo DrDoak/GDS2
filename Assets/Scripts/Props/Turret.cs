@@ -22,6 +22,7 @@ public class Turret : MonoBehaviour {
 	bool m_firing;
 	public GameObject m_target;
 	public AudioClip FireSound;
+	public bool DefaultFaceLeft = false;
 
 	int m_shotsFiredInVolley = 0;
 
@@ -35,7 +36,7 @@ public class Turret : MonoBehaviour {
 			Debug.Log ("Setting turret target to: " + target);
 			GetComponent<PhysicsSS> ().SetDirection (false);
 		} else {
-			//GetComponent<PhysicsSS> ().SetDirection (oldDir);
+			GetComponent<PhysicsSS> ().SetDirection (DefaultFaceLeft);
 		}
 	}
 	// Use this for initialization

@@ -9,6 +9,9 @@ public class RoomSettings : MonoBehaviour {
 	public string RoomName = "Unknown Room";
 	public string Description = "Description not assigned in RoomSettings";
 
+	public bool Silence = false;
+	public AudioClip RoomMusic;
+
 	// Use this for initialization
 	void Start () {
 		if (UseCameraLimits == true) {
@@ -21,5 +24,9 @@ public class RoomSettings : MonoBehaviour {
 		if (DisplayLevelInfo == true) { 
 			GameManager.Instance.transform.GetChild(0).GetComponentInChildren<RoomDescription> ().SetNameDescription (RoomName, Description);
 		}
+		if (Silence)
+			AudioManager.instance.StopMusic ();
+		if (RoomMusic != null)
+			AudioManager.instance.PlayMusic (RoomMusic);
 	}
 }

@@ -63,8 +63,9 @@ public class SaveObjManager : MonoBehaviour{
 		string json = File.ReadAllText(savePath+ "base.txt");
 		CurrentSaveInfo = JsonUtility.FromJson<SaveProfileContainer> (json);
 		registeredPermItems.Clear ();
-		registeredPermItems = CurrentSaveInfo.RegisteredIDs;
-
+		registeredPermItems = CurrentSaveInfo.RegisteredIDs;			
+		Leveller.Instance.Level = CurrentSaveInfo.Level;
+		Leveller.Instance.NextLevel = CurrentSaveInfo.NextLevel;
 		SceneManager.LoadScene (CurrentSaveInfo.LastRoomName, LoadSceneMode.Single);
 		return true;
 	}
@@ -193,8 +194,8 @@ public class SaveObjManager : MonoBehaviour{
 		return m_instance.m_checkRegister (go);
 	}
 
-	public string GenerateID (GameObject go) {
-		string xID = (Mathf.CeilToInt(go.transform.position.x/2f)*2).ToString ();
+	public string GenerateID (GameObject go, string prefabName) {
+		string xID = (Mathf.CeilToInt(go.transform.position.x/3f)*3).ToString ();
 		string yID = (Mathf.CeilToInt(go.transform.position.y/3f)*3).ToString ();
 		string id = "";
 		foreach (char c in go.name) {
@@ -204,12 +205,17 @@ public class SaveObjManager : MonoBehaviour{
 				break;
 			}
 		}
-		id += "-" + SceneManager.GetActiveScene ().name + xID + "_" + yID;
+		string pref = (prefabName == "") ? prefabName : go.name;
+		if (id != pref) {
+			id = pref + "-" + SceneManager.GetActiveScene ().name + "-" + go.name;
+		} else {
+			id += "-" + SceneManager.GetActiveScene ().name + xID + "_" + yID;
+		}
 		return id;
 	}
 	bool m_checkRegister(GameObject go) {
 		PersistentItem c = go.GetComponent<PersistentItem> ();
-		string id = GenerateID (go);
+		string id = GenerateID (go, c.data.prefabPath);
 		//Debug.Log ("Checking if character: " + c + " registered id is: " + c.data.regID);
 		//Debug.Log ("incoming ID: " + c.data.regID);
 		if (c.data.regID != "Not Assigned") {
@@ -238,7 +244,6 @@ public class SaveObjManager : MonoBehaviour{
 		charContainer.actors.Clear ();
 		foreach (PersistentItem c in cList) {
 			c.StoreData ();
-			//Debug.Log ("Adding character: " + c);
 			charContainer.actors.Add(c.data);
 		}
 	}
@@ -247,6 +252,13 @@ public class SaveObjManager : MonoBehaviour{
 		if (File.Exists (savePath + "base.txt"))
 			File.Delete (savePath + "base.txt");
 		CurrentSaveInfo.LastRoomName = curRoom;
+		if (Leveller.Instance == null) {
+			CurrentSaveInfo.Level = 1;
+			CurrentSaveInfo.NextLevel = 200;
+		} else {
+			CurrentSaveInfo.Level = Leveller.Instance.Level;
+			CurrentSaveInfo.NextLevel = Leveller.Instance.NextLevel;
+		}
 		CurrentSaveInfo.RegisteredIDs = registeredPermItems;
 		string json = JsonUtility.ToJson(CurrentSaveInfo);
 		StreamWriter sw = File.CreateText(savePath + "base.txt");

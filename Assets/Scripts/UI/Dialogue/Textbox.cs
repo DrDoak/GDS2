@@ -110,8 +110,10 @@ public class Textbox : MonoBehaviour {
 									action = "walkTowards";
 								} else if (nextChar == '<') {
 									action = "walkAway";
-								} else if (nextChar == '$'){
+								} else if (nextChar == '$') {
 									action = "textSpeed";
+								} else if (nextChar == '&'){
+									action = "key";
 								} else {
 									lastCharacter--;
 									action = "animation";
@@ -163,7 +165,9 @@ public class Textbox : MonoBehaviour {
 								}
 							} else if (action == "textSpeed") {
 								timeBetweenChar = float.Parse (actStr);
-							} else { 
+							} else if (action == "key") {
+								CurrentText += TextboxManager.GetKeyString (actStr);
+							} else {
 								pauseTime = float.Parse (actStr);
 							}
 						} else {

@@ -25,6 +25,10 @@ GameObject:
   - component: {fileID: 114377701782453184}
   - component: {fileID: 114201579550945952}
   - component: {fileID: 114966365176387824}
+  - component: {fileID: 114995579462972700}
+  - component: {fileID: 114005363365398244}
+  - component: {fileID: 114220600080743572}
+  - component: {fileID: 95622583091840974}
   m_Layer: 8
   m_Name: door_electric
   m_TagString: Player
@@ -39,7 +43,7 @@ Transform:
   m_PrefabInternal: {fileID: 100100000}
   m_GameObject: {fileID: 1425970486325360}
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_LocalPosition: {x: 44.533825, y: -26.977074, z: 0}
+  m_LocalPosition: {x: 24, y: -12, z: 0}
   m_LocalScale: {x: 1, y: 1, z: 4}
   m_Children: []
   m_Father: {fileID: 0}
@@ -77,7 +81,7 @@ BoxCollider2D:
   m_IsTrigger: 0
   m_UsedByEffector: 0
   m_UsedByComposite: 0
-  m_Offset: {x: 0, y: 0}
+  m_Offset: {x: -0.4, y: 0}
   m_SpriteTilingProperty:
     border: {x: 0, y: 0, z: 0, w: 0}
     pivot: {x: 0.5, y: 0.5}
@@ -88,8 +92,45 @@ BoxCollider2D:
     adaptiveTiling: 0
   m_AutoTiling: 0
   serializedVersion: 2
-  m_Size: {x: 1, y: 2}
+  m_Size: {x: 0.2, y: 2}
   m_EdgeRadius: 0
+--- !u!95 &95622583091840974
+Animator:
+  serializedVersion: 3
+  m_ObjectHideFlags: 1
+  m_PrefabParentObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 100100000}
+  m_GameObject: {fileID: 1425970486325360}
+  m_Enabled: 1
+  m_Avatar: {fileID: 0}
+  m_Controller: {fileID: 9100000, guid: 70b88e1982e4eb847b219f441a6e9c44, type: 2}
+  m_CullingMode: 0
+  m_UpdateMode: 0
+  m_ApplyRootMotion: 0
+  m_LinearVelocityBlending: 0
+  m_WarningMessage: 
+  m_HasTransformHierarchy: 1
+  m_AllowConstantClipSamplingOptimization: 1
+--- !u!114 &114005363365398244
+MonoBehaviour:
+  m_ObjectHideFlags: 1
+  m_PrefabParentObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 100100000}
+  m_GameObject: {fileID: 1425970486325360}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 6cecf518dba7e8f429d2dc6df9ba9177, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  m_health: 100
+  MaxHealth: 100
+  Alive: 1
+  DeathTime: 0
+  m_currDeathTime: 0
+  Faction: 3
+  Resistences: []
+  DisplayHealth: 1
+  Killer: {fileID: 0}
 --- !u!114 &114201579550945952
 MonoBehaviour:
   m_ObjectHideFlags: 1
@@ -104,6 +145,26 @@ MonoBehaviour:
   Stealable: 1
   Viewable: 1
   Stackable: 0
+  InstantUse: 0
+  value: 0
+  PropertyName: None
+  Description: No description provided.
+  icon: {fileID: 0}
+--- !u!114 &114220600080743572
+MonoBehaviour:
+  m_ObjectHideFlags: 1
+  m_PrefabParentObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 100100000}
+  m_GameObject: {fileID: 1425970486325360}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 5cb91baab9f732641a0bab1dc8e7a9fc, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  Stealable: 1
+  Viewable: 1
+  Stackable: 0
+  InstantUse: 0
   value: 0
   PropertyName: None
   Description: No description provided.
@@ -125,6 +186,7 @@ MonoBehaviour:
   NumTransfers: 2
   m_toRemove: []
   SubmergedHitbox: {fileID: 0}
+  EffectColor: {r: 1, g: 1, b: 1, a: 1}
 --- !u!114 &114966365176387824
 MonoBehaviour:
   m_ObjectHideFlags: 1
@@ -139,6 +201,46 @@ MonoBehaviour:
   OpenedSprite: {fileID: 21300000, guid: 1c4a9104bc309ce4dacd921ebd890076, type: 3}
   ClosedSprite: {fileID: 21300002, guid: 1c4a9104bc309ce4dacd921ebd890076, type: 3}
   IsOpen: 0
+--- !u!114 &114995579462972700
+MonoBehaviour:
+  m_ObjectHideFlags: 1
+  m_PrefabParentObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 100100000}
+  m_GameObject: {fileID: 1425970486325360}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 92acc23af4626be4fa32c868acac10d0, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  saveID: autoID
+  pos: {x: 0, y: 0, z: 0}
+  zRot: 0
+  targetID: none
+  targetDir: 4
+  healthVal: 0
+  data:
+    regID: Not Assigned
+    name: 
+    pos: {x: 0, y: 0, z: 0}
+    zRot: 0
+    health: 100
+    maxHealth: 100
+    prefabPath: 
+    targetID: 
+    propertyList: []
+    propertyDescriptions: []
+    propertyValues: []
+    transfers: 0
+    slots: 0
+    targetDir: 0
+    IsCurrentCharacter: 0
+    IsFacingLeft: 0
+    TurretDefaultFace: 0
+    Experience: 0
+    TriggerUsed: 0
+    triggerString: 
+  recreated: 0
+  PrefabPath: door_electric
 --- !u!212 &212771886192063232
 SpriteRenderer:
   m_ObjectHideFlags: 1

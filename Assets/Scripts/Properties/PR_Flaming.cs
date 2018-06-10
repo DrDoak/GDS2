@@ -59,4 +59,7 @@ public class PR_Flaming : Property
     {
 		hitboxCreated.AddElement(ElementType.FIRE);
     }
+	public override void OnWaterEnter(WaterHitbox waterCollided)  {
+		GetComponent<PropertyHolder> ().RequestRemoveProperty ("Flaming");
+	}
 }

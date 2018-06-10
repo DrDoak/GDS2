@@ -2,6 +2,7 @@
 using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.UI;
+using Luminosity.IO;
 
 public class TextboxManager : MonoBehaviour {
 
@@ -175,6 +176,9 @@ public class TextboxManager : MonoBehaviour {
 				ds.CloseSequence ();
 			}
 		}
+	}
+	public static string GetKeyString(string action) {
+		return InputManager.GetAction ("Keyboard", action).Bindings [0].Positive.ToString ();
 	}
 }
 

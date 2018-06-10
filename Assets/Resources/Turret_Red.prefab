@@ -158,7 +158,6 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   saveID: autoID
-  prefabName: none
   pos: {x: 0, y: 0, z: 0}
   targetID: none
   targetDir: 4
@@ -168,11 +167,14 @@ MonoBehaviour:
     name: 
     pos: {x: 0, y: 0, z: 0}
     health: 100
-    prefabPath: 
+    maxHealth: 100
+    prefabPath: Turret_Red
     targetID: 
     propertyList: []
     propertyDescriptions: []
     propertyValues: []
+    transfers: 0
+    slots: 0
     targetDir: 0
     IsCurrentCharacter: 0
     IsFacingLeft: 0
@@ -180,6 +182,7 @@ MonoBehaviour:
     TriggerUsed: 0
     triggerString: 
   recreated: 0
+  PrefabPath: Turret_Red
 --- !u!114 &114141975639261772
 MonoBehaviour:
   m_ObjectHideFlags: 1
@@ -256,11 +259,14 @@ MonoBehaviour:
     m_Bits: 0
   DecelerationRatio: 1
   OnGround: 1
+  Floating: 0
   MaxClimbAngle: 80
+  TrueVelocity: {x: 0, y: 0, z: 0}
   m_inputedMove: {x: 0, y: 0}
   TerminalVelocity: 0
   GravityScale: -1
   FacingLeft: 1
+  ReactToWater: 1
   UseBuoyancy: 0
   BuoyancyScale: -1
 --- !u!114 &114335189762417548
@@ -310,6 +316,7 @@ MonoBehaviour:
   NumTransfers: 2
   m_toRemove: []
   SubmergedHitbox: {fileID: 0}
+  EffectColor: {r: 1, g: 1, b: 1, a: 1}
 --- !u!114 &114826783964261144
 MonoBehaviour:
   m_ObjectHideFlags: 1

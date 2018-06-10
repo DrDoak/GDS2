@@ -40,6 +40,8 @@ public class Spawner : MonoBehaviour {
 					newY += Random.Range (-transform.localScale.y / 2, transform.localScale.y / 2);
 				}
 				GameObject obj = GameObject.Instantiate (respawnObj, new Vector3 (newX, newY, 0), Quaternion.identity);
+				if (obj.GetComponent<PersistentItem> ())
+					Destroy (obj.GetComponent<PersistentItem> ());
 				m_spawnedItems += 1;
 				//			Debug.Log (spawnedItems);
 				currentTime = 0f;
