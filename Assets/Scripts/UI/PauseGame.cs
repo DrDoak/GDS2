@@ -28,6 +28,7 @@ public class PauseGame : MonoBehaviour
 	ButtonClickEvent m_buttonEvent;
 	ButtonClickEvent m_cancelEvent;
 	GameObject WarningPrevious;
+	public bool ReturnMain = false;
 
 	[SerializeField] public Scene startMenu;
 	public static PauseGame Instance
@@ -163,7 +164,10 @@ public class PauseGame : MonoBehaviour
 		Application.Quit();
 	}
 	public void ReturnToPause() {
-		m_pauseMenuUI.SetActive(true);
+		if (!ReturnMain)
+			m_pauseMenuUI.SetActive(true);
+		else
+			EventSystem.current.SetSelectedGameObject(FindObjectOfType<MainMenu>().transform.Find("MainMenu").Find("New Game").gameObject);
 		m_saveScreen.SetActive (false);
 		m_loadScreen.SetActive (false);
 		m_deadScreen.SetActive (false);

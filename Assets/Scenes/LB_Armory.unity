@@ -132,6 +132,7 @@ MonoBehaviour:
   Stealable: 1
   Viewable: 1
   Stackable: 0
+  InstantUse: 0
   value: 0
   PropertyName: None
   Description: No description provided.
@@ -419,6 +420,7 @@ MonoBehaviour:
   Stealable: 1
   Viewable: 1
   Stackable: 0
+  InstantUse: 0
   value: 50
   PropertyName: None
   Description: Large Health pack
@@ -609,6 +611,7 @@ MonoBehaviour:
   Stealable: 1
   Viewable: 1
   Stackable: 0
+  InstantUse: 0
   value: 25
   PropertyName: None
   Description: Medkit
@@ -1228,7 +1231,7 @@ Prefab:
     - target: {fileID: 224209084733379808, guid: 86856ebb1cc73c04a86115975021a18e,
         type: 2}
       propertyPath: m_AnchoredPosition.y
-      value: 0.000019073486
+      value: 0.0000038146973
       objectReference: {fileID: 0}
     - target: {fileID: 224858247495619676, guid: 86856ebb1cc73c04a86115975021a18e,
         type: 2}
@@ -1238,7 +1241,7 @@ Prefab:
     - target: {fileID: 224777399314521252, guid: 86856ebb1cc73c04a86115975021a18e,
         type: 2}
       propertyPath: m_AnchoredPosition.y
-      value: -0.0000019073486
+      value: -0.000017166138
       objectReference: {fileID: 0}
     - target: {fileID: 224739168298920636, guid: 86856ebb1cc73c04a86115975021a18e,
         type: 2}
@@ -1293,12 +1296,12 @@ Prefab:
     - target: {fileID: 224409164585238760, guid: 86856ebb1cc73c04a86115975021a18e,
         type: 2}
       propertyPath: m_AnchorMin.y
-      value: 0
+      value: 0.00000017881393
       objectReference: {fileID: 0}
     - target: {fileID: 224919683728530804, guid: 86856ebb1cc73c04a86115975021a18e,
         type: 2}
       propertyPath: m_AnchorMin.y
-      value: 0
+      value: 0.00000011920929
       objectReference: {fileID: 0}
     - target: {fileID: 224159792454195676, guid: 86856ebb1cc73c04a86115975021a18e,
         type: 2}
@@ -1826,6 +1829,7 @@ MonoBehaviour:
   Stealable: 1
   Viewable: 1
   Stackable: 0
+  InstantUse: 0
   value: 0
   PropertyName: None
   Description: No description provided.
@@ -1872,9 +1876,9 @@ Prefab:
     - target: {fileID: 114662688524436068, guid: e19dbd7becd744240b186d32ec54d074,
         type: 2}
       propertyPath: value
-      value: "Loudspeaker: Attention all Guards! This is a critical remember that
-        the target will be unlikely to engage in direct fights! \nBeware of traps
-        and engagements from disadvantage positions."
+      value: "Loudspeaker: This is Administrator MIA to all Guards! This is a critical
+        remember that the target will be unlikely to engage in direct fights! \nBeware
+        of traps and engagements from disadvantage positions."
       objectReference: {fileID: 0}
     - target: {fileID: 114662688524436068, guid: e19dbd7becd744240b186d32ec54d074,
         type: 2}
@@ -2158,6 +2162,7 @@ MonoBehaviour:
   Stealable: 1
   Viewable: 1
   Stackable: 0
+  InstantUse: 0
   value: 25
   PropertyName: None
   Description: Medkit
@@ -2181,6 +2186,7 @@ MonoBehaviour:
   Stealable: 1
   Viewable: 1
   Stackable: 0
+  InstantUse: 0
   value: 25
   PropertyName: None
   Description: Medkit
@@ -2806,6 +2812,7 @@ MonoBehaviour:
   Stealable: 1
   Viewable: 1
   Stackable: 0
+  InstantUse: 0
   value: 25
   PropertyName: None
   Description: Medkit
@@ -2875,6 +2882,7 @@ MonoBehaviour:
   Stealable: 1
   Viewable: 1
   Stackable: 0
+  InstantUse: 0
   value: 10
   PropertyName: None
   Description: Rations
@@ -3028,6 +3036,7 @@ MonoBehaviour:
   Stealable: 1
   Viewable: 1
   Stackable: 0
+  InstantUse: 0
   value: 10
   PropertyName: None
   Description: Medicine

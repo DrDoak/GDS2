@@ -16,6 +16,7 @@ public class PR_Poison : Property {
 
 	float eliminatedHealth = 0f;
 	float squashedHealth = 0f;
+	float oldMaxHealth = 0f;
 
 	public override void OnAddProperty()
 	{
@@ -27,21 +28,30 @@ public class PR_Poison : Property {
 		//fx = GetComponent<PropertyHolder> ().AddBodyEffect (FXBody.Instance.FXFlame);
 		bioOnly = new List<ElementType> ();
 		bioOnly.Add (ElementType.BIOLOGICAL);
-		eliminatedHealth = GetComponent<Attackable> ().MaxHealth / 2f;
-		squashedHealth = Mathf.Max (0f, GetComponent<Attackable> ().Health - eliminatedHealth);
-		GetComponent<Attackable> ().MaxHealth -= eliminatedHealth;
+		if (value != 1f) {
+			oldMaxHealth = GetComponent<Attackable> ().MaxHealth;
+			eliminatedHealth = GetComponent<Attackable> ().MaxHealth / 2f;
+			squashedHealth = Mathf.Max (0f, GetComponent<Attackable> ().Health - eliminatedHealth);
+			GetComponent<Attackable> ().DamageObj (squashedHealth);
+			GetComponent<Attackable> ().MaxHealth -= eliminatedHealth;
+			value = 1f;
+		}
 	}
 	public override void OnRemoveProperty() {
 		if (bioSurround != null) 
 			Destroy (bioSurround);
-		GetComponent<Attackable> ().MaxHealth += eliminatedHealth;
+		GetComponent<Attackable> ().MaxHealth *= 2f;
 		GetComponent<Attackable> ().DamageObj (-squashedHealth);
+		value = 0f;
 	}
 
 	public override void OnUpdate()
 	{
 		List<ElementType> oldEle = bioSurround.Element;
 		bioSurround.Element = bioOnly;
+		if (GetComponent<Attackable> ().MaxHealth != oldMaxHealth) {
+			GetComponent<Attackable> ().MaxHealth -= (GetComponent<Attackable> ().MaxHealth - oldMaxHealth) / 2f;
+		}
 		if (Time.timeSinceLevelLoad > time_tracker)
 		{
 			time_tracker = Time.timeSinceLevelLoad + bio_period;

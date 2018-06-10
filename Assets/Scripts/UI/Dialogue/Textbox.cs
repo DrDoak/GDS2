@@ -2,6 +2,7 @@
 using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.UI;
+using UnityEngine.SceneManagement;
 using TMPro;
 
 public enum DialogueSound { TYPED, SPOKEN, RECORDED};
@@ -39,7 +40,7 @@ public class Textbox : MonoBehaviour {
 		if (masterSequence != null) {
 			masterSequence.parseNextElement ();
 		}
-		TextboxManager.Instance.removeTextbox (gameObject);
+		//TextboxManager.Instance.removeTextbox (gameObject);
 		/*if (targetedObj.GetComponent<Character> ()) {
 			targetedObj.GetComponent<Character> ().onTBComplete ();
 		}*/
@@ -89,7 +90,7 @@ public class Textbox : MonoBehaviour {
 						lastCharacter++;
 						char nextChar = FullText.ToCharArray () [lastCharacter - 1];
 						if (nextChar == '`') {
-						//	Debug.Log ("Start special section");
+							//Debug.Log ("Start special section");
 							string actStr = "";
 							lastCharacter++;
 							nextChar = FullText.ToCharArray () [lastCharacter - 1];
@@ -100,8 +101,13 @@ public class Textbox : MonoBehaviour {
 							test += nextChar;
 							if (float.TryParse (test,out res)) {
 							} else {
-								//Debug.Log (nextChar);
-								if (nextChar == ']') {
+								if (nextChar == '!') {
+									action = "control";
+								} else if (nextChar == '@') {
+									action = "camera";
+								} else if (nextChar == '#') {
+									action = "scene";
+								} else if (nextChar == ']') {
 									action = "faceTowards";
 								} else if (nextChar == '[') {
 									//Debug.Log ("Correct Char");
@@ -125,14 +131,6 @@ public class Textbox : MonoBehaviour {
 							string num = "";
 							//string targetChar = null;
 							while (nextChar != '`') {
-								/*if (false) { //if (nextChar == ':') {
-									Debug.Log ("targeting: " + actStr);
-									targetChar = actStr;
-									actStr = "";
-									lastCharacter++;
-									nextChar = FullText.ToCharArray () [lastCharacter - 1];
-								}
-								else */
 								if ((action == "walkTowards" || action == "walkAway") && nextChar == '-') {
 									numFound = true;
 								} else {
@@ -146,27 +144,36 @@ public class Textbox : MonoBehaviour {
 								}
 
 							}
-							if (action == "walkTowards") {
-								if (num.Length < 1) {
+							if (action == "control") {
+								toggleControl (actStr);
+							} else if (action == "camera") {
+								cameraTarget (actStr);
+							} else if (action == "walkTowards") {
+								//Debug.Log ("Walking towards: " + actStr);
+								walkToPoint (actStr);
+								/*if (num.Length < 1) {
 									//masterSequence.walkToChar (targetChar, actStr, 1f);
 								} else {
 									//masterSequence.walkToChar (targetChar, actStr, float.Parse(num));
-								}
+								}*/
 							} else if (action == "walkAway") {
 							} else if (action == "faceTowards") {
+								facePoint (actStr);
 								//Debug.Log ("Facing towards");
 								//masterSequence.turnTowards (targetChar, actStr, true);
+
 							} else if (action == "faceAway") {
+								facePoint (actStr, true);
 								//Debug.Log ("facing away");
 								//masterSequence.turnTowards (targetChar, actStr, false);
 							} else if (action == "animation") {
-								if (masterSequence != null) {
-									//masterSequence.setAnimation (targetChar, actStr);
-								}
+								playAnimation (actStr);
 							} else if (action == "textSpeed") {
 								timeBetweenChar = float.Parse (actStr);
 							} else if (action == "key") {
 								CurrentText += TextboxManager.GetKeyString (actStr);
+							} else if (action == "scene") {
+								Initiate.Fade (actStr, Color.white, 2.0f);
 							} else {
 								pauseTime = float.Parse (actStr);
 							}
@@ -221,5 +228,57 @@ public class Textbox : MonoBehaviour {
 	}
 	public void setText(string text) {
 		FullText = text;
+	}
+
+	private void cameraTarget(string targetChar) {
+		GameObject target = GameObject.Find (targetChar);
+		if (target != null && target.GetComponent<PhysicsSS>()) {
+			FindObjectOfType<CameraFollow> ().target = target.GetComponent<PhysicsSS>();
+		}
+	}
+
+	private void walkToPoint(string targetChar) {
+		string[] chars = targetChar.Split(',');
+		if (chars.Length < 2)
+			return;
+		GameObject character = GameObject.Find (chars[0]);
+		GameObject target = GameObject.Find (chars[1]);
+		if (character != null && character.GetComponent<BasicMovement>()) {
+			character.GetComponent<BasicMovement> ().SetTargetPoint (target.transform.position,1.0f);
+		}
+	}
+
+	private void facePoint(string targetChar, bool invert = false) {
+		string[] chars = targetChar.Split('-');
+		if (chars.Length < 2)
+			return;
+		GameObject character = GameObject.Find (chars[0]);
+		GameObject target = GameObject.Find (chars[1]);
+		if (character != null && character.GetComponent<PhysicsSS>()) {
+			if (invert)
+				character.GetComponent<PhysicsSS> ().SetDirection (target.transform.position.x > character.transform.position.x);
+			else
+				character.GetComponent<PhysicsSS> ().SetDirection (target.transform.position.x < character.transform.position.x);
+		}
+	}
+
+	private void toggleControl(string targetChar) {
+		GameObject target = GameObject.Find (targetChar);
+		if (target != null && target.GetComponent<BasicMovement>() != null) {
+			target.GetComponent<BasicMovement>().IsCurrentPlayer = !target.GetComponent<BasicMovement>().IsCurrentPlayer;
+		}		
+	}
+
+	private void playAnimation(string targetChar) {
+		string[] chars = targetChar.Split(',');
+		if (chars.Length < 2)
+			return;
+		GameObject character = GameObject.Find (chars [0]);
+		string anim = chars [1];
+		if (character != null && character.GetComponent<AnimatorSprite>()) {
+			Debug.Log ("Playing anim: " + anim);
+			bool res = character.GetComponent<AnimatorSprite> ().Play (anim);
+			Debug.Log ("res: " + res);
+		}
 	}
 }

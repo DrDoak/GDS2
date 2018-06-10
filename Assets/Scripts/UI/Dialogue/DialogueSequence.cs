@@ -16,7 +16,12 @@ public class DialogueSequence  {
 		allDUnits.Remove (currDialogueUnit);
 	}
 	public void CloseSequence() {
-		if (allDUnits.Count > 0)
-			allDUnits [0].closeSequence ();
+		DialogueUnit first = null;
+		if (allDUnits.Count > 0) {
+			first = allDUnits [0];
+		}
+		allDUnits.Clear ();
+		if (first != null)
+			first.closeSequence ();
 	}
 }

@@ -1,11 +1,13 @@
 ﻿using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using UnityEngine.SceneManagement;
 
 public class DropItemDeath : MonoBehaviour {
 	public GameObject ItemDropped;
 	public bool StopMusic = true;
 	public string DeathQuote = "";
+	public string LoadScene = "";
 	// Use this for initialization
 	void Update() {
 		if (ItemDropped != null && !GetComponent<Attackable>().Alive) {
@@ -16,6 +18,8 @@ public class DropItemDeath : MonoBehaviour {
 			}
 			if (DeathQuote != "")
 				TextboxManager.StartSequence (DeathQuote);
+			if (LoadScene != "")
+				SceneManager.LoadScene (LoadScene);
 		}
 
 	}

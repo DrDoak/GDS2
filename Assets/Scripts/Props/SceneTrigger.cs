@@ -59,14 +59,16 @@ public class SceneTrigger : Interactable {
 						}
 					}
 				}
-				SaveObjManager.MoveItem (go, sceneName, realTarget,realDir);
-			} else if (Vector2.Equals(Vector2.zero,newPos)){
+				if (go.GetComponent<PersistentItem>() != null)
+					SaveObjManager.MoveItem (go, sceneName, realTarget,realDir);
+			} else if (Vector2.Equals(Vector2.zero,newPos) && (go.GetComponent<PersistentItem>() != null)){
 				SaveObjManager.MoveItem (go, sceneName, go.gameObject.transform.position);
-			} else {
+			} else if (go.GetComponent<PersistentItem>() != null) {
 				SaveObjManager.MoveItem (go, sceneName, newPos);
 			}
 			if (go.GetComponent<BasicMovement> ().IsCurrentPlayer) {
-				GameManager.Instance.LoadRoom (sceneName);
+				//GameManager.Instance.LoadRoom (sceneName);
+				Initiate.Fade (sceneName, Color.black, 2.0f);
 			}
 			Destroy (go);
 		} else {

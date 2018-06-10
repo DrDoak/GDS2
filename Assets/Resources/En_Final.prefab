@@ -11,6 +11,25 @@ Prefab:
   m_ParentPrefab: {fileID: 0}
   m_RootGameObject: {fileID: 1920936324984956}
   m_IsPrefabParent: 1
+--- !u!1 &1234426115554616
+GameObject:
+  m_ObjectHideFlags: 0
+  m_PrefabParentObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 100100000}
+  serializedVersion: 5
+  m_Component:
+  - component: {fileID: 4420942774211552}
+  - component: {fileID: 114277940045961418}
+  - component: {fileID: 114655099451791366}
+  - component: {fileID: 114065560389648218}
+  - component: {fileID: 114857190705753982}
+  m_Layer: 8
+  m_Name: Routine
+  m_TagString: Untagged
+  m_Icon: {fileID: 0}
+  m_NavMeshLayer: 0
+  m_StaticEditorFlags: 0
+  m_IsActive: 1
 --- !u!1 &1920936324984956
 GameObject:
   m_ObjectHideFlags: 0
@@ -31,7 +50,16 @@ GameObject:
   - component: {fileID: 114399043421272186}
   - component: {fileID: 114944340132168020}
   - component: {fileID: 114436234439162064}
-  - component: {fileID: 114295852415794416}
+  - component: {fileID: 114304113717151472}
+  - component: {fileID: 114147501415001060}
+  - component: {fileID: 114090242251612596}
+  - component: {fileID: 114010293112589608}
+  - component: {fileID: 114339152896829636}
+  - component: {fileID: 114524520555412020}
+  - component: {fileID: 114490930946918800}
+  - component: {fileID: 114290046171359402}
+  - component: {fileID: 114634088829552440}
+  - component: {fileID: 114178582309942764}
   m_Layer: 9
   m_Name: En_Final
   m_TagString: Player
@@ -39,6 +67,19 @@ GameObject:
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
   m_IsActive: 1
+--- !u!4 &4420942774211552
+Transform:
+  m_ObjectHideFlags: 1
+  m_PrefabParentObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 100100000}
+  m_GameObject: {fileID: 1234426115554616}
+  m_LocalRotation: {x: -0, y: -0, z: -0, w: 1}
+  m_LocalPosition: {x: -2.810032, y: 8.883563, z: 0}
+  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_Children: []
+  m_Father: {fileID: 4526351269943498}
+  m_RootOrder: 0
+  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!4 &4526351269943498
 Transform:
   m_ObjectHideFlags: 1
@@ -46,9 +87,10 @@ Transform:
   m_PrefabInternal: {fileID: 100100000}
   m_GameObject: {fileID: 1920936324984956}
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_LocalPosition: {x: 22.906612, y: -60.597824, z: 0}
+  m_LocalPosition: {x: 27.85, y: -34.82, z: 0}
   m_LocalScale: {x: 1.5, y: 1.5, z: 4}
-  m_Children: []
+  m_Children:
+  - {fileID: 4420942774211552}
   m_Father: {fileID: 0}
   m_RootOrder: 0
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
@@ -89,7 +131,7 @@ BoxCollider2D:
     border: {x: 0, y: 0, z: 0, w: 0}
     pivot: {x: 0.5, y: 0.5}
     oldSize: {x: 1.28, y: 1.28}
-    newSize: {x: 1, y: 1}
+    newSize: {x: 1.28, y: 1.28}
     adaptiveTilingThreshold: 0.5
     drawMode: 0
     adaptiveTiling: 0
@@ -114,7 +156,7 @@ Animator:
   m_WarningMessage: 
   m_HasTransformHierarchy: 1
   m_AllowConstantClipSamplingOptimization: 1
---- !u!114 &114295852415794416
+--- !u!114 &114010293112589608
 MonoBehaviour:
   m_ObjectHideFlags: 1
   m_PrefabParentObject: {fileID: 0}
@@ -122,37 +164,303 @@ MonoBehaviour:
   m_GameObject: {fileID: 1920936324984956}
   m_Enabled: 1
   m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 92acc23af4626be4fa32c868acac10d0, type: 3}
+  m_Script: {fileID: 11500000, guid: e0505f74df2e0a742a50df466266ce6d, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  saveID: autoID
-  pos: {x: 0, y: 0, z: 0}
-  zRot: 0
-  targetID: none
-  targetDir: 4
-  healthVal: 0
-  data:
-    regID: Player-TestScene-762
-    name: 
-    pos: {x: 0, y: 0, z: 0}
-    zRot: 0
-    health: 100
-    maxHealth: 100
-    prefabPath: 
-    targetID: 
-    propertyList: []
-    propertyDescriptions: []
-    propertyValues: []
-    transfers: 0
-    slots: 0
-    targetDir: 0
-    IsCurrentCharacter: 0
-    IsFacingLeft: 0
-    Experience: 0
-    TriggerUsed: 0
-    triggerString: 
-  recreated: 0
-  PrefabPath: 
+  AttackName: default
+  m_HitboxInfo:
+    IsHitboxCreater: 0
+    HitboxScale: {x: 1, y: 1}
+    HitboxOffset: {x: 0, y: 0}
+    Damage: 10
+    Stun: 0.3
+    HitboxDuration: 0.5
+    Knockback: {x: 10, y: 10}
+    Element: 0
+    ApplyProps: 1
+  m_AttackAnimInfo:
+    AnimSpeed: 1
+    StartUpTime: 2
+    AttackTime: 0
+    RecoveryTime: 0.5
+    StartUpAnimation: attack3_s
+    RecoveryAnimation: attack3_r
+  m_AIInfo:
+    Frequency: 0.5
+    UniqueAIPrediction: 1
+    AIPredictionHitbox: {x: 3, y: 2}
+    AIPredictionOffset: {x: 6, y: 0}
+  m_SoundInfo:
+    StartupSoundFX: {fileID: 0}
+    AttackSoundFX: {fileID: 0}
+  m_Blades:
+  - Projectile: {fileID: 1898854623618950, guid: b60fd25631d44864d8ea53546b2f3872,
+      type: 2}
+    ProjectileCreatePos: {x: -3, y: -0.5}
+    ProjectileAimDirection: {x: 1, y: 0}
+    ProjectileSpeed: 20
+    PenetrativePower: 5
+    Damage: 15
+    Stun: 0.25
+    KnifeDelay: 2
+    Knockback: {x: 10, y: 0}
+    Element: 0
+  - Projectile: {fileID: 1898854623618950, guid: b60fd25631d44864d8ea53546b2f3872,
+      type: 2}
+    ProjectileCreatePos: {x: -2, y: 0}
+    ProjectileAimDirection: {x: 1, y: 0}
+    ProjectileSpeed: 20
+    PenetrativePower: 5
+    Damage: 15
+    Stun: 0.25
+    KnifeDelay: 2.1
+    Knockback: {x: 10, y: 0}
+    Element: 0
+  - Projectile: {fileID: 1898854623618950, guid: b60fd25631d44864d8ea53546b2f3872,
+      type: 2}
+    ProjectileCreatePos: {x: -1, y: 0.5}
+    ProjectileAimDirection: {x: 1, y: 0}
+    ProjectileSpeed: 20
+    PenetrativePower: 5
+    Damage: 15
+    Stun: 0.25
+    KnifeDelay: 2.2
+    Knockback: {x: 10, y: 0}
+    Element: 0
+  - Projectile: {fileID: 1898854623618950, guid: b60fd25631d44864d8ea53546b2f3872,
+      type: 2}
+    ProjectileCreatePos: {x: 0, y: 1}
+    ProjectileAimDirection: {x: 1, y: 0}
+    ProjectileSpeed: 20
+    PenetrativePower: 5
+    Damage: 15
+    Stun: 0.25
+    KnifeDelay: 2.3
+    Knockback: {x: 10, y: 0}
+    Element: 0
+--- !u!114 &114065560389648218
+MonoBehaviour:
+  m_ObjectHideFlags: 1
+  m_PrefabParentObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 100100000}
+  m_GameObject: {fileID: 1234426115554616}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: f5100c24ae9d0cd459c806941bc20bc3, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  Player: {fileID: 0}
+  Fighter: {fileID: 0}
+  TargetRange: 2
+  AttackAggression: 1
+--- !u!114 &114090242251612596
+MonoBehaviour:
+  m_ObjectHideFlags: 1
+  m_PrefabParentObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 100100000}
+  m_GameObject: {fileID: 1920936324984956}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 6b8f763d8a94c8f48bc3407cf514507a, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  detectionRange: 15
+  VisibleObjs: []
+--- !u!114 &114147501415001060
+MonoBehaviour:
+  m_ObjectHideFlags: 1
+  m_PrefabParentObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 100100000}
+  m_GameObject: {fileID: 1920936324984956}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 54ae262720e27452baf2f574fc31d83a, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  allAttacks: []
+  CurrentTarget: {fileID: 0}
+--- !u!114 &114178582309942764
+MonoBehaviour:
+  m_ObjectHideFlags: 1
+  m_PrefabParentObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 100100000}
+  m_GameObject: {fileID: 1920936324984956}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: e0505f74df2e0a742a50df466266ce6d, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  AttackName: antiair
+  m_HitboxInfo:
+    IsHitboxCreater: 0
+    HitboxScale: {x: 1, y: 1}
+    HitboxOffset: {x: 0, y: 0}
+    Damage: 10
+    Stun: 0.3
+    HitboxDuration: 0.5
+    Knockback: {x: 10, y: 10}
+    Element: 0
+    ApplyProps: 1
+  m_AttackAnimInfo:
+    AnimSpeed: 1
+    StartUpTime: 0.75
+    AttackTime: 0
+    RecoveryTime: 1
+    StartUpAnimation: attack2_s
+    RecoveryAnimation: attack2_r
+  m_AIInfo:
+    Frequency: 0.5
+    UniqueAIPrediction: 1
+    AIPredictionHitbox: {x: 3, y: 2}
+    AIPredictionOffset: {x: 1.5, y: 1.5}
+  m_SoundInfo:
+    StartupSoundFX: {fileID: 0}
+    AttackSoundFX: {fileID: 0}
+  m_Blades:
+  - Projectile: {fileID: 1862060446864990, guid: 4d5611d975c61384b8c17fee933a793c,
+      type: 2}
+    ProjectileCreatePos: {x: -3, y: 0}
+    ProjectileAimDirection: {x: 0.8, y: 0.5}
+    ProjectileSpeed: 20
+    PenetrativePower: 5
+    Damage: 24
+    Stun: 0.5
+    KnifeDelay: 0.75
+    Knockback: {x: 0, y: 0}
+    Element: 0
+  - Projectile: {fileID: 1862060446864990, guid: 4d5611d975c61384b8c17fee933a793c,
+      type: 2}
+    ProjectileCreatePos: {x: -3, y: 0}
+    ProjectileAimDirection: {x: 1.1, y: 0.5}
+    ProjectileSpeed: 20
+    PenetrativePower: 5
+    Damage: 24
+    Stun: 0.5
+    KnifeDelay: 0.85
+    Knockback: {x: 0, y: 0}
+    Element: 0
+  - Projectile: {fileID: 1862060446864990, guid: 4d5611d975c61384b8c17fee933a793c,
+      type: 2}
+    ProjectileCreatePos: {x: -3, y: 0}
+    ProjectileAimDirection: {x: 1.4, y: 0.5}
+    ProjectileSpeed: 20
+    PenetrativePower: 5
+    Damage: 24
+    Stun: 0.5
+    KnifeDelay: 0.95
+    Knockback: {x: 0, y: 0}
+    Element: 0
+  - Projectile: {fileID: 1672212592420838, guid: 078cd7dea1cab47418c0cef82155adf2,
+      type: 2}
+    ProjectileCreatePos: {x: -3, y: 0}
+    ProjectileAimDirection: {x: 1.7, y: 0.5}
+    ProjectileSpeed: 20
+    PenetrativePower: 5
+    Damage: 24
+    Stun: 0.5
+    KnifeDelay: 0.95
+    Knockback: {x: 0, y: 0}
+    Element: 0
+--- !u!114 &114277940045961418
+MonoBehaviour:
+  m_ObjectHideFlags: 1
+  m_PrefabParentObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 100100000}
+  m_GameObject: {fileID: 1234426115554616}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 95fa60c65cf27654680efaba2c42690f, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  m_tasks: []
+--- !u!114 &114290046171359402
+MonoBehaviour:
+  m_ObjectHideFlags: 1
+  m_PrefabParentObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 100100000}
+  m_GameObject: {fileID: 1920936324984956}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: b4089da560040304bbe1fba0d635de27, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  Stealable: 1
+  Viewable: 1
+  Stackable: 0
+  InstantUse: 0
+  value: 0
+  PropertyName: None
+  Description: No description provided.
+  icon: {fileID: 0}
+--- !u!114 &114304113717151472
+MonoBehaviour:
+  m_ObjectHideFlags: 1
+  m_PrefabParentObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 100100000}
+  m_GameObject: {fileID: 1920936324984956}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: e7f3a23a200c3974e9a62192219e0e74, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  Stealable: 1
+  Viewable: 1
+  Stackable: 0
+  InstantUse: 0
+  value: 0
+  PropertyName: None
+  Description: No description provided.
+  icon: {fileID: 0}
+  m_bioDamage: 0
+--- !u!114 &114339152896829636
+MonoBehaviour:
+  m_ObjectHideFlags: 1
+  m_PrefabParentObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 100100000}
+  m_GameObject: {fileID: 1920936324984956}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: e0505f74df2e0a742a50df466266ce6d, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  AttackName: fast
+  m_HitboxInfo:
+    IsHitboxCreater: 0
+    HitboxScale: {x: 1, y: 1}
+    HitboxOffset: {x: 0, y: 0}
+    Damage: 10
+    Stun: 0.3
+    HitboxDuration: 0.5
+    Knockback: {x: 10, y: 10}
+    Element: 0
+    ApplyProps: 1
+  m_AttackAnimInfo:
+    AnimSpeed: 1
+    StartUpTime: 0.5
+    AttackTime: 0
+    RecoveryTime: 0.5
+    StartUpAnimation: attack2_s
+    RecoveryAnimation: attack2_r
+  m_AIInfo:
+    Frequency: 0.5
+    UniqueAIPrediction: 1
+    AIPredictionHitbox: {x: 1.5, y: 1}
+    AIPredictionOffset: {x: 0.5, y: 0}
+  m_SoundInfo:
+    StartupSoundFX: {fileID: 0}
+    AttackSoundFX: {fileID: 0}
+  m_Blades:
+  - Projectile: {fileID: 1862060446864990, guid: 4d5611d975c61384b8c17fee933a793c,
+      type: 2}
+    ProjectileCreatePos: {x: -3, y: 1}
+    ProjectileAimDirection: {x: 1, y: -0.3}
+    ProjectileSpeed: 20
+    PenetrativePower: 5
+    Damage: 24
+    Stun: 0.3
+    KnifeDelay: 0.5
+    Knockback: {x: 10, y: 10}
+    Element: 0
 --- !u!114 &114399043421272186
 MonoBehaviour:
   m_ObjectHideFlags: 1
@@ -178,11 +486,186 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   m_properties: []
   HolderName: SameAsObject
-  MaxSlots: 3
+  MaxSlots: 4
   NumTransfers: 2
   m_toRemove: []
   SubmergedHitbox: {fileID: 0}
   EffectColor: {r: 1, g: 1, b: 1, a: 1}
+--- !u!114 &114490930946918800
+MonoBehaviour:
+  m_ObjectHideFlags: 1
+  m_PrefabParentObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 100100000}
+  m_GameObject: {fileID: 1920936324984956}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: e0505f74df2e0a742a50df466266ce6d, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  AttackName: fast_down
+  m_HitboxInfo:
+    IsHitboxCreater: 1
+    HitboxScale: {x: 1, y: 1}
+    HitboxOffset: {x: 0, y: 0}
+    Damage: 10
+    Stun: 0.3
+    HitboxDuration: 0.5
+    Knockback: {x: 10, y: 10}
+    Element: 0
+    ApplyProps: 1
+  m_AttackAnimInfo:
+    AnimSpeed: 1
+    StartUpTime: 1
+    AttackTime: 0
+    RecoveryTime: 0.5
+    StartUpAnimation: attack1_s
+    RecoveryAnimation: attack1_r
+  m_AIInfo:
+    Frequency: 0.5
+    UniqueAIPrediction: 1
+    AIPredictionHitbox: {x: 2, y: 2.5}
+    AIPredictionOffset: {x: 0, y: 2}
+  m_SoundInfo:
+    StartupSoundFX: {fileID: 0}
+    AttackSoundFX: {fileID: 0}
+  m_Blades:
+  - Projectile: {fileID: 1157306242679466, guid: d96286d65909eeb4395f0f32d084b7e9,
+      type: 2}
+    ProjectileCreatePos: {x: 0.5, y: 5}
+    ProjectileAimDirection: {x: 0.1, y: -1}
+    ProjectileSpeed: 20
+    PenetrativePower: 5
+    Damage: 15
+    Stun: 0.5
+    KnifeDelay: 1.1
+    Knockback: {x: 10, y: 0}
+    Element: 1
+  - Projectile: {fileID: 1157306242679466, guid: d96286d65909eeb4395f0f32d084b7e9,
+      type: 2}
+    ProjectileCreatePos: {x: -0.5, y: 5}
+    ProjectileAimDirection: {x: -0.1, y: -1}
+    ProjectileSpeed: 20
+    PenetrativePower: 5
+    Damage: 15
+    Stun: 0.5
+    KnifeDelay: 1.1
+    Knockback: {x: 10, y: 0}
+    Element: 1
+  - Projectile: {fileID: 1157306242679466, guid: d96286d65909eeb4395f0f32d084b7e9,
+      type: 2}
+    ProjectileCreatePos: {x: 1, y: 6}
+    ProjectileAimDirection: {x: 0.2, y: -1}
+    ProjectileSpeed: 20
+    PenetrativePower: 5
+    Damage: 15
+    Stun: 0.5
+    KnifeDelay: 1.2
+    Knockback: {x: 10, y: 0}
+    Element: 1
+  - Projectile: {fileID: 1157306242679466, guid: d96286d65909eeb4395f0f32d084b7e9,
+      type: 2}
+    ProjectileCreatePos: {x: -1, y: 6}
+    ProjectileAimDirection: {x: -0.2, y: -1}
+    ProjectileSpeed: 20
+    PenetrativePower: 5
+    Damage: 15
+    Stun: 0.5
+    KnifeDelay: 1.2
+    Knockback: {x: 10, y: 0}
+    Element: 1
+  - Projectile: {fileID: 1862060446864990, guid: 4d5611d975c61384b8c17fee933a793c,
+      type: 2}
+    ProjectileCreatePos: {x: 0, y: 6}
+    ProjectileAimDirection: {x: 0, y: -1}
+    ProjectileSpeed: 20
+    PenetrativePower: 5
+    Damage: 24
+    Stun: 0.5
+    KnifeDelay: 1
+    Knockback: {x: 10, y: 0}
+    Element: 0
+--- !u!114 &114524520555412020
+MonoBehaviour:
+  m_ObjectHideFlags: 1
+  m_PrefabParentObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 100100000}
+  m_GameObject: {fileID: 1920936324984956}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: e0505f74df2e0a742a50df466266ce6d, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  AttackName: high
+  m_HitboxInfo:
+    IsHitboxCreater: 0
+    HitboxScale: {x: 1, y: 1}
+    HitboxOffset: {x: 0, y: 0}
+    Damage: 10
+    Stun: 0.3
+    HitboxDuration: 0.5
+    Knockback: {x: 10, y: 10}
+    Element: 0
+    ApplyProps: 1
+  m_AttackAnimInfo:
+    AnimSpeed: 1
+    StartUpTime: 2
+    AttackTime: 0
+    RecoveryTime: 2
+    StartUpAnimation: attack1_s
+    RecoveryAnimation: attack1_r
+  m_AIInfo:
+    Frequency: 0.5
+    UniqueAIPrediction: 1
+    AIPredictionHitbox: {x: 3, y: 3}
+    AIPredictionOffset: {x: 3, y: 2}
+  m_SoundInfo:
+    StartupSoundFX: {fileID: 0}
+    AttackSoundFX: {fileID: 0}
+  m_Blades:
+  - Projectile: {fileID: 1862060446864990, guid: 4d5611d975c61384b8c17fee933a793c,
+      type: 2}
+    ProjectileCreatePos: {x: 2, y: 6}
+    ProjectileAimDirection: {x: 0, y: -1}
+    ProjectileSpeed: 20
+    PenetrativePower: 5
+    Damage: 15
+    Stun: 0.5
+    KnifeDelay: 2
+    Knockback: {x: 10, y: 0}
+    Element: 0
+  - Projectile: {fileID: 1190403378083934, guid: 28e11a13a0b4dfd4682b34d49467a706,
+      type: 2}
+    ProjectileCreatePos: {x: 4, y: 6}
+    ProjectileAimDirection: {x: 0, y: -1}
+    ProjectileSpeed: 20
+    PenetrativePower: 5
+    Damage: 15
+    Stun: 0.5
+    KnifeDelay: 2.2
+    Knockback: {x: 10, y: 0}
+    Element: 0
+  - Projectile: {fileID: 1190403378083934, guid: 28e11a13a0b4dfd4682b34d49467a706,
+      type: 2}
+    ProjectileCreatePos: {x: 6, y: 6}
+    ProjectileAimDirection: {x: 0, y: -1}
+    ProjectileSpeed: 20
+    PenetrativePower: 5
+    Damage: 15
+    Stun: 0.5
+    KnifeDelay: 2.4
+    Knockback: {x: 10, y: 0}
+    Element: 1
+  - Projectile: {fileID: 1190403378083934, guid: 28e11a13a0b4dfd4682b34d49467a706,
+      type: 2}
+    ProjectileCreatePos: {x: 8, y: 6}
+    ProjectileAimDirection: {x: 0, y: -1}
+    ProjectileSpeed: 20
+    PenetrativePower: 5
+    Damage: 15
+    Stun: 0.5
+    KnifeDelay: 2.6
+    Knockback: {x: 10, y: 0}
+    Element: 0
 --- !u!114 &114613666073849404
 MonoBehaviour:
   m_ObjectHideFlags: 1
@@ -201,6 +684,110 @@ MonoBehaviour:
   AirAnimation: air
   AttackSound: {fileID: 0}
   StunTime: 0
+--- !u!114 &114634088829552440
+MonoBehaviour:
+  m_ObjectHideFlags: 1
+  m_PrefabParentObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 100100000}
+  m_GameObject: {fileID: 1920936324984956}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: e0505f74df2e0a742a50df466266ce6d, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  AttackName: quick_wave
+  m_HitboxInfo:
+    IsHitboxCreater: 1
+    HitboxScale: {x: 1, y: 1}
+    HitboxOffset: {x: 0, y: 0}
+    Damage: 10
+    Stun: 0.3
+    HitboxDuration: 0.5
+    Knockback: {x: 10, y: 10}
+    Element: 0
+    ApplyProps: 1
+  m_AttackAnimInfo:
+    AnimSpeed: 1
+    StartUpTime: 1
+    AttackTime: 0
+    RecoveryTime: 2
+    StartUpAnimation: attack3_s
+    RecoveryAnimation: attack3_r
+  m_AIInfo:
+    Frequency: 0.5
+    UniqueAIPrediction: 1
+    AIPredictionHitbox: {x: 3, y: 2}
+    AIPredictionOffset: {x: 2.5, y: 1}
+  m_SoundInfo:
+    StartupSoundFX: {fileID: 0}
+    AttackSoundFX: {fileID: 0}
+  m_Blades:
+  - Projectile: {fileID: 1479056822657094, guid: 74283628fe4131d44851d92b6c2c54cb,
+      type: 2}
+    ProjectileCreatePos: {x: 0, y: 4}
+    ProjectileAimDirection: {x: 0.6, y: -1}
+    ProjectileSpeed: 20
+    PenetrativePower: 5
+    Damage: 10
+    Stun: 0
+    KnifeDelay: 1
+    Knockback: {x: 10, y: 0}
+    Element: 0
+  - Projectile: {fileID: 1479056822657094, guid: 74283628fe4131d44851d92b6c2c54cb,
+      type: 2}
+    ProjectileCreatePos: {x: 0, y: 4}
+    ProjectileAimDirection: {x: 0.8, y: -1}
+    ProjectileSpeed: 20
+    PenetrativePower: 5
+    Damage: 10
+    Stun: 0
+    KnifeDelay: 1.05
+    Knockback: {x: 10, y: 0}
+    Element: 0
+  - Projectile: {fileID: 1479056822657094, guid: 74283628fe4131d44851d92b6c2c54cb,
+      type: 2}
+    ProjectileCreatePos: {x: 0, y: 4}
+    ProjectileAimDirection: {x: 1, y: -1}
+    ProjectileSpeed: 20
+    PenetrativePower: 5
+    Damage: 10
+    Stun: 0
+    KnifeDelay: 1.1
+    Knockback: {x: 10, y: 0}
+    Element: 0
+  - Projectile: {fileID: 1479056822657094, guid: 74283628fe4131d44851d92b6c2c54cb,
+      type: 2}
+    ProjectileCreatePos: {x: 0, y: 4}
+    ProjectileAimDirection: {x: 1.2, y: -1}
+    ProjectileSpeed: 20
+    PenetrativePower: 5
+    Damage: 10
+    Stun: 0
+    KnifeDelay: 1.15
+    Knockback: {x: 10, y: 0}
+    Element: 0
+  - Projectile: {fileID: 1479056822657094, guid: 74283628fe4131d44851d92b6c2c54cb,
+      type: 2}
+    ProjectileCreatePos: {x: 0, y: 4}
+    ProjectileAimDirection: {x: 1.4, y: -1}
+    ProjectileSpeed: 20
+    PenetrativePower: 5
+    Damage: 10
+    Stun: 0
+    KnifeDelay: 1.2
+    Knockback: {x: 10, y: 0}
+    Element: 0
+  - Projectile: {fileID: 1952910485311144, guid: 5a47eafd48789004eb71f8ec4098d213,
+      type: 2}
+    ProjectileCreatePos: {x: 0, y: 4}
+    ProjectileAimDirection: {x: 1.6, y: -1}
+    ProjectileSpeed: 20
+    PenetrativePower: 5
+    Damage: 10
+    Stun: 0
+    KnifeDelay: 1.25
+    Knockback: {x: 10, y: 0}
+    Element: 0
 --- !u!114 &114653822987974626
 MonoBehaviour:
   m_ObjectHideFlags: 1
@@ -212,15 +799,68 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 6cecf518dba7e8f429d2dc6df9ba9177, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  m_health: 80
-  MaxHealth: 80
+  m_health: 250
+  MaxHealth: 250
   Alive: 1
   DeathTime: 2
   m_currDeathTime: 0
-  Faction: 1
-  Resistences: []
+  Faction: 2
+  Resistences:
+  - Element: 0
+    Duration: 0
+    Percentage: 0
+    Timed: 0
+    StunResist: 100
+    KnockbackResist: 100
+    AvoidOverflow: 0
+    OverflowAmount: 0
+  - Element: 1
+    Duration: 0
+    Percentage: 0
+    Timed: 0
+    StunResist: 100
+    KnockbackResist: 100
+    AvoidOverflow: 0
+    OverflowAmount: 0
+  - Element: 4
+    Duration: 0
+    Percentage: 0
+    Timed: 0
+    StunResist: 100
+    KnockbackResist: 100
+    AvoidOverflow: 0
+    OverflowAmount: 0
+  - Element: 2
+    Duration: 0
+    Percentage: 0
+    Timed: 0
+    StunResist: 100
+    KnockbackResist: 100
+    AvoidOverflow: 0
+    OverflowAmount: 0
+  - Element: 3
+    Duration: 0
+    Percentage: 0
+    Timed: 0
+    StunResist: 50
+    KnockbackResist: 100
+    AvoidOverflow: 0
+    OverflowAmount: 0
   DisplayHealth: 1
   Killer: {fileID: 0}
+--- !u!114 &114655099451791366
+MonoBehaviour:
+  m_ObjectHideFlags: 1
+  m_PrefabParentObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 100100000}
+  m_GameObject: {fileID: 1234426115554616}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 589bf31073c0bd74abc2e4425774d2a5, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  Player: {fileID: 0}
+  Fighter: {fileID: 0}
 --- !u!114 &114655878683600006
 MonoBehaviour:
   m_ObjectHideFlags: 1
@@ -271,7 +911,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: c380a1cc962b4a24781a3ad796ebd635, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  IsCurrentPlayer: 1
+  IsCurrentPlayer: 0
   JumpHeight: 3
   TimeToJumpApex: 0.4
   VariableJumpHeight: 1
@@ -280,12 +920,25 @@ MonoBehaviour:
   jumpVector: {x: 0, y: 15}
   m_inputMove: {x: 0, y: 0}
   m_minDistance: 1
-  m_abandonDistance: 10
+  m_abandonDistance: 30
   Submerged: 0
   CanJump: 1
   m_stuckTime: 0
   PlayFootsteps: 0
   footstepInterval: 0.4
+--- !u!114 &114857190705753982
+MonoBehaviour:
+  m_ObjectHideFlags: 1
+  m_PrefabParentObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 100100000}
+  m_GameObject: {fileID: 1234426115554616}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 5a1a5ea7ce80383469d332acaf443f8f, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  Player: {fileID: 0}
+  Fighter: {fileID: 0}
 --- !u!114 &114944340132168020
 MonoBehaviour:
   m_ObjectHideFlags: 1
@@ -332,12 +985,12 @@ SpriteRenderer:
   m_SortingLayerID: 0
   m_SortingLayer: 0
   m_SortingOrder: 0
-  m_Sprite: {fileID: 21300000, guid: 70401ced30d646b499e1fcaf0e51c9fb, type: 3}
+  m_Sprite: {fileID: 21300048, guid: 70401ced30d646b499e1fcaf0e51c9fb, type: 3}
   m_Color: {r: 1, g: 1, b: 1, a: 1}
   m_FlipX: 0
   m_FlipY: 0
   m_DrawMode: 0
-  m_Size: {x: 1, y: 1}
+  m_Size: {x: 1.28, y: 1.28}
   m_AdaptiveModeThreshold: 0.5
   m_SpriteTileMode: 0
   m_WasSpriteAssigned: 1

@@ -167,15 +167,14 @@ public class TextboxManager : MonoBehaviour {
 	public void setTextSpeed(float time ){
 		textSpeed = time;
 	}
-	public void removeTextbox(GameObject go) {
-		//textboxes.Remove (go);
-	}
 	public static void ClearAllSequences() {
+		Debug.Log ("Clearing: " + Instance.m_currentSequences.Count);
 		foreach (DialogueSequence ds in Instance.m_currentSequences) {
 			if (ds != null) {
 				ds.CloseSequence ();
 			}
 		}
+		Instance.m_currentSequences.Clear ();
 	}
 	public static string GetKeyString(string action) {
 		return InputManager.GetAction ("Keyboard", action).Bindings [0].Positive.ToString ();
