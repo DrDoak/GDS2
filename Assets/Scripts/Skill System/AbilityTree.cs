@@ -6,7 +6,7 @@ using UnityEditor;
 public class AbilityTree
 {
     public static GameObject Player;
-    public static int PointsToSpend = 2;
+    public static int PointsToSpend = 0;
     public AbilityTreeNode root;
     public AbilityTree LeftBranch;
     public AbilityTree MiddleBranch;
@@ -31,6 +31,36 @@ public class AbilityTree
         root.tree = this;
         if (description != -1) root.SetDescription(description);
     }
+
+    public AbilityTreeNode UnlockAbilitiesAutomatic()
+    {
+        if (PointsToSpend > 0)
+        {
+            AbilityTreeNode node;
+            Queue<AbilityTreeNode> q = new Queue<AbilityTreeNode>();
+            q.Enqueue(root);
+            while (q.Count > 0 && PointsToSpend > 0)
+            {
+                node = q.Dequeue();
+                if (!node.unlocked)
+                {
+                    node.tree.ChooseAbility();
+                    return node;
+                }
+                else
+                    foreach (AbilityTreeNode n in node.tree.GetChildren())
+                        q.Enqueue(n);
+
+            }
+        }
+        return null;
+    }
+
+    public void DisplayAbility()
+    {
+        TextboxManager.StartSequence("~ABILITY UPGRADED! " + root.ability.AbilityDescription);
+    }
+       
 
     public void ChooseAbility()
     {

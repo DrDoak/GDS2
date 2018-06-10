@@ -9,7 +9,7 @@ public class Leveller : MonoBehaviour {
     public int Level;
     public int Scaler = 2;
     public int DataRequirement = 800;
-    public int PointAdditions = 2;
+    public int PointAdditions = 1;
     public float HealthAddition = 50f;
     
     private ExperienceHolder exp;
@@ -44,7 +44,7 @@ public class Leveller : MonoBehaviour {
 		//Debug.Log ("Requirement: " + Instance.DataRequirement * Instance.Scaler * Instance.Level);
 		//Debug.Log ("Current: " + Instance.exp.Experience);
 		if (Instance.exp.Experience >= Instance.DataRequirement * Instance.Scaler * Instance.Level) {
-			EventManager.TriggerEvent (3);
+			EventManager.TriggerEvent (EventManager.LEVEL_UP);
 			Debug.Log ("Event Triggered");
 		}
     }
@@ -60,9 +60,20 @@ public class Leveller : MonoBehaviour {
 		Instance.Level++;
     }
 
+    public IEnumerator DisplayAbilityUpgrade(AbilityTreeNode n)
+    {
+        yield return new WaitForSeconds(3f);
+        n.tree.DisplayAbility();
+    }
+
     void AddAbilityPoints()
     {
         AbilityTree.PointsToSpend += PointAdditions;
+        AbilityTreeNode n = AbilityManager.abilityTree.UnlockAbilitiesAutomatic();
+        if(n!=null)
+        {
+            StartCoroutine(DisplayAbilityUpgrade(n));
+        }
     }
 
     void AddTransferSlots()
@@ -82,11 +93,12 @@ public class Leveller : MonoBehaviour {
     void OnEnable()
     {
 		Debug.Log ("on enable");
-        EventManager.LevelUpEvent += IncreaseHealth;
-        EventManager.LevelUpEvent += AddAbilityPoints;
+
         EventManager.LevelUpEvent += DisplayLevelUp;
+        EventManager.LevelUpEvent += IncreaseHealth;
         EventManager.LevelUpEvent += AddTransferSlots;
 		EventManager.LevelUpEvent += AddTransfers;
+        EventManager.LevelUpEvent += AddAbilityPoints;
     }
 
     void OnDisable()
