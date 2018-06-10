@@ -16,5 +16,5 @@ public class BasicAbilityControl : MonoBehaviour {
     public void TakeAbility(Ability a)
     {
         Abilities.Remove(a);
-    }
+    } 
 }
