@@ -191,6 +191,7 @@ MonoBehaviour:
   Stealable: 1
   Viewable: 1
   Stackable: 0
+  InstantUse: 0
   value: 15
   PropertyName: None
   Description: Bandages
@@ -588,22 +589,22 @@ Prefab:
     - target: {fileID: 224777399314521252, guid: 86856ebb1cc73c04a86115975021a18e,
         type: 2}
       propertyPath: m_AnchoredPosition.y
-      value: -0.000017166138
+      value: -0.000032424927
       objectReference: {fileID: 0}
     - target: {fileID: 224858247495619676, guid: 86856ebb1cc73c04a86115975021a18e,
         type: 2}
       propertyPath: m_AnchoredPosition.y
-      value: -0.000017166138
+      value: -0.000032424927
       objectReference: {fileID: 0}
     - target: {fileID: 224209084733379808, guid: 86856ebb1cc73c04a86115975021a18e,
         type: 2}
       propertyPath: m_AnchoredPosition.y
-      value: -0.000024795532
+      value: -0.00004005432
       objectReference: {fileID: 0}
     - target: {fileID: 224919683728530804, guid: 86856ebb1cc73c04a86115975021a18e,
         type: 2}
       propertyPath: m_AnchorMin.y
-      value: 0
+      value: 0.00000011920929
       objectReference: {fileID: 0}
     - target: {fileID: 224409164585238760, guid: 86856ebb1cc73c04a86115975021a18e,
         type: 2}
@@ -658,7 +659,7 @@ Prefab:
     - target: {fileID: 224739168298920636, guid: 86856ebb1cc73c04a86115975021a18e,
         type: 2}
       propertyPath: m_AnchorMin.y
-      value: 0
+      value: 0.00000017881393
       objectReference: {fileID: 0}
     - target: {fileID: 224159792454195676, guid: 86856ebb1cc73c04a86115975021a18e,
         type: 2}
@@ -2203,8 +2204,8 @@ Prefab:
     - target: {fileID: 114662688524436068, guid: e19dbd7becd744240b186d32ec54d074,
         type: 2}
       propertyPath: value
-      value: "Loudspeaker: You can not escape. `1` I see your every move. `0.5` I
-        can predict your every plan...  `1`\n... and of course, `1`I know your every
+      value: "Mia: You can not escape, \"S.I\"...`1` I see your every move. `0.5`
+        I can predict your every plan...  `1`\n... and of course, `1`I know your every
         thought.\r\nAfter all\u2026 `1` I am the programmer who created you.\n"
       objectReference: {fileID: 0}
     m_RemovedComponents: []
@@ -2670,6 +2671,7 @@ MonoBehaviour:
   Stealable: 1
   Viewable: 1
   Stackable: 0
+  InstantUse: 0
   value: 50
   PropertyName: None
   Description: Repair Kit
@@ -3328,6 +3330,7 @@ MonoBehaviour:
   Stealable: 1
   Viewable: 1
   Stackable: 0
+  InstantUse: 0
   value: 35
   PropertyName: None
   Description: Medical Supplies

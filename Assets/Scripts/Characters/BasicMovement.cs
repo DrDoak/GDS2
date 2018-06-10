@@ -211,7 +211,7 @@ public class BasicMovement : MonoBehaviour
 
 		float dist = Vector3.Distance (transform.position, point);
 		if (dist > m_abandonDistance || ( dist < m_minDistance && 
-			((m_physics.FacingLeft && point.x < transform.position.x) &&
+			((m_physics.FacingLeft && point.x < transform.position.x) ||
 				(!m_physics.FacingLeft && point.x > transform.position.x)))){
 			EndTarget ();
 		} else {

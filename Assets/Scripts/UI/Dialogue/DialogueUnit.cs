@@ -28,7 +28,7 @@ public class DialogueUnit  {
 		parseNextElement ();
 	}
 	public void parseNextElement() {
-		if (currentElement >= elements.Count) {
+		if (finished || currentElement >= elements.Count) {
 			closeSequence ();
 		} else {
 			if (currentTB)
