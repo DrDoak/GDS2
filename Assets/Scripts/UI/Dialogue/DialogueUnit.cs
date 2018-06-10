@@ -14,10 +14,13 @@ public class DialogueUnit  {
 	//List<Fighter> modifiedAnims;
 	public GameObject Speaker;
 
+	public Dictionary<BasicMovement,bool> FrozenCharacters;
+
 	// Use this for initialization
 	public DialogueUnit () {
 		//modifiedAnims = new List<Fighter> ();
 		elements = new List<DialogueSubunit> ();
+		FrozenCharacters = new Dictionary<BasicMovement, bool>();
 	}
 
 	public void RestartSequence() {
@@ -31,11 +34,14 @@ public class DialogueUnit  {
 		if (finished || currentElement >= elements.Count) {
 			closeSequence ();
 		} else {
-			if (currentTB)
+			if (currentTB) {
 				GameObject.Destroy (currentTB.gameObject);
+				FrozenCharacters = currentTB.FrozenCharacters;
+			}
 			DialogueSubunit ne = elements [currentElement];
 			currentTB = TextboxManager.addTextbox (ne.text, Speaker,ne.isFullScreen);
 			currentTB.masterSequence = this;
+			currentTB.FrozenCharacters = FrozenCharacters;
 			currentElement += 1;
 		}
 	}
@@ -66,6 +72,8 @@ public class DialogueUnit  {
 		if (currentTB)
 			GameObject.Destroy (currentTB.gameObject);
 		finished = true;
+		foreach (BasicMovement bm in FrozenCharacters.Keys)
+			bm.IsCurrentPlayer = FrozenCharacters[bm];
 	}
 
 	void runEvent() {}

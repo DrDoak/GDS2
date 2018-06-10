@@ -27,6 +27,8 @@ public class Textbox : MonoBehaviour {
 	public Color tC;
 	public bool conclude = false;
 
+	public Dictionary<BasicMovement,bool> FrozenCharacters;
+
 	// Use this for initialization
 	void Start () {
 		mText = GetComponentInChildren<TextMeshProUGUI> ();
@@ -37,6 +39,7 @@ public class Textbox : MonoBehaviour {
 	}
 	void OnDestroy() {
 		conclude = true;
+
 		if (masterSequence != null) {
 			masterSequence.parseNextElement ();
 		}
@@ -265,7 +268,10 @@ public class Textbox : MonoBehaviour {
 	private void toggleControl(string targetChar) {
 		GameObject target = GameObject.Find (targetChar);
 		if (target != null && target.GetComponent<BasicMovement>() != null) {
-			target.GetComponent<BasicMovement>().IsCurrentPlayer = !target.GetComponent<BasicMovement>().IsCurrentPlayer;
+			BasicMovement bm = target.GetComponent<BasicMovement>();
+			if (!FrozenCharacters.ContainsKey (bm))
+				FrozenCharacters.Add (bm, bm.IsCurrentPlayer);
+			bm.IsCurrentPlayer = !bm.IsCurrentPlayer;
 		}		
 	}
 

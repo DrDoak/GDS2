@@ -17,6 +17,7 @@ public class TextboxManager : MonoBehaviour {
 	public GameObject textboxPrefab;
 	public GameObject textboxStaticPrefab;
 	public GameObject textboxFullPrefab;
+	public GameObject SkipTextPrefab;
 	public DialogueSound nextSoundType;
 	List<DialogueSequence> m_currentSequences;
 
@@ -43,10 +44,15 @@ public class TextboxManager : MonoBehaviour {
 		//TextboxColor = new Color (1.0f, 0.0f, 0.0f, 0.5f);
 	}
 
-	public static void StartSequence(string text,GameObject speaker = null) {
+	public static void StartSequence(string text,GameObject speaker = null, bool Skippable = false) {
 		DialogueSequence ds = Instance.parseSequence (text);
 		ds.Speaker = speaker;
 		ds.AdvanceSequence ();
+		if (Skippable == true) {
+			GameObject go = Instantiate (Instance.SkipTextPrefab);
+			go.GetComponent<SkipText> ().SingleSequence = true;
+			go.GetComponent<SkipText> ().toSkip = ds.allDUnits [0];
+		}
 		Instance.m_currentSequences.Add (ds);
 	}
 

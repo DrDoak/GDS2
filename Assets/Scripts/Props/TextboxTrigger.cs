@@ -7,6 +7,7 @@ public class TextboxTrigger : Interactable {
 	public bool typeText = true;
 	public bool autoTrigger = true;
 	public bool ClearAllSequence = true;
+	public bool Skippable = false;
 	public DialogueSound soundType = DialogueSound.SPOKEN;
 	float interval = 2.0f;
 	float currentInterval = 0.0f;
@@ -38,7 +39,7 @@ public class TextboxTrigger : Interactable {
 		TextboxManager.SetSoundType (soundType);
 		if (ClearAllSequence)
 			TextboxManager.ClearAllSequences ();
-		TextboxManager.StartSequence (value);
+		TextboxManager.StartSequence (value,null,Skippable);
 	}
 	/* public override void onInteract(BasicMovement interactor) {
 		if (!autoTrigger) {
