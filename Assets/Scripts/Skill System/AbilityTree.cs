@@ -56,9 +56,9 @@ public class AbilityTree
         return null;
     }
 
-    public void DisplayAbility()
+    public string DisplayAbility()
     {
-        TextboxManager.StartSequence("~ABILITY UPGRADED! " + root.ability.AbilityDescription);
+        return root.ability.AbilityDescription;
     }
        
 
@@ -290,7 +290,7 @@ public class AbilityTreeNode
             ability.Upgrade();
 
         Maxed = ability.Maxed;
-        Debug.Log("You unlocked: " + ability.AbilityName);
+        //Debug.Log("You unlocked: " + ability.AbilityName);
         Select();
     }
 

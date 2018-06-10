@@ -31,10 +31,10 @@ public class AbilityManager : MonoBehaviour {
         //abilityTree.Add(ScriptableObject.CreateInstance<Ab_Ultimate_Carbon_Copy>(), Branch.LEFT, AbilityType.COMBAT, 8);
 
         abilityTree.Add(ScriptableObject.CreateInstance<Ab_Passive_Bleed>(), Branch.MIDDLE, AbilityType.COMBAT, 6);
-        abilityTree.Add(ScriptableObject.CreateInstance<Ab_Passive_Heal>(), Branch.MIDDLE, AbilityType.COMBAT, 7);
+        //abilityTree.Add(ScriptableObject.CreateInstance<Ab_Passive_Heal>(), Branch.MIDDLE, AbilityType.COMBAT, 7);
         //abilityTree.Add(ScriptableObject.CreateInstance<Ab_Ultimate_Siphon>(), Branch.MIDDLE, AbilityType.COMBAT, 9);
 
-        abilityTree.Add(ScriptableObject.CreateInstance<Ab_CriticalStrike>(), Branch.RIGHT, AbilityType.COMBAT, 3);
+       // abilityTree.Add(ScriptableObject.CreateInstance<Ab_CriticalStrike>(), Branch.RIGHT, AbilityType.COMBAT, 3);
         abilityTree.Add(ScriptableObject.CreateInstance<Ab_Passive_AttackDamage>(), Branch.RIGHT, AbilityType.COMBAT, 5);
         //abilityTree.Add(ScriptableObject.CreateInstance<Ab_Ultimate_Overpower>(), Branch.RIGHT, AbilityType.COMBAT, 10);
 

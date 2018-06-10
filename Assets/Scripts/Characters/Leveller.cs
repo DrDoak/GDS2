@@ -67,20 +67,16 @@ public class Leveller : MonoBehaviour {
 		levelUpStr = "";
 		Instance.Level++;
     }
-
-    public IEnumerator DisplayAbilityUpgrade(AbilityTreeNode n)
-    {
-        yield return new WaitForSeconds(3f);
-        n.tree.DisplayAbility();
-    }
+   
 
     void AddAbilityPoints()
     {
+
         AbilityTree.PointsToSpend += PointAdditions;
         AbilityTreeNode n = AbilityManager.abilityTree.UnlockAbilitiesAutomatic();
         if(n!=null)
         {
-            StartCoroutine(DisplayAbilityUpgrade(n));
+            levelUpStr += "\n~ABILITY UPGRADED! " + n.tree.DisplayAbility();
         }
     }
 
