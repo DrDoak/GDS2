@@ -68,7 +68,7 @@ public class SceneTrigger : Interactable {
 			}
 			if (go.GetComponent<BasicMovement> ().IsCurrentPlayer) {
 				//GameManager.Instance.LoadRoom (sceneName);
-				Initiate.Fade (sceneName, Color.black, 2.0f);
+				Initiate.Fade (sceneName, Color.black, 5.0f);
 			}
 			Destroy (go);
 		} else {

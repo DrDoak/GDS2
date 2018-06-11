@@ -58,6 +58,7 @@ GameObject:
   - component: {fileID: 114804922220218324}
   - component: {fileID: 114006178482012032}
   - component: {fileID: 114981358024905392}
+  - component: {fileID: 114704190003251382}
   m_Layer: 8
   m_Name: Altered
   m_TagString: Player
@@ -72,7 +73,7 @@ Transform:
   m_PrefabInternal: {fileID: 100100000}
   m_GameObject: {fileID: 1161331917680390}
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_LocalPosition: {x: 23.634953, y: -21.494656, z: 0}
+  m_LocalPosition: {x: 19.76, y: -15.57, z: 0}
   m_LocalScale: {x: 1.5, y: 1.5, z: 4}
   m_Children:
   - {fileID: 4308780604145002}
@@ -168,17 +169,17 @@ MonoBehaviour:
   AttackName: lunge
   m_HitboxInfo:
     IsHitboxCreater: 1
-    HitboxScale: {x: 3, y: 1}
+    HitboxScale: {x: 3, y: 0.5}
     HitboxOffset: {x: 0, y: 0}
-    Damage: 10
-    Stun: 0.3
+    Damage: 20
+    Stun: 1
     HitboxDuration: 0.4
-    Knockback: {x: 15, y: 0}
+    Knockback: {x: 20, y: 0}
     Element: 0
     ApplyProps: 1
   m_AttackAnimInfo:
     AnimSpeed: 1
-    StartUpTime: 1
+    StartUpTime: 0.75
     AttackTime: 0
     RecoveryTime: 1
     StartUpAnimation: lunge_s
@@ -194,7 +195,7 @@ MonoBehaviour:
   m_dashInfo:
     StartUpDash: {x: 0, y: 0}
     StartUpDuration: 0
-    AttackDash: {x: 15, y: 0}
+    AttackDash: {x: 25, y: 0}
     AttackDashDuration: 0.2
     ConclusionDash: {x: 0, y: 0}
     ConclusionDuration: 0
@@ -246,7 +247,7 @@ MonoBehaviour:
   m_inputedMove: {x: 0, y: 0}
   TerminalVelocity: -5
   GravityScale: -1
-  FacingLeft: 0
+  FacingLeft: 1
   ReactToWater: 1
   UseBuoyancy: 0
   BuoyancyScale: -1
@@ -279,7 +280,7 @@ MonoBehaviour:
     IsHitboxCreater: 0
     HitboxScale: {x: 1, y: 1}
     HitboxOffset: {x: 0, y: 0}
-    Damage: 10
+    Damage: 24
     Stun: 0.3
     HitboxDuration: 0.5
     Knockback: {x: 10, y: 10}
@@ -295,13 +296,13 @@ MonoBehaviour:
   m_AIInfo:
     Frequency: 0.5
     UniqueAIPrediction: 1
-    AIPredictionHitbox: {x: 3, y: 0.5}
-    AIPredictionOffset: {x: 2, y: 0}
+    AIPredictionHitbox: {x: 5, y: 0.5}
+    AIPredictionOffset: {x: 5, y: 0}
   m_SoundInfo:
     StartupSoundFX: {fileID: 0}
     AttackSoundFX: {fileID: 8300000, guid: 0431e379752466f47bc8618cb914a2fc, type: 3}
   m_lineInfo:
-    range: 10
+    range: 11
     direction: {x: 1, y: 0}
     HitboxOffset: {x: 0.15, y: 0.1}
     Damage: 24
@@ -320,8 +321,8 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 6cecf518dba7e8f429d2dc6df9ba9177, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  m_health: 100
-  MaxHealth: 100
+  m_health: 200
+  MaxHealth: 200
   Alive: 1
   DeathTime: 2
   m_currDeathTime: 0
@@ -388,7 +389,7 @@ MonoBehaviour:
   TimeToJumpApex: 0.4
   VariableJumpHeight: 0
   variableJumpApplied: 0
-  MoveSpeed: 4
+  MoveSpeed: 4.5
   jumpVector: {x: 0, y: 0}
   m_inputMove: {x: 0, y: 0}
   m_minDistance: 3
@@ -449,6 +450,7 @@ MonoBehaviour:
     zRot: 0
     health: 100
     maxHealth: 100
+    faction: 3
     prefabPath: 
     targetID: 
     propertyList: []
@@ -459,6 +461,7 @@ MonoBehaviour:
     targetDir: 0
     IsCurrentCharacter: 0
     IsFacingLeft: 0
+    TurretDefaultFace: 0
     Experience: 0
     TriggerUsed: 0
     triggerString: 
@@ -482,6 +485,23 @@ MonoBehaviour:
   AirAnimation: air
   AttackSound: {fileID: 0}
   StunTime: 0
+--- !u!114 &114704190003251382
+MonoBehaviour:
+  m_ObjectHideFlags: 1
+  m_PrefabParentObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 100100000}
+  m_GameObject: {fileID: 1161331917680390}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 408bf779b2e9ca046a7972ca395e1474, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  ItemDropped: {fileID: 1972383758959062, guid: 74c85383d5ab7a14e9a7e4e43ab81572,
+    type: 2}
+  StopMusic: 1
+  DeathQuote: 'Altered Soldier: A Monsterous Mind with a Monsterous Power... I fear
+    for the world....'
+  LoadScene: 
 --- !u!114 &114804922220218324
 MonoBehaviour:
   m_ObjectHideFlags: 1
@@ -496,7 +516,8 @@ MonoBehaviour:
   Stealable: 1
   Viewable: 1
   Stackable: 0
-  value: 100
+  InstantUse: 0
+  value: 1000
   PropertyName: Data
   Description: Combat knowledge and experience.
   icon: {fileID: 0}
@@ -526,6 +547,7 @@ MonoBehaviour:
   Stealable: 1
   Viewable: 1
   Stackable: 0
+  InstantUse: 0
   value: 0
   PropertyName: None
   Description: No description provided.
@@ -560,8 +582,8 @@ MonoBehaviour:
     IsHitboxCreater: 1
     HitboxScale: {x: 2, y: 1}
     HitboxOffset: {x: 1, y: 0}
-    Damage: 10
-    Stun: 0.3
+    Damage: 15
+    Stun: 0.5
     HitboxDuration: 0.5
     Knockback: {x: 10, y: 0}
     Element: 0
@@ -576,7 +598,7 @@ MonoBehaviour:
   m_AIInfo:
     Frequency: 0.5
     UniqueAIPrediction: 1
-    AIPredictionHitbox: {x: 1.5, y: 1}
+    AIPredictionHitbox: {x: 2, y: 1}
     AIPredictionOffset: {x: 0.5, y: 0}
   m_SoundInfo:
     StartupSoundFX: {fileID: 0}
@@ -585,7 +607,7 @@ MonoBehaviour:
     StartUpDash: {x: 0, y: 0}
     StartUpDuration: 0
     AttackDash: {x: 5, y: 0}
-    AttackDashDuration: 0.1
+    AttackDashDuration: 0.2
     ConclusionDash: {x: 0, y: 0}
     ConclusionDuration: 0
 --- !u!212 &212562942346403324

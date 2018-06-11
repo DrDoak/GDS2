@@ -19,7 +19,7 @@ public class DropItemDeath : MonoBehaviour {
 			if (DeathQuote != "")
 				TextboxManager.StartSequence (DeathQuote);
 			if (LoadScene != "")
-				SceneManager.LoadScene (LoadScene);
+				Initiate.Fade (LoadScene, Color.white, 1.5f);
 		}
 
 	}

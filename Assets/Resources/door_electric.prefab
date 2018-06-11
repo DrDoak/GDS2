@@ -28,7 +28,6 @@ GameObject:
   - component: {fileID: 114995579462972700}
   - component: {fileID: 114005363365398244}
   - component: {fileID: 114220600080743572}
-  - component: {fileID: 95622583091840974}
   m_Layer: 8
   m_Name: door_electric
   m_TagString: Player
@@ -94,23 +93,6 @@ BoxCollider2D:
   serializedVersion: 2
   m_Size: {x: 0.2, y: 2}
   m_EdgeRadius: 0
---- !u!95 &95622583091840974
-Animator:
-  serializedVersion: 3
-  m_ObjectHideFlags: 1
-  m_PrefabParentObject: {fileID: 0}
-  m_PrefabInternal: {fileID: 100100000}
-  m_GameObject: {fileID: 1425970486325360}
-  m_Enabled: 1
-  m_Avatar: {fileID: 0}
-  m_Controller: {fileID: 9100000, guid: 70b88e1982e4eb847b219f441a6e9c44, type: 2}
-  m_CullingMode: 0
-  m_UpdateMode: 0
-  m_ApplyRootMotion: 0
-  m_LinearVelocityBlending: 0
-  m_WarningMessage: 
-  m_HasTransformHierarchy: 1
-  m_AllowConstantClipSamplingOptimization: 1
 --- !u!114 &114005363365398244
 MonoBehaviour:
   m_ObjectHideFlags: 1
@@ -225,6 +207,7 @@ MonoBehaviour:
     zRot: 0
     health: 100
     maxHealth: 100
+    faction: 3
     prefabPath: 
     targetID: 
     propertyList: []

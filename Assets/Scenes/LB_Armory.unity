@@ -586,6 +586,11 @@ Prefab:
       objectReference: {fileID: 0}
     - target: {fileID: 1708268155150066, guid: e257e003c31bc9c45992adf9b725ae31, type: 2}
       propertyPath: m_Name
+      value: CornerTable
+      objectReference: {fileID: 0}
+    - target: {fileID: 114561042843327902, guid: e257e003c31bc9c45992adf9b725ae31,
+        type: 2}
+      propertyPath: PrefabPath
       value: SupplyTable
       objectReference: {fileID: 0}
     m_RemovedComponents:
@@ -1231,17 +1236,17 @@ Prefab:
     - target: {fileID: 224209084733379808, guid: 86856ebb1cc73c04a86115975021a18e,
         type: 2}
       propertyPath: m_AnchoredPosition.y
-      value: 0.0000038146973
+      value: -0.0000038146973
       objectReference: {fileID: 0}
     - target: {fileID: 224858247495619676, guid: 86856ebb1cc73c04a86115975021a18e,
         type: 2}
       propertyPath: m_AnchoredPosition.y
-      value: -0.0000076293945
+      value: 0.000038146973
       objectReference: {fileID: 0}
     - target: {fileID: 224777399314521252, guid: 86856ebb1cc73c04a86115975021a18e,
         type: 2}
       propertyPath: m_AnchoredPosition.y
-      value: -0.000017166138
+      value: 0.00004386902
       objectReference: {fileID: 0}
     - target: {fileID: 224739168298920636, guid: 86856ebb1cc73c04a86115975021a18e,
         type: 2}
@@ -1296,7 +1301,7 @@ Prefab:
     - target: {fileID: 224409164585238760, guid: 86856ebb1cc73c04a86115975021a18e,
         type: 2}
       propertyPath: m_AnchorMin.y
-      value: 0.00000017881393
+      value: 0
       objectReference: {fileID: 0}
     - target: {fileID: 224919683728530804, guid: 86856ebb1cc73c04a86115975021a18e,
         type: 2}
@@ -2137,6 +2142,16 @@ Prefab:
       objectReference: {fileID: 0}
     - target: {fileID: 1708268155150066, guid: e257e003c31bc9c45992adf9b725ae31, type: 2}
       propertyPath: m_Name
+      value: MedicalCabinet
+      objectReference: {fileID: 0}
+    - target: {fileID: 114561042843327902, guid: e257e003c31bc9c45992adf9b725ae31,
+        type: 2}
+      propertyPath: saveID
+      value: MedicalCabinet
+      objectReference: {fileID: 0}
+    - target: {fileID: 114561042843327902, guid: e257e003c31bc9c45992adf9b725ae31,
+        type: 2}
+      propertyPath: PrefabPath
       value: SupplyTable
       objectReference: {fileID: 0}
     m_RemovedComponents:
@@ -2608,6 +2623,16 @@ Prefab:
       propertyPath: m_Name
       value: SupplyTable
       objectReference: {fileID: 0}
+    - target: {fileID: 114561042843327902, guid: e257e003c31bc9c45992adf9b725ae31,
+        type: 2}
+      propertyPath: saveID
+      value: BombTable
+      objectReference: {fileID: 0}
+    - target: {fileID: 114561042843327902, guid: e257e003c31bc9c45992adf9b725ae31,
+        type: 2}
+      propertyPath: PrefabPath
+      value: SupplyTable
+      objectReference: {fileID: 0}
     m_RemovedComponents:
     - {fileID: 114251082253835196, guid: e257e003c31bc9c45992adf9b725ae31, type: 2}
   m_ParentPrefab: {fileID: 100100000, guid: e257e003c31bc9c45992adf9b725ae31, type: 2}
@@ -2787,6 +2812,16 @@ Prefab:
       objectReference: {fileID: 0}
     - target: {fileID: 1708268155150066, guid: e257e003c31bc9c45992adf9b725ae31, type: 2}
       propertyPath: m_Name
+      value: SupplyTable
+      objectReference: {fileID: 0}
+    - target: {fileID: 114561042843327902, guid: e257e003c31bc9c45992adf9b725ae31,
+        type: 2}
+      propertyPath: saveID
+      value: HighestTable
+      objectReference: {fileID: 0}
+    - target: {fileID: 114561042843327902, guid: e257e003c31bc9c45992adf9b725ae31,
+        type: 2}
+      propertyPath: PrefabPath
       value: SupplyTable
       objectReference: {fileID: 0}
     m_RemovedComponents:

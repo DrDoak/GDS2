@@ -11,6 +11,7 @@ public class FXBody : MonoBehaviour {
 	public GameObject FXFan;
 	public GameObject FXBurner;
 	public GameObject FXWet;
+	public GameObject FXExplosive;
 
 	public AudioClip SFXFootstep;
 	public AudioClip SFXJump;

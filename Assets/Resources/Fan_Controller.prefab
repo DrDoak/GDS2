@@ -26,7 +26,6 @@ GameObject:
   - component: {fileID: 114856623442897834}
   - component: {fileID: 114265649811913338}
   - component: {fileID: 114455863382601702}
-  - component: {fileID: 114055345075510026}
   - component: {fileID: 114149175063241316}
   - component: {fileID: 114828875436055040}
   m_Layer: 8
@@ -94,25 +93,6 @@ BoxCollider2D:
   serializedVersion: 2
   m_Size: {x: 1, y: 1.5}
   m_EdgeRadius: 0
---- !u!114 &114055345075510026
-MonoBehaviour:
-  m_ObjectHideFlags: 1
-  m_PrefabParentObject: {fileID: 0}
-  m_PrefabInternal: {fileID: 100100000}
-  m_GameObject: {fileID: 1174026929524664}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 6003dfd63db640349b0f443958c83178, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  Stealable: 1
-  Viewable: 1
-  Stackable: 0
-  InstantUse: 0
-  value: 0
-  PropertyName: None
-  Description: No description provided.
-  icon: {fileID: 0}
 --- !u!114 &114149175063241316
 MonoBehaviour:
   m_ObjectHideFlags: 1
@@ -212,6 +192,7 @@ MonoBehaviour:
     zRot: 0
     health: 100
     maxHealth: 100
+    faction: 3
     prefabPath: 
     targetID: 
     propertyList: []

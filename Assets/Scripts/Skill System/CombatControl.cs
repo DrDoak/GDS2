@@ -43,7 +43,7 @@ public class CombatControl : MonoBehaviour
     // Update is called once per frame
     void Update()
     {
-		if (!PauseGame.isPaused && Input.anyKeyDown)
+		if (GetComponent<BasicMovement>().IsCurrentPlayer && !PauseGame.isPaused && Input.anyKeyDown)
             CheckKey();
     }
 

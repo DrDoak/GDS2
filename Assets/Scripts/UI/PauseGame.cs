@@ -134,7 +134,7 @@ public class PauseGame : MonoBehaviour
 	}
 	public void MenuNew() {
 		SaveObjManager.Instance.resetRoomData ();
-		SceneManager.LoadScene ("LB_BottomPoint");
+		SceneManager.LoadScene ("LB_Intro");
 		Resume ();
 	}
 	public void MenuSave() {

@@ -23,42 +23,38 @@ public class PR_Poison : Property {
 		GetComponent<Attackable>().Faction = FactionType.HOSTILE;
 		Vector3 sc = GetComponent<PropertyHolder> ().BodyScale ();
 		sc *= 1.2f;
-		bioSurround = GetComponent<HitboxMaker>().CreateHitboxMulti(sc, off, dmg, stun, hd, kb,true, true, ElementType.BIOLOGICAL,0.5f);
-		bioSurround.GetComponent<Hitbox> ().Faction = FactionType.HOSTILE;
-		//fx = GetComponent<PropertyHolder> ().AddBodyEffect (FXBody.Instance.FXFlame);
-		bioOnly = new List<ElementType> ();
-		bioOnly.Add (ElementType.BIOLOGICAL);
-		if (value != 1f) {
-			oldMaxHealth = GetComponent<Attackable> ().MaxHealth;
+		if (GetComponent<HitboxMaker> () != null) {
+			bioSurround = GetComponent<HitboxMaker> ().CreateHitboxMulti (sc, off, dmg, stun, hd, kb, true, true, ElementType.BIOLOGICAL, 0.5f);
+			bioSurround.GetComponent<Hitbox> ().Faction = FactionType.HOSTILE;
+			//fx = GetComponent<PropertyHolder> ().AddBodyEffect (FXBody.Instance.FXFlame);
+			bioOnly = new List<ElementType> ();
+			bioOnly.Add (ElementType.BIOLOGICAL);
 			eliminatedHealth = GetComponent<Attackable> ().MaxHealth / 2f;
 			squashedHealth = Mathf.Max (0f, GetComponent<Attackable> ().Health - eliminatedHealth);
 			GetComponent<Attackable> ().DamageObj (squashedHealth);
-			GetComponent<Attackable> ().MaxHealth -= eliminatedHealth;
-			value = 1f;
 		}
 	}
 	public override void OnRemoveProperty() {
 		if (bioSurround != null) 
 			Destroy (bioSurround);
-		GetComponent<Attackable> ().MaxHealth *= 2f;
 		GetComponent<Attackable> ().DamageObj (-squashedHealth);
-		value = 0f;
 	}
 
 	public override void OnUpdate()
 	{
-		List<ElementType> oldEle = bioSurround.Element;
-		bioSurround.Element = bioOnly;
-		if (GetComponent<Attackable> ().MaxHealth != oldMaxHealth) {
-			GetComponent<Attackable> ().MaxHealth -= (GetComponent<Attackable> ().MaxHealth - oldMaxHealth) / 2f;
+		if (bioSurround != null) {
+			List<ElementType> oldEle = bioSurround.Element;
+			bioSurround.Element = bioOnly;
+			if (GetComponent<Attackable> ().Health > eliminatedHealth) {
+				GetComponent<Attackable> ().DamageObj (GetComponent<Attackable> ().Health - eliminatedHealth);
+			}
+			if (Time.timeSinceLevelLoad > time_tracker) {
+				time_tracker = Time.timeSinceLevelLoad + bio_period;
+				GetComponent<Attackable> ().TakeHit (bioSurround);
+				GameObject.Instantiate (FXHit.Instance.FXHitBiological, transform.position, Quaternion.identity);
+			}
+			bioSurround.Element = oldEle;
 		}
-		if (Time.timeSinceLevelLoad > time_tracker)
-		{
-			time_tracker = Time.timeSinceLevelLoad + bio_period;
-			GetComponent<Attackable>().TakeHit(bioSurround);
-			GameObject.Instantiate (FXHit.Instance.FXHitBiological, transform.position, Quaternion.identity);
-		}
-		bioSurround.Element = oldEle;
 	}
 
 	public override void OnHitboxCreate(Hitbox hitboxCreated) {

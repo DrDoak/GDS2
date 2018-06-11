@@ -54,7 +54,7 @@ Transform:
   m_PrefabInternal: {fileID: 100100000}
   m_GameObject: {fileID: 1000013670716774}
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_LocalPosition: {x: 9.918017, y: -19.935137, z: 0}
+  m_LocalPosition: {x: 33.63579, y: -9.842913, z: 0}
   m_LocalScale: {x: 1.5, y: 1.5, z: 4}
   m_Children: []
   m_Father: {fileID: 0}
@@ -151,7 +151,7 @@ MonoBehaviour:
   m_properties: []
   HolderName: SameAsObject
   MaxSlots: 3
-  NumTransfers: 2
+  NumTransfers: 999
   m_toRemove: []
   SubmergedHitbox: {fileID: 0}
   EffectColor: {r: 1, g: 1, b: 1, a: 1}
@@ -185,6 +185,7 @@ MonoBehaviour:
     StartUpAnimation: melee_s
     RecoveryAnimation: melee_r
   m_AIInfo:
+    Frequency: 0.5
     UniqueAIPrediction: 0
     AIPredictionHitbox: {x: 0, y: 0}
     AIPredictionOffset: {x: 0, y: 0}
@@ -354,8 +355,8 @@ MonoBehaviour:
   AttackName: melee
   m_HitboxInfo:
     IsHitboxCreater: 1
-    HitboxScale: {x: 2, y: 0.5}
-    HitboxOffset: {x: 0.55, y: -0.25}
+    HitboxScale: {x: 1.75, y: 0.5}
+    HitboxOffset: {x: 0.75, y: -0.25}
     Damage: 24
     Stun: 0.5
     HitboxDuration: 0.25
@@ -370,6 +371,7 @@ MonoBehaviour:
     StartUpAnimation: melee_s
     RecoveryAnimation: melee_r
   m_AIInfo:
+    Frequency: 0.5
     UniqueAIPrediction: 0
     AIPredictionHitbox: {x: 2.5, y: 1}
     AIPredictionOffset: {x: 1, y: -0.5}
@@ -426,8 +428,8 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   saveID: autoID
-  prefabName: none
   pos: {x: 0, y: 0, z: 0}
+  zRot: 0
   targetID: none
   targetDir: 4
   healthVal: 0
@@ -435,8 +437,10 @@ MonoBehaviour:
     regID: Player-TestScene-762
     name: 
     pos: {x: 0, y: 0, z: 0}
+    zRot: 0
     health: 100
     maxHealth: 100
+    faction: 3
     prefabPath: 
     targetID: 
     propertyList: []
@@ -447,6 +451,7 @@ MonoBehaviour:
     targetDir: 0
     IsCurrentCharacter: 0
     IsFacingLeft: 0
+    TurretDefaultFace: 0
     Experience: 0
     TriggerUsed: 0
     triggerString: 
@@ -488,12 +493,13 @@ MonoBehaviour:
     ApplyProps: 0
   m_AttackAnimInfo:
     AnimSpeed: 1
-    StartUpTime: 0.5
+    StartUpTime: 0.35
     AttackTime: 0
     RecoveryTime: 1
     StartUpAnimation: take_s
     RecoveryAnimation: take_r
   m_AIInfo:
+    Frequency: 0.5
     UniqueAIPrediction: 0
     AIPredictionHitbox: {x: 2, y: 2}
     AIPredictionOffset: {x: 1.5, y: -1}

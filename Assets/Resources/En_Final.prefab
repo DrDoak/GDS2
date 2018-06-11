@@ -60,6 +60,7 @@ GameObject:
   - component: {fileID: 114290046171359402}
   - component: {fileID: 114634088829552440}
   - component: {fileID: 114178582309942764}
+  - component: {fileID: 114204547782194262}
   m_Layer: 9
   m_Name: En_Final
   m_TagString: Player
@@ -317,9 +318,9 @@ MonoBehaviour:
     StartupSoundFX: {fileID: 0}
     AttackSoundFX: {fileID: 0}
   m_Blades:
-  - Projectile: {fileID: 1862060446864990, guid: 4d5611d975c61384b8c17fee933a793c,
+  - Projectile: {fileID: 1672212592420838, guid: 078cd7dea1cab47418c0cef82155adf2,
       type: 2}
-    ProjectileCreatePos: {x: -3, y: 0}
+    ProjectileCreatePos: {x: -3.5, y: 0}
     ProjectileAimDirection: {x: 0.8, y: 0.5}
     ProjectileSpeed: 20
     PenetrativePower: 5
@@ -328,9 +329,9 @@ MonoBehaviour:
     KnifeDelay: 0.75
     Knockback: {x: 0, y: 0}
     Element: 0
-  - Projectile: {fileID: 1862060446864990, guid: 4d5611d975c61384b8c17fee933a793c,
+  - Projectile: {fileID: 1672212592420838, guid: 078cd7dea1cab47418c0cef82155adf2,
       type: 2}
-    ProjectileCreatePos: {x: -3, y: 0}
+    ProjectileCreatePos: {x: -3.5, y: 0}
     ProjectileAimDirection: {x: 1.1, y: 0.5}
     ProjectileSpeed: 20
     PenetrativePower: 5
@@ -339,9 +340,9 @@ MonoBehaviour:
     KnifeDelay: 0.85
     Knockback: {x: 0, y: 0}
     Element: 0
-  - Projectile: {fileID: 1862060446864990, guid: 4d5611d975c61384b8c17fee933a793c,
+  - Projectile: {fileID: 1672212592420838, guid: 078cd7dea1cab47418c0cef82155adf2,
       type: 2}
-    ProjectileCreatePos: {x: -3, y: 0}
+    ProjectileCreatePos: {x: -3.5, y: 0}
     ProjectileAimDirection: {x: 1.4, y: 0.5}
     ProjectileSpeed: 20
     PenetrativePower: 5
@@ -352,7 +353,7 @@ MonoBehaviour:
     Element: 0
   - Projectile: {fileID: 1672212592420838, guid: 078cd7dea1cab47418c0cef82155adf2,
       type: 2}
-    ProjectileCreatePos: {x: -3, y: 0}
+    ProjectileCreatePos: {x: -3.5, y: 0}
     ProjectileAimDirection: {x: 1.7, y: 0.5}
     ProjectileSpeed: 20
     PenetrativePower: 5
@@ -361,6 +362,22 @@ MonoBehaviour:
     KnifeDelay: 0.95
     Knockback: {x: 0, y: 0}
     Element: 0
+--- !u!114 &114204547782194262
+MonoBehaviour:
+  m_ObjectHideFlags: 1
+  m_PrefabParentObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 100100000}
+  m_GameObject: {fileID: 1920936324984956}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 408bf779b2e9ca046a7972ca395e1474, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  ItemDropped: {fileID: 1972383758959062, guid: 74c85383d5ab7a14e9a7e4e43ab81572,
+    type: 2}
+  StopMusic: 1
+  DeathQuote: 
+  LoadScene: PL_Ending
 --- !u!114 &114277940045961418
 MonoBehaviour:
   m_ObjectHideFlags: 1
@@ -504,7 +521,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   AttackName: fast_down
   m_HitboxInfo:
-    IsHitboxCreater: 1
+    IsHitboxCreater: 0
     HitboxScale: {x: 1, y: 1}
     HitboxOffset: {x: 0, y: 0}
     Damage: 10
@@ -697,7 +714,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   AttackName: quick_wave
   m_HitboxInfo:
-    IsHitboxCreater: 1
+    IsHitboxCreater: 0
     HitboxScale: {x: 1, y: 1}
     HitboxOffset: {x: 0, y: 0}
     Damage: 10
