@@ -8,19 +8,19 @@ Explore our 2D side-scrolling stages, and use your abilities to overcome overwhe
 
 Features original, classic 2D sprite art, matched with modern technology.
 
-![art](https://raw.githubusercontent.com/DrDoak/GDS2/master/readmeImages/lab_demo.png)
+![art](https://raw.githubusercontent.com/DrDoak/GDS2/master/readmeImages/lab_demo.gif)
 
 Steal the properties of any object, and use it to solve puzzles.
 
-![gameplay](https://raw.githubusercontent.com/DrDoak/Sol/master/readmeImages/property_demo.gif)
+![gameplay](https://raw.githubusercontent.com/DrDoak/GDS2/master/readmeImages/property_demo.gif)
 
 Or use, the same powers for advantages in combat.
 
-![combat](https://raw.githubusercontent.com/DrDoak/Sol/master/readmeImages/combat.gif)
+![combat](https://raw.githubusercontent.com/DrDoak/GDS2/master/readmeImages/combat.gif)
 
 Face challenging and unique boss battles using either might and skill, or wit and creativity.
 
-![boss](https://raw.githubusercontent.com/DrDoak/Sol/master/readmeImages/boss_demo.gif)
+![boss](https://raw.githubusercontent.com/DrDoak/GDS2/master/readmeImages/boss_demo.gif)
 
 # Play Now
 Windows: [Executable Zip](https://drive.google.com/drive/folders/1yukuM0ytZvA2EI3bMsZ2il9sjs_CXVyj?usp=sharing)
