@@ -23,7 +23,7 @@ Face challenging and unique boss battles using either might and skill, or wit an
 ![boss](https://raw.githubusercontent.com/DrDoak/Sol/master/readmeImages/boss_demo.gif)
 
 # Play Now
-Windows: [Sol Preview Zip](https://drive.google.com/file/d/1dGOQsBgZk6I7oSskvHKLkTSyKHGTIQXp/view?usp=sharing)
+Windows: [Executable Zip](https://drive.google.com/drive/folders/1yukuM0ytZvA2EI3bMsZ2il9sjs_CXVyj?usp=sharing)
 
 Project created in 10 weeks for the "Game Development Studio" course at Northwestern University. 
 
