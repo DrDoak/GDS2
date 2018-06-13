@@ -20,10 +20,10 @@ Or use, the same powers for advantages in combat.
 
 Face challenging and unique boss battles using either might and skill, or wit and creativity.
 
-![boss](https://raw.githubusercontent.com/DrDoak/GDS2/master/readmeImages/boss_demo.gif)
+![boss](https://raw.githubusercontent.com/DrDoak/GDS2/master/readmeImages/boss_large_2.gif)
 
 # Play Now
-Windows: [Executable Zip](https://drive.google.com/drive/folders/1yukuM0ytZvA2EI3bMsZ2il9sjs_CXVyj?usp=sharing)
+Windows: [Executable Zip](https://drive.google.com/file/d/1Y6xWJpe2lFkOmDHljPD-6ndAiClYna1F/view?usp=sharing)
 
 Project created in 10 weeks for the "Game Development Studio" course at Northwestern University. 
 
