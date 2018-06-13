@@ -28,6 +28,7 @@ GameObject:
   - component: {fileID: 114815590134648330}
   - component: {fileID: 114158378767696166}
   - component: {fileID: 114081115847730514}
+  - component: {fileID: 114110386423545502}
   m_Layer: 8
   m_Name: Generator
   m_TagString: Player
@@ -107,9 +108,52 @@ MonoBehaviour:
   Stealable: 1
   Viewable: 1
   Stackable: 0
+  InstantUse: 0
+  value: 0
   PropertyName: None
   Description: No description provided.
   icon: {fileID: 0}
+--- !u!114 &114110386423545502
+MonoBehaviour:
+  m_ObjectHideFlags: 1
+  m_PrefabParentObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 100100000}
+  m_GameObject: {fileID: 1670802623399742}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 92acc23af4626be4fa32c868acac10d0, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  saveID: autoID
+  pos: {x: 0, y: 0, z: 0}
+  zRot: 0
+  targetID: none
+  targetDir: 4
+  healthVal: 0
+  data:
+    regID: Not Assigned
+    name: 
+    pos: {x: 0, y: 0, z: 0}
+    zRot: 0
+    health: 100
+    maxHealth: 100
+    faction: 3
+    prefabPath: 
+    targetID: 
+    propertyList: []
+    propertyDescriptions: []
+    propertyValues: []
+    transfers: 0
+    slots: 0
+    targetDir: 0
+    IsCurrentCharacter: 0
+    IsFacingLeft: 0
+    TurretDefaultFace: 0
+    Experience: 0
+    TriggerUsed: 0
+    triggerString: 
+  recreated: 0
+  PrefabPath: Generator
 --- !u!114 &114136123948754052
 MonoBehaviour:
   m_ObjectHideFlags: 1
@@ -127,10 +171,16 @@ MonoBehaviour:
     m_Bits: 256
   DecelerationRatio: 1
   OnGround: 1
+  Floating: 0
   MaxClimbAngle: 80
+  TrueVelocity: {x: 0, y: 0, z: 0}
   m_inputedMove: {x: 0, y: 0}
   TerminalVelocity: -5
+  GravityScale: -1
   FacingLeft: 0
+  ReactToWater: 1
+  UseBuoyancy: 0
+  BuoyancyScale: -1
 --- !u!114 &114158378767696166
 MonoBehaviour:
   m_ObjectHideFlags: 1
@@ -145,6 +195,8 @@ MonoBehaviour:
   Stealable: 1
   Viewable: 1
   Stackable: 0
+  InstantUse: 0
+  value: 0
   PropertyName: None
   Description: No description provided.
   icon: {fileID: 0}
@@ -175,6 +227,7 @@ MonoBehaviour:
   MaxHealth: 200
   Alive: 1
   DeathTime: 0
+  m_currDeathTime: 0
   Faction: 3
   Resistences: []
   DisplayHealth: 1
@@ -191,9 +244,12 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   m_properties: []
+  HolderName: SameAsObject
   MaxSlots: 4
   NumTransfers: 2
   m_toRemove: []
+  SubmergedHitbox: {fileID: 0}
+  EffectColor: {r: 1, g: 1, b: 1, a: 1}
 --- !u!212 &212819625558008948
 SpriteRenderer:
   m_ObjectHideFlags: 1

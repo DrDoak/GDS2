@@ -57,7 +57,7 @@ public class SaveObjManager : MonoBehaviour{
 				//File.Copy (file, savePath + file);
 				string s = file.Substring (p.Length);
 				File.Copy (file, savePath + s); 
-				Debug.Log ("Copying: " + file + " to " + savePath + s);
+				//Debug.Log ("Copying: " + file + " to " + savePath + s);
 			}
 		}
 		string json = File.ReadAllText(savePath+ "base.txt");
@@ -306,9 +306,9 @@ public class SaveObjManager : MonoBehaviour{
 
 	}
 	public static PersistentItem RecreatePersistentItem(string path, Vector3 position, Quaternion rotation) {
-		Debug.Log ("re-instantiating object: " + path);
+		//Debug.Log ("re-instantiating object: " + path);
 		GameObject prefab = Resources.Load<GameObject>(path);
-		Debug.Log (prefab);
+		//Debug.Log (prefab);
 		GameObject go = GameObject.Instantiate(prefab, position, rotation) as GameObject;
 		PersistentItem actor = go.GetComponent<PersistentItem>() ?? go.AddComponent<PersistentItem>();
 		actor.recreated = true;
@@ -344,7 +344,6 @@ public class SaveObjManager : MonoBehaviour{
 			actor = RecreatePersistentItem(path, data.pos, rotation);
 		}
 		actor.data = data;
-		actor.LoadData ();
 		return actor;
 	}
 	public static void AddCharData(CharData data) {

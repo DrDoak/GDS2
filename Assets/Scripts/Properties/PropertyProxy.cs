@@ -16,8 +16,10 @@ public class PropertyProxy : PropertyHolder {
 
 	void findTarget() {
 		GameObject target = GameObject.Find (PropertyProxyTarget);
-		if (target != null)
+		if (target != null) {
 			PropHolder = target.GetComponent<PropertyHolder> ();
+			MaxSlots = target.GetComponent<PropertyHolder> ().MaxSlots;
+		}
 		if (target == null || PropHolder == null) {
 			if (DeactiveSprite != null)
 				GetComponent<SpriteRenderer> ().sprite = DeactiveSprite;

@@ -26,8 +26,10 @@ public class PersistentItem : MonoBehaviour {
 		if (data.regID == "") {
 			data.regID = "Not Assigned";
 		}
+		if (recreated)
+			LoadData ();
 		if (SaveObjManager.CheckRegistered(gameObject)) {
-			Debug.Log (gameObject + " Already registered, deleting duplicate ID: " + data.regID);
+			//Debug.Log (gameObject + " Already registered, deleting duplicate ID: " + data.regID);
 			Destroy(gameObject);
 		}
 	}
@@ -100,9 +102,11 @@ public class PersistentItem : MonoBehaviour {
 			GetComponent<PropertyHolder> ().NumTransfers = data.transfers;
 			GetComponent<PropertyHolder> ().MaxSlots = data.slots;
 			GetComponent<PropertyHolder> ().ClearProperties ();
+			Debug.Log ("Readding properties: " + data.propertyList.Length);
 			for (int i = 0; i < data.propertyList.Length; i++) {
 				Type t = Type.GetType (data.propertyList [i]);
-				Property p = (Property)gameObject.AddComponent (t);
+				GetComponent<PropertyHolder> ().AddProperty (data.propertyList [i]);
+				Property p = (Property)gameObject.GetComponent (t);
 				p.Description = data.propertyDescriptions [i];
 				p.value = data.propertyValues [i];
 			}

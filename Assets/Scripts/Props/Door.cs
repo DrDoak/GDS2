@@ -23,6 +23,8 @@ public class Door : MonoBehaviour {
 
 	public void SetOpen(bool open) {
 		IsOpen = open;
+		if (m_renderer == null)
+			return;
 		if (open) {
 			m_renderer.sprite = OpenedSprite;
 			m_collider.isTrigger = true;

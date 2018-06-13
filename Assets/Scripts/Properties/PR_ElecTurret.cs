@@ -17,9 +17,16 @@ public class PR_ElecTurret : PR_Mechanical {
 			GetComponent<Turret> ().SetTarget (null);
 			TargetFound = false;
 			m_targeting = false;
+			GetComponent<Observer> ().VisibleObjs.Clear ();
 		}
 	} 
 
+	public override void OnUpdate() {
+		base.OnUpdate ();
+		if (GetComponent<Turret> ().m_target == null) {
+			TargetFound = false;
+		}
+	}
 	public override void OnSight(Observable observedObj) {
 		if (!TargetFound && m_targeting && observedObj.GetComponent<Attackable> () &&
 			GetComponent<Attackable> ().Faction != observedObj.GetComponent<Attackable> ().Faction) {
