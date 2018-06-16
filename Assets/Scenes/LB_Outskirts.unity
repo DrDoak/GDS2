@@ -545,6 +545,11 @@ Prefab:
       propertyPath: FacingLeft
       value: 1
       objectReference: {fileID: 0}
+    - target: {fileID: 114141975639261772, guid: 0b8ea8cdcadbc3b458a3c853c393ae8d,
+        type: 2}
+      propertyPath: DefaultFaceLeft
+      value: 1
+      objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_ParentPrefab: {fileID: 100100000, guid: 0b8ea8cdcadbc3b458a3c853c393ae8d, type: 2}
   m_IsPrefabParent: 0
@@ -1232,7 +1237,7 @@ Prefab:
     - target: {fileID: 224858247495619676, guid: 86856ebb1cc73c04a86115975021a18e,
         type: 2}
       propertyPath: m_AnchoredPosition.y
-      value: -0.000059127808
+      value: -0.00001335144
       objectReference: {fileID: 0}
     - target: {fileID: 224209084733379808, guid: 86856ebb1cc73c04a86115975021a18e,
         type: 2}
@@ -1262,7 +1267,7 @@ Prefab:
     - target: {fileID: 224739168298920636, guid: 86856ebb1cc73c04a86115975021a18e,
         type: 2}
       propertyPath: m_AnchorMin.y
-      value: 0.00000017881393
+      value: 0
       objectReference: {fileID: 0}
     - target: {fileID: 224159792454195676, guid: 86856ebb1cc73c04a86115975021a18e,
         type: 2}

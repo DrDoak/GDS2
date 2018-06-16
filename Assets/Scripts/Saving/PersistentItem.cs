@@ -57,6 +57,7 @@ public class PersistentItem : MonoBehaviour {
 			data.IsCurrentCharacter = GetComponent<BasicMovement> ().IsCurrentPlayer;
 		if (GetComponent<PhysicsSS> ()) {
 			data.IsFacingLeft = GetComponent<PhysicsSS> ().FacingLeft;
+			data.terminalVelocity = GetComponent<PhysicsSS> ().TerminalVelocity;
 		}
 		if (GetComponent<Turret> ())
 			data.TurretDefaultFace = GetComponent<Turret> ().DefaultFaceLeft;
@@ -95,6 +96,7 @@ public class PersistentItem : MonoBehaviour {
 		transform.localRotation = q;
 		if (GetComponent<PhysicsSS> ()) {
 			GetComponent<PhysicsSS> ().SetDirection (data.IsFacingLeft);
+			GetComponent<PhysicsSS> ().TerminalVelocity = data.terminalVelocity;
 		}
 		if (GetComponent<Turret> ())
 			GetComponent<Turret> ().DefaultFaceLeft = data.TurretDefaultFace;

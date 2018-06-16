@@ -22,7 +22,6 @@ public class PR_Flaming : Property
 
     public override void OnAddProperty()
     {
-        GetComponent<Attackable>().Faction = FactionType.HOSTILE;
 		Vector3 sc = GetComponent<PropertyHolder> ().BodyScale ();
 		sc *= 1.2f;
 		fireSurround = GetComponent<HitboxMaker>().CreateHitboxDoT(sc, off, dmg, stun, hd, kb,false, true, ElementType.FIRE);

@@ -21,6 +21,7 @@ public class CharData {
 	public RoomDirection targetDir;
 	public bool IsCurrentCharacter;
 	public bool IsFacingLeft;
+	public float terminalVelocity;
 	public bool TurretDefaultFace;
 	public int Experience;
 

@@ -248,6 +248,7 @@ MonoBehaviour:
   Stealable: 1
   Viewable: 1
   Stackable: 0
+  InstantUse: 0
   value: 0
   PropertyName: None
   Description: No description provided.
@@ -285,7 +286,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   m_properties: []
-  HolderName: SameAsObject
+  HolderName: Guard
   MaxSlots: 4
   NumTransfers: 2
   m_toRemove: []
@@ -342,6 +343,7 @@ MonoBehaviour:
     zRot: 0
     health: 100
     maxHealth: 100
+    faction: 3
     prefabPath: 
     targetID: 
     propertyList: []
@@ -352,6 +354,7 @@ MonoBehaviour:
     targetDir: 0
     IsCurrentCharacter: 0
     IsFacingLeft: 0
+    TurretDefaultFace: 0
     Experience: 0
     TriggerUsed: 0
     triggerString: 
@@ -443,6 +446,7 @@ MonoBehaviour:
   Stealable: 1
   Viewable: 1
   Stackable: 0
+  InstantUse: 0
   value: 100
   PropertyName: Data
   Description: Combat knowledge and experience.

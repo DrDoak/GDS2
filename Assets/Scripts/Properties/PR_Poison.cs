@@ -20,7 +20,6 @@ public class PR_Poison : Property {
 
 	public override void OnAddProperty()
 	{
-		GetComponent<Attackable>().Faction = FactionType.HOSTILE;
 		Vector3 sc = GetComponent<PropertyHolder> ().BodyScale ();
 		sc *= 1.2f;
 		if (GetComponent<HitboxMaker> () != null) {
@@ -58,7 +57,6 @@ public class PR_Poison : Property {
 	}
 
 	public override void OnHitboxCreate(Hitbox hitboxCreated) {
-		hitboxCreated.Damage *= 2f;
 		hitboxCreated.AddElement(ElementType.BIOLOGICAL);
 	}
 }

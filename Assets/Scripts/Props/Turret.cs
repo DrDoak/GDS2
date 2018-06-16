@@ -56,6 +56,7 @@ public class Turret : MonoBehaviour {
 		} else {
 			m_line.SetPosition (0, transform.position);
 			m_line.SetPosition (1, transform.position);
+			GetComponent<PhysicsSS> ().SetDirection (DefaultFaceLeft);
 		}
 		if (m_firing) {
 			fireVolley ();

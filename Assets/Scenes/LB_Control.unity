@@ -999,7 +999,7 @@ Prefab:
     m_Modifications:
     - target: {fileID: 4342955179953242, guid: 3c6f60153f2c9b1488cd0733c0eb3208, type: 2}
       propertyPath: m_LocalPosition.x
-      value: 52.05
+      value: 52.58
       objectReference: {fileID: 0}
     - target: {fileID: 4342955179953242, guid: 3c6f60153f2c9b1488cd0733c0eb3208, type: 2}
       propertyPath: m_LocalPosition.y
@@ -1158,11 +1158,11 @@ Prefab:
     m_Modifications:
     - target: {fileID: 4499001292753330, guid: 172b04cb1da4eb0468b6ff411428dbad, type: 2}
       propertyPath: m_LocalPosition.x
-      value: 50.35
+      value: 48.38
       objectReference: {fileID: 0}
     - target: {fileID: 4499001292753330, guid: 172b04cb1da4eb0468b6ff411428dbad, type: 2}
       propertyPath: m_LocalPosition.y
-      value: -17.86
+      value: -17.89
       objectReference: {fileID: 0}
     - target: {fileID: 4499001292753330, guid: 172b04cb1da4eb0468b6ff411428dbad, type: 2}
       propertyPath: m_LocalPosition.z
@@ -2273,6 +2273,12 @@ Prefab:
       propertyPath: m_RootOrder
       value: 29
       objectReference: {fileID: 0}
+    - target: {fileID: 114685190496768866, guid: f6c8e8e30dc2e244095b557e18ae3777,
+        type: 2}
+      propertyPath: Description
+      value: MIA's prototype Security Suite is great against theft, but MIA complains
+        that the suspicious things can still be uploaded.
+      objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_ParentPrefab: {fileID: 100100000, guid: f6c8e8e30dc2e244095b557e18ae3777, type: 2}
   m_IsPrefabParent: 0
@@ -2598,7 +2604,7 @@ Prefab:
     m_Modifications:
     - target: {fileID: 4356082392915710, guid: a0662176203f57243b110939fc097a8e, type: 2}
       propertyPath: m_LocalPosition.x
-      value: 44.674244
+      value: 45.31
       objectReference: {fileID: 0}
     - target: {fileID: 4356082392915710, guid: a0662176203f57243b110939fc097a8e, type: 2}
       propertyPath: m_LocalPosition.y
@@ -2628,7 +2634,8 @@ Prefab:
       propertyPath: m_RootOrder
       value: 17
       objectReference: {fileID: 0}
-    m_RemovedComponents: []
+    m_RemovedComponents:
+    - {fileID: 114081115847730514, guid: a0662176203f57243b110939fc097a8e, type: 2}
   m_ParentPrefab: {fileID: 100100000, guid: a0662176203f57243b110939fc097a8e, type: 2}
   m_IsPrefabParent: 0
 --- !u!1 &1572488167
@@ -2752,6 +2759,30 @@ Prefab:
     m_RemovedComponents: []
   m_ParentPrefab: {fileID: 100100000, guid: e257e003c31bc9c45992adf9b725ae31, type: 2}
   m_IsPrefabParent: 0
+--- !u!1 &1638619004 stripped
+GameObject:
+  m_PrefabParentObject: {fileID: 1281583572473912, guid: f6c8e8e30dc2e244095b557e18ae3777,
+    type: 2}
+  m_PrefabInternal: {fileID: 1381246553}
+--- !u!114 &1638619005
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_PrefabParentObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 0}
+  m_GameObject: {fileID: 1638619004}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 6003dfd63db640349b0f443958c83178, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  Stealable: 1
+  Viewable: 1
+  Stackable: 0
+  InstantUse: 0
+  value: 0
+  PropertyName: None
+  Description: MIA's personal generator keeps it running even in times of crisis.
+  icon: {fileID: 0}
 --- !u!1 &1744109009 stripped
 GameObject:
   m_PrefabParentObject: {fileID: 1708268155150066, guid: e257e003c31bc9c45992adf9b725ae31,
@@ -3048,6 +3079,32 @@ Prefab:
     m_RemovedComponents: []
   m_ParentPrefab: {fileID: 100100000, guid: 985cebc0d7f87fe44ab35b712b2c5e90, type: 2}
   m_IsPrefabParent: 0
+--- !u!1 &1887184451 stripped
+GameObject:
+  m_PrefabParentObject: {fileID: 1670802623399742, guid: a0662176203f57243b110939fc097a8e,
+    type: 2}
+  m_PrefabInternal: {fileID: 1569504986}
+--- !u!114 &1887184453
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_PrefabParentObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 0}
+  m_GameObject: {fileID: 1887184451}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 956b3ceaf744d5042a732c7a743b2220, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  Stealable: 1
+  Viewable: 1
+  Stackable: 0
+  InstantUse: 0
+  value: 0
+  PropertyName: None
+  Description: No description provided.
+  icon: {fileID: 0}
+  m_flameDamage: 0
+  inWater: 0
 --- !u!1001 &1928828317
 Prefab:
   m_ObjectHideFlags: 0
@@ -3546,7 +3603,7 @@ Prefab:
     - target: {fileID: 224858247495619676, guid: 86856ebb1cc73c04a86115975021a18e,
         type: 2}
       propertyPath: m_AnchoredPosition.y
-      value: 0.000022888184
+      value: 0.00005340576
       objectReference: {fileID: 0}
     - target: {fileID: 224409164585238760, guid: 86856ebb1cc73c04a86115975021a18e,
         type: 2}
@@ -3561,12 +3618,12 @@ Prefab:
     - target: {fileID: 224209084733379808, guid: 86856ebb1cc73c04a86115975021a18e,
         type: 2}
       propertyPath: m_AnchoredPosition.y
-      value: 0.00007247925
+      value: 0.00002670288
       objectReference: {fileID: 0}
     - target: {fileID: 224777399314521252, guid: 86856ebb1cc73c04a86115975021a18e,
         type: 2}
       propertyPath: m_AnchoredPosition.y
-      value: 0.0000705719
+      value: 0.000024795532
       objectReference: {fileID: 0}
     - target: {fileID: 224651395152028732, guid: 86856ebb1cc73c04a86115975021a18e,
         type: 2}
@@ -3581,7 +3638,7 @@ Prefab:
     - target: {fileID: 224739168298920636, guid: 86856ebb1cc73c04a86115975021a18e,
         type: 2}
       propertyPath: m_AnchorMin.y
-      value: 0.00000017881393
+      value: 0
       objectReference: {fileID: 0}
     - target: {fileID: 224159792454195676, guid: 86856ebb1cc73c04a86115975021a18e,
         type: 2}

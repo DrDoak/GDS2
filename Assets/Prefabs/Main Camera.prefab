@@ -5728,7 +5728,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   m_Material: {fileID: 0}
-  m_Color: {r: 0, g: 0, b: 0, a: 1}
+  m_Color: {r: 0.21323532, g: 0.21323532, b: 0.21323532, a: 1}
   m_RaycastTarget: 1
   m_OnCullStateChanged:
     m_PersistentCalls:
@@ -6384,7 +6384,7 @@ MonoBehaviour:
   m_HandleRect: {fileID: 224739168298920636}
   m_Direction: 2
   m_Value: 0
-  m_Size: 0.99999976
+  m_Size: 0.8133329
   m_NumberOfSteps: 0
   m_OnValueChanged:
     m_PersistentCalls:
@@ -8783,7 +8783,7 @@ MonoBehaviour:
   m_HandleRect: {fileID: 224409164585238760}
   m_Direction: 2
   m_Value: 0
-  m_Size: 0.9999998
+  m_Size: 0.9999999
   m_NumberOfSteps: 0
   m_OnValueChanged:
     m_PersistentCalls:
@@ -10735,8 +10735,8 @@ MonoBehaviour:
   m_TargetGraphic: {fileID: 114818224412240834}
   m_HandleRect: {fileID: 224159792454195676}
   m_Direction: 2
-  m_Value: 1
-  m_Size: 0.4418605
+  m_Value: 0.9999999
+  m_Size: 0.22093023
   m_NumberOfSteps: 0
   m_OnValueChanged:
     m_PersistentCalls:
@@ -12471,7 +12471,7 @@ MonoBehaviour:
   m_HandleRect: {fileID: 224919683728530804}
   m_Direction: 2
   m_Value: 0
-  m_Size: 1
+  m_Size: 0.9999999
   m_NumberOfSteps: 0
   m_OnValueChanged:
     m_PersistentCalls:
@@ -12574,8 +12574,8 @@ MonoBehaviour:
   InstantUse: 0
   value: 0
   PropertyName: Parasite
-  Description: Greatly Increases Attack. Damages Biological objects. Can spread to
-    other biological objects
+  Description: HALVES Max HP. Only Hurts Biological Beings. Spreads to nearby Biological
+    beings.
   icon: {fileID: 21300000, guid: d70ef8b226510c441af3eda5373a1ec9, type: 3}
 --- !u!114 &114748349617162320
 MonoBehaviour:
@@ -16140,7 +16140,7 @@ RectTransform:
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 0, y: 0.5}
   m_AnchorMax: {x: 1, y: 0.5}
-  m_AnchoredPosition: {x: -0.000028338967, y: 189.99998}
+  m_AnchoredPosition: {x: -0.000028338967, y: 190.00005}
   m_SizeDelta: {x: -0.000096607626, y: 860}
   m_Pivot: {x: 0, y: 1}
 --- !u!224 &224133447288463874
@@ -16443,7 +16443,7 @@ RectTransform:
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 0, y: 1}
   m_AnchorMax: {x: 1, y: 1}
-  m_AnchoredPosition: {x: 0, y: 0.000032424927}
+  m_AnchoredPosition: {x: 0, y: -0.00004005432}
   m_SizeDelta: {x: 0, y: 28}
   m_Pivot: {x: 0.5, y: 1}
 --- !u!224 &224227661333808466
@@ -18420,7 +18420,7 @@ RectTransform:
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 0, y: 1}
   m_AnchorMax: {x: 1, y: 1}
-  m_AnchoredPosition: {x: 0, y: 0.000032424927}
+  m_AnchoredPosition: {x: 0, y: -0.00004005432}
   m_SizeDelta: {x: 0, y: 28}
   m_Pivot: {x: 0.5, y: 1}
 --- !u!224 &224780512741333096
@@ -18683,7 +18683,7 @@ RectTransform:
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 0, y: 1}
   m_AnchorMax: {x: 1, y: 1}
-  m_AnchoredPosition: {x: 0, y: 0.00001335144}
+  m_AnchoredPosition: {x: 0, y: -0.000020980835}
   m_SizeDelta: {x: 0, y: 28}
   m_Pivot: {x: 0.5, y: 1}
 --- !u!224 &224866136947452724

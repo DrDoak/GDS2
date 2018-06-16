@@ -88,7 +88,7 @@ Transform:
   m_PrefabInternal: {fileID: 100100000}
   m_GameObject: {fileID: 1920936324984956}
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_LocalPosition: {x: 27.85, y: -34.82, z: 0}
+  m_LocalPosition: {x: 25.86, y: -34.82, z: 0}
   m_LocalScale: {x: 1.5, y: 1.5, z: 4}
   m_Children:
   - {fileID: 4420942774211552}
@@ -183,7 +183,7 @@ MonoBehaviour:
     AnimSpeed: 1
     StartUpTime: 2
     AttackTime: 0
-    RecoveryTime: 0.5
+    RecoveryTime: 1.5
     StartUpAnimation: attack3_s
     RecoveryAnimation: attack3_r
   m_AIInfo:
@@ -306,7 +306,7 @@ MonoBehaviour:
     AnimSpeed: 1
     StartUpTime: 0.75
     AttackTime: 0
-    RecoveryTime: 1
+    RecoveryTime: 1.5
     StartUpAnimation: attack2_s
     RecoveryAnimation: attack2_r
   m_AIInfo:
@@ -455,7 +455,7 @@ MonoBehaviour:
     AnimSpeed: 1
     StartUpTime: 0.5
     AttackTime: 0
-    RecoveryTime: 0.5
+    RecoveryTime: 1
     StartUpAnimation: attack2_s
     RecoveryAnimation: attack2_r
   m_AIInfo:

@@ -11,6 +11,7 @@ public class PR_ElecTurret : PR_Mechanical {
 			m_targeting = true;
 			//GetComponent<Turret> ().SetTarget (GameManager.Instance.CurrentPlayer);
 		}
+		GetComponent<Observer> ().VisibleObjs.Clear ();
 	}
 	protected override void OnDisable() {
 		if (GetComponent<Turret> () != null) {
@@ -28,6 +29,8 @@ public class PR_ElecTurret : PR_Mechanical {
 		}
 	}
 	public override void OnSight(Observable observedObj) {
+		Debug.Log ("On sight: " + observedObj.gameObject);
+		Debug.Log ("found: " + TargetFound + " targeting: " + m_targeting + " Attack: " + observedObj.GetComponent<Attackable> ());
 		if (!TargetFound && m_targeting && observedObj.GetComponent<Attackable> () &&
 			GetComponent<Attackable> ().Faction != observedObj.GetComponent<Attackable> ().Faction) {
 			GetComponent<Turret> ().SetTarget (observedObj.gameObject);
