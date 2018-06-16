@@ -24,7 +24,6 @@ Face challenging and unique boss battles using either might and skill, or wit an
 
 # Play Now
 Windows: [Executable Zip](https://drive.google.com/file/d/1Y6xWJpe2lFkOmDHljPD-6ndAiClYna1F/view?usp=sharing)
-Mac: [Executable Zip](https://drive.google.com/file/d/1PYYnx2rVtaiIE2I_ynY0bWQM7NYIaa2g/view?usp=sharing)
 
 # Credits
 
