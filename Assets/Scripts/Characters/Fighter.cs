@@ -17,6 +17,7 @@ public class Fighter : MonoBehaviour
 	public string WalkAnimation = "walk";
 	public string HurtAnimation = "hit";
 	public string AirAnimation = "air";
+	public string JumpAnimation = "jump";
 
 	private PhysicsSS m_physics;
 	private AnimatorSprite m_anim;
@@ -129,7 +130,11 @@ public class Fighter : MonoBehaviour
 	private void ProgressWalkOrIdleAnimation()
 	{
 		if (!m_physics.OnGround) {
-			m_anim.Play (AirAnimation);
+			if (m_physics.TrueVelocity.y > 0f) {
+				m_anim.Play (new string[]{JumpAnimation,AirAnimation});
+			} else {
+				m_anim.Play (AirAnimation);
+			}
 		} else {
 			if (m_physics.IsAttemptingMovement ())
 				m_anim.Play (WalkAnimation);
