@@ -6,7 +6,7 @@ Now the entire lab is out to hunt you as you struggle to make it out of the lab 
 
 Explore our 2D side-scrolling stages, and use your abilities to overcome overwhelming odds. With these powers, the world becomes your toolset, and your weapon. 
 
-Features original, classic 2D sprite art, matched with modern technology.
+Features an original soundtrack, paired with art that combines old-school Pixel graphics with modern technology.
 
 ![art](https://raw.githubusercontent.com/DrDoak/GDS2/master/readmeImages/lab_demo.gif)
 
@@ -25,8 +25,12 @@ Face challenging and unique boss battles using either might and skill, or wit an
 # Play Now
 Windows: [Executable Zip](https://drive.google.com/file/d/1Y6xWJpe2lFkOmDHljPD-6ndAiClYna1F/view?usp=sharing)
 
+# Credits
+
 Project created in 10 weeks for the "Game Development Studio" course at Northwestern University. 
 
 Course is headed by Ethan Robison, Rob Zubeck, and Professor Ian Horswill.
 
 Project created by LuoLei Zhao, Anne Barrett, and Vikram Kohli.
+
+Created with UnityEngine.
